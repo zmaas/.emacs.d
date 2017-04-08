@@ -8,6 +8,7 @@ history
 recentf
 recentf~
 auto-save-list
+auto-save-list/*
 .emacs.desktop
 .emacs.desktop.lock
 .#.emacs.desktop
@@ -18,3 +19,4 @@ projectile-bookmarks.eld
 zm-personal.el
 network-security.data
 .last-package-update-day
+personal.el

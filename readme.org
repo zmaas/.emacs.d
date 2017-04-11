@@ -1,7 +1,7 @@
 * My .emacs.d!
 This repository contains the full contents of my current and active use .emacs.d. This is what I use on a day-to-day basis. It has evolved lots over time, and lots of the inspiration for my setup comes from spacemacs. This works very well for me.
 * To Do
-** TODO Add dark theme and create theme files
-** TODO Add orgmode keybindings to general leader
-** TODO Improve the readme.md. Convert to init.org.
-** TODO Add screenshots for my theming.
+1. [ ] Add dark theme and create theme files
+2. [ ] Add orgmode keybindings to general leader
+3. [ ] Improve the readme.md. Convert to init.org
+4. [ ] Add screenshots for my theming.

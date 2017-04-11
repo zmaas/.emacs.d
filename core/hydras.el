@@ -11,13 +11,38 @@
 	:defer t)
 
 ;; HYDRAS
-(defhydra sp-slurpbarf ()
-	"smarparens slurp barf"
-	(")" sp-forward-slurp-sexp "Slurp Forward")
-	("(" sp-backward-slurp-sexp "Slurp Backward")
-	("9" sp-forward-barf-sexp "Barf Forward")
-	("0" sp-backward-barf-sexp "Barf Backward"))
 
+;; A hydra for org hot expansion of templates.
+(defhydra hydra-org-template (:color blue :hint nil)
+  "
+_c_enter  _q_uote    _L_aTeX:
+_l_atex   _e_xample  _i_ndex:
+_a_scii   _v_erse    _I_NCLUDE:
+_s_rc     ^ ^        _H_TML:
+_h_tml    ^ ^        _A_SCII:
+"
+  ("s" (hot-expand "<s"))
+  ("e" (hot-expand "<e"))
+  ("q" (hot-expand "<q"))
+  ("v" (hot-expand "<v"))
+  ("c" (hot-expand "<c"))
+  ("l" (hot-expand "<l"))
+  ("h" (hot-expand "<h"))
+  ("a" (hot-expand "<a"))
+  ("L" (hot-expand "<L"))
+  ("i" (hot-expand "<i"))
+  ("I" (hot-expand "<I"))
+  ("H" (hot-expand "<H"))
+  ("A" (hot-expand "<A"))
+  ("<" self-insert-command "ins")
+  ("o" nil "quit"))
+
+(defun hot-expand (str)
+  "Expand org template."
+  (insert str)
+  (org-try-structure-completion))
+
+;; Need to re-implement - hydra for eyebrowse
 (defhydra eyebrowse-hydra ()
 	"A Hydra providing config for eyebrowse evil bindings"
 	("h" eyebrowse-next-window-config "Next window")

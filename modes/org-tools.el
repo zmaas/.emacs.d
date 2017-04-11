@@ -5,12 +5,22 @@
 
 ;;; Code:
 
+;; Better bindings for org-mode through evil.
 (use-package evil-org
 	:ensure t)
 
+;; Pretty bullets for org-mode
 (use-package org-bullets
-	:ensure t
+  :ensure t
 	:config
 	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;; Calls a special hydra for insertion if at the start of a line
+(define-key org-mode-map "<"
+  (lambda () (interactive)
+     (if (looking-back "^")
+         (hydra-org-template/body)
+       (self-insert-command 1))))
+
 
 ;;; zm-org-tools.el ends here

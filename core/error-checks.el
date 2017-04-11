@@ -40,6 +40,7 @@
 ;; flycheck gives us global syntax checking and eroor popups in our code
 (use-package flycheck
 	:ensure t
+	:diminish (flycheck-mode "Fc")
 	:defer t
 	:init
 	(use-package flycheck-pos-tip

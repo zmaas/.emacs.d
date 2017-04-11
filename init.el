@@ -60,8 +60,6 @@
 
 (setq backup-directory-alist '(("." . "~/.emacsbackups")))
 
-;; Trying out leuven theme
-(load-theme 'leuven)
 (add-to-list 'default-frame-alist '(font . "Source Code Pro for Powerline 11"))
 (set-face-attribute 'default t :font "Source Code Pro for Powerline 11")
 ;; Default font should be adobe source code pro powerline
@@ -75,6 +73,9 @@
 (load-file "~/.emacs.d/core/error-checks.el")
 (load-file "~/.emacs.d/core/style-checks.el")
 (load-file "~/.emacs.d/core/utils.el")
+
+;; Theming configuration files
+(load-file "~/.emacs.d/core/themes.el")
 (load-file "~/.emacs.d/core/appearance.el")
 
 ;; Load language specific configurations
@@ -84,6 +85,8 @@
 (load-file "~/.emacs.d/modes/org-tools.el")
 (load-file "~/.emacs.d/modes/lisp-tools.el")
 (load-file "~/.emacs.d/modes/python-tools.el")
+
+(daytime-theme)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -105,9 +108,10 @@
  '(custom-safe-themes
 	 (quote
 		("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+ '(global-hl-line-mode t)
  '(package-selected-packages
 	 (quote
-		(spacemacs-theme ibuffer-vc dumb-jump smex general clipmon magithub ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ company-auctex auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing golden-ratio sr-speedbar focus evil-magit pdf-tools crosshairs evil-quickscope hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-sexp highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-god-state evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
+		(highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon magithub ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ company-auctex auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing golden-ratio sr-speedbar focus evil-magit pdf-tools crosshairs evil-quickscope hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-god-state evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
  '(safe-local-variable-values (quote ((o-byte-compile . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

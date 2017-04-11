@@ -17,6 +17,9 @@
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
 
+;; Show current line
+(add-hook 'after-init-hook #'global-hl-line-mode)
+
 ;; Focus for automatic code narrowing
 (use-package focus
 	:ensure t
@@ -35,25 +38,31 @@
 	(add-hook 'after-init-hook #'rainbow-mode))
 
 ;; Trying out telephone line instead of powerline
-(use-package telephone-line
-	:ensure t
+;(use-package telephone-line
+;	:ensure t
+;	:config
+;	(setq telephone-line-lhs
+;        '((evil   . (telephone-line-evil-tag-segment))
+;          (accent . (telephone-line-vc-segment
+;                     telephone-line-process-segment))
+;          (nil    . (telephone-line-minor-mode-segment
+;                     telephone-line-buffer-segment))))
+;	(setq telephone-line-rhs
+;        '((nil    . (telephone-line-misc-info-segment))
+;          (accent . (telephone-line-major-mode-segment))
+;          (evil   . (telephone-line-airline-position-segment))))
+;	(setq telephone-line-primary-left-separator telephone-line-cubed-left)
+;	(setq telephone-line-primary-right-separator telephone-line-cubed-right)
+;	(setq telephone-line-secondary-left-separator telephone-line-cubed-hollow-left)
+;	(setq telephone-line-secondary-right-separator telephone-line-cubed-hollow-right)
+;	(telephone-line-mode t)
+;	(column-number-mode t))
+
+(use-package spaceline-config
+  :ensure spaceline
 	:config
-	(setq telephone-line-lhs
-        '((evil   . (telephone-line-evil-tag-segment))
-          (accent . (telephone-line-vc-segment
-                     telephone-line-process-segment))
-          (nil    . (telephone-line-minor-mode-segment
-                     telephone-line-buffer-segment))))
-	(setq telephone-line-rhs
-        '((nil    . (telephone-line-misc-info-segment))
-          (accent . (telephone-line-major-mode-segment))
-          (evil   . (telephone-line-airline-position-segment))))
-	(setq telephone-line-primary-left-separator telephone-line-cubed-left)
-	(setq telephone-line-primary-right-separator telephone-line-cubed-right)
-	(setq telephone-line-secondary-left-separator telephone-line-cubed-hollow-left)
-	(setq telephone-line-secondary-right-separator telephone-line-cubed-hollow-right)
-	(telephone-line-mode t)
-	(column-number-mode t))
+	(spaceline-spacemacs-theme)
+	(setq powerline-default-separator 'bar))
 
 ;; tiny system monitor, helpful when we spend all of our time here
 (use-package symon
@@ -66,7 +75,6 @@
 	:diminish highlight-thing-mode
 	:config
 	(global-highlight-thing-mode t))
-
 
 ;; subtle lines to show our tab level in code
 (use-package highlight-indent-guides
@@ -101,13 +109,11 @@
 	(add-hook 'prog-mode-hook #'highlight-numbers-mode)
 	(add-hook 'prog-mode-hook #'show-paren-mode))
 
-;; highlights sexps when we are in them
-(use-package highlight-sexp
-	:ensure t
-	:diminish highlight-sexp-mode
+(use-package highlight-parentheses
+  :ensure t
+  :diminish highlight-parentheses-mode
 	:config
-	(add-hook 'prog-mode-hook #'highlight-sexp-mode)
-	(set 'hl-sexp-background-color "#f5f5f5"))
+	(add-hook 'prog-mode-hook #'highlight-parentheses-mode))
 
 	;; make builtin popup menus use ace instead of the builtin option
 		(use-package ace-popup-menu
@@ -122,7 +128,7 @@
 	:diminish auto-dim-other-buffers-mode
 	:config
 	(add-hook 'after-init-hook #'auto-dim-other-buffers-mode)
-	(set-face-background 'auto-dim-other-buffers-face "#e0e0e0"))
+	)
 
 ;; prettyify fonts
 (setq font-lock-maximum-decoration t)
@@ -132,10 +138,6 @@
 	:ensure t
 	:diminish linum-relative-mode
 	:config
-	(set-face-background 'fringe "#FFFFFF")
-	(set-face-background 'linum "#FFFFFF")
-	(set-face-background 'linum-relative-current-face "#EEEEEE")
-	(set-face-foreground 'linum-relative-current-face "#607D8B")
 	(add-hook 'after-init-hook #'linum-relative-global-mode))
 
 ;;; zm-appearance.el ends here

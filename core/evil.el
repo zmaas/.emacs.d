@@ -47,9 +47,7 @@
 		:config
 		(global-evil-quickscope-mode t))
 	:config
-	(evil-mode 1)
-	(define-key evil-normal-state-map "?" 'swiper)
-	(define-key evil-normal-state-map "/" 'swiper))
+	(evil-mode 1))
 
 (use-package general
 	:ensure t
@@ -62,7 +60,7 @@
 	 :prefix "SPC"
 	 :non-normal-prefix "M-SPC"
 		"k" '(counsel-yank-pop :which-key "Kill Ring")
-		"SPC" '(er/expand-region :which-key "Expand Region")
+		"SPC" '(swiper :which-key "Swiper")
 		":" '(counsel-M-x :which-key "M-x")
 		"s" '(flyspell-correct-previous-word-generic :which-key "Spellcheck")
 		"g" '(magit-status :which-key "Git")
@@ -101,6 +99,8 @@
 		"a" '(:ignore t :which-key "Appearance")
 		"af" '(focus-mode :which-key "Focus")
 		"ao" '(olivetti-mode :which-key "Olivetti")
+		"ad" '(daytime-theme :which-key "Day")
+		"an" '(night-theme :which-key "Night")
 		;; Projectile specific bindings
 		"p" '(:ignore t :which-key "Project")
 		"pj" '(counsel-projectile :which-key "File")
@@ -114,17 +114,18 @@
 		"w/" '(split-window-horizontally :which-key "Horizontal Split")
 		"w-" '(split-window-vertically :which-key "Vertical Split")
 		"wx" '(delete-window :which-key "Close")
-		"wX" '(delete-other-windows :which-key "Close Others")
-		"w0" '(eyebrowse-switch-to-window-config-0 :which-key "W0")
-		"w1" '(eyebrowse-switch-to-window-config-1 :which-key "W1")
-		"w2" '(eyebrowse-switch-to-window-config-2 :which-key "W2")
-		"w3" '(eyebrowse-switch-to-window-config-3 :which-key "W3")
-		"w4" '(eyebrowse-switch-to-window-config-4 :which-key "W4")
-		"w5" '(eyebrowse-switch-to-window-config-5 :which-key "W5")
-		"w6" '(eyebrowse-switch-to-window-config-6 :which-key "W6")
-		"w7" '(eyebrowse-switch-to-window-config-7 :which-key "W7")
-		"w8" '(eyebrowse-switch-to-window-config-8 :which-key "W8")
-		"w9" '(eyebrowse-switch-to-window-config-9 :which-key "W9")
+		"wX" '(eyebrowse-close-window-config :which-key "Eyebrowse Close")
+		"TAB" '(eyebrowse-last-window-config :which-key "Switch")
+		"0" '(eyebrowse-switch-to-window-config-0 :which-key "W0")
+		"1" '(eyebrowse-switch-to-window-config-1 :which-key "W1")
+		"2" '(eyebrowse-switch-to-window-config-2 :which-key "W2")
+		"3" '(eyebrowse-switch-to-window-config-3 :which-key "W3")
+		"4" '(eyebrowse-switch-to-window-config-4 :which-key "W4")
+		"5" '(eyebrowse-switch-to-window-config-5 :which-key "W5")
+		"6" '(eyebrowse-switch-to-window-config-6 :which-key "W6")
+		"7" '(eyebrowse-switch-to-window-config-7 :which-key "W7")
+		"8" '(eyebrowse-switch-to-window-config-8 :which-key "W8")
+		"9" '(eyebrowse-switch-to-window-config-9 :which-key "W9")
 		;; Delimiter Bindings - More to do here...
 		"d" '(:ignore t :which-key "Delimiters")
 		"ds" '(sp-slurp-hybrid-sexp :which-key "Slurp")

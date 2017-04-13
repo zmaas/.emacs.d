@@ -9,6 +9,11 @@
 (use-package company
 	:ensure t
 	:init
+	(use-pacage company-flx
+		:ensure t
+		:config
+		(with-eval-after-load 'company
+			(company-flx-mode +1)))
 	:diminish company-mode
 	:config
 	(add-hook 'after-init-hook 'global-company-mode)

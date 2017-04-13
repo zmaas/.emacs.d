@@ -9,7 +9,7 @@
 (use-package company
 	:ensure t
 	:init
-	(use-pacage company-flx
+	(use-package company-flx
 		:ensure t
 		:config
 		(with-eval-after-load 'company

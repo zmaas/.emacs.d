@@ -60,9 +60,10 @@
 
 (use-package spaceline-config
   :ensure spaceline
+	:init
+  (setq powerline-default-separator 'bar)
 	:config
 	(spaceline-spacemacs-theme))
-(setq powerline-default-separator 'bar)
 
 ;; tiny system monitor, helpful when we spend all of our time here
 (use-package symon

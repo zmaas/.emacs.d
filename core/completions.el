@@ -38,6 +38,6 @@
 							'(:with company-yasnippet))))
 
 	(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
-	(add-hook after-init-hook 'yas-global-mode))
+	(yas-global-mode t))
 
 ;;; zm-completions.el ends here

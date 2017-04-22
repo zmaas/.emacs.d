@@ -26,7 +26,10 @@
 (use-package smartparens
   :ensure t
   :init
-  ;;(add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
+	(use-package evil-smartparens
+	  :ensure t
+	  :config
+		(add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
   :config
   (require 'smartparens-config)
   (add-hook 'after-init-hook 'smartparens-global-mode))

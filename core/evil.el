@@ -57,11 +57,11 @@
 	;; todo - vimish fold integration and other plugins
 	(general-define-key
 	 :states '(normal visual insert emacs)
-	 :prefix "spc"
-	 :non-normal-prefix "m-spc"
+	 :prefix "SPC"
+	 :non-normal-prefix "M-SPC"
 		"k" '(counsel-yank-pop :which-key "kill ring")
-		"spc" '(swiper :which-key "swiper")
-		":" '(counsel-m-x :which-key "m-x")
+		"SPC" '(swiper :which-key "swiper")
+		":" '(counsel-m-x :which-key "M-x")
 		"s" '(flyspell-correct-previous-word-generic :which-key "spellcheck")
 		"g" '(magit-status :which-key "git")
 		"?" '(counsel-locate :which-key "locate")

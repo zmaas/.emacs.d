@@ -45,6 +45,18 @@
 (add-hook 'LaTeX-mode-hook
           (lambda()
 						(add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
-						(setq TeX-command-default "XeLaTeX")
+						(setq TeX-command-default "LatexMk")
 						(setq TeX-save-query nil)
 						(setq TeX-show-compilation t)))
+
+;; special per-mode keybindings for LaTex Editing
+(general-define-key
+	 :states '(normal visual insert emacs)
+   :keymaps 'LaTeX-mode-map
+	 :prefix "SPC"
+	 :non-normal-prefix "M-SPC"
+	  "l" '(:ignore t :which-key "layer")
+		"ll" '(TeX-command-run-all :which-key "comp/view")
+		"lc" '(TeX-command-buffer :which-key "compile")
+		"lj" '(LaTeX-insert-item :which-key "item")
+		"lv" '(TeX-view :which-key "view"))

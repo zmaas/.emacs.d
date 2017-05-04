@@ -33,4 +33,16 @@
 	:config
 	(add-hook 'scheme-mode-hook #'geiser-mode))
 
+;; special per-mode keybindings for racket Editing
+(general-define-key
+	 :states '(normal visual insert emacs)
+   :keymaps 'geiser-mode-map
+	 :prefix "SPC"
+	 :non-normal-prefix "M-SPC"
+	  "l" '(:ignore t :which-key "layer")
+		"lr" '(run-racket :which-key "racket repl")
+		"ll" '(geiser-eval-definition :which-key "eval def")
+		"lc" '(geiser-eval-buffer :which-key "eval buffer")
+		"lj" '(geiser-insert-lambda :which-key "lambda"))
+
 ;;; zm-lisp-tools.el ends here

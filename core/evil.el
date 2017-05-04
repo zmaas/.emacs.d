@@ -59,6 +59,8 @@
 	 :states '(normal visual insert emacs)
 	 :prefix "SPC"
 	 :non-normal-prefix "M-SPC"
+	  ;; l key is reserved for mode-specific settings
+	  "l" '(:ignore t :which-key "layer")
 		"k" '(counsel-yank-pop :which-key "kill ring")
 		"SPC" '(swiper :which-key "swiper")
 		":" '(counsel-m-x :which-key "M-x")
@@ -116,8 +118,10 @@
 		"w/" '(split-window-horizontally :which-key "horizontal split")
 		"w-" '(split-window-vertically :which-key "vertical split")
 		"wx" '(delete-window :which-key "close")
-		"wx" '(eyebrowse-close-window-config :which-key "eyebrowse close")
-		"tab" '(eyebrowse-last-window-config :which-key "switch")
+		"wX" '(eyebrowse-close-window-config :which-key "eyebrowse close")
+		"TAB" '(eyebrowse-last-window-config :which-key "switch")
+		"wj" '(eyebrowse-switch-to-window-config :which-key "config jump")
+		"wr" '(eyebrowse-rename-window-config :which-key "rename")
 		"0" '(eyebrowse-switch-to-window-config-0 :which-key "w0")
 		"1" '(eyebrowse-switch-to-window-config-1 :which-key "w1")
 		"2" '(eyebrowse-switch-to-window-config-2 :which-key "w2")
@@ -139,7 +143,7 @@
 		"dc" '(sp-convolute-sexp :which-key "convolute")
 		"dl" '(sp-forward-sexp :which-key "forward")
 		"dh" '(sp-backward-sexp :which-key "backward")
-		"ds" '(sp-split-sexp :which-key "split")
+		"dS" '(sp-split-sexp :which-key "split")
 		"da" '(sp-absorb-sexp :which-key "absorb")
 		;; misc bindings
 		"z" '(zzz-to-char :which-key "zap!")

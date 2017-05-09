@@ -17,7 +17,8 @@
 	:diminish company-mode
 	:config
 	(add-hook 'after-init-hook 'global-company-mode)
-	(setq company-minimum-prefix-length 3)
+	(setq company-minimum-prefix-length 2)
+	(setq company-idle-delay 0.2)
 	(define-key company-mode-map (kbd "C-:") 'counsel-company)
 	(define-key company-active-map (kbd "C-:") 'counsel-company))
 

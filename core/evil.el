@@ -118,18 +118,10 @@
 		"w/" '(split-window-horizontally :which-key "horizontal split")
 		"w-" '(split-window-vertically :which-key "vertical split")
 		"wx" '(delete-window :which-key "close")
-<<<<<<< HEAD
 		"wX" '(eyebrowse-close-window-config :which-key "eyebrowse close")
 		"TAB" '(eyebrowse-last-window-config :which-key "switch")
 		"wj" '(eyebrowse-switch-to-window-config :which-key "config jump")
 		"wr" '(eyebrowse-rename-window-config :which-key "rename")
-||||||| merged common ancestors
-		"wx" '(eyebrowse-close-window-config :which-key "eyebrowse close")
-		"tab" '(eyebrowse-last-window-config :which-key "switch")
-=======
-		"wX" '(eyebrowse-close-window-config :which-key "eyebrowse close")
-		"TAB" '(previous-multiframe-window :which-key "switch")
->>>>>>> Fixed keybinds that had issues from autoformatting.
 		"0" '(eyebrowse-switch-to-window-config-0 :which-key "w0")
 		"1" '(eyebrowse-switch-to-window-config-1 :which-key "w1")
 		"2" '(eyebrowse-switch-to-window-config-2 :which-key "w2")

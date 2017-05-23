@@ -36,6 +36,8 @@
   (setq ivy-re-builders-alist
         '((swiper . ivy--regex-plus)
 					(swiper-all . ivy--regex-plus)
+					(counsel-yank-pop . ivy--regex-plus)
+					(ivy-bibtex . ivy--regex-plus)
 					(t . ivy--regex-fuzzy)))
 	(setq ivy-initial-inputs-alist nil)
   ;; rebind some ivy functions to be more sensible

@@ -42,10 +42,14 @@
 			:ensure t)
 		:config
 		(vimish-fold-global-mode 1))
-	(use-package evil-quickscope
+	(use-package evil-goggles
 		:ensure t
 		:config
-		(global-evil-quickscope-mode t))
+		(evil-goggles-mode))
+	(use-package evil-snipe
+		:ensure t
+		:config
+		(evil-snipe-override-mode 1))
 	:config
 	(evil-mode 1))
 
@@ -98,7 +102,7 @@
 		"jw" '(avy-goto-word-1 :which-key "word")
 		"jl" '(avy-goto-line :which-key "line")
 		"jc" '(avy-goto-char :which-key "char")
-		"jd" '(dumb-jump-go :which-key "defun")
+	 "jd" '(dumb-jump-go :which-key "dumb jump")
 		;; appearance specific bindings
 		"a" '(:ignore t :which-key "appearance")
 		"af" '(focus-mode :which-key "focus")

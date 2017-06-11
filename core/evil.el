@@ -21,11 +21,6 @@
 		:defer t
 		:ensure t)
 	;; lets use use avy with evil for jumping around easily
-	(use-package evil-avy
-		:ensure t
-		:defer t
-		:config
-		(add-hook 'prog-mode-hook #'evil-avy-mode))
 	(use-package evil-escape
 		:ensure t
 		:diminish evil-escape-mode
@@ -37,7 +32,7 @@
 		:ensure t
 		:diminish vimish-fold-mode
 		:init
-		;; evil compativility for vimish-fold
+		;; evil compatibility for vimish-fold
 		(use-package evil-vimish-fold
 			:ensure t)
 		:config
@@ -50,6 +45,7 @@
 		:ensure t
 		:config
 		(evil-snipe-override-mode 1))
+		(setq evil-snipe-scope 'visible)
 	:config
 	(evil-mode 1))
 
@@ -153,12 +149,5 @@
 	 ;; misc bindings
 	 "z" '(zzz-to-char :which-key "zap!")
 	 "u" '(undo-tree-visualize :which-key "undo tree")))
-
-;; god-mode for evil - comma lets use use normal emacs keybinds easily
-(use-package god-mode
-	:ensure t)
-(use-package evil-god-state
-	:ensure t)
-(evil-define-key 'normal global-map "," 'evil-execute-in-god-state)
 
 ;;; zm-evil.el ends here

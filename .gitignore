@@ -20,3 +20,4 @@ zm-personal.el
 network-security.data
 .last-package-update-day
 personal.el
+/modes/.nrepl-history

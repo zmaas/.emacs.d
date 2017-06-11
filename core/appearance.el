@@ -70,6 +70,7 @@
 	:ensure t
 	:config
 	(add-hook 'after-init-hook 'symon-mode))
+
 ;; highlight symbols when we are over them - so pretty
 (use-package highlight-thing
 	:ensure t

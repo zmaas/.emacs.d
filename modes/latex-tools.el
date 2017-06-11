@@ -33,7 +33,8 @@
 (use-package ivy-bibtex
 	:ensure t
 	:config
-	(setq bibtex-completion-bibliography '("~/Downloads/synced/Zotero_Library.bib")))
+	(setq bibtex-completion-bibliography '("~/Downloads/synced/Zotero_Library.bib"))
+	(setq ivy-bibtex-default-action 'ivy-bibtex-insert-key))
 
 ;; autocompletion for bibtex keys
 (use-package company-bibtex

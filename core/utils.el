@@ -43,6 +43,8 @@
 	(use-package evil-magit
 		:ensure t)
 	(use-package magithub
+		(use-package ghub+
+			:ensure t)
 		:ensure t
 		:config (magithub-feature-autoinject t)))
 

@@ -43,6 +43,9 @@
 		(evil-goggles-mode))
 	(use-package evil-snipe
 		:ensure t
+		:diminish evil-snipe-mode
+		:diminish evil-snipe-override-ode
+		:diminish evil-snipe-local-mode
 		:config
 		(evil-snipe-override-mode 1))
 		(setq evil-snipe-scope 'visible)

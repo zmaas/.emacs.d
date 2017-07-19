@@ -38,6 +38,7 @@
 					(swiper-all . ivy--regex-plus)
 					(counsel-yank-pop . ivy--regex-plus)
 					(ivy-bibtex . ivy--regex-plus)
+					(counsel-git-grep . ivy--regex-plus)
 					(t . ivy--regex-fuzzy)))
 	(setq ivy-initial-inputs-alist nil)
   ;; rebind some ivy functions to be more sensible

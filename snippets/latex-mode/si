@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: SI units
+# key: si
+# --
+\si{$1} $2

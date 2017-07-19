@@ -64,6 +64,8 @@
 	 :non-normal-prefix "M-SPC"
 	 ;; l key is reserved for mode-specific settings
 	 "l" '(:ignore t :which-key "layer")
+	 ;; o key is reserved for orgmode settings
+	 "o" '(:ignore t :which-key "org")
 	 "k" '(counsel-yank-pop :which-key "kill ring")
 	 "SPC" '(swiper :which-key "swiper")
 	 ":" '(counsel-M-x :which-key "M-x")

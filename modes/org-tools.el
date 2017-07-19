@@ -5,6 +5,16 @@
 
 ;;; Code:
 
+;; Essential org-mode setup
+(setq org-todo-keyword
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+
+(setq org-completion-use-ido t)
+
+(setq org-agenda-files '("~/Dropbox/Org/"))
+
+(setq org-default-notes-file "~/Dropbox/Org/organizer.org")
+
 ;; Better bindings for org-mode through evil.
 (use-package evil-org
 	:ensure t)
@@ -15,6 +25,11 @@
 	:config
 	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+(use-package interleave
+	:ensure t
+	:config
+	)
+
 ;; Calls a special hydra for insertion if at the start of a line
 (define-key org-mode-map "<"
   (lambda () (interactive)
@@ -22,5 +37,13 @@
          (hydra-org-template/body)
        (self-insert-command 1))))
 
+(general-define-key
+	 :states '(normal visual insert emacs)
+	 :prefix "SPC"
+	 :non-normal-prefix "M-SPC"
+		"o" '(:ignore t :which-key "org")
+		"oa" '(org-agenda :which-key "agenda")
+		"oc" '(org-capture :which-key "capture")
+		"or" '(org-refile :which-key "refile"))
 
 ;;; zm-org-tools.el ends here

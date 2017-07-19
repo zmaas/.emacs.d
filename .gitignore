@@ -21,3 +21,5 @@ network-security.data
 .last-package-update-day
 personal.el
 /modes/.nrepl-history
+/magithub/cache
+/projectile.cache

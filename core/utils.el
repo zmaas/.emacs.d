@@ -43,9 +43,10 @@
 	(use-package evil-magit
 		:ensure t)
 	(use-package magithub
+		:ensure t
+		:init
 		(use-package ghub+
 			:ensure t)
-		:ensure t
 		:config (magithub-feature-autoinject t)))
 
 ;; projectile - easy navigation inside projects

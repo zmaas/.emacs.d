@@ -17,6 +17,11 @@
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
 
+(use-package ranger
+	:ensure t
+	:config
+	(ranger-override-dired-mode t))
+
 ;; eyebrowse - allows us to have more than one working window
 (use-package eyebrowse
 	:ensure t

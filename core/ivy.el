@@ -64,4 +64,10 @@
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate))
 
+;; Quick rebind for eshell...
+(add-hook 'eshell-mode-hook
+  (lambda () 
+    (define-key eshell-mode-map (kbd "<tab>")
+      (lambda () (interactive) (pcomplete-std-complete)))))
+
 ;;; zm-ivy ends here

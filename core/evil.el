@@ -114,6 +114,7 @@
 	 ;; projectile specific bindings
 	 "p" '(:ignore t :which-key "project")
 	 "pj" '(counsel-projectile :which-key "file")
+	 "pf" '(counsel-projectile-rg :which-key "project rg")
 	 "pg" '(counsel-git-grep :which-key "git grep")
 	 "pp" '(counsel-projectile-switch-project :which-key "other project")
 	 "pb" '(counsel-projectile-switch-to-buffer :which-key "buffer")

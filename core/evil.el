@@ -108,9 +108,10 @@
 	 ;; appearance specific bindings
 	 "a" '(:ignore t :which-key "appearance")
 	 "af" '(focus-mode :which-key "focus")
-	 "al" '(linum-mode :which-key "linum")
+	 "al" '(nlinum-mode :which-key "linum")
 	 "ao" '(olivetti-mode :which-key "olivetti")
 	 "ad" '(daytime-theme :which-key "day")
+	 "as" '(daytime-space-theme :which-key "day")
 	 "an" '(night-theme :which-key "night")
 	 ;; projectile specific bindings
 	 "p" '(:ignore t :which-key "project")
@@ -165,5 +166,36 @@
 	 ;; misc bindings
 	 "z" '(zzz-to-char :which-key "zap!")
 	 "u" '(undo-tree-visualize :which-key "undo tree")))
+
+;; Need to learn how to use this better -- it is really useful.
+(use-package evil-multiedit
+	:ensure t
+	:config
+	(general-define-key
+	 :states '(normal)
+	 "M-d" '(evil-multiedit-match-and-next)
+	 "M-D" '(evil-multiedit-match-and-prev))
+	(general-define-key
+	 :states '(visual)
+	 "R" '(evil-multiedit-match-all)
+	 "M-d" '(evil-multiedit-and-next)
+	 "M-D" '(evil-multiedit-and-prev)
+	 "C-M-D" '(evil-multiedit-restore))
+	(general-define-key
+	 :states '(insert)
+	 "M-d" '(evil-multiedit-toggle-marker-here))
+	(general-define-key
+	 :keymaps '(evil-motion-state)
+	 "RET" '(evil-multiedit-toggle-or-restrict-region))
+	(general-define-key
+	 :keymaps '(evil-multiedit-state-map)
+	 "RET" '(evil-multiedit-toggle-or-restrict-region)
+	 "C-n" '(evil-multiedit-next)
+	 "C-p" '(evil-multiedit-prev))
+	(general-define-key
+	 :keymaps '(evil-multiedit-insert-state-map)
+	 "C-n" '(evil-multiedit-next)
+	 "C-p" '(evil-multiedit-prev))
+	(evil-ex-define-cmd "ie[dit]" 'evil-multiedit-ex-match))
 
 ;;; zm-evil.el ends here

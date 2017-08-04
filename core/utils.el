@@ -102,6 +102,10 @@
 (use-package neotree
 	:ensure t
 	:init
+	(use-package all-the-icons
+		:ensure t
+		;; Make sure to run all-the-icons-install-fonts
+		)
 	:config
 	(add-hook 'neotree-mode-hook
 						(lambda ()
@@ -112,7 +116,7 @@
 							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
 							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 	(setq neo-smart-open t)
-	(setq neo-theme 'arrow)
+	(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 	(global-set-key [f8] 'neotree-toggle))
 
 ;; Clunky way to do sudoedit on linux - bound to C-x C-r
@@ -135,7 +139,6 @@
 	(setq undo-tree-visualizer-diff t)
 	(global-undo-tree-mode t))
 
-
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them
 (use-package visual-regexp
 	:ensure t
@@ -145,8 +148,7 @@
 	(define-key global-map (kbd "C-c r") 'vr/replace)
 	(define-key global-map (kbd "C-c q") 'vr/query-replace))
 
-
-;; go to characters quickly and easily
+; go to characters quickly and easily
 (global-set-key (kbd "C-;") 'avy-goto-char)
 
 ;; zap to char - lets us kill all text up to the next instance of a character

@@ -5,6 +5,34 @@
 
 ;;; Code:
 
+(use-package git-gutter-fringe
+	:ensure t
+	:config
+	(add-hook 'after-init-hook 'global-git-gutter-mode)
+	(setq-default fringes-outside-margins t)
+	(setq git-gutter-fr:side 'right-fringe)
+  ;; thin fringe bitmaps
+  (fringe-helper-define 'git-gutter-fr:added '(center repeated)
+    "XXX.....")
+  (fringe-helper-define 'git-gutter-fr:modified '(center repeated)
+    "XXX.....")
+  (fringe-helper-define 'git-gutter-fr:deleted 'bottom
+    "X......."
+    "XX......"
+    "XXX....."
+		"XXXX...."))
+
+;; Make ansi-term work with our powerline config
+(defadvice ansi-term (after advise-ansi-term-coding-system)
+    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+(ad-activate 'ansi-term)
+(add-hook
+ 'term-mode-hook
+ (lambda () (setq show-trailing-whitespace nil)))
+
+;; Echo all keypresses in the minibuffer
+(setq echo-keystrokes 0.02)
+
 ;; Make all symbols pretty
 (global-prettify-symbols-mode t)
 

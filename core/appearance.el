@@ -164,10 +164,10 @@
 (setq font-lock-maximum-decoration t)
 
 ;; relative line numbers, makes it much easier to use evil features
-(use-package linum-relative
+(use-package nlinum-relative
 	:ensure t
-	:diminish linum-relative-mode
+	:diminish nlinum-relative-mode
 	:config
-	(add-hook 'after-init-hook #'linum-relative-global-mode))
+	(add-hook 'after-init-hook #'global-nlinum-relative-mode))
 
 ;;; zm-appearance.el ends here

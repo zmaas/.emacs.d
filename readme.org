@@ -1,7 +1,29 @@
-* My .emacs.d!
-This repository contains the full contents of my current and active use .emacs.d. This is what I use on a day-to-day basis. It has evolved lots over time, and lots of the inspiration for my setup comes from spacemacs. This works very well for me.
-* To Do
-1. [ ] Add dark theme and create theme files
-2. [ ] Add orgmode keybindings to general leader
-3. [ ] Improve the readme.md. Convert to init.org
-4. [ ] Add screenshots for my theming.
+Emacs for your Ono-Sendai Cyberspace 7.
+
+This repository contains the full contents of my day-to-day emacs configuration. Inspired by vim, spacemacs, and cyberpunk. It attempts to provide an ergonomic and modern development and writing environment with consistent behavior. Targeting *Arch Linux* on kernel 4.10+, emacs version *25+*. It is always a work in progress and currently undergoing major improvements and refactoring.
+
+* Languages
+The primary languages I work on using emacs are:
+- Python for shell scripting
+- Golang for the quick and easy
+- Clojure for long running programs and CLJS
+- LaTeX for all of my homework and report writing
+- Orgmode for task management and remembering things
+
+* TODO:
+** Shackle for managing popup buffers
+- Steal this macro from DOOM
+** Improved session and workgroup management
+- In-progress - Preliminary work for persp-mode is done
+- Need to remove all references to eyebrowse
+** Pretty re-theme using nerdfonts
+** DONE vim binds for ripgrep
+I actually need to do this for all sorts of commands.
+** eval-buffer evil bind
+** Improved modeline
+- More work on Spaceline
+** Comms
+*** IRC
+*** Email
+** Improved custom elisp for loading modes and files
+** All of the orgmode setup

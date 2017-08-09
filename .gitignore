@@ -24,3 +24,9 @@ personal.el
 /magithub/cache
 /projectile.cache
 /eshell/lastdir
+persp-confs/*
+*.elc
+/.authinfo.gpg
+/secrets/.authinfo.gpg
+/url/cookies
+vimish-fold/*

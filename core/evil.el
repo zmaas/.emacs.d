@@ -12,13 +12,11 @@
 	;; anzu tells us how many matches we have in the bar
 	(use-package anzu
 		:ensure t
-		:defer t
 		:diminish anzu-mode
 		:config
 		(global-anzu-mode 1))
 	;; compatibility with evil mode for anzu
 	(use-package evil-anzu
-		:defer t
 		:ensure t)
 	;; lets use use avy with evil for jumping around easily
 	(use-package evil-escape

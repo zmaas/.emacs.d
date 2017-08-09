@@ -8,7 +8,6 @@
 ;; Enforce maximum line lengths in programming modes
 (use-package column-enforce-mode
   :ensure t
-  :defer t
   :diminish column-enforce-mode
   :config
   (add-hook 'prog-mode-hook 'column-enforce-mode))
@@ -16,7 +15,6 @@
 ;; amazing plugin - gives us perfect indentation automatically for code
 (use-package aggressive-indent
   :ensure t
-  :defer t
   :diminish aggressive-indent-mode
   :config
   (add-hook 'after-init-hook #'global-aggressive-indent-mode)
@@ -37,7 +35,6 @@
 ; intelligently cleanup whitespace on save
 (use-package whitespace-cleanup-mode
   :ensure t
-  :defer t
   :diminish whitespace-cleanup-mode
   :config
   (add-hook 'after-init-hook 'whitespace-cleanup-mode))

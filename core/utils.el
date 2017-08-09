@@ -36,7 +36,6 @@
 
 ;; give our buffers unique names
 (use-package uniquify
-	:defer t
 	:config
 	(setq uniquify-buffer-name-style 'forward))
 
@@ -132,7 +131,6 @@
 ;; Enable undo-tree mode globally
 (use-package undo-tree
 	:ensure t
-	:defer t
 	:diminish undo-tree-mode
 	:config
 	(setq undo-tree-visualizer-timestamps t)

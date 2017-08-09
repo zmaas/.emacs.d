@@ -7,14 +7,12 @@
 
 ;; Require common lisp
 (use-package cl
-	:ensure t
-	:defer t)
+	:ensure t)
 
 ;; LISP Development Setup
 ;; Uses SLIME configured for sbcl
 (use-package slime
 	:ensure t
-	:defer t
 	:init
 	;;(use-package slime-company
 	;;	:ensure t)

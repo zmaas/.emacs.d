@@ -12,7 +12,7 @@
 	"Sets leuven theme for daytime and associated colors"
 	(interactive)
 	(mapcar #'disable-theme custom-enabled-themes)
-	(load-theme 'leuven)
+	(load-theme 'leuven t)
 	(set-face-background 'auto-dim-other-buffers-face "#e0e0e0")
 	(set-face-background 'fringe (face-attribute 'default :background))
 	(set-face-background 'linum (face-attribute 'default :background))
@@ -23,7 +23,7 @@
 	"Sets leuven theme for daytime and associated colors"
 	(interactive)
 	(mapcar #'disable-theme custom-enabled-themes)
-	(load-theme 'spacemacs-light)
+	(load-theme 'spacemacs-light t)
 	(set-face-background 'auto-dim-other-buffers-face "#e0e0e0")
 	(set-face-background 'fringe (face-attribute 'default :background))
 	(set-face-background 'linum (face-attribute 'default :background))
@@ -34,7 +34,7 @@
 	"Sets spacemacs-dark theme for nighttime and associated colors"
 	(interactive)
 	(mapcar #'disable-theme custom-enabled-themes)
-	(load-theme 'spacemacs-dark)
+	(load-theme 'spacemacs-dark t)
 	(set-face-background 'auto-dim-other-buffers-face "#303136")
 	(set-face-background 'fringe (face-attribute 'default :background))
 	(set-face-background 'nlinum (face-attribute 'default :background)))

@@ -28,6 +28,14 @@
 	:config
 	(add-hook 'after-init-hook #'eyebrowse-mode))
 
+(use-package persp-mode
+	:ensure t
+	:diminish persp-mode
+	:config
+  (setq wg-morph-on nil) ;; switch off animation
+  (setq persp-autokill-buffer-on-remove 'kill-weak)
+  (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
+
 ;; expands selected regions
 (use-package expand-region
 	:ensure t

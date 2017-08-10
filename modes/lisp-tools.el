@@ -14,12 +14,9 @@
 (use-package slime
 	:ensure t
 	:init
-	;;(use-package slime-company
-	;;	:ensure t)
 	:config
 	(setq inferior-lisp-program "sbcl")
-	(setq slime-contribs '(slime-fancy))
-	(slime-setup '(slime-company)))
+	(setq slime-contribs '(slime-fancy)))
 
 (defun my/slime-mode-hook ()
   (add-to-list 'company-backends 'company-slime))

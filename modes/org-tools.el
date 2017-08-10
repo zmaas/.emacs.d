@@ -20,7 +20,9 @@
 
 ;; Better bindings for org-mode through evil.
 (use-package evil-org
-	:ensure t)
+	:ensure t
+	:config
+	(add-hook 'org-mode-hook #'evil-org-mode))
 
 ;; Pretty bullets for org-mode
 (use-package org-bullets
@@ -118,9 +120,9 @@
 ;; Calls a special hydra for insertion if at the start of a line
 (define-key org-mode-map "<"
   (lambda () (interactive)
-     (if (looking-back "^")
-         (hydra-org-template/body)
-       (self-insert-command 1))))
+		(if (looking-back "^")
+				(hydra-org-template/body)
+			(self-insert-command 1))))
 
 (general-define-key
 	 :states '(normal visual insert emacs)

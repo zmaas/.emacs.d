@@ -53,13 +53,7 @@
 	:defer t
 	:config
 	(use-package evil-magit
-		:ensure t)
-	(use-package magithub
-		:ensure t
-		:init
-		(use-package ghub+
-			:ensure t)
-		:config (magithub-feature-autoinject t)))
+		:ensure t))
 
 ;; projectile - easy navigation inside projects
 (use-package projectile

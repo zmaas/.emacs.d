@@ -32,9 +32,11 @@
 		:init
 		;; evil compatibility for vimish-fold
 		(use-package evil-vimish-fold
-			:ensure t)
+			:ensure t
+			:config
+			(evil-vimish-fold-mode t))
 		:config
-		(vimish-fold-global-mode 1))
+		(vimish-fold-global-mode t))
 	(use-package evil-goggles
 		:ensure t
 		:config
@@ -46,7 +48,7 @@
 		:diminish evil-snipe-local-mode
 		:config
 		(evil-snipe-override-mode 1))
-		(setq evil-snipe-scope 'visible)
+	(setq evil-snipe-scope 'visible)
 	:config
 	(evil-mode 1))
 
@@ -120,6 +122,11 @@
 	 "pb" '(counsel-projectile-switch-to-buffer :which-key "buffer")
 	 "px" '(projectile-kill-buffers :which-key "killall")
 	 "pt" '(neotree :which-key "tree")
+	 ;; Configuration for [m]essaging tools
+	 "m" '(:ignore t :which-key "mail")
+	 "mi" '(mu4e :which-key "mu4e")
+	 "mc" '(mu4e-compose-new :which-key "mu4e compose")
+	 "ms" '(mu4e-headers-search :which-key "mu4e search")
 	 ;; window specific bindings
 	 "w" '(:ignore t :which-key "window")
 	 "ww" '(ace-window :which-key "jump")

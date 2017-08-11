@@ -30,3 +30,4 @@ persp-confs/*
 /secrets/.authinfo.gpg
 /url/cookies
 vimish-fold/*
+/core/mail-private.el

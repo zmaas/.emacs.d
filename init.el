@@ -78,6 +78,7 @@
 (load-file "~/.emacs.d/core/error-checks.el")
 (load-file "~/.emacs.d/core/style-checks.el")
 (load-file "~/.emacs.d/core/utils.el")
+(load-file "~/.emacs.d/core/mail.el")
 
 ;; Theming configuration files
 (load-file "~/.emacs.d/core/themes.el")

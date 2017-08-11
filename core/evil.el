@@ -111,8 +111,9 @@
 	 "al" '(nlinum-mode :which-key "linum")
 	 "ao" '(olivetti-mode :which-key "olivetti")
 	 "ad" '(daytime-theme :which-key "day")
-	 "as" '(daytime-space-theme :which-key "day")
+	 "as" '(daytime-space-theme :which-key "spaceday")
 	 "an" '(night-theme :which-key "night")
+	 "ac" '(dark-night-theme :which-key "cyberpunk")
 	 ;; projectile specific bindings
 	 "p" '(:ignore t :which-key "project")
 	 "pj" '(counsel-projectile :which-key "file")

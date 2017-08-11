@@ -10,7 +10,7 @@
 
 ;; Essential org-mode setup
 (setq org-todo-keyword
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+			'((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
 
 (setq org-completion-use-ido t)
 
@@ -26,7 +26,7 @@
 
 ;; Pretty bullets for org-mode
 (use-package org-bullets
-  :ensure t
+	:ensure t
 	:init
 	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 	:config)
@@ -36,82 +36,82 @@
 	:config)
 
 (setq org-agenda-custom-commands
-      '(("c" "Simple agenda view"
-         ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-          (agenda "")
-          (alltodo "")))))
+			'(("c" "Simple agenda view"
+				 ((tags "PRIORITY=\"A\""
+								((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+								 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+					(agenda "")
+					(alltodo "")))))
 
 (defun +org-init-ui ()
 	;;"Configures default UI settings for orgmode"
 	(setq-default
-   org-adapt-indentation nil
-   org-agenda-dim-blocked-tasks nil
-   org-agenda-inhibit-startup t
-   org-agenda-skip-unavailable-files nil
-   org-cycle-include-plain-lists t
-   org-cycle-separator-lines 1
-   org-fontify-done-headline t
-   org-fontify-quote-and-verse-blocks t
-   org-fontify-whole-heading-line t
-   org-footnote-auto-label 'plain
-   org-hidden-keywords nil
-   org-hide-emphasis-markers nil
-   org-hide-leading-stars t
-   org-hide-leading-stars-before-indent-mode t
-   org-image-actual-width nil
-   org-indent-indentation-per-level 2
-   org-indent-mode-turns-on-hiding-stars t
-   org-pretty-entities nil
-   org-pretty-entities-include-sub-superscripts t
-   org-startup-folded t
-   org-startup-indented t
-   org-startup-with-inline-images nil
-   org-tags-column 0
-   org-use-sub-superscripts '{}
-   outline-blank-line t
+	 org-adapt-indentation nil
+	 org-agenda-dim-blocked-tasks nil
+	 org-agenda-inhibit-startup t
+	 org-agenda-skip-unavailable-files nil
+	 org-cycle-include-plain-lists t
+	 org-cycle-separator-lines 1
+	 org-fontify-done-headline t
+	 org-fontify-quote-and-verse-blocks t
+	 org-fontify-whole-heading-line t
+	 org-footnote-auto-label 'plain
+	 org-hidden-keywords nil
+	 org-hide-emphasis-markers nil
+	 org-hide-leading-stars t
+	 org-hide-leading-stars-before-indent-mode t
+	 org-image-actual-width nil
+	 org-indent-indentation-per-level 2
+	 org-indent-mode-turns-on-hiding-stars t
+	 org-pretty-entities nil
+	 org-pretty-entities-include-sub-superscripts t
+	 org-startup-folded t
+	 org-startup-indented t
+	 org-startup-with-inline-images nil
+	 org-tags-column 0
+	 org-use-sub-superscripts '{}
+	 outline-blank-line t
 	 ;; Properly scale LaTeX previews
 	 org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
 	(defsubst +org--tag-face (n)
 		(let ((kwd (match-string n)))
 			(or (and (equal kwd "#") 'org-tag)
 					(and (equal kwd "@") 'org-special-keyword))))
-  (defun +org-init-custom-fontification ()
-    "Correct (and improve) org-mode's font-lock keywords.
-  1. Re-set `org-todo' & `org-headline-done' faces, to make them respect
-     underlying faces.
-  2. Fontify item bullets
-  3. Fontify item checkboxes (and when they're marked done)
-  4. Fontify dividers/separators (5+ dashes)
-  5. Fontify #hashtags and @at-tags, for personal convenience"
-    (let ((org-todo (format org-heading-keyword-regexp-format
-                            org-todo-regexp))
+	(defun +org-init-custom-fontification ()
+		"Correct (and improve) org-mode's font-lock keywords.
+	1. Re-set `org-todo' & `org-headline-done' faces, to make them respect
+		 underlying faces.
+	2. Fontify item bullets
+	3. Fontify item checkboxes (and when they're marked done)
+	4. Fontify dividers/separators (5+ dashes)
+	5. Fontify #hashtags and @at-tags, for personal convenience"
+		(let ((org-todo (format org-heading-keyword-regexp-format
+														org-todo-regexp))
 					(org-done (format org-heading-keyword-regexp-format
 														(concat "\\(?:" (mapconcat #'regexp-quote org-done-keywords "\\|") "\\)"))))
 			(setq
-       org-font-lock-extra-keywords
+			 org-font-lock-extra-keywords
 			 (append (org-delete-all
 								`(("\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
-                   (0 (org-get-checkbox-statistics-face) t))
-                  (,org-todo (2 (org-get-todo-face 2) t))
-                  (,org-done (2 'org-headline-done t)))
-                org-font-lock-extra-keywords)
-               `((,org-todo (2 (org-get-todo-face 2) prepend))
-                 (,org-done (2 'org-headline-done prepend))
-                 ;; Make checkbox statistic cookies respect underlying faces
-                 ("\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
-                  (0 (org-get-checkbox-statistics-face) prepend))
-                 ;; I like how org-mode fontifies checked TODOs and want this to extend to
-                 ;; checked checkbox items:
-                 ("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)"
-                  1 'org-headline-done prepend)
-                 ;; make plain list bullets stand out
-                 ("^ *\\([-+]\\|[0-9]+[).]\\) " 1 'org-list-dt append)
-                 ;; and separators/dividers
-                 ("^ *\\(-----+\\)$" 1 'org-meta-line)
-                 ;; custom #hashtags & @at-tags for another level of organization
-                 ("\\s-\\(\\([#@]\\)[^ \n.,]+\\)" 1 (+org--tag-face 2)))))))
+									 (0 (org-get-checkbox-statistics-face) t))
+									(,org-todo (2 (org-get-todo-face 2) t))
+									(,org-done (2 'org-headline-done t)))
+								org-font-lock-extra-keywords)
+							 `((,org-todo (2 (org-get-todo-face 2) prepend))
+								 (,org-done (2 'org-headline-done prepend))
+								 ;; Make checkbox statistic cookies respect underlying faces
+								 ("\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
+									(0 (org-get-checkbox-statistics-face) prepend))
+								 ;; I like how org-mode fontifies checked TODOs and want this to extend to
+								 ;; checked checkbox items:
+								 ("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)"
+									1 'org-headline-done prepend)
+								 ;; make plain list bullets stand out
+								 ("^ *\\([-+]\\|[0-9]+[).]\\) " 1 'org-list-dt append)
+								 ;; and separators/dividers
+								 ("^ *\\(-----+\\)$" 1 'org-meta-line)
+								 ;; custom #hashtags & @at-tags for another level of organization
+								 ("\\s-\\(\\([#@]\\)[^ \n.,]+\\)" 1 (+org--tag-face 2)))))))
 	(add-hook 'org-font-lock-set-keywords-hook #'+org-init-custom-fontification))
 
 ;; Call our UI function
@@ -119,20 +119,20 @@
 
 ;; Calls a special hydra for insertion if at the start of a line
 (define-key org-mode-map "<"
-  (lambda () (interactive)
+	(lambda () (interactive)
 		(if (looking-back "^")
 				(hydra-org-template/body)
 			(self-insert-command 1))))
 
 (general-define-key
-	 :states '(normal visual insert emacs)
-	 :prefix "SPC"
-	 :non-normal-prefix "M-SPC"
-		"o" '(:ignore t :which-key "org")
-		"oa" '(org-agenda :which-key "agenda")
-		"oc" '(org-capture :which-key "capture")
-		"os" '(org-schedule :which-key "schedule")
-		"od" '(org-deadline :which-key "deadline")
-		"or" '(org-refile :which-key "refile"))
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "o" '(:ignore t :which-key "org")
+ "oa" '(org-agenda :which-key "agenda")
+ "oc" '(org-capture :which-key "capture")
+ "os" '(org-schedule :which-key "schedule")
+ "od" '(org-deadline :which-key "deadline")
+ "or" '(org-refile :which-key "refile"))
 
 ;;; zm-org-tools.el ends here

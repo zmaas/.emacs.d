@@ -12,20 +12,20 @@
 	(add-hook 'after-init-hook 'global-git-gutter-mode)
 	(setq-default fringes-outside-margins t)
 	(setq git-gutter-fr:side 'left-fringe)
-  ;; thin fringe bitmaps
-  (fringe-helper-define 'git-gutter-fr:added '(center repeated)
-    "XXX.....")
-  (fringe-helper-define 'git-gutter-fr:modified '(center repeated)
-    "XXX.....")
-  (fringe-helper-define 'git-gutter-fr:deleted 'bottom
-    "X......."
-    "XX......"
-    "XXX....."
+	;; thin fringe bitmaps
+	(fringe-helper-define 'git-gutter-fr:added '(center repeated)
+		"XXX.....")
+	(fringe-helper-define 'git-gutter-fr:modified '(center repeated)
+		"XXX.....")
+	(fringe-helper-define 'git-gutter-fr:deleted 'bottom
+		"X......."
+		"XX......"
+		"XXX....."
 		"XXXX...."))
 
 ;; Make ansi-term work with our powerline config
 (defadvice ansi-term (after advise-ansi-term-coding-system)
-    (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+	(set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
 (ad-activate 'ansi-term)
 (add-hook
  'term-mode-hook

@@ -17,13 +17,15 @@
 	:ensure t)
 (use-package cyberpunk-theme
 	:ensure t)
+(use-package moe-theme
+	:ensure t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
 ;; powerline separators on theme-switch
 (defun daytime-theme ()
 	"Sets leuven theme for daytime and associated colors"
 	(interactive)
-	(!my-set-theme 'leuven)
+	(!my-set-theme 'moe-light)
 	(set-face-background 'auto-dim-other-buffers-face "#e0e0e0")
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))

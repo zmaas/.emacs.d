@@ -5,6 +5,17 @@
 
 ;;; Code:
 
+(use-package dashboard
+	:ensure t
+	:config
+	(dashboard-setup-startup-hook)
+	(setq dashboard-banner-logo-title "Welcome back, kid.")
+	(setq dashboard-startup-banner 'logo)
+	(setq dashboard-items '((recents  . 5)
+													(bookmarks . 5)
+													(projects . 5)
+													(agenda . 5))))
+
 (use-package git-gutter-fringe
 	:ensure t
 	:diminish git-gutter-mode
@@ -45,6 +56,9 @@
 
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
+;; Modes to hide trailing whitespace
+(add-hook 'mu4e-view-mode-hook (lambda () (setq show-trailing-whitespace nil)))
+(add-hook 'undo-tree-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 
 ;; Show current line
 (add-hook 'after-init-hook #'global-hl-line-mode)

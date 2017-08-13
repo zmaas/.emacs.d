@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-;; Note: mu4e custom bindings are under the o[rg] mode leader binding.
+;; Note: mu4e custom bindings are under the [m]essages mode leader binding.
 ;; See evil-tools.el for details
 (require 'mu4e)
 (require 'smtpmail)
@@ -15,10 +15,11 @@
 	:ensure t
 	:config
 	(evil-set-initial-state 'mu4e-main-mode 'emacs))
+
 (setq mu4e-maildir "~/.mail/")
 
 ;; Store account personal settings in an untracked file
-(load-file "~/.emacs.d/core/mail-private.el")
+(load-file "~/.emacs.d/apps/mail-private.el")
 
 ;; Custom bookmarks
 (add-to-list 'mu4e-bookmarks
@@ -46,9 +47,17 @@
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
-(setq mu4e-sent-messages-behavior 'delete)
-(setq mu4e-get-mail-command "mbsync -a")
-(setq mu4e-completing-read-function 'completing-read)
-(setq message-kill-buffer-on-exit t)
+;; use imagemagick for inline images when available
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
+
+(setq-default
+ mu4e-confirm-quit nil
+ mu4e-view-show-images t
+ mu4e-view-prefer-html t
+ mu4e-sent-messages-behavior 'delete
+ mu4e-get-mail-command "mbsync -a"
+ mu4e-completing-read-function 'completing-read
+ message-kill-buffer-on-exit t)
 
 ;; mail.el ends here

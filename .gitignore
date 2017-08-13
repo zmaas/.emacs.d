@@ -31,3 +31,5 @@ persp-confs/*
 /url/cookies
 vimish-fold/*
 /core/mail-private.el
+/apps/mail-private.el
+/apps/irc-private.el

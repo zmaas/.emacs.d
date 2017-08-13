@@ -35,15 +35,16 @@
 (require 'use-package)
 
 (use-package auto-compile
+	:ensure t
 	:config
-	(auto-compile-on-save-mode)
-	(auto-compile-on-load-mode))
+	(auto-compile-on-save-mode t)
+	(auto-compile-on-load-mode t))
 
 (setq load-prefer-newer t)
 
+;; Keep everything up to date
 (use-package auto-package-update
 	:ensure t
-	:defer t
 	:config
 	(auto-package-update-maybe))
 
@@ -78,14 +79,17 @@
 (load-file "~/.emacs.d/core/error-checks.el")
 (load-file "~/.emacs.d/core/style-checks.el")
 (load-file "~/.emacs.d/core/utils.el")
-(load-file "~/.emacs.d/core/mail.el")
+
+;; Load various app configurations
+(load-file "~/.emacs.d/apps/mail.el")
+(load-file "~/.emacs.d/apps/irc.el")
+
 
 ;; Theming configuration files
 (load-file "~/.emacs.d/core/themes.el")
 (load-file "~/.emacs.d/core/appearance.el")
 
 ;; Load language specific configurations
-;; These are hooked in to only load on mode loading
 ;; Inspiration from spacemacs
 (load-file "~/.emacs.d/modes/latex-tools.el")
 (load-file "~/.emacs.d/modes/org-tools.el")
@@ -123,11 +127,12 @@
 		("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" "2cf7f9d1d8e4d735ba53facdc3c6f3271086b6906c4165b12e4fd8e3865469a6" "7a6bc9de067a7a0aa00272812d45087eec02c3befdf2b54c291578210ce7baca" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(evil-avy-mode nil)
  '(evil-snipe-mode t)
+ '(fci-rule-color "#383838")
  '(global-hl-line-mode t)
  '(minimap-mode nil)
  '(package-selected-packages
 	 (quote
-		(geiser slime yasnippet evil-mu4e org-plus-contrib persp-mode spaceline-all-the-icons fireplace evil-multiedit plan9-theme shackle all-the-icons nlinum-relative git-gutter-fringe ranger company-go go-mode interleave cider evil-snipe evil-goggles cyberpunk-theme evil-smartparens company-flx highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing golden-ratio sr-speedbar focus evil-magit pdf-tools crosshairs hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
+		(circe tiny auto-yasnippet quickrun dashboard moe-theme geiser slime yasnippet evil-mu4e org-plus-contrib persp-mode spaceline-all-the-icons fireplace evil-multiedit plan9-theme shackle all-the-icons nlinum-relative git-gutter-fringe ranger company-go go-mode interleave cider evil-snipe evil-goggles cyberpunk-theme evil-smartparens company-flx highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing golden-ratio sr-speedbar focus evil-magit pdf-tools crosshairs hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
  '(safe-local-variable-values (quote ((o-byte-compile . t))))
  '(send-mail-function (quote smtpmail-send-it))
  '(yas-global-mode t))

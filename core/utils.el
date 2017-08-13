@@ -25,12 +25,6 @@
 	:config
 	(ranger-override-dired-mode t))
 
-;; eyebrowse - allows us to have more than one working window
-(use-package eyebrowse
-	:ensure t
-	:config
-	(add-hook 'after-init-hook #'eyebrowse-mode))
-
 (use-package persp-mode
 	:ensure t
 	:diminish persp-mode

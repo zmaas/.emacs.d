@@ -42,17 +42,4 @@ _h_tml    ^ ^        _A_SCII:
   (insert str)
   (org-try-structure-completion))
 
-;; Need to re-implement - hydra for eyebrowse
-(defhydra eyebrowse-hydra ()
-	"A Hydra providing config for eyebrowse evil bindings"
-	("h" eyebrowse-next-window-config "Next window")
-	("l" eyebrowse-prev-window-config "Previous window")
-	("w" eyebrowse-last-window-config "Last window")
-	("x" eyebrowse-close-window-config "Last window")
-	("0" eyebrowse-switch-to-window-config-0 "Window 0")
-	("1" eyebrowse-switch-to-window-config-1 "Window 1")
-	("2" eyebrowse-switch-to-window-config-2 "Window 2")
-	("3" eyebrowse-switch-to-window-config-3 "Window 3")
-	("4" eyebrowse-switch-to-window-config-4 "Window 4"))
-
 ;;; zm-hydras.el ends here

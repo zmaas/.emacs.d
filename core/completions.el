@@ -41,4 +41,14 @@
 	(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 	(yas-global-mode t))
 
+;; auto-yasnippet, removing friction for repetitive tasks
+(use-package auto-yasnippet
+	:ensure t)
+
+;; Tiny, for fast expansion of linear ranges
+(use-package tiny
+	:ensure t
+	:config
+	(tiny-setup-default))
+
 ;;; zm-completions.el ends here

@@ -11,10 +11,14 @@
   :ensure t
 	:config
 	(add-hook 'ibuffer-hook
-    (lambda ()
-      (ibuffer-vc-set-filter-groups-by-vc-root)
-      (unless (eq ibuffer-sorting-mode 'alphabetic)
-        (ibuffer-do-sort-by-alphabetic)))))
+						(lambda ()
+							(ibuffer-vc-set-filter-groups-by-vc-root)
+							(unless (eq ibuffer-sorting-mode 'alphabetic)
+								(ibuffer-do-sort-by-alphabetic)))))
+
+;; Preliminary addition of quickrun to speed up development
+(use-package quickrun
+	:ensure t)
 
 (use-package ranger
 	:ensure t
@@ -73,8 +77,9 @@
 	(setq shackle-rules
 				'(("*undo-tree*" :size 0.25 :align right)
 					("*Help*" :select t :inhibit-window-quit t :other t)
-          ("*Completions*" :size 0.3 :align t )
-					("*Messages*" :select nil :inhibit-window-quit t :other t )
+          ("*Completions*" :size 0.3 :align t)
+					("*Messages*" :select nil :inhibit-window-quit t :other t)
+          ("*quickrun*" :size 0.5 :align right)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
 					(magit-log-mode :select t :inhibit-window-quit t :same t)
 					("\\`\\*output.*?\\*\\'" :regexp t :size 0.4)

@@ -66,6 +66,7 @@
 	 "l" '(:ignore t :which-key "layer")
 	 ;; o key is reserved for orgmode settings
 	 "o" '(:ignore t :which-key "org")
+	 ;; Most used commands have an easy 1 key binding
 	 "k" '(counsel-yank-pop :which-key "kill ring")
 	 "SPC" '(swiper :which-key "swiper")
 	 ":" '(counsel-M-x :which-key "M-x")
@@ -88,6 +89,7 @@
 	 "br" '(revert-buffer :which-key "revert")
 	 ;; file specific bindings
 	 "f" '(:ignore t :which-key "files")
+	 "fq" '(quickrun :which-key "quickrun")
 	 "ff" '(counsel-find-file :which-key "open")
 	 "fs" '(save-buffer :which-key "save")
 	 "fS" '(save-some-buffers :which-key "save all")
@@ -96,6 +98,11 @@
 	 "fD" '(delete-file :which-key "delete")
 	 "fr" '(sudo-edit :which-key "sudo")
 	 "ft" '(neotree :which-key "tree")
+	 ;; Insertion editing tools
+	 "i" '(:ignore t :which-key "insertion")
+	 "ia" '(aya-create :which-key "create snippet")
+	 "ie" '(aya-expand :which-key "expand saved snippet")
+	 "it" '(tiny-expand :which-key "tiny expand")
 	 ;; jump specific bindings
 	 "j" '(:ignore t :which-key "jump")
 	 "jj" '(avy-goto-char-2 :which-key "2 char")
@@ -128,6 +135,7 @@
 	 "mi" '(mu4e :which-key "mu4e")
 	 "mc" '(mu4e-compose-new :which-key "mu4e compose")
 	 "ms" '(mu4e-headers-search :which-key "mu4e search")
+	 "mf" '(circe :which-key "freenode")
 	 ;; window specific bindings
 	 "w" '(:ignore t :which-key "window")
 	 "ww" '(ace-window :which-key "jump")
@@ -216,7 +224,14 @@
 	(general-define-key
 	 :keymaps '(evil-multiedit-insert-state-map)
 	 "C-n" '(evil-multiedit-next)
-	 "C-p" '(evil-multiedit-prev))
-	(evil-ex-define-cmd "ie[dit]" 'evil-multiedit-ex-match))
+	 "C-p" '(evil-multiedit-prev)))
+
+;; Custom ex bindings
+(defalias 'ex! 'evil-ex-define-cmd)
+(ex! "ie[dit]" 'evil-multiedit-ex-match)
+(ex! "ag" 'counsel-ag)
+(ex! "rg" 'counsel-rg)
+(ex! "sw[iper]" 'swiper)
+(ex! "org" 'org-capture)
 
 ;;; zm-evil.el ends here

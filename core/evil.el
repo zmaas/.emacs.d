@@ -219,5 +219,10 @@
 (ex! "rg" 'counsel-rg)
 (ex! "sw[iper]" 'swiper)
 (ex! "org" 'org-capture)
+(ex! "git" 'magit-status)
+(ex! "gblame" 'magit-blame)
+(ex! "a" 'counsel-projectile-find-file)
+(ex! "evb" 'eval-buffer)
+(ex! "wcu" 'whitespace-cleanup)
 
 ;;; zm-evil.el ends here

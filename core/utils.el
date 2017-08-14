@@ -70,18 +70,19 @@
   (setq shackle-default-size 0.4) ; default 0.5
 	(setq shackle-rules
 				'(("*undo-tree*" :size 0.25 :align right)
-					("*Help*" :select t :inhibit-window-quit t :other t)
+					("*Help*" :select t :other t)
           ("*Completions*" :size 0.3 :align t)
-					("*Messages*" :select nil :inhibit-window-quit t :other t)
+					("*Messages*" :select nil :other t)
           ("*quickrun*" :size 0.5 :align right)
+					(neotree-mode :select t :other t :align left)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
 					(magit-log-mode :select t :inhibit-window-quit t :same t)
 					("\\`\\*output.*?\\*\\'" :regexp t :size 0.4)
-					(shackle-default-rule '(:select t))
-					))
+          ("^\\*"  :regexp t :noselect t)
+          ("^ \\*" :regexp t :size 12 :noselect t :autoclose t)
+					(shackle-default-rule '(:select t))))
 	:config
-	(add-hook 'after-init-hook 'shackle-mode)
-	)
+	(add-hook 'after-init-hook 'shackle-mode))
 
 ;; clipmon - add system clipboard contents to kill ring
 (use-package clipmon
@@ -135,6 +136,7 @@
 	:config
 	(setq undo-tree-visualizer-timestamps t)
 	(setq undo-tree-visualizer-diff t)
+	(setq evil-want-fine-undo 'fine)
 	(global-undo-tree-mode t))
 
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them

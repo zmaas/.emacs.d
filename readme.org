@@ -5,25 +5,26 @@ This repository contains the full contents of my day-to-day emacs configuration.
 * Languages
 The primary languages I work on using emacs are:
 - Python for shell scripting
-- Golang for the quick and easy
+- Golang for the quick and easy, slowly supplanting python
 - Clojure for long running programs and CLJS
 - LaTeX for all of my homework and report writing
 - Orgmode for task management and remembering things
-
+	
 * TODO:
 ** Shackle for managing popup buffers
 - Steal this macro from DOOM
-** Improved session and workgroup management
+** DONE Improved session and workgroup management
 - In-progress - Preliminary work for persp-mode is done
 - Need to remove all references to eyebrowse
-** Pretty re-theme using nerdfonts
+** DONE Pretty re-theme using nerdfonts
 ** DONE vim binds for ripgrep
 I actually need to do this for all sorts of commands.
-** eval-buffer evil bind
+** DONE eval-buffer evil bind
 ** Improved modeline
 - More work on Spaceline
-** Comms
-*** IRC
-*** Email
+** DONE Comms
+*** DONE IRC
+*** DONE Email
 ** Improved custom elisp for loading modes and files
+	 This will require a major refactor of the project, but is ultimately necessary. This repo is getting pretty big and a more efficent method for loading and providing individual modules will significantly improve the extensibility and managment of the repo.
 ** All of the orgmode setup

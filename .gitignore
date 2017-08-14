@@ -33,3 +33,4 @@ vimish-fold/*
 /core/mail-private.el
 /apps/mail-private.el
 /apps/irc-private.el
+/irony/bin/irony-server

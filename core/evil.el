@@ -116,6 +116,7 @@
 	 "a" '(:ignore t :which-key "appearance")
 	 "af" '(focus-mode :which-key "focus")
 	 "al" '(nlinum-mode :which-key "linum")
+	 "aS" '(smooth-scrolling-mode :which-key "smooth-scrolling")
 	 "ao" '(olivetti-mode :which-key "olivetti")
 	 "ad" '(daytime-theme :which-key "day")
 	 "as" '(daytime-space-theme :which-key "spaceday")

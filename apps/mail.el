@@ -45,7 +45,9 @@
               account-vars)
       (error "No email account found"))))
 
+
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+(add-hook 'mu4e-view-mode-hook 'olivetti-mode)
 
 ;; use imagemagick for inline images when available
 (when (fboundp 'imagemagick-register-types)
@@ -59,5 +61,19 @@
  mu4e-get-mail-command "mbsync -a"
  mu4e-completing-read-function 'completing-read
  message-kill-buffer-on-exit t)
+
+(general-define-key
+ :states '(normal visual insert emacs)
+ :keymaps 'mu4e-compose-mode-map
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "l" '(:ignore t :which-key "layer")
+ "ls" '(mml-secure-sign-pgpmime :which-key "PGP sign (mime)")
+ "lS" '(mml-secure-sign-pgp :which-key "PGP sign (plain)")
+ "le" '(mml-secure-encrypt-pgpmime :which-key "PGP encrypt (mime)")
+ "lE" '(mml-secure-encrypt-pgp :which-key "PGP encrypt (plain)")
+ "la" '(mml-attach-file :which-key "attach file")
+ "lI" '(langtool-check :which-key "spellcheck")
+ "ll" '(langtool-check-done :which-key "done spellcheck"))
 
 ;; mail.el ends here

@@ -73,6 +73,10 @@
 	:ensure t
 	:defer t)
 
+(use-package smooth-scrolling
+	:ensure t
+	:defer t)
+
 ;; rainbow-mode, for hex codes
 (use-package rainbow-mode
 	:ensure t

@@ -20,6 +20,15 @@
 (use-package quickrun
 	:ensure t)
 
+;; Adding semantic mode for easier code completion
+(require 'semantic)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(add-hook 'c++-mode-hook #'semantic-mode)
+(add-hook 'c-mode-hook #'semantic-mode)
+
 (use-package ranger
 	:ensure t
 	:config

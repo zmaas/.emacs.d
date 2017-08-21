@@ -34,3 +34,4 @@ vimish-fold/*
 /apps/mail-private.el
 /apps/irc-private.el
 /irony/bin/irony-server
+semanticdb/*

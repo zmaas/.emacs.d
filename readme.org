@@ -1,4 +1,4 @@
-Emacs for your Ono-Sendai Cyberspace 7.
+ONO emacs: Emacs for your Ono-Sendai Cyberspace 7.
 
 This repository contains the full contents of my day-to-day emacs configuration. Inspired by vim, spacemacs, and cyberpunk. It attempts to provide an ergonomic and modern development and writing environment with consistent behavior. Targeting *Arch Linux* on kernel 4.10+, emacs version *25+*. It is always a work in progress and currently undergoing major improvements and refactoring.
 
@@ -13,6 +13,7 @@ The primary languages I work on using emacs are:
 * TODO:
 ** Shackle for managing popup buffers
 - Steal this macro from DOOM
+** Move everything under the ono namespace
 ** DONE Improved session and workgroup management
 - In-progress - Preliminary work for persp-mode is done
 - Need to remove all references to eyebrowse

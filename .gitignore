@@ -36,3 +36,4 @@ vimish-fold/*
 /irony/bin/irony-server
 semanticdb/*
 /abbrev_defs
+/lang/.nrepl-history

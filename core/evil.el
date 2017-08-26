@@ -49,6 +49,10 @@
 		:config
 		(evil-snipe-override-mode 1))
 	(setq evil-snipe-scope 'visible)
+	(use-package evil-nerd-commenter
+		:ensure t
+		:config
+		(evilnc-default-hotkeys))
 	:config
 	(evil-mode 1))
 

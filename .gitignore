@@ -35,3 +35,4 @@ vimish-fold/*
 /apps/irc-private.el
 /irony/bin/irony-server
 semanticdb/*
+/abbrev_defs

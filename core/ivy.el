@@ -18,10 +18,25 @@
 		:ensure t)
 	(use-package flx
 		:ensure t)
+	(use-package all-the-icons-ivy
+		:ensure t
+		:config
+		(all-the-icons-ivy-setup))
   (use-package counsel-projectile
     :ensure t
 		:config
 		(counsel-projectile-on))
+	(use-package counsel-dash
+		:ensure t
+		;; TODO: EWW won't play nicely with shackle. Need to change that.
+		:config
+		(setq counsel-dash-common-docsets '("Emacs Lisp" "Go" "Python 3" "C++"))
+		(setq counsel-dash-docsets-path "~/.docsets")
+		(setq counsel-dash-browser-func 'browse-url)
+		(add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
+		(add-hook 'go-mode-hook (lambda () (setq-local counsel-dash-docsets '("Go"))))
+		(add-hook 'c++-mode-hook (lambda () (setq-local counsel-dash-docsets '("C++"))))
+		(add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python 3")))))
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
@@ -66,8 +81,8 @@
 
 ;; Quick rebind for eshell...
 (add-hook 'eshell-mode-hook
-  (lambda () 
-    (define-key eshell-mode-map (kbd "<tab>")
-      (lambda () (interactive) (pcomplete-std-complete)))))
+					(lambda () 
+						(escape>define-key eshell-mode-map (kbd "<tab>")
+															 (lambda () (interactive) (pcomplete-std-complete)))))
 
 ;;; zm-ivy ends here

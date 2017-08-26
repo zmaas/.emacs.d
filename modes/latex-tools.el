@@ -24,6 +24,11 @@
 	(setq latex-run-command "pdflatex -synctex=1")
 	(setq TeX-show-compilation nil))
 
+(use-package latex-extra
+	:ensure t
+	:config
+	(add-hook 'LaTeX-mode-hook (lambda () (latex-extra-mode t))))
+
 (use-package auctex-latexmk
 	:ensure t
 	:config

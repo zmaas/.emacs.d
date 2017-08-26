@@ -7,21 +7,29 @@
 
 ;; Python Development Setup
 ;; IN PROGRESS - anaconda is good so far, some lag that needs to be figured out
-(use-package company-anaconda
+(use-package anaconda-mode
 	:ensure t
 	:init
+	(use-package virtualenvwrapper
+		:ensure t
+		:config
+		(venv-initialize-interactive-shells)
+		(venv-initialize-eshell))
+	:config
+	(add-hook 'python-mode-hook #'anaconda-mode))
+
+(use-package company-anaconda
+	:ensure t
 	:config
 	(setq python-shell-interpreter "ipython"
 				python-shell-interpreter-args "--simple-prompt"
 				python-shell-completion-native-disabled-interpreters "ipython")
-
-	(eval-after-load "company"																													;;
-		'(add-to-list 'company-backends 'company-anaconda))																;;
-	(add-hook 'python-mode-hook 'anaconda-mode)																				;;
-	(add-hook 'python-mode-hook																												;;
-						(lambda ()																																			;;
-							(set (make-local-variable 'company-backends)														;;
-									 '((company-anaconda company-dabbrev-code company-yasnippet))))))		;;
-
+	(eval-after-load "company"
+		'(add-to-list 'company-backends 'company-anaconda))													
+	(add-hook 'python-mode-hook 'anaconda-mode)																		
+	(add-hook 'python-mode-hook																										
+						(lambda ()																																
+							(set (make-local-variable 'company-backends)											
+									 '((company-anaconda company-dabbrev-code company-yasnippet))))))
 
 ;;; zm-python-tools.el ends here

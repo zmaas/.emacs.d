@@ -8,6 +8,9 @@
 (use-package go-mode
 	:ensure t)
 
+(use-package golint
+	:ensure t)
+
 (use-package company-go
 	:ensure t)
 
@@ -26,15 +29,15 @@
 
 
 (general-define-key
-	 :states '(normal visual insert emacs)
-	 :keymaps 'go-mode-map
-	 :prefix "SPC"
-	 :non-normal-prefix "M-SPC"
-		"l" '(:ignore t :which-key "layer")
-		"ll" '(go-golint :which-key "lint")
-		"ld" '(godef-jump :which-key "goto def")
-		"lD" '(pop-tag-mark :which-key "pop-back")
-		"lc" '(compile :which-key "compile"))
+ :states '(normal visual insert emacs)
+ :keymaps 'go-mode-map
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "l" '(:ignore t :which-key "layer")
+ "ll" '(golint :which-key "lint")
+ "ld" '(godef-jump :which-key "goto def")
+ "lD" '(pop-tag-mark :which-key "pop-back")
+ "lc" '(compile :which-key "compile"))
 
 
 ;;; zm-lisp-tools.el ends here

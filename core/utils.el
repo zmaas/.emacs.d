@@ -16,18 +16,30 @@
 							(unless (eq ibuffer-sorting-mode 'alphabetic)
 								(ibuffer-do-sort-by-alphabetic)))))
 
+;; Use eww for opening webpages
+(setq browse-url-browser-function 'eww-browse-url)
+
 ;; Preliminary addition of quickrun to speed up development
 (use-package quickrun
 	:ensure t)
 
 ;; Adding semantic mode for easier code completion
-(require 'semantic)
-
-(global-semanticdb-minor-mode 1)
-(global-semantic-idle-scheduler-mode 1)
-
-(add-hook 'c++-mode-hook #'semantic-mode)
-(add-hook 'c-mode-hook #'semantic-mode)
+(use-package semantic
+	:init
+	(setq semantic-default-submodes
+				'(;; Perform semantic actions during idle time
+					global-semantic-idle-scheduler-mode
+					;; Use a database of parsed tags
+					global-semanticdb-minor-mode
+					;; Decorate buffers with additional semantic information
+					global-semantic-decoration-mode
+					;; Highlight the name of the function you're currently in
+					global-semantic-highlight-func-mode
+					;; Generate a summary of the current tag when idle
+					global-semantic-idle-summary-mode))
+	:config
+	(add-hook 'c++-mode-hook #'semantic-mode)
+	(add-hook 'c-mode-hook #'semantic-mode))
 
 (use-package ranger
 	:ensure t
@@ -82,13 +94,15 @@
 					("*Help*" :select t :other t)
           ("*Completions*" :size 0.3 :align t)
 					("*Messages*" :select nil :other t)
+					("*eww*" :select t :align right)
+					("*Flycheck errors*" :other t)
           ("*quickrun*" :size 0.5 :align right)
 					(neotree-mode :select t :other t :align left)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
 					(magit-log-mode :select t :inhibit-window-quit t :same t)
 					("\\`\\*output.*?\\*\\'" :regexp t :size 0.4)
           ("^\\*"  :regexp t :noselect t)
-          ("^ \\*" :regexp t :size 12 :noselect t :autoclose t)
+          ("^ \\*" :regexp t :noselect t)
 					(shackle-default-rule '(:select t))))
 	:config
 	(add-hook 'after-init-hook 'shackle-mode))
@@ -125,6 +139,7 @@
 							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
 							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 	(setq neo-smart-open t)
+	(add-hook 'projectile-after-switch-project-hook 'neotree-projectile-action)
 	(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 	(global-set-key [f8] 'neotree-toggle))
 

@@ -13,12 +13,12 @@
 		:ensure t
 		:config
 		(with-eval-after-load 'company
-			(company-flx-mode +1)))
+			(company-flx-mode t)))
 	:diminish company-mode
 	:config
 	(add-hook 'after-init-hook 'global-company-mode)
-	(setq company-minimum-prefix-length 2)
-	(setq company-idle-delay 0.2)
+	(setq company-minimum-prefix-length 3)
+	(setq company-idle-delay 0.5)
 	(define-key company-mode-map (kbd "C-:") 'counsel-company)
 	(define-key company-active-map (kbd "C-:") 'counsel-company))
 

@@ -13,11 +13,13 @@
 	(set-face-background 'linum (face-attribute 'default :background))
 	(spaceline-compile))
 
-(use-package spacemacs-theme
+(use-package dracula-theme
 	:ensure t)
 (use-package cyberpunk-theme
 	:ensure t)
 (use-package moe-theme
+	:ensure t)
+(use-package eziam-theme
 	:ensure t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
@@ -33,15 +35,15 @@
 (defun daytime-space-theme ()
 	"Sets spaceline-light theme for daytime and associated colors"
 	(interactive)
-	(!my-set-theme 'spacemacs-light)
+	(!my-set-theme 'eziam-light)
 	(set-face-background 'auto-dim-other-buffers-face "#e0e0e0")
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
 (defun night-theme ()
-	"Sets spacemacs-dark theme for nighttime and associated colors"
+	"Sets dracula theme for nighttime and associated colors"
 	(interactive)
-	(!my-set-theme 'spacemacs-dark)
+	(!my-set-theme 'dracula)
 	(set-face-background 'auto-dim-other-buffers-face "#303136")
 	(set-face-background 'nlinum-relative-current-face "#000000"))
 
@@ -49,6 +51,6 @@
   "Sets cyberpunk theme for dark nightime usage"
   (interactive)
   (!my-set-theme 'cyberpunk)
-	(set-face-background 'auto-dim-other-buffers-face "#303136")
+	(set-face-background 'auto-dim-other-buffers-face "#212121")
 	(set-face-background 'nlinum-relative-current-face "#000000"))
 

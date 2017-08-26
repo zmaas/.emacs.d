@@ -77,6 +77,14 @@
 	:ensure t
 	:defer t)
 
+(use-package nav-flash
+	:ensure t
+	:config
+	(add-hook 'dumb-jump-after-jump-hook 'nav-flash-show nil t)
+	(add-hook 'imenu-after-jump-hook 'nav-flash-show nil t)
+	(add-hook 'bookmark-after-jump-hook 'nav-flash-show nil t)
+	(add-hook 'evil-jumps-post-jump-hook 'nav-flash-show nil t))
+
 ;; rainbow-mode, for hex codes
 (use-package rainbow-mode
 	:ensure t
@@ -111,7 +119,7 @@
 	(setq powerline-height 40)
   (setq powerline-raw " ")
   (setq ns-use-srgb-colorspace nil)
-	(setq powerline-default-separator 'contour)
+	(setq powerline-default-separator 'slant)
   :config
   (spaceline-emacs-theme)
   (setq anzu-cons-mode-line-p nil)
@@ -190,6 +198,21 @@
 
 ;; prettyify fonts
 (setq font-lock-maximum-decoration t)
+
+;; Highlight specific keywords in prog-modes
+(defun ono-add-watchwords ()
+  "Highlight FIXME, TODO, and NOCOMMIT in code TODO"
+  (font-lock-add-keywords
+   nil '(("\\<\\(TODO\\(?:(.*)\\)?:?\\)\\>"  1 'warning prepend)
+         ("\\<\\(FIXME\\(?:(.*)\\)?:?\\)\\>" 1 'error prepend)
+         ("\\<\\(NOCOMMIT\\(?:(.*)\\)?:?\\)\\>"  1 'error prepend))))
+(add-hook 'prog-mode-hook #'ono-add-watchwords)
+
+;; Tilde fringes, like vim
+(use-package vi-tilde-fringe
+	:ensure t
+	:config
+	(add-hook 'after-init-hook 'global-vi-tilde-fringe-mode))
 
 ;; relative line numbers, makes it much easier to use evil features
 (use-package nlinum-relative

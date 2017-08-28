@@ -85,27 +85,6 @@
 	:config
 	(add-hook 'after-init-hook #'rainbow-mode))
 
-;; Trying out telephone line instead of powerline
-;(use-package telephone-line
-;	:ensure t
-;	:config
-;	(setq telephone-line-lhs
-;        '((evil   . (telephone-line-evil-tag-segment))
-;          (accent . (telephone-line-vc-segment
-;                     telephone-line-process-segment))
-;          (nil    . (telephone-line-minor-mode-segment
-;                     telephone-line-buffer-segment))))
-;	(setq telephone-line-rhs
-;        '((nil    . (telephone-line-misc-info-segment))
-;          (accent . (telephone-line-major-mode-segment))
-;          (evil   . (telephone-line-airline-position-segment))))
-;	(setq telephone-line-primary-left-separator telephone-line-cubed-left)
-;	(setq telephone-line-primary-right-separator telephone-line-cubed-right)
-;	(setq telephone-line-secondary-left-separator telephone-line-cubed-hollow-left)
-;	(setq telephone-line-secondary-right-separator telephone-line-cubed-hollow-right)
-;	(telephone-line-mode t)
-;	(column-number-mode t))
-
 (use-package spaceline-config
   :ensure spaceline
 	:init

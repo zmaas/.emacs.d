@@ -18,16 +18,12 @@
 (use-package yaml-mode
 	:ensure t)
 
+
 ;; FIXME
 (general-define-key
  :states '(normal visual insert emacs)
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer"))
-; "la" '(org-agenda :which-key "agenda")
-; "lc" '(org-capture :which-key "capture")
-; "ls" '(org-schedule :which-key "schedule")
-; "ld" '(org-deadline :which-key "deadline")
-; "lr" '(org-refile :which-key "refile"))
 
 ;;; zm-org-tools.el ends here

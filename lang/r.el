@@ -5,8 +5,6 @@
 
 ;;; Code:
 (use-package ess
-	:ensure t
-	:config
-	(add-hook R-mode-hook 'ess-r-mode))
+	:ensure t)
 
 ;; r-mode.el ends here

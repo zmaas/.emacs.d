@@ -22,7 +22,7 @@
 ;;; Code:
 
 ;; Setup Garbage Collection Threshold for Speed
-;; (setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold (* 50 1024 1024))
 
 ;; Start timer for startup
 (defconst emacs-start-time (current-time))
@@ -34,6 +34,7 @@
 												 ("marmalade" . "https://marmalade-repo.org/packages/")
 												 ("melpa" . "https://melpa.org/packages/")))
 
+(setq gnutls-min-prime-bits 4096)
 (setq tls-checktrust t)
 
 (package-initialize)
@@ -48,6 +49,7 @@
 (use-package auto-compile
 	:ensure t
 	:config
+	(add-hook 'after-init-hook #'auto-compile-mode)
 	(auto-compile-on-save-mode t)
 	(auto-compile-on-load-mode t))
 
@@ -64,10 +66,19 @@
 
 ;; Set reasonable defaults for startup
 (setq inhibit-startup-message t)
+(setq-default fill-column 80)
 (setq-default tab-width 2)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+
+;; Make font-lock work better in the background
+(setq jit-lock-defer-time nil
+      ;; jit-lock-stealth-nice 0.1
+      jit-lock-stealth-time 1
+      jit-lock-stealth-verbose nil)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq line-move-visual t)
 
 (setq backup-directory-alist '(("." . "~/.emacsbackups")))
 
@@ -147,7 +158,7 @@
  '(minimap-mode nil)
  '(package-selected-packages
 	 (quote
-		(ess yaml-mode eziam-theme evil-nerd-commenter evil-nderd-commenter virtualenvwrapper anaconda counsel-dash latex-extra all-the-icons-ivy tao-theme smooth-scrolling ggtags function-args markdown-mode irony paradox circe tiny auto-yasnippet quickrun dashboard moe-theme geiser slime yasnippet evil-mu4e org-plus-contrib persp-mode fireplace evil-multiedit plan9-theme shackle all-the-icons nlinum-relative git-gutter-fringe ranger company-go go-mode interleave cider evil-snipe evil-goggles cyberpunk-theme evil-smartparens company-flx highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing golden-ratio sr-speedbar focus evil-magit pdf-tools crosshairs hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
+		(auto-save-buffers-enhanced vlf bookmark+ shrink-whitespace ws-butler editorconfig synosaurus smart-tab company-statistics eshell-prompt-extras keychain-environment ess yaml-mode eziam-theme evil-nerd-commenter evil-nderd-commenter virtualenvwrapper anaconda counsel-dash latex-extra all-the-icons-ivy tao-theme smooth-scrolling ggtags function-args markdown-mode irony paradox circe tiny auto-yasnippet quickrun dashboard moe-theme geiser slime yasnippet evil-mu4e org-plus-contrib persp-mode fireplace evil-multiedit plan9-theme shackle all-the-icons nlinum-relative git-gutter-fringe ranger company-go go-mode interleave cider evil-snipe evil-goggles cyberpunk-theme evil-smartparens company-flx highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing sr-speedbar focus evil-magit pdf-tools crosshairs hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
  '(paradox-github-token t)
  '(safe-local-variable-values (quote ((o-byte-compile . t))))
  '(send-mail-function (quote smtpmail-send-it))

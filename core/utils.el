@@ -5,6 +5,13 @@
 
 ;;; Code:
 
+;; Don't use bidirectional languages
+(setq-default bidi-display-reordering nil)
+
+;; Make re-builder use saner defaults
+(require 're-builder)
+(setq reb-re-syntax 'string)
+
 ;; look at those buffers - ibuffer work
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (use-package ibuffer-vc
@@ -22,6 +29,16 @@
 ;; Preliminary addition of quickrun to speed up development
 (use-package quickrun
 	:ensure t)
+
+(use-package auto-save-buffers-enhanced
+  :ensure t
+  :init (auto-save-buffers-enhanced t)
+  :config
+  (setq auto-save-buffers-enhanced-interval 3.0
+        ;; Don't auto-save org source popups
+        auto-save-buffers-enhanced-exclude-regexps '("Org Src")
+        ;; Save things quietly
+        auto-save-buffers-enhanced-quiet-save-p t))
 
 ;; Adding semantic mode for easier code completion
 (use-package semantic
@@ -45,6 +62,8 @@
 	:ensure t
 	:config
 	(ranger-override-dired-mode t))
+
+(add-hook 'after-init-hook #'winner-mode)
 
 (use-package persp-mode
 	:ensure t
@@ -73,6 +92,28 @@
 	(use-package evil-magit
 		:ensure t))
 
+;; ws-butler - easy white space trimming
+;; won't make commits messy, only touches edited lines
+(use-package ws-butler
+	:ensure t
+	:config
+	(add-hook 'prog-mode-hook #'ws-butler-mode))
+
+;; Speaking of whitespace, let's improve the builtin
+;; just-one-space command
+(use-package shrink-whitespace
+  :ensure t
+  :bind ("M-SPC" . shrink-whitespace))
+
+;; Better bookmarks, since they're so useful
+(use-package bookmark+
+  :ensure t
+  :init (setq bmkp-replace-EWW-keys-flag t)
+  :config
+  (setq bookmark-version-control t
+        ;; auto-save bookmarks
+        bookmark-save-flag 1))
+
 ;; projectile - easy navigation inside projects
 (use-package projectile
 	:ensure t
@@ -81,6 +122,14 @@
 	(add-hook 'after-init-hook #'projectile-mode)
 	(setq projectile-completion-system 'ivy))
 
+;; Editorconfig, makes project styles easier
+(use-package editorconfig
+	:ensure t
+	:diminish editorconfig-mode
+	:config
+	(add-hook 'after-init-hook #'editorconfig-mode))
+
+;; Shackle manages popups aggressively
 (use-package shackle
 	:ensure t
 	:init
@@ -96,6 +145,7 @@
 					("*Messages*" :select nil :other t)
 					("*eww*" :select t :popup t :align below)
 					("*Flycheck errors*" :other t)
+					("*Synonyms List*" :other t :select t)
           ("*quickrun*" :size 0.5 :align right)
 					(neotree-mode :select t :other t :align left)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
@@ -116,10 +166,17 @@
 	(add-to-list 'savehist-additional-variables 'kill-ring)
 	(savehist-mode t))
 
+;; get rid of kill ring dupes
+(setq kill-do-not-save-duplicates t)
+
 ;; tramp - for remote file access
 (use-package tramp
 	:ensure t
 	:defer t)
+
+;; Very Large File Support
+(use-package vlf-setup
+  :ensure vlf)
 
 ;; neotree - file tree like VIM's nerdtree
 (use-package neotree
@@ -166,19 +223,21 @@
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them
 (use-package visual-regexp
 	:ensure t
-	:defer t
 	:init
 	:config
 	(define-key global-map (kbd "C-c r") 'vr/replace)
 	(define-key global-map (kbd "C-c q") 'vr/query-replace))
 
-; go to characters quickly and easily
+(require 're-builder)
+(setq reb-re-syntax 'string)
+
+																				; go to characters quickly and easily
 (global-set-key (kbd "C-;") 'avy-goto-char)
 
 ;; zap to char - lets us kill all text up to the next instance of a character
 (use-package zzz-to-char
 	:ensure t
-	:defer t
+	:commands zzz-to-char
 	:config
 	(global-set-key (kbd "M-z") #'zzz-to-char))
 
@@ -187,10 +246,12 @@
 	(windmove-default-keybindings))
 
 (use-package dumb-jump
-	:ensure t)
+	:ensure t
+	:commands dumb-jump-go)
 
 (use-package ace-window
-	:ensure t)
+	:ensure t
+	:commands ace-window)
 
 ;; sometimes we forget keybinds - this gives us a reminder
 (use-package which-key

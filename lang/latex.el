@@ -35,6 +35,22 @@
 	(auctex-latexmk-setup)
 	(setq auctex-latexmk-inherit-TeX-PDF-mode t))
 
+(use-package doc-view
+  :config
+  (define-key doc-view-mode-map (kbd "j")
+    #'doc-view-next-line-or-next-page)
+  (define-key doc-view-mode-map (kbd "k")
+    #'doc-view-previous-line-or-previous-page)
+  ;; use 'q' to kill the buffer, not just hide it
+  (define-key doc-view-mode-map (kbd "q")
+    #'kill-this-buffer))
+
+;; Much better viewing of PDF's in emacs
+(use-package pdf-tools
+  :ensure t
+  :when window-system
+  :init (pdf-tools-install))
+
 (use-package ivy-bibtex
 	:ensure t
 	:config

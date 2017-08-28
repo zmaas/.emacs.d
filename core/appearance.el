@@ -73,17 +73,10 @@
 	:ensure t
 	:defer t)
 
+;; Smooth scrolling. We don't enable this by default
 (use-package smooth-scrolling
 	:ensure t
 	:defer t)
-
-(use-package nav-flash
-	:ensure t
-	:config
-	(add-hook 'dumb-jump-after-jump-hook 'nav-flash-show nil t)
-	(add-hook 'imenu-after-jump-hook 'nav-flash-show nil t)
-	(add-hook 'bookmark-after-jump-hook 'nav-flash-show nil t)
-	(add-hook 'evil-jumps-post-jump-hook 'nav-flash-show nil t))
 
 ;; rainbow-mode, for hex codes
 (use-package rainbow-mode
@@ -211,6 +204,7 @@
 ;; Tilde fringes, like vim
 (use-package vi-tilde-fringe
 	:ensure t
+	:diminish global-vi-tilde-fringe-mode vi-tilde-fringe-mode
 	:config
 	(add-hook 'after-init-hook 'global-vi-tilde-fringe-mode))
 

@@ -94,7 +94,7 @@
 					("*Help*" :select t :other t)
           ("*Completions*" :size 0.3 :align t)
 					("*Messages*" :select nil :other t)
-					("*eww*" :select t :align right)
+					("*eww*" :select t :popup t :align below)
 					("*Flycheck errors*" :other t)
           ("*quickrun*" :size 0.5 :align right)
 					(neotree-mode :select t :other t :align left)

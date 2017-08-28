@@ -19,6 +19,10 @@
 	:config
 	(setq ispell-program-name "aspell")
 	(setq ispell-dictionary "english")
+	(setq ispell-extra-args
+				(list "--sug-mode=fast" ;; ultra|fast|normal|bad-spellers
+							"--lang=en_US"
+							"--ignore=4"))
 	(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 	(add-hook 'text-mode-hook 'flyspell-mode)
 	(add-hook 'text-mode-hook 'flyspell-buffer)
@@ -35,7 +39,16 @@
 	:ensure t
 	:config
 	(setq langtool-java-classpath
-      "/usr/share/languagetool:/usr/share/java/languagetool/*"))
+				"/usr/share/languagetool:/usr/share/java/languagetool/*"))
+
+;; Synosaurus gives us easy synonyms
+(use-package synosaurus
+  :ensure t
+	:diminish ""
+  :init
+  (setq-default synosaurus-backend 'synosaurus-backend-wordnet)
+	(setq-default synosaurus-choose-method 'ido)
+  (add-hook 'after-init-hook #'synosaurus-mode))
 
 ;; flycheck gives us global syntax checking and eroor popups in our code
 (use-package flycheck

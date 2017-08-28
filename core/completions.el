@@ -14,13 +14,75 @@
 		:config
 		(with-eval-after-load 'company
 			(company-flx-mode t)))
+	(use-package company-statistics
+		:ensure t
+		:diminish company-statistics-mode
+		:config
+		(add-hook 'after-init-hook #'company-statistics-mode))
+	(use-package company-dabbrev
+		:init
+		(setq company-dabbrev-ignore-case nil
+					;; don't downcase dabbrev suggestions
+					company-dabbrev-downcase nil
+					company-dabbrev-downcase nil))
 	:diminish company-mode
 	:config
 	(add-hook 'after-init-hook 'global-company-mode)
-	(setq company-minimum-prefix-length 3)
-	(setq company-idle-delay 0.5)
+	(setq company-minimum-prefix-length 3
+				company-idle-delay 0.5
+				company-show-numbers t
+				company-selection-wrap-around t)
+
 	(define-key company-mode-map (kbd "C-:") 'counsel-company)
 	(define-key company-active-map (kbd "C-:") 'counsel-company))
+
+;; hippie-expand: better builtin expansion
+(use-package hippie-exp
+  :init
+  ;; force hippie-expand completions to be case-sensitive
+  (defadvice hippie-expand (around hippie-expand-case-fold activate)
+    "Try to do case-sensitive matching (not effective with all functions)."
+    (let ((case-fold-search nil))
+      ad-do-it))
+
+  :config
+  (setq hippie-expand-try-functions-list
+        '(;; Try to expand word "dynamically", searching the current buffer.
+          try-expand-dabbrev
+          ;; Try to expand word "dynamically", searching all other buffers.
+          try-expand-dabbrev-all-buffers
+          ;; Try to expand word "dynamically", searching the kill ring.
+          try-expand-dabbrev-from-kill
+          ;; Try to complete text as a file name, as many characters as unique.
+          try-complete-file-name-partially
+          ;; Try to complete text as a file name.
+          try-complete-file-name
+          ;; Try to expand word before point according to all abbrev tables.
+          try-expand-all-abbrevs
+          ;; Try to complete the current line to an entire line in the buffer.
+          try-expand-list
+          ;; Try to complete the current line to an entire line in the buffer.
+          try-expand-line
+          ;; Try to complete the current line to an entire line in a different
+          ;; buffer.
+          try-expand-line-all-buffers
+          ;; Try to complete as an Emacs Lisp symbol, as many characters as
+          ;; unique.
+          try-complete-lisp-symbol-partially
+          ;; Try to complete word as an Emacs Lisp symbol.
+          try-complete-lisp-symbol)))
+
+(use-package smart-tab
+  :ensure t
+  :defer t
+  :diminish ""
+  :init
+  (global-smart-tab-mode 1)
+  (setq smart-tab-using-hippie-expand t)
+  :config
+  (add-to-list 'smart-tab-disabled-major-modes 'mu4e-compose-mode)
+  (add-to-list 'smart-tab-disabled-major-modes 'erc-mode)
+  (add-to-list 'smart-tab-disabled-major-modes 'shell-mode))
 
 ;; YAsnippet - snippets for code, with company integration
 (use-package yasnippet

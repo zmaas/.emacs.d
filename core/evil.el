@@ -82,6 +82,7 @@
 	 ;; error checking specific bindings
 	 "e" '(:ignore t :which-key "check")
 	 "es" '(flyspell-correct-previous-word-generic :which-key "check word")
+	 "eS" '(synosaurus-lookup :which-key "synonym")
 	 "ed" '(counsel-dash :which-key "dash")
 	 "ee" '(flycheck-list-errors :which-key "all errors")
 	 "en" '(flycheck-next-error :which-key "next error")
@@ -108,6 +109,7 @@
 	 "i" '(:ignore t :which-key "insertion")
 	 "ia" '(aya-create :which-key "create snippet")
 	 "ie" '(aya-expand :which-key "expand saved snippet")
+	 "ir" '(re-builder :which-key "re-builder")
 	 "it" '(tiny-expand :which-key "tiny expand")
 	 ;; jump specific bindings
 	 "j" '(:ignore t :which-key "jump")
@@ -118,6 +120,7 @@
 	 "jl" '(avy-goto-line :which-key "line")
 	 "jc" '(avy-goto-char :which-key "char")
 	 "jd" '(dumb-jump-go :which-key "dumb jump")
+	 "jD" '(dumb-jump-back :which-key "dumb jump back")
 	 ;; appearance specific bindings
 	 "a" '(:ignore t :which-key "appearance")
 	 "af" '(focus-mode :which-key "focus")
@@ -143,6 +146,7 @@
 	 "mc" '(mu4e-compose-new :which-key "mu4e compose")
 	 "ms" '(mu4e-headers-search :which-key "mu4e search")
 	 "mf" '(circe :which-key "freenode")
+	 "mp" '(proced :which-key "proced")
 	 ;; window specific bindings
 	 "w" '(:ignore t :which-key "window")
 	 "ww" '(ace-window :which-key "jump")

@@ -44,7 +44,7 @@
 	(use-package evil-snipe
 		:ensure t
 		:diminish evil-snipe-mode
-		:diminish evil-snipe-override-ode
+		:diminish evil-snipe-override-mode
 		:diminish evil-snipe-local-mode
 		:config
 		(evil-snipe-override-mode 1))
@@ -192,6 +192,19 @@
 	 ;; misc bindings
 	 "z" '(zzz-to-char :which-key "zap!")
 	 "u" '(undo-tree-visualize :which-key "undo tree")))
+
+;; Evil-lispy, much better lisp editing tools
+(use-package evil-lispy
+	:ensure t
+	:diminish	evil-lispy-mode
+	:init
+	(use-package lispy
+		:ensure t)
+	:config
+	(add-hook 'lisp-mode-hook #'evil-lispy-mode)
+	(add-hook 'scheme-mode-hook #'evil-lispy-mode)
+	(add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode)
+	(add-hook 'clojure-mode-hook #'evil-lispy-mode))
 
 ;; Need to learn how to use this better -- it is really useful.
 (use-package evil-multiedit

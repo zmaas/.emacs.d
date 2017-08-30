@@ -13,6 +13,9 @@
 (defvar ono-emacs-dir (expand-file-name user-emacs-directory)
   "The path to this emacs.d directory.")
 
+(defvar ono-modules
+	"A hash-table of loaded modules, to be digested by ono-init!")
+
 ;; Function to reliably fetch a module path
 (defun ono-module-path (module file)
   "Get the full path to a module: e.g. :lang emacs-lisp maps to

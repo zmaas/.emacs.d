@@ -5,6 +5,10 @@
 
 ;;; Code:
 
+;; Default font should be Iosevka Nerd Font Light, 10pt
+(add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font Light 10"))
+(set-face-attribute 'default t :font "Iosevka Nerd Font Light 10")
+
 (defun !my-set-theme (my-theme-to-load)
 	"Set MY-THEME-TO-LOAD and the associated background settings"
 	(mapcar #'disable-theme custom-enabled-themes)

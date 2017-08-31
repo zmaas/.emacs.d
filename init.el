@@ -30,6 +30,7 @@
 ;; Load from personal init files
 (ono! :secrets "personal")
 
+;; Load startup defults to save our sanity
 (ono! :startup "archives")
 (ono! :startup "defaults")
 

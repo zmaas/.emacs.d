@@ -10,6 +10,7 @@
 
 ;; Allow us to diminish packages with use-package
 (require 'diminish)
+(diminish 'auto-revert-mode)
 
 ;; Set reasonable defaults for editing
 (setq inhibit-startup-message t)

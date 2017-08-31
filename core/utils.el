@@ -96,6 +96,7 @@
 ;; won't make commits messy, only touches edited lines
 (use-package ws-butler
 	:ensure t
+	:diminish ws-butler-mode
 	:config
 	(add-hook 'prog-mode-hook #'ws-butler-mode))
 
@@ -190,9 +191,8 @@
 	(add-hook 'neotree-mode-hook
 						(lambda ()
 							(define-key evil-normal-state-local-map (kbd "h") 'neotree-select-up-node)
-							(define-key evil-normal-state-local-map (kbd "l") 'neotree-enter)
+							(define-key evil-normal-state-local-map (kbd "l") 'neotree-select-down-node)
 							(define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-							(define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
 							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
 							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 	(setq neo-smart-open t)

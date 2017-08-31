@@ -88,6 +88,7 @@
 (use-package yasnippet
 	:ensure t
 	:defer t
+	:diminish yas-global-mode yas-minor-mode
 	:config
 	(add-to-list 'yas-snippet-dirs "~/.emacs.d/yasnippet-snippets/")
 	(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")

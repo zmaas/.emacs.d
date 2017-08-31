@@ -23,6 +23,7 @@
 ;; keeps our parentheses balanced and allows for easy manipulation
 (use-package smartparens
   :ensure t
+	:diminish smartparens-mode
   :init
 	(use-package evil-smartparens
 	  :ensure t

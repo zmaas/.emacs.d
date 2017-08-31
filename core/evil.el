@@ -39,6 +39,7 @@
 		(vimish-fold-global-mode t))
 	(use-package evil-goggles
 		:ensure t
+		:diminish	evil-goggles-mode
 		:config
 		(evil-goggles-mode))
 	(use-package evil-snipe

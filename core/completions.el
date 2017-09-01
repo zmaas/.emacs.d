@@ -8,6 +8,7 @@
 ;; company - easy auto-completion of code for all modes and documentation integration
 (use-package company
 	:ensure t
+	:defer t
 	:init
 	(use-package company-flx
 		:ensure t
@@ -33,8 +34,8 @@
 				company-show-numbers t
 				company-selection-wrap-around t)
 
-	(define-key company-mode-map (kbd "C-:") 'counsel-company)
-	(define-key company-active-map (kbd "C-:") 'counsel-company))
+	(define-key company-mode-map (kbd "M-o") 'counsel-company)
+	(define-key company-active-map (kbd "M-o") 'counsel-company))
 
 ;; hippie-expand: better builtin expansion
 (use-package hippie-exp
@@ -75,6 +76,7 @@
 (use-package smart-tab
   :ensure t
   :defer t
+	:commands smart-tab
   :diminish ""
   :init
   (global-smart-tab-mode 1)

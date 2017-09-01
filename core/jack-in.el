@@ -26,7 +26,7 @@
 
 (defun ono-module-load (module file)
 	"Loads a module from the path fetched using ono-module-path"
-	(load-file (ono-module-path module file)))
+	(load (ono-module-path module file)))
 
 (defun ono-load-module-list ()
 	"Fills ono-modules with a provided set of modules"

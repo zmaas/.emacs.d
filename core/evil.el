@@ -73,12 +73,12 @@
 	 "o" '(:ignore t :which-key "org")
 	 ;; Most used commands have an easy 1 key binding
 	 "k" '(counsel-yank-pop :which-key "kill ring")
-	 "SPC" '(swiper :which-key "swiper")
+	 "SPC" '(counsel-grep-or-swiper :which-key "swiper")
 	 ":" '(counsel-M-x :which-key "M-x")
 	 "s" '(flyspell-correct-previous-word-generic :which-key "spellcheck")
 	 "g" '(magit-status :which-key "git")
 	 "?" '(counsel-locate :which-key "locate")
-	 "/" '(counsel-rg :which-key "rg")
+	 "/" '(counsel-grep :which-key "rg")
 	 "," '(ivy-switch-buffer :which-key "swbuf")
 	 ;; error checking specific bindings
 	 "e" '(:ignore t :which-key "check")
@@ -102,6 +102,7 @@
 	 "fs" '(save-buffer :which-key "save")
 	 "fS" '(save-some-buffers :which-key "save all")
 	 "fb" '(bookmark-jump :which-key "marks")
+	 "fb" '(bookmark-file :which-key "marks")
 	 "fd" '(ranger :which-key "directory")
 	 "fD" '(delete-file :which-key "delete")
 	 "fr" '(sudo-edit :which-key "sudo")
@@ -158,6 +159,8 @@
 	 "wk" '(evil-window-up :which-key "up")
 	 "wj" '(evil-window-down :which-key "down")
 	 "wh" '(evil-window-left :which-key "left")
+	 "wu" '(winner-undo :which-key "undo")
+	 "wr" '(winner-redo :which-key "redo")
 	 "wpc" '(persp-add-new :which-key "new persp")
 	 "wps" '(persp-switch :which-key "switch persp")
 	 "wpw" '(persp-save-state-to-file :which-key "write persp")
@@ -197,7 +200,7 @@
 ;; Evil-lispy, much better lisp editing tools
 (use-package evil-lispy
 	:ensure t
-	:diminish	evil-lispy-mode
+	:diminish evil-lispy-mode
 	:init
 	(use-package lispy
 		:ensure t)
@@ -205,7 +208,7 @@
 	(add-hook 'lisp-mode-hook #'evil-lispy-mode)
 	(add-hook 'scheme-mode-hook #'evil-lispy-mode)
 	(add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode)
-	(add-hook 'clojure-mode-hook #'evil-lispy-mode))
+	(add-hook 'clojure-mode-hook #'evil-lispy-mode)) ()
 
 ;; Need to learn how to use this better -- it is really useful.
 (use-package evil-multiedit

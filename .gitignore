@@ -38,3 +38,4 @@ semanticdb/*
 /abbrev_defs
 /lang/.nrepl-history
 /company-statistics-cache.el
+straight/*

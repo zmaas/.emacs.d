@@ -12,14 +12,10 @@ The primary languages I work on using emacs are:
 - Orgmode for task management and remembering things
 	
 * TODO:
-** DONE Shackle for managing popup buffers
-- Steal this macro from DOOM
 ** Move everything under the ono namespace
 ** DONE Improved modeline
 - More work on Spaceline
-** DONE Comms
-*** DONE IRC
-*** DONE Email
 ** Improved custom elisp for loading modes and files
 	 This will require a major refactor of the project, but is ultimately necessary. This repo is getting pretty big and a more efficient method for loading and providing individual modules will significantly improve the extensibility and management of the repo.
+** TODO Implement straight.el
 ** DONE [#B] All of the orgmode setup

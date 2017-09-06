@@ -24,10 +24,16 @@
 	(setq latex-run-command "pdflatex -synctex=1")
 	(setq TeX-show-compilation nil))
 
-(use-package latex-extra
+(use-package company-auctex
 	:ensure t
 	:config
-	(add-hook 'LaTeX-mode-hook (lambda () (latex-extra-mode t))))
+	(add-hook 'LaTeX-mode-hook #'company-auctex-init))
+
+(use-package latex-extra
+	:ensure t
+	:diminish latex-extra-mode
+	:config
+	(add-hook 'LaTeX-mode-hook (lambda () ('latex-extra-mode t))))
 
 (use-package auctex-latexmk
 	:ensure t
@@ -49,7 +55,28 @@
 (use-package pdf-tools
   :ensure t
   :when window-system
-  :init (pdf-tools-install))
+  :init (pdf-tools-install t t t)
+	:config
+	(general-define-key
+	 :states '(normal)
+	 :keymaps 'pdf-view-mode-map
+	 "h" 'pdf-view-previous-page-command
+	 "j" (lambda () (interactive) (pdf-view-next-line-or-next-page 5))
+	 "k" (lambda () (interactive) (pdf-view-previous-line-or-previous-page 5))
+	 "l" 'pdf-view-next-page-command
+	 "g" 'pdf-view-first-page
+	 "G" 'pdf-view-last-page
+	 ;; alternatively
+	 "g" 'image-bob
+	 "G" 'image-eob
+	 (kbd "C-o") 'pdf-history-backward
+	 (kbd "C-i") 'pdf-history-forward
+	 "m" 'pdf-view-position-to-register
+	 "'" 'pdf-view-jump-to-register
+	 "/" 'pdf-occur
+	 "o" 'pdf-outline
+	 "f" 'pdf-links-action-perform
+	 "b" 'pdf-view-midnight-minor-mode))
 
 (use-package ivy-bibtex
 	:ensure t

@@ -30,6 +30,20 @@
 (use-package quickrun
 	:ensure t)
 
+(use-package multi-compile
+	:ensure t
+	:config
+	(setq multi-compile-alist '((rust-mode . (("rust-debug" . "cargo run")
+																						("rust-release" . "cargo run --release")
+																						("rust-test" . "cargo test")))
+															(go-mode . (("go-run" . "go run")
+																					("go-test" . "go test")
+																					("go-vet" . "go vet")))
+															(c++-mode . (("make" . "make")
+																					 ("clean" . "make clean")
+																					 ("test" . "make test"))))))
+
+;; Automatically save buffers, but better
 (use-package auto-save-buffers-enhanced
   :ensure t
   :init (auto-save-buffers-enhanced t)
@@ -39,24 +53,6 @@
         auto-save-buffers-enhanced-exclude-regexps '("Org Src")
         ;; Save things quietly
         auto-save-buffers-enhanced-quiet-save-p t))
-
-;; Adding semantic mode for easier code completion
-(use-package semantic
-	:init
-	(setq semantic-default-submodes
-				'(;; Perform semantic actions during idle time
-					global-semantic-idle-scheduler-mode
-					;; Use a database of parsed tags
-					global-semanticdb-minor-mode
-					;; Decorate buffers with additional semantic information
-					global-semantic-decoration-mode
-					;; Highlight the name of the function you're currently in
-					global-semantic-highlight-func-mode
-					;; Generate a summary of the current tag when idle
-					global-semantic-idle-summary-mode))
-	:config
-	(add-hook 'c++-mode-hook #'semantic-mode)
-	(add-hook 'c-mode-hook #'semantic-mode))
 
 (use-package ranger
 	:ensure t
@@ -76,6 +72,8 @@
 ;; expands selected regions
 (use-package expand-region
 	:ensure t
+	:defer t
+	:commands er/expand-region
 	:config
 	(global-set-key (kbd "C-=") 'er/expand-region))
 
@@ -87,7 +85,6 @@
 ;; magit - super great git porcelain for version control
 (use-package magit
 	:ensure t
-	:defer t
 	:config
 	(use-package evil-magit
 		:ensure t))
@@ -104,6 +101,8 @@
 ;; just-one-space command
 (use-package shrink-whitespace
   :ensure t
+	:defer t
+	:commands shrink-whitespace
   :bind ("M-SPC" . shrink-whitespace))
 
 ;; Better bookmarks, since they're so useful
@@ -121,7 +120,11 @@
 	:diminish projectile-mode
 	:config
 	(add-hook 'after-init-hook #'projectile-mode)
-	(setq projectile-completion-system 'ivy))
+	(setq projectile-completion-system 'ivy
+				projectile-enable-caching (not noninteractive)
+				projectile-indexing-method 'alien
+				projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
+				projectile-globally-ignored-files '(".DS_Store" "Icon")))
 
 ;; Editorconfig, makes project styles easier
 (use-package editorconfig
@@ -144,8 +147,9 @@
 					("*Help*" :select t :other t)
           ("*Completions*" :size 0.3 :align t)
 					("*Messages*" :select nil :other t)
+					("*compile pdf-tools*" :select nil :ignore t)
 					("*eww*" :select t :popup t :align below)
-					("*Flycheck errors*" :other t)
+					("*Flycheck errors*" :other t :popup t :select t)
 					("*Synonyms List*" :other t :select t)
           ("*quickrun*" :size 0.5 :align right)
 					(neotree-mode :select t :other t :align left)
@@ -164,7 +168,8 @@
 	:diminish clipmon-mode
 	:config
 	(add-hook 'after-init-hook #'clipmon-mode)
-	(add-to-list 'savehist-additional-variables 'kill-ring)
+	(add-to-list 'savehist-additional-variables
+							 '(kill-ring search-ring regexp-search-ring))
 	(savehist-mode t))
 
 ;; get rid of kill ring dupes
@@ -177,11 +182,14 @@
 
 ;; Very Large File Support
 (use-package vlf-setup
-  :ensure vlf)
+  :ensure vlf
+	:defer t)
 
 ;; neotree - file tree like VIM's nerdtree
 (use-package neotree
 	:ensure t
+	:defer t
+	:commands neotree
 	:init
 	(use-package all-the-icons
 		:ensure t
@@ -196,7 +204,10 @@
 							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
 							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 	(setq neo-smart-open t)
+	(add-hook 'neotree-mode-hook (lambda () (nlinum-mode -1)))
 	(add-hook 'projectile-after-switch-project-hook 'neotree-projectile-action)
+	(setq neo-vc-integration nil
+				neo-autorefresh t)
 	(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 	(global-set-key [f8] 'neotree-toggle))
 
@@ -212,7 +223,7 @@
 
 ;; Enable undo-tree mode globally
 (use-package undo-tree
-	:ensure t
+	:ensure	t
 	:diminish undo-tree-mode
 	:config
 	(setq undo-tree-visualizer-timestamps t)
@@ -223,7 +234,6 @@
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them
 (use-package visual-regexp
 	:ensure t
-	:init
 	:config
 	(define-key global-map (kbd "C-c r") 'vr/replace)
 	(define-key global-map (kbd "C-c q") 'vr/query-replace))
@@ -231,12 +241,13 @@
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
-																				; go to characters quickly and easily
+;; go to characters quickly and easily
 (global-set-key (kbd "C-;") 'avy-goto-char)
 
 ;; zap to char - lets us kill all text up to the next instance of a character
 (use-package zzz-to-char
 	:ensure t
+	:defer t
 	:commands zzz-to-char
 	:config
 	(global-set-key (kbd "M-z") #'zzz-to-char))
@@ -247,10 +258,12 @@
 
 (use-package dumb-jump
 	:ensure t
+	:defer t
 	:commands dumb-jump-go)
 
 (use-package ace-window
 	:ensure t
+	:defer t
 	:commands ace-window)
 
 ;; sometimes we forget keybinds - this gives us a reminder

@@ -25,6 +25,10 @@
 	:ensure t)
 (use-package eziam-theme
 	:ensure t)
+(use-package darktooth-theme
+	:ensure t)
+(use-package plan9-theme
+	:ensure t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
 ;; powerline separators on theme-switch
@@ -36,8 +40,16 @@
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
+(defun daytime-alt-theme ()
+	"Sets leuven theme for daytime and associated colors"
+	(interactive)
+	(!my-set-theme 'plan9)
+	(set-face-background 'auto-dim-other-buffers-face "#e0e0e0")
+	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
+	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
+
 (defun daytime-space-theme ()
-	"Sets spaceline-light theme for daytime and associated colors"
+	"Sets eziam-light theme for daytime and associated colors"
 	(interactive)
 	(!my-set-theme 'eziam-light)
 	(set-face-background 'auto-dim-other-buffers-face "#e0e0e0")
@@ -48,6 +60,13 @@
 	"Sets dracula theme for nighttime and associated colors"
 	(interactive)
 	(!my-set-theme 'dracula)
+	(set-face-background 'auto-dim-other-buffers-face "#303136")
+	(set-face-background 'nlinum-relative-current-face "#000000"))
+
+(defun night-alt-theme ()
+	"Sets darktooth theme for nighttime and associated colors"
+	(interactive)
+	(!my-set-theme 'darktooth)
 	(set-face-background 'auto-dim-other-buffers-face "#303136")
 	(set-face-background 'nlinum-relative-current-face "#000000"))
 

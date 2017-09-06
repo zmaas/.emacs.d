@@ -51,8 +51,13 @@
 ;; Don't use external dialog boxes
 (setq use-dialog-box nil)
 
-;; Configure visual line mode for text modes
-(add-hook 'text-mode-hook #'visual-line-mode)
+;; Configure visual line mode for text modes, wrap at fill column
+(use-package visual-fill-column
+	:ensure t
+	:diminish visual-fill-column-mode
+	:config
+	(add-hook 'text-mode-hook #'visual-line-mode)
+	(add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
 
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
@@ -61,7 +66,12 @@
 (add-hook 'undo-tree-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 
 ;; Show current line
-(add-hook 'after-init-hook #'global-hl-line-mode)
+(use-package hl-line
+	:config
+	(add-hook 'after-init-hook #'global-hl-line-mode)
+	;; Don't highlight inactive buffers
+	(setq hl-line-sticky-flag nil
+				global-hl-line-sticky-flag nil))
 
 ;; Focus for automatic code narrowing
 (use-package focus
@@ -135,9 +145,10 @@
 	:diminish rainbow-delimiters-mode
 	:config
 	(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+	(setq rainbow-delimiters-max-face-count 3)
 	(set-face-attribute 'rainbow-delimiters-unmatched-face nil
-                    :foreground 'unspecified
-                    :inherit 'error))
+											:foreground 'unspecified
+											:inherit 'error))
 
 ;; highlights numbers, not that complicated
 (use-package highlight-numbers

@@ -12,6 +12,18 @@
 
 ;; HYDRAS
 
+;; Easily navigate git-gutter hunks
+(defhydra ono-git-gutter-nav (:color blue)
+	"
+_j_next _s_tats
+_k_prev	_d_iff
+" ("j" git-gutter:next-hunk "next")
+("k" git-gutter:previous-hunk "prev")
+("s" git-gutter:statistic "stats")
+("d" magit-diff-buffer-file "diff")
+("q" nil "quit"))
+
+
 ;; A hydra for org hot expansion of templates.
 (defhydra hydra-org-template (:color blue :hint nil)
   "

@@ -37,7 +37,6 @@
  "ll" '(golint :which-key "lint")
  "ld" '(godef-jump :which-key "goto def")
  "lD" '(pop-tag-mark :which-key "pop-back")
- "lc" '(compile :which-key "compile"))
-
+ "lc" '(multi-compile-run :which-key "compile"))
 
 ;;; zm-lisp-tools.el ends here

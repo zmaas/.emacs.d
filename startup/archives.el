@@ -41,3 +41,8 @@
 	:ensure t
 	:config
 	(paradox-enable))
+
+(defun ono-re-init ()
+	"Reloads init.el after any changes that we have made."
+	(interactive)
+	(load user-init-file))

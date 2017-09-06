@@ -17,7 +17,7 @@
 				lui-fill-type nil))
 
 ;; Custom auth functions
-(defun my-fetch-irc-password (&rest params)
+(defun ono-fetch-irc-password (&rest params)
   (require 'auth-source)
   (let ((match (car (apply 'auth-source-search params))))
     (if match
@@ -31,8 +31,8 @@
 (load-file "~/.emacs.d/apps/irc-private.el")
 
 ;; Allow circe to seamlessly adapt to window size changes
-(add-hook 'lui-mode-hook 'my-lui-setup)
-(defun my-lui-setup ()
+(add-hook 'lui-mode-hook 'ono-lui-setup)
+(defun ono-lui-setup ()
   (setq
    fringes-outside-margins t
    right-margin-width 5

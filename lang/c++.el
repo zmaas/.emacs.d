@@ -27,6 +27,24 @@
 	:config
 	(fa-config-default))
 
+;; Semantic mode for easier code completion
+(use-package semantic
+	:init
+	(setq semantic-default-submodes
+				'(;; Perform semantic actions during idle time
+					global-semantic-idle-scheduler-mode
+					;; Use a database of parsed tags
+					global-semanticdb-minor-mode
+					;; Decorate buffers with additional semantic information
+					global-semantic-decoration-mode
+					;; Highlight the name of the function you're currently in
+					global-semantic-highlight-func-mode
+					;; Generate a summary of the current tag when idle
+					global-semantic-idle-summary-mode))
+	:config
+	(add-hook 'c++-mode-hook #'semantic-mode)
+	(add-hook 'c-mode-hook #'semantic-mode))
+
 ;; special per-mode keybindings for C++
 (general-define-key
  :states '(normal visual insert emacs)
@@ -34,7 +52,7 @@
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
- "ll" '(compile :which-key "compile")
+ "ll" '(multi-compile-run :which-key "compile")
  "ls" '(fa-show :which-key "show details")
  "lj" '(moo-jump-local :which-key "jump!")
  "lc" '(moo-complete :which-key "complete"))

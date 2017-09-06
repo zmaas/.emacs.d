@@ -18,6 +18,9 @@
 		:ensure t)
 	(use-package flx
 		:ensure t)
+	(use-package imenu-anywhere
+		:ensure t
+		:commands ivy-imenu-anywhere)
 	(use-package all-the-icons-ivy
 		:ensure t
 		:config
@@ -28,7 +31,6 @@
 		(counsel-projectile-on))
 	(use-package counsel-dash
 		:ensure t
-		;; TODO: EWW won't play nicely with shackle. Need to change that.
 		:config
 		(setq counsel-dash-common-docsets '("Emacs Lisp" "Go" "Python 3" "C++"))
 		(setq counsel-dash-docsets-path "~/.docsets")
@@ -39,12 +41,15 @@
 		(add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python 3")))))
   :config
   (ivy-mode 1)
+	(setq counsel-grep-base-command
+				"rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
 	(setq ivy-display-style 'fancy)
 	(setq ivy-count-format "(%d/%d) ")
 	(setq confirm-nonexistent-file-or-buffer t)
   (setq ivy-height 10)
+
   ;; Setup fuzzy matching using flx for ivy
   (use-package flx
     :ensure t)

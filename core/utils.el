@@ -5,23 +5,14 @@
 
 ;;; Code:
 
+;; Currently a smorgasbord of random tools...
+
 ;; Don't use bidirectional languages
 (setq-default bidi-display-reordering nil)
 
 ;; Make re-builder use saner defaults
 (require 're-builder)
 (setq reb-re-syntax 'string)
-
-;; look at those buffers - ibuffer work
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(use-package ibuffer-vc
-  :ensure t
-	:config
-	(add-hook 'ibuffer-hook
-						(lambda ()
-							(ibuffer-vc-set-filter-groups-by-vc-root)
-							(unless (eq ibuffer-sorting-mode 'alphabetic)
-								(ibuffer-do-sort-by-alphabetic)))))
 
 ;; Use eww for opening webpages
 (setq browse-url-browser-function 'eww-browse-url)
@@ -43,32 +34,6 @@
 																					 ("clean" . "make clean")
 																					 ("test" . "make test"))))))
 
-;; Automatically save buffers, but better
-(use-package auto-save-buffers-enhanced
-  :ensure t
-  :init (auto-save-buffers-enhanced t)
-  :config
-  (setq auto-save-buffers-enhanced-interval 3.0
-        ;; Don't auto-save org source popups
-        auto-save-buffers-enhanced-exclude-regexps '("Org Src")
-        ;; Save things quietly
-        auto-save-buffers-enhanced-quiet-save-p t))
-
-(use-package ranger
-	:ensure t
-	:config
-	(ranger-override-dired-mode t))
-
-(add-hook 'after-init-hook #'winner-mode)
-
-(use-package persp-mode
-	:ensure t
-	:diminish persp-mode
-	:config
-  (setq wg-morph-on nil) ;; switch off animation
-  (setq persp-autokill-buffer-on-remove 'kill-weak)
-  (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
-
 ;; expands selected regions
 (use-package expand-region
 	:ensure t
@@ -76,18 +41,6 @@
 	:commands er/expand-region
 	:config
 	(global-set-key (kbd "C-=") 'er/expand-region))
-
-;; give our buffers unique names
-(use-package uniquify
-	:config
-	(setq uniquify-buffer-name-style 'forward))
-
-;; magit - super great git porcelain for version control
-(use-package magit
-	:ensure t
-	:config
-	(use-package evil-magit
-		:ensure t))
 
 ;; ws-butler - easy white space trimming
 ;; won't make commits messy, only touches edited lines
@@ -105,63 +58,6 @@
 	:commands shrink-whitespace
   :bind ("M-SPC" . shrink-whitespace))
 
-;; Better bookmarks, since they're so useful
-(use-package bookmark+
-  :ensure t
-  :init (setq bmkp-replace-EWW-keys-flag t)
-  :config
-  (setq bookmark-version-control t
-        ;; auto-save bookmarks
-        bookmark-save-flag 1))
-
-;; projectile - easy navigation inside projects
-(use-package projectile
-	:ensure t
-	:diminish projectile-mode
-	:config
-	(add-hook 'after-init-hook #'projectile-mode)
-	(setq projectile-completion-system 'ivy
-				projectile-enable-caching (not noninteractive)
-				projectile-indexing-method 'alien
-				projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
-				projectile-globally-ignored-files '(".DS_Store" "Icon")))
-
-;; Editorconfig, makes project styles easier
-(use-package editorconfig
-	:ensure t
-	:diminish editorconfig-mode
-	:config
-	(add-hook 'after-init-hook #'editorconfig-mode))
-
-;; Shackle manages popups aggressively
-(use-package shackle
-	:ensure t
-	:init
-	(add-hook 'after-init-hook 'shackle-mode)
-	(setq shackle-lighter "")
-  (setq shackle-select-reused-windows nil) ; default nil
-  (setq shackle-default-alignment 'below) ; default below
-  (setq shackle-default-size 0.4) ; default 0.5
-	(setq shackle-rules
-				'(("*undo-tree*" :size 0.25 :align right)
-					("*Help*" :select t :other t)
-          ("*Completions*" :size 0.3 :align t)
-					("*Messages*" :select nil :other t)
-					("*compile pdf-tools*" :select nil :ignore t)
-					("*eww*" :select t :popup t :align below)
-					("*Flycheck errors*" :other t :popup t :select t)
-					("*Synonyms List*" :other t :select t)
-          ("*quickrun*" :size 0.5 :align right)
-					(neotree-mode :select t :other t :align left)
-          (magit-status-mode :select t :inhibit-window-quit t :same t)
-					(magit-log-mode :select t :inhibit-window-quit t :same t)
-					("\\`\\*output.*?\\*\\'" :regexp t :size 0.4)
-          ("^\\*"  :regexp t :noselect t)
-          ("^ \\*" :regexp t :noselect t)
-					(shackle-default-rule '(:select t))))
-	:config
-	(add-hook 'after-init-hook 'shackle-mode))
-
 ;; clipmon - add system clipboard contents to kill ring
 (use-package clipmon
 	:ensure t
@@ -169,7 +65,7 @@
 	:config
 	(add-hook 'after-init-hook #'clipmon-mode)
 	(add-to-list 'savehist-additional-variables
-							 '(kill-ring search-ring regexp-search-ring))
+							 'kill-ring)
 	(savehist-mode t))
 
 ;; get rid of kill ring dupes
@@ -185,32 +81,6 @@
   :ensure vlf
 	:defer t)
 
-;; neotree - file tree like VIM's nerdtree
-(use-package neotree
-	:ensure t
-	:defer t
-	:commands neotree
-	:init
-	(use-package all-the-icons
-		:ensure t
-		;; Make sure to run all-the-icons-install-fonts
-		)
-	:config
-	(add-hook 'neotree-mode-hook
-						(lambda ()
-							(define-key evil-normal-state-local-map (kbd "h") 'neotree-select-up-node)
-							(define-key evil-normal-state-local-map (kbd "l") 'neotree-select-down-node)
-							(define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
-	(setq neo-smart-open t)
-	(add-hook 'neotree-mode-hook (lambda () (nlinum-mode -1)))
-	(add-hook 'projectile-after-switch-project-hook 'neotree-projectile-action)
-	(setq neo-vc-integration nil
-				neo-autorefresh t)
-	(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-	(global-set-key [f8] 'neotree-toggle))
-
 ;; Clunky way to do sudoedit on linux - bound to C-x C-r
 (defun sudo-edit (&optional arg)
 	(interactive "P")
@@ -220,16 +90,6 @@
 		(find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 (global-set-key (kbd "C-x C-r") 'sudo-edit)
-
-;; Enable undo-tree mode globally
-(use-package undo-tree
-	:ensure	t
-	:diminish undo-tree-mode
-	:config
-	(setq undo-tree-visualizer-timestamps t)
-	(setq undo-tree-visualizer-diff t)
-	(setq evil-want-fine-undo 'fine)
-	(global-undo-tree-mode t))
 
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them
 (use-package visual-regexp
@@ -265,6 +125,9 @@
 	:ensure t
 	:defer t
 	:commands ace-window)
+
+(use-package esup
+	:ensure t)
 
 ;; sometimes we forget keybinds - this gives us a reminder
 (use-package which-key

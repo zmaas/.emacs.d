@@ -46,3 +46,11 @@
 					(lambda () 
 						(escape>define-key eshell-mode-map (kbd "<tab>")
 															 (lambda () (interactive) (pcomplete-std-complete)))))
+
+;; Make ansi-term work with our powerline config
+(defadvice ansi-term (after advise-ansi-term-coding-system)
+	(set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+(ad-activate 'ansi-term)
+(add-hook
+ 'term-mode-hook
+ (lambda () (setq show-trailing-whitespace nil)))

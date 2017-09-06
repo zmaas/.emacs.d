@@ -45,15 +45,22 @@
 (ono! :core "error-checks")							;	Programming is very hard
 (ono! :core "style-checks") 						; So is	English
 (ono! :core "utils") 										;	Lots of little things
+(ono! :core "vc") 										  ;	Saving stuff on steroids
+(ono! :core "buffer-tools") 						;	Open everything, all the time
+(ono! :core "popups") 						      ;	Useful, but hard to tame
 (ono! :core "shell") 										; ESHELL IS LOVE.
 
 ;; Load various app configurations
-(ono! :apps "mail") 										; mu4e,4 u and me.
+;; I broke email... Need to restore this later
+;; (ono! :apps "mail")
+																				; mu4e,4 u and me.
 (ono! :apps "irc") 											;	to talk with other emacsen
 
 ;; Theming configuration files
 (ono! :core "themes") 									;	Behold my mighty colors and despair
 (ono! :core "appearance") 							;	Fix the remnants of the	1980's
+(ono! :core "highlighting") 						;	Use those	colors everywhere
+(ono! :core "interface") 			          ;	Hip, new	interfacing
 
 ;; Markup Langauges
 (ono! :lang "latex") 										;	No better way to make pretentious	docs

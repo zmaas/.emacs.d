@@ -33,22 +33,22 @@
 (ono! :secrets "personal") 							; These are my secrets.
 
 ;; Load startup defults to save our sanity
-(ono! :startup "archives") 							; We need packages. Duh.
-(ono! :startup "defaults") 							;	Sane defaults	for our	sanity
+(onos! :core :startup "archives") 			; We need packages. Duh.
+(onos! :core :startup "defaults") 			;	Sane defaults	for our	sanity
 
 ;; Leverage our bootstrapping code
-(ono! :core "evil")											; VIM, but more sinister
-(ono! :core "keybinds") 								;	Keys like a pianist
-(ono! :core "ivy") 											; Complete all the things
-(ono! :core "hydras") 									; HAIL!	Temporary keymaps
-(ono! :core "completions") 							;	I like saving effort.
-(ono! :core "error-checks")							;	Programming is very hard
-(ono! :core "style-checks") 						; So is	English
-(ono! :core "utils") 										;	Lots of little things
-(ono! :core "vc") 										  ;	Saving stuff on steroids
-(ono! :core "buffer-tools") 						;	Open everything, all the time
-(ono! :core "popups") 						      ;	Useful, but hard to tame
-(ono! :core "shell") 										; ESHELL IS LOVE.
+(onos! :core :essential "evil")					; VIM, but more sinister
+(onos! :core :essential "keybinds") 		;	Keys like a pianist
+(onos! :core :essential "ivy") 					; Complete all the things
+(onos! :core :essential "popups") 			;	Useful, but hard to tame
+(onos! :core :checks "error-checks")    ;	Programming is very hard
+(onos! :core :checks "style-checks")    ; So is	English
+(onos! :core :tools "hydras") 					; HAIL!	Temporary keymaps
+(onos! :core :tools "completions") 			;	I like saving effort.
+(onos! :core :tools "utils") 						;	Lots of little things
+(onos! :core :tools "vc") 							;	Saving stuff on steroids
+(onos! :core :tools "buffer-tools") 		;	Open everything, all the time
+(onos! :core :tools"shell") 						; ESHELL IS LOVE.
 
 ;; Load various app configurations
 ;; I broke email... Need to restore this later
@@ -57,10 +57,10 @@
 (ono! :apps "irc") 											;	to talk with other emacsen
 
 ;; Theming configuration files
-(ono! :core "themes") 									;	Behold my mighty colors and despair
-(ono! :core "appearance") 							;	Fix the remnants of the	1980's
-(ono! :core "highlighting") 						;	Use those	colors everywhere
-(ono! :core "interface") 			          ;	Hip, new	interfacing
+(onos! :core :appearance "themes")      ;	Behold my mighty colors and despair
+(onos! :core :appearance "appearance") 	;	Fix the remnants of the	1980's
+(onos! :core :appearance "highlighting");	Use those	colors everywhere
+(onos! :core :appearance "interface")   ;	Hip, new	interfacing
 
 ;; Markup Langauges
 (ono! :lang "latex") 										;	No better way to make pretentious	docs

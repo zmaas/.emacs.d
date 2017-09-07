@@ -22,19 +22,34 @@
 ~/.emacs.d/modules/lang/emacs-lisp/ and will append FILE if non-nil."
   (when (keywordp module)
     (setq module (substring (symbol-name module) 1)))
-  (expand-file-name (concat ono-emacs-dir "/" module "/" file ".el")))
+	(expand-file-name
+	 (concat ono-emacs-dir "/" module "/" file ".el")))
+
+;; Function to reliably fetch a submodule path
+(defun ono-submodule-path (module submodule file)
+  "Get the full path to a submodule: e.g. :lang emacs-lisp maps to
+~/.emacs.d/modules/lang/emacs-lisp/ and will append FILE if non-nil."
+  (when (keywordp module)
+    (setq module (substring (symbol-name module) 1)))
+  (when (keywordp submodule)
+    (setq submodule (substring (symbol-name submodule) 1)))
+	(expand-file-name
+	 (concat ono-emacs-dir "/" module "/" submodule "/" file ".el")))
 
 (defun ono-module-load (module file)
 	"Loads a module from the path fetched using ono-module-path"
 	(load (ono-module-path module file)))
 
-(defun ono-load-module-list ()
-	"Fills ono-modules with a provided set of modules"
-	(unless ono-modules (setq ono-modules (make-hash-table)))
-	(dolist (m modules)))
+(defun ono-submodule-load (module submodule file)
+	"Loads a module from the path fetched using ono-module-path"
+	(load (ono-submodule-path module submodule file)))
 
 (defmacro ono! (module file)
 	"Loads initialization files one at a time"
 	(ono-module-load module file))
+
+(defmacro onos! (module submodule file)
+	"Loads initialization files one at a time"
+	(ono-submodule-load module submodule file))
 
 ;;; jack-in.el ends here

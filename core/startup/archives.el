@@ -25,6 +25,13 @@
 	(package-install 'use-package))
 (require 'use-package)
 
+;; Add use-package :quelpa command for special packages
+(use-package quelpa-use-package
+	:ensure t
+	:init
+	(use-package quelpa
+		:ensure t))
+
 ;; Load auto-compile for any future editing of elisp files
 (use-package auto-compile
 	:ensure t

@@ -28,13 +28,21 @@
  '(evil-snipe-mode t)
  '(fci-rule-color "#383838")
  '(global-hl-line-mode t)
+ '(hl-paren-background-colors (quote ("#e8fce8" "#c1e7f8" "#f8e8e8")))
+ '(hl-paren-colors (quote ("#40883f" "#0287c8" "#b85c57")))
  '(minimap-mode nil)
  '(package-selected-packages
 	 (quote
-		(plan9-theme package-safe-delete darktooth-theme visual-fill-column imenu-anywhere company-auctex intero multi-compile evil-lispy auto-save-buffers-enhanced vlf bookmark+ shrink-whitespace ws-butler editorconfig synosaurus smart-tab company-statistics eshell-prompt-extras keychain-environment ess yaml-mode eziam-theme evil-nerd-commenter evil-nderd-commenter virtualenvwrapper anaconda counsel-dash latex-extra all-the-icons-ivy tao-theme smooth-scrolling ggtags function-args markdown-mode irony paradox circe tiny auto-yasnippet quickrun dashboard moe-theme geiser slime yasnippet evil-mu4e org-plus-contrib persp-mode fireplace evil-multiedit shackle all-the-icons nlinum-relative git-gutter-fringe ranger company-go go-mode interleave cider evil-snipe evil-goggles cyberpunk-theme evil-smartparens company-flx highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing sr-speedbar focus evil-magit pdf-tools crosshairs hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
+		(esup quelpa-use-package helm-ag helm-flx helm-swoop plan9-theme package-safe-delete darktooth-theme visual-fill-column imenu-anywhere company-auctex intero multi-compile evil-lispy auto-save-buffers-enhanced vlf bookmark+ shrink-whitespace ws-butler editorconfig synosaurus smart-tab company-statistics eshell-prompt-extras keychain-environment ess yaml-mode eziam-theme evil-nerd-commenter evil-nderd-commenter virtualenvwrapper anaconda counsel-dash latex-extra all-the-icons-ivy tao-theme smooth-scrolling ggtags function-args markdown-mode irony paradox circe tiny auto-yasnippet quickrun dashboard moe-theme geiser slime yasnippet evil-mu4e org-plus-contrib persp-mode fireplace evil-multiedit shackle all-the-icons nlinum-relative git-gutter-fringe ranger company-go go-mode interleave cider evil-snipe evil-goggles cyberpunk-theme evil-smartparens company-flx highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing sr-speedbar focus evil-magit pdf-tools crosshairs hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
  '(paradox-github-token t)
+ '(pos-tip-background-color "#36473A")
+ '(pos-tip-foreground-color "#FFFFC8")
  '(safe-local-variable-values (quote ((o-byte-compile . t))))
  '(send-mail-function (quote smtpmail-send-it))
+ '(sml/active-background-color "#98ece8")
+ '(sml/active-foreground-color "#424242")
+ '(sml/inactive-background-color "#4fa8a8")
+ '(sml/inactive-foreground-color "#424242")
  '(vc-annotate-background "#F6F6F6")
  '(vc-annotate-color-map
 	 (quote

@@ -24,7 +24,7 @@
 (package-initialize)
 
 ;; Setup Garbage Collection Threshold for Speed
-(setq gc-cons-threshold (* 50 1024 1024))
+(setq gc-cons-threshold (* 2 50 1024 1024))
 
 ;; Load bootstrapping code
 (load-file "~/.emacs.d/core/jack-in.el")
@@ -51,9 +51,7 @@
 (onos! :core :tools"shell") 						; ESHELL IS LOVE.
 
 ;; Load various app configurations
-;; I broke email... Need to restore this later
-;; (ono! :apps "mail")
-																				; mu4e,4 u and me.
+(ono! :apps "mail")                     ; mu4e,4 u and me.
 (ono! :apps "irc") 											;	to talk with other emacsen
 
 ;; Theming configuration files
@@ -61,6 +59,11 @@
 (onos! :core :appearance "appearance") 	;	Fix the remnants of the	1980's
 (onos! :core :appearance "highlighting");	Use those	colors everywhere
 (onos! :core :appearance "interface")   ;	Hip, new	interfacing
+
+;; Ono-custom-magic
+(onos! :core :ono-extensions "neotree-icons")
+(onos! :core :ono-extensions "magit-tweaks")
+(onos! :core :ono-extensions "outlines")
 
 ;; Markup Langauges
 (ono! :lang "latex") 										;	No better way to make pretentious	docs
@@ -77,7 +80,7 @@
 (ono! :lang "c++") 											;	if c=1,	c	++ = 2
 
 ;; Set our default theme
-(daytime-space-theme)
+(night-alt-theme)
 
 ;; Load custom-set-variables file
 (setq custom-file "~/.emacs.d/emacs-custom.el")

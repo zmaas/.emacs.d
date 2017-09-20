@@ -25,10 +25,12 @@
 					("*Flycheck errors*" :other t :popup t :select t)
 					("*Synonyms List*" :other t :select t)
           ("*quickrun*" :size 0.5 :align right)
+					("*compilation*" :select t)
+					("*golint*" :select t)
 					(neotree-mode :select t :other t :align left)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
 					(magit-log-mode :select t :inhibit-window-quit t :same t)
-					(magit-diff-mode :select t :inhibit-window-quit t :align right)
+					(magit-diff-mode :size 0.5 :inhibit-window-quit t :align right)
 					("\\`\\*output.*?\\*\\'" :regexp t :size 0.4)
           ("^\\*"  :regexp t :noselect t)
           ("^ \\*" :regexp t :noselect t)
@@ -48,7 +50,6 @@
 	(setq undo-tree-visualizer-diff t)
 	(setq evil-want-fine-undo 'fine)
 	(global-undo-tree-mode t))
-
 
 ;; Ranger is a vimish file-manager
 (use-package ranger
@@ -75,7 +76,9 @@
 							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
 							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 	(setq neo-smart-open t)
-	(add-hook 'neotree-mode-hook (lambda () (nlinum-mode -1)))
+	(defun ono-neotree-hook (_unused)
+		(nlinum-mode -1))
+	(add-hook 'neo-after-create-hook 'ono-neotree-hook)
 	(add-hook 'projectile-after-switch-project-hook 'neotree-projectile-action)
 	(setq neo-vc-integration nil
 				neo-autorefresh t)

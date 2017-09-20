@@ -68,4 +68,4 @@
 (add-hook 'emacs-startup-hook 'ono-set-gc-threshold)
 (defun ono-set-gc-threshold ()
   "Reset `gc-cons-threshold' to its default value."
-  (setq gc-cons-threshold 800000))
+  (setq gc-cons-threshold (* 4 800000)))

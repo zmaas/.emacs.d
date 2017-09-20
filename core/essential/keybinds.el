@@ -142,9 +142,31 @@
 	 "tp" '(transpose-lines :which-key "transpose paragraphs")
 	 "tc" '(transpose-chars :which-key "transpose chars")
 	 "ts" '(transpose-sexps :which-key "transpose sexp")
+	 ;;	narrowing keybinds
+	 "nn" '(outshine-narrow-to-subtree :which-key "narrow-subtree")
+	 "nw" '(widen :which-key "widen")
+	 ;; Structural edits
+	 "nj" '(outline-move-subtree-down :which-key "down tree")
+	 "nk" '(outline-move-subtree-up :which-key "up tree")
+	 "nh" '(outline-promote :which-key "promote")
+	 "nl" '(outline-demote :which-key "demote")
 	 ;; misc bindings
 	 "z" '(zzz-to-char :which-key "zap!")
 	 "u" '(undo-tree-visualize :which-key "undo tree")))
+
+;; Generic keybindings
+(general-define-key
+ :states '(norma)
+ "M-k" '(delete-window))
+
+;; Evil outline navigation keybindings
+(general-define-key
+ :states '(normal visual motion) 
+ "gh" 'outline-up-heading
+ "gj" 'outline-forward-same-level
+ "gk" 'outline-backward-same-level
+ "gl" 'outline-next-visible-heading
+ "gu" 'outline-previous-visible-heading)
 
 ;; evil-multiedit keybindings
 (general-define-key

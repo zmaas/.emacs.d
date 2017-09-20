@@ -3,70 +3,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-source-correlate-method (quote ((dvi . source-specials) (pdf . synctex))))
- '(TeX-source-correlate-mode t)
- '(TeX-source-correlate-start-server t)
- '(TeX-view-program-selection
-	 (quote
-		(((output-dvi has-no-display-manager)
-			"dvi2tty")
-		 ((output-dvi style-pstricks)
-			"dvips and gv")
-		 (output-dvi "xdvi")
-		 (output-pdf "Zathura")
-		 (output-html "xdg-open"))))
- '(ansi-color-faces-vector
-	 [default default default italic underline success warning error])
  '(ansi-color-names-vector
-	 ["#d2ceda" "#f2241f" "#67b11d" "#b1951d" "#3a81c3" "#a31db1" "#21b8c7" "#655370"])
- '(auto-compile-on-save-mode t)
- '(company-flx-mode t)
- '(custom-safe-themes
-	 (quote
-		("3e8ea6a37f17fd9e0828dee76b7ba709319c4d93b7b21742684fadd918e8aca3" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" "2cf7f9d1d8e4d735ba53facdc3c6f3271086b6906c4165b12e4fd8e3865469a6" "7a6bc9de067a7a0aa00272812d45087eec02c3befdf2b54c291578210ce7baca" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(evil-avy-mode nil)
- '(evil-snipe-mode t)
- '(fci-rule-color "#383838")
- '(global-hl-line-mode t)
- '(hl-paren-background-colors (quote ("#e8fce8" "#c1e7f8" "#f8e8e8")))
- '(hl-paren-colors (quote ("#40883f" "#0287c8" "#b85c57")))
- '(minimap-mode nil)
+	 ["#32302F" "#FB4934" "#B8BB26" "#FABD2F" "#83A598" "#D3869B" "#17CCD5" "#EBDBB2"])
+ '(fci-rule-color "#eeeeee")
  '(package-selected-packages
 	 (quote
-		(esup quelpa-use-package helm-ag helm-flx helm-swoop plan9-theme package-safe-delete darktooth-theme visual-fill-column imenu-anywhere company-auctex intero multi-compile evil-lispy auto-save-buffers-enhanced vlf bookmark+ shrink-whitespace ws-butler editorconfig synosaurus smart-tab company-statistics eshell-prompt-extras keychain-environment ess yaml-mode eziam-theme evil-nerd-commenter evil-nderd-commenter virtualenvwrapper anaconda counsel-dash latex-extra all-the-icons-ivy tao-theme smooth-scrolling ggtags function-args markdown-mode irony paradox circe tiny auto-yasnippet quickrun dashboard moe-theme geiser slime yasnippet evil-mu4e org-plus-contrib persp-mode fireplace evil-multiedit shackle all-the-icons nlinum-relative git-gutter-fringe ranger company-go go-mode interleave cider evil-snipe evil-goggles cyberpunk-theme evil-smartparens company-flx highlight-parentheses spaceline spacemacs-theme ibuffer-vc dumb-jump smex general clipmon ivy-hydra ivy-bibtex zzz-to-char flyspell-correct-ivy counsel-projectile counsel markdown-mode+ auctex-latexmk company-math company-bibtex langtool eyebrowse rainbow-mode writegood-mode olivetti flyspell-correct redtick evil-org org-bullets sublimity telephone-line projectile auto-dim-other-buffers ace-window evil-escape highlight-thing sr-speedbar focus evil-magit pdf-tools crosshairs hydra column-enforce-mode neotree ipython company-anaconda auto-virtualenv linum-relative company-quickhelp highlight-indent-guides indent-guide company-jedi whitespace-cleanup-mode which-key visual-regexp use-package symon smartparens slime-company rainbow-delimiters powerline-evil magit latex-preview-pane highlight-tail highlight-symbol highlight-numbers flycheck-pos-tip fancy-narrow expand-region evil-vimish-fold evil-avy evil-anzu color-identifiers-mode auto-package-update auto-highlight-symbol auto-compile aggressive-indent ace-popup-menu)))
- '(paradox-github-token t)
+		(outline-ivy outshine dracula-them zzz-to-char yaml-mode ws-butler writegood-mode whitespace-cleanup-mode which-key vlf visual-regexp visual-fill-column virtualenvwrapper vi-tilde-fringe tiny telephone-line tao-theme synosaurus symon spaceline smooth-scrolling smex smart-tab slime shrink-whitespace shackle ranger rainbow-mode rainbow-delimiters quickrun quelpa-use-package pretty-mode plan9-theme persp-mode pdf-tools paradox package-safe-delete org-plus-contrib org-bullets olivetti nlinum-relative neotree multi-compile moe-theme markdown-mode linum-relative latex-preview-pane latex-pretty-symbols langtool keychain-environment ivy-hydra ivy-bibtex irony intero interleave imenu-anywhere ibuffer-vc highlight-thing highlight-parentheses highlight-numbers highlight-indent-guides helm-swoop helm-flx helm-ag golint git-gutter-fringe ghc ggtags general geiser function-args focus flyspell-correct-ivy flycheck-pos-tip fireplace eziam-theme eyebrowse expand-region evil-vimish-fold evil-snipe evil-smartparens evil-org evil-nerd-commenter evil-multiedit evil-mu4e evil-magit evil-lispy evil-goggles evil-escape evil-avy evil-anzu esup ess eshell-prompt-extras elisp-refs editorconfig dumb-jump dracula-theme dashboard darktooth-theme cyberpunk-theme counsel-projectile counsel-dash company-statistics company-math company-go company-flx company-bibtex company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode clipmon circe cider bookmark+ beacon auto-yasnippet auto-save-buffers-enhanced auto-package-update auto-compile auctex-latexmk all-the-icons-ivy aggressive-indent ace-popup-menu)))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
- '(safe-local-variable-values (quote ((o-byte-compile . t))))
- '(send-mail-function (quote smtpmail-send-it))
- '(sml/active-background-color "#98ece8")
- '(sml/active-foreground-color "#424242")
- '(sml/inactive-background-color "#4fa8a8")
- '(sml/inactive-foreground-color "#424242")
- '(vc-annotate-background "#F6F6F6")
- '(vc-annotate-color-map
-	 (quote
-		((20 . "#C3C3C3")
-		 (40 . "#9E9E9E")
-		 (60 . "#9E9E9E")
-		 (80 . "#616161")
-		 (100 . "#616161")
-		 (120 . "#3C3C3C")
-		 (140 . "#3C3C3C")
-		 (160 . "#252525")
-		 (180 . "#252525")
-		 (200 . "#252525")
-		 (220 . "#171717")
-		 (240 . "#171717")
-		 (260 . "#171717")
-		 (280 . "#0E0E0E")
-		 (300 . "#0E0E0E")
-		 (320 . "#0E0E0E")
-		 (340 . "#090909")
-		 (360 . "#090909"))))
- '(vc-annotate-very-old-color "#3C3C3C")
- '(window-numbering-mode nil)
- '(yas-global-mode t))
+ '(vc-annotate-background "#eeeeee"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

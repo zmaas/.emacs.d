@@ -6,13 +6,12 @@
 ;;; Code:
 
 ;; Configure package archives
-(setq package-archives '(
-												 ("gnu" . "https://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
 												 ("org" . "https://orgmode.org/elpa/")
 												 ("marmalade" . "https://marmalade-repo.org/packages/")
 												 ("melpa" . "https://melpa.org/packages/")))
 
-;; Force GNUtlstouse real security
+;; Force GNUtls to use real security
 (setq gnutls-min-prime-bits 4096)
 (setq tls-checktrust t)
 

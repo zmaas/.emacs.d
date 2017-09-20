@@ -10,15 +10,15 @@
 (use-package spaceline-config
   :ensure spaceline
 	:init
-	(setq powerline-height 40
+	(setq powerline-height 45
 				powerline-raw " "
 				ns-use-srgb-colorspace nil
 				powerline-default-separator 'slant)
-  :config
-  (spaceline-emacs-theme)
+	:config
+	(spaceline-emacs-theme)
 	(spaceline-toggle-anzu-on)
 	(spaceline-toggle-window-number-on)
-  (setq anzu-cons-mode-line-p nil
+	(setq anzu-cons-mode-line-p nil
 				spaceline-workspace-numbers-unicode t
 				spaceline-window-numbers-unicode t
 				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
@@ -94,12 +94,5 @@
 	:diminish ace-popup-menu-mode
 	:config
 	(add-hook 'after-init-hook #'ace-popup-menu-mode))
-
-;; automatically dim other buffers
-(use-package auto-dim-other-buffers
-	:ensure t
-	:diminish auto-dim-other-buffers-mode
-	:config
-	(add-hook 'after-init-hook #'auto-dim-other-buffers-mode))
 
 ;; interface.el ends here

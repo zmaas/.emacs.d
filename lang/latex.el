@@ -58,7 +58,8 @@
 (use-package pdf-tools
   :ensure t
   :when window-system
-  :init (pdf-tools-install t t t)
+  :init
+	;; (pdf-tools-install t t t)
 	:config
 	(general-define-key
 	 :states '(normal)

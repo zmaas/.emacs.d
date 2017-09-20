@@ -20,7 +20,7 @@
 	(setq ispell-program-name "aspell")
 	(setq ispell-dictionary "english")
 	(setq ispell-extra-args
-				(list "--sug-mode=fast" ;; ultra|fast|normal|bad-spellers
+				(list "--sug-mode=normal" ;; ultra|fast|normal|bad-spellers
 							"--lang=en_US"
 							"--ignore=4"))
 	(add-hook 'prog-mode-hook 'flyspell-prog-mode)

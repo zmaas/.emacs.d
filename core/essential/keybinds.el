@@ -204,6 +204,7 @@
 (ex! "org" 'org-capture)
 (ex! "git" 'magit-status)
 (ex! "gdiff" 'magit-diff-buffer-file)
+(ex! "glog" 'magit-log-buffer-file)
 (ex! "gblame" 'magit-blame)
 (ex! "a" 'counsel-projectile-find-file)
 (ex! "evb" 'eval-buffer)

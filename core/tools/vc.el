@@ -31,4 +31,14 @@
 	:config
 	(add-hook 'after-init-hook #'editorconfig-mode))
 
+;; special per-mode keybindings for	commit messages
+(general-define-key
+ :states '(normal visual insert emacs)
+ :keymaps 'with-editor-mode-map
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "l" '(:ignore t :which-key "layer")
+ "lc" '(with-editor-finish :which-key "Commit")
+ "lk" '(with-editor-cancel :which-key "Abort"))
+
 ;; vc.el ends here

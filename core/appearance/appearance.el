@@ -13,6 +13,17 @@
 	(add-hook 'text-mode-hook #'visual-line-mode)
 	(add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
 
+(use-package pretty-mode
+	:ensure t
+	:config
+	(global-pretty-mode t)
+	(pretty-deactivate-groups
+	 '(:logic :sets))
+	(pretty-activate-groups
+	 '(:equality :ordering :ordering-double :ordering-triple
+							 :arrows :arrows-twoheaded :punctuation
+							 :sub-and-superscripts :greek :arithmetic-nary)))
+
 ;; Focus for automatic code narrowing
 (use-package focus
 	:ensure t

@@ -29,11 +29,14 @@
 	:config
 	(add-hook 'LaTeX-mode-hook #'company-auctex-init))
 
-(use-package latex-extra
-	:ensure t
-	:diminish latex-extra-mode
-	:config
-	(add-hook 'LaTeX-mode-hook (lambda () ('latex-extra-mode t))))
+(use-package latex-pretty-symbols
+	:ensure t)
+
+;; (use-package latex-extra
+;; 	:ensure t
+;; 	:diminish latex-extra-mode
+;; 	:config
+;; 	(add-hook 'LaTeX-mode-hook (lambda () ('latex-extra-mode t))))
 
 (use-package auctex-latexmk
 	:ensure t

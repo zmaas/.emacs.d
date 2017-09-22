@@ -1,8 +1,10 @@
 ONO emacs
 
+[[./ono-screenshot.png]]
+
 This repository contains the full contents of my day-to-day emacs configuration. Inspired by vim, spacemacs, EOS (writequit.org/eos), DOOM (hlissner/doom) and cyberpunk (overtone/emacs-live). It attempts to provide an ergonomic and modern development and writing environment with consistent behavior. Targeting *Arch Linux* on kernel 4.10+, emacs version *25+*. It is always a work in progress and currently undergoing major improvements and refactoring.
 
-* Languages
+* DONE Languages
 The primary languages I work on using emacs are:
 - Python for shell scripting
 - Golang for the quick and easy, slowly supplanting python
@@ -11,11 +13,3 @@ The primary languages I work on using emacs are:
 - LaTeX for all of my homework and report writing
 - Orgmode for task management and remembering things
 	
-* TODO:
-** Move everything under the ono namespace
-** DONE Improved modeline
-- More work on Spaceline
-** Improved custom elisp for loading modes and files
-	 This will require a major refactor of the project, but is ultimately necessary. This repo is getting pretty big and a more efficient method for loading and providing individual modules will significantly improve the extensibility and management of the repo.
-** TODO Implement straight.el
-** DONE [#B] All of the orgmode setup

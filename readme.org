@@ -1,4 +1,6 @@
+#+BEGIN_CENTER
 ONO emacs
+#+END-CENTER
 
 [[./ono-screenshot.png]]
 

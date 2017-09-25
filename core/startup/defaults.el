@@ -5,7 +5,9 @@
 
 ;;; Code:
 
-
+;; Startup an emacs server by default
+(if (not server-mode)
+    (server-start nil t))
 
 ;; Save history of everything by default
 (savehist-mode t)

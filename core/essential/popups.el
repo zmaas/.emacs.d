@@ -27,10 +27,12 @@
           ("*quickrun*" :size 0.5 :align right)
 					("*compilation*" :select t)
 					("*golint*" :select t)
+					("\\`\\*e?shell" :regexp t :popup t)
+					("\\`\\*e?shell" :regexp t :frame t)
 					(neotree-mode :select t :other t :align left)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
-					(magit-log-mode :select t :inhibit-window-quit t :same t)
-					(magit-diff-mode :size 0.5 :inhibit-window-quit t :align right)
+					(magit-log-mode :select t :inhibit-window-quit t)
+					(magit-diff-mode :inhibit-window-quit t :align right)
 					("\\`\\*output.*?\\*\\'" :regexp t :size 0.4)
           ("^\\*"  :regexp t :noselect t)
           ("^ \\*" :regexp t :noselect t)
@@ -55,7 +57,19 @@
 (use-package ranger
 	:ensure t
 	:config
+	(setq ranger-show-dotfiles t
+				ranger-show-hidden t
+				ranger-dont-show-binary t
+				ranger-max-preview-size 10
+				ranger-cleanup-on-disable t
+				ranger-cleanup-eagerly t)
 	(ranger-override-dired-mode t))
+
+;; Better tree navigation of buffers
+(use-package imenu-list
+	:ensure t
+	:config
+	(setq imenu-auto-rescan t))
 
 ;; neotree - file tree like VIM's nerdtree
 (use-package neotree

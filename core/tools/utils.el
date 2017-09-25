@@ -74,7 +74,12 @@
 ;; tramp - for remote file access
 (use-package tramp
 	:ensure t
-	:defer t)
+	:defer t
+	:init
+  ;; disable company completion of *all* remote filenames, whether
+  ;; connected or not -- fixes annoying latency
+	(defun company-files--connected-p (file)
+		(not (file-remote-p file))))
 
 ;; Very Large File Support
 (use-package vlf-setup

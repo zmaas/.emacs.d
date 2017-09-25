@@ -32,6 +32,10 @@
 							(set (make-local-variable 'company-backends)											
 									 '((company-anaconda company-dabbrev-code company-yasnippet))))))
 
+;; EIN - Emacs Ipython Notebooks
+(use-package ein
+	:ensure t)
+
 ;; New special symbols
 (add-hook
  'python-mode-hook

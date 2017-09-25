@@ -7,11 +7,13 @@
 
 ;; General haskell mode
 (use-package haskell-mode
-	:ensure t)
+	:ensure t
+	:config
+	(setq haskell-font-lock-symbols t))
 
 (use-package intero
 	:ensure t
 	:config
-	(add-hook 'haskell-mode-hook 'intero-mode))
+	(add-hook 'after-init-hook #'intero-global-mode))
 
 ;;; haskell.el ends here

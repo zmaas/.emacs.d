@@ -1,17 +1,39 @@
+#+OPTIONS: toc:1
 #+BEGIN_CENTER
-*ONO Emacs*
+*ONO Emacs - A Modern and Sustainable Approach to Emacs Configuration*
 #+END_CENTER
 
 [[./ono-screenshot.png]]
 
-This repository contains the full contents of my day-to-day emacs configuration. Inspired by vim, spacemacs, EOS (writequit.org/eos), DOOM (hlissner/doom) and cyberpunk (overtone/emacs-live). It attempts to provide an ergonomic and modern development and writing environment with consistent behavior. Targeting *Arch Linux* on kernel 4.10+, emacs version *25+*. It is always a work in progress and currently undergoing major improvements and refactoring.
+* About
 
-* DONE Languages
-The primary languages I work on using emacs are:
+This repository contains the full contents of my day-to-day Emacs configuration. Inspired by vim, spacemacs, EOS (writequit.org/eos), DOOM (hlissner/doom) and cyberpunk (overtone/emacs-live). It attempts to provide an ergonomic and modern development and writing environment with consistent behavior. Targeting *Arch Linux* on kernel 4.10+, Emacs version *25+*. It is always a work in progress and currently undergoing major improvements and refactoring.
+
+* Why Emacs?
+
+If you stumbled onto this repository from one of my personal pages and you're not familiar with Emacs, you might be wondering why someone would put so much work into a single application. At its core, Emacs is an application for editing text efficiently. But, Emacs is more than just a text editor - It is a fully featured and extensible lisp machine. Essentially, it is an application that you can rewrite on the fly to do whatever you want. Writing, programming? Absolutely. Email, news, web-browsing, and more? Of course! And since Emacs has been around since the 1980's, it is here to stay.
+
+* Goals
+
+As wonderful as stock Emacs is, it can lack some of the amenities of modern applications. The big things I try to implement with this configuration are:
+- Better integration of evil-mode. VIM's modal editing paradigm is something I started on when I was very young, and anything else just feels wrong. To do this, I include a large number of extended plugins that extend or fix functionality to be more in-line with my expectations.
+- Ergonomic keybindings that are largely mnemonic. VIM sets an excellent precedent here. I use a leader key (SPC) with bindings mapped to the homerow and repeated positions as much as possible.
+- Fast development. By using the many packages with first-class REPL support along with other tools like quickrun, the rate of prototyping and production can be significantly accelerated.
+- Smarter defaults. From hot-plugging better alternatives to things like just-one-space and zap-to-char, to extended tools like swiper and imenu-anywhere, plus management packages like use-package and shackle, there are a ton of places where a little bit of work to clean up the defaults makes Emacs that much more of a joy to use.
+- An internal module system that avoids circular dependency trees and ensures that modules are loaded in the proper order every single time. This is still very much a work in progress, but is getting there. I hope that by doing this I can keep this configuration from ever getting out of hand.
+
+* Languages
+The primary languages I work on using Emacs are:
 - Python for shell scripting
 - Golang for the quick and easy, slowly supplanting python
 - Clojure for long running programs and CLJS
 - C++ for my (sort of) day job
 - LaTeX for all of my homework and report writing
 - Orgmode for task management and remembering things
-	
+Other languages that have some level of support are:
+- Common lisp, because lisp is beautiful
+- Racket and other schemes, same as above
+- Haskell, because I really enjoy functional programming
+- R, for statistical programming
+- Various markdown languages
+- More to come!

@@ -10,7 +10,7 @@
 (use-package spaceline-config
   :ensure spaceline
 	:init
-	(setq powerline-height 45
+	(setq powerline-height 40
 				powerline-raw " "
 				ns-use-srgb-colorspace nil
 				powerline-default-separator 'slant)

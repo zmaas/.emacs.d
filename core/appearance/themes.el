@@ -9,7 +9,7 @@
 (defvar ono-after-theme-hook nil
   "Hook called after a theme is loaded")
 
-;; Default font should be Iosevka Nerd Font Light, 10pt
+;; Default font should be Ioevka Nerd Font Light, 10pt
 (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font Light 10"))
 (set-face-attribute 'default t :font "Iosevka Nerd Font Light 10")
 
@@ -22,36 +22,34 @@
 	(run-hooks 'ono-after-theme-hook)
 	(powerline-reset))
 
-(add-hook 'ono-after-theme-hook #'powerline-reset)
-
 (use-package dracula-theme
 	:ensure t)
 (use-package cyberpunk-theme
 	:ensure t)
+(use-package gotham-theme
+	:ensure t)
 (use-package moe-theme
 	:ensure t)
-(use-package eziam-theme
+(use-package tao-theme
 	:ensure t)
 (use-package darktooth-theme
-	:ensure t)
-(use-package color-theme-sanityinc-tomorrow
 	:ensure t)
 (use-package color-theme-sanityinc-solarized
 	:ensure t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
 ;; powerline separators on theme-switch
-(defun daytime-theme ()
-	"Sets leuven theme for daytime and associated colors"
+(defun ono-day-theme ()
+	"Sets moe-light theme for daytime and associated colors"
 	(interactive)
 	(!ono-set-theme 'moe-light)
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
-(defun daytime-alt-theme ()
-	"Sets leuven theme for daytime and associated colors"
+(defun ono-day-alt-theme ()
+	"Sets underwater theme for daytime and associated colors"
 	(interactive)
-	(!ono-set-theme 'sanityinc-tomorrow-blue)
+	(!ono-set-theme 'underwater)
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
@@ -62,24 +60,31 @@
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
-(defun daytime-space-theme ()
+(defun ono-day-bright-theme ()
 	"Sets eziam-light theme for daytime and associated colors"
 	(interactive)
-	(!ono-set-theme 'eziam-light)
+	(!ono-set-theme 'tao-yang)
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
-(defun night-theme ()
+(defun ono-night-theme ()
 	"Sets dracula theme for nighttime and associated colors"
 	(interactive)
 	(!ono-set-theme 'dracula)
 	(set-face-background 'nlinum-relative-current-face "#000000"))
 
-(defun night-alt-theme ()
+(defun ono-night-alt-theme ()
 	"Sets darktooth theme for nighttime and associated colors"
 	(interactive)
 	(!ono-set-theme 'darktooth)
 	(set-face-background 'nlinum-relative-current-face "#000000"))
+
+(defun ono-tron-theme ()
+	"Sets tron theme for nighttime and associated colors"
+	(interactive)
+	(!ono-set-theme 'gotham)
+	(set-face-background 'nlinum-relative-current-face "#000000")
+	(set-face-background 'mode-line-emphasis))
 
 (defun dark-night-theme ()
   "Sets cyberpunk theme for dark nightime usage"

@@ -38,7 +38,7 @@
 
 ;; Leverage our bootstrapping code
 (onos! :core :essential "evil")					; VIM, but more sinister
-(onos! :core :essential "keybinds") 		;	Keys like a pianist
+(onos! :core :essential "keybinds") 		;	Keys like a piano
 (onos! :core :essential "ivy") 					; Complete all the things
 (onos! :core :essential "popups") 			;	Useful, but hard to tame
 (onos! :core :checks "error-checks")    ;	Programming is very hard
@@ -48,7 +48,7 @@
 (onos! :core :tools "utils") 						;	Lots of little things
 (onos! :core :tools "vc") 							;	Saving stuff on steroids
 (onos! :core :tools "buffer-tools") 		;	Open everything, all the time
-(onos! :core :tools"shell") 						; ESHELL IS LOVE.
+(onos! :core :tools "shell") 						; ESHELL IS LOVE.
 
 ;; Load various app configurations
 (ono! :apps "mail")                     ; mu4e,4 u and me.
@@ -61,9 +61,9 @@
 (onos! :core :appearance "interface")   ;	Hip, new	interfacing
 
 ;; Ono-custom-magic
-(onos! :core :ono-extensions "neotree-icons")
-(onos! :core :ono-extensions "magit-tweaks")
-(onos! :core :ono-extensions "outlines")
+(onos! :core :ono-extensions "neotree-icons") ; Pretty Neotree icons!
+(onos! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
+(onos! :core :ono-extensions "outlines")	    ;	Universal	outlines
 
 ;; Markup Langauges
 (ono! :lang "latex") 										;	No better way to make pretentious	docs
@@ -80,7 +80,7 @@
 (ono! :lang "c++") 											;	if c=1,	c	++ = 2
 
 ;; Set our default theme
-(night-alt-theme)
+(ono-night-alt-theme)
 
 ;; Load custom-set-variables file
 (setq custom-file "~/.emacs.d/emacs-custom.el")
@@ -89,3 +89,4 @@
 (provide 'init)
 
 ;;; init.el ends here
+(put 'erase-buffer 'disabled nil)

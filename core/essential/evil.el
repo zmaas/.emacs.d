@@ -26,22 +26,10 @@
 		(add-hook 'after-init-hook #'evil-escape-mode)
 		(setq-default evil-escape-key-sequence "jk"))
 	;; improved code folding - like vim
-	(use-package vimish-fold
+	(use-package origami
 		:ensure t
-		:diminish vimish-fold-mode
-		:init
-		;; evil compatibility for vimish-fold
-		(use-package evil-vimish-fold
-			:ensure t
-			:config
-			(evil-vimish-fold-mode t))
 		:config
-		(vimish-fold-global-mode t))
-	(use-package evil-goggles
-		:ensure t
-		:diminish	evil-goggles-mode
-		:config
-		(evil-goggles-mode))
+		(add-hook 'after-init-hook #'global-origami-mode))
 	(use-package evil-snipe
 		:ensure t
 		:diminish evil-snipe-mode
@@ -54,6 +42,10 @@
 		:ensure t
 		:config
 		(evilnc-default-hotkeys))
+	(use-package evil-goggles
+		:ensure t
+		:config
+		(add-hook 'after-init-hook #'evil-goggles-mode))
 	:config
 	(evil-mode 1))
 
@@ -71,7 +63,10 @@
 	(add-hook 'clojure-mode-hook #'evil-lispy-mode))
 
 ;; Need to learn how to use this better -- it is really useful.
-( use-package evil-multiedit
-	:ensure t)
+(use-package evil-iedit-state
+	:ensure t
+	:ensure iedit
+	:config
+	(add-hook 'iedit-mode-hook #'evil-iedit-state))
 
 ;;; zm-evil.el ends here

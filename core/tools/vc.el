@@ -12,6 +12,13 @@
 	(use-package evil-magit
 		:ensure t))
 
+(use-package evil-ediff
+	:ensure t
+	:config
+	(setq ediff-window-setup-function 'ediff-setup-windows-plain
+				ediff-split-window-function 'split-window-horizontally
+				ediff-diff-options "-w"))
+
 ;; projectile - easy navigation inside projects
 (use-package projectile
 	:ensure t

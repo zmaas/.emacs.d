@@ -50,10 +50,10 @@
 	 "fS" '(save-some-buffers :which-key "save all")
 	 "fb" '(bookmark-jump :which-key "marks")
 	 "fb" '(bookmark-file :which-key "marks")
-	 "fd" '(ranger :which-key "directory")
+	 "fd" '(deer :which-key "directory")
+	 "fR" '(ranger :which-key "ranger")
 	 "fD" '(delete-file :which-key "delete")
 	 "fr" '(sudo-edit :which-key "sudo")
-	 "fR" '(ono-re-init :which-key "re-init")
 	 "ft" '(neotree :which-key "tree")
 	 ;; Insertion editing tools
 	 "i" '(:ignore t :which-key "insertion")
@@ -77,10 +77,13 @@
 	 "al" '(nlinum-mode :which-key "linum")
 	 "aS" '(smooth-scrolling-mode :which-key "smooth-scrolling")
 	 "ao" '(olivetti-mode :which-key "olivetti")
-	 "ad" '(daytime-theme :which-key "day")
-	 "as" '(daytime-space-theme :which-key "spaceday")
-	 "an" '(night-theme :which-key "night")
-	 "ac" '(dark-night-theme :which-key "cyberpunk")
+	 "acd" '(ono-day-theme :which-key "day")
+	 "acs" '(ono-day-bright-theme :which-key "day-bright")
+	 "acb" '(ono-day-alt-theme :which-key "day-alt")
+	 "acn" '(ono-night-theme :which-key "night")
+	 "aca" '(ono-night-alt-theme :which-key "night-alt")
+	 "act" '(ono-tron-theme :which-key "night-tron")
+	 "acc" '(dark-night-theme :which-key "cyberpunk")
 	 ;; projectile specific bindings
 	 "p" '(:ignore t :which-key "project")
 	 "pj" '(counsel-projectile :which-key "file")
@@ -156,48 +159,23 @@
 
 ;; Generic keybindings
 (general-define-key
- :states '(norma)
+ :states '(normal)
  "M-k" '(delete-window))
 
-;; Evil outline navigation keybindings
+;; Evil custom keybindings
 (general-define-key
- :states '(normal visual motion) 
+ :states '(normal visual motion)
+ "-" 'deer
+ "gd" 'dumb-jump-go
  "gh" 'outline-up-heading
  "gj" 'outline-forward-same-level
  "gk" 'outline-backward-same-level
  "gl" 'outline-next-visible-heading
  "gu" 'outline-previous-visible-heading)
 
-;; evil-multiedit keybindings
-(general-define-key
- :states '(normal)
- "M-d" '(evil-multiedit-match-and-next)
- "M-D" '(evil-multiedit-match-and-prev))
-(general-define-key
- :states '(visual)
- "R" '(evil-multiedit-match-all)
- "M-d" '(evil-multiedit-and-next)
- "M-D" '(evil-multiedit-and-prev)
- "C-M-D" '(evil-multiedit-restore))
-(general-define-key
- :states '(insert)
- "M-d" '(evil-multiedit-toggle-marker-here))
-(general-define-key
- :keymaps '(evil-motion-state)
- "RET" '(evil-multiedit-toggle-or-restrict-region))
-(general-define-key
- :keymaps '(evil-multiedit-state-map)
- "RET" '(evil-multiedit-toggle-or-restrict-region)
- "C-n" '(evil-multiedit-next)
- "C-p" '(evil-multiedit-prev))
-(general-define-key
- :keymaps '(evil-multiedit-insert-state-map)
- "C-n" '(evil-multiedit-next)
- "C-p" '(evil-multiedit-prev))
-
 ;; Custom ex bindings
 (defalias 'ex! 'evil-ex-define-cmd)
-(ex! "ie[dit]" 'evil-multiedit-ex-match)
+(ex! "ie[dit]" 'iedit-mode)
 (ex! "ag" 'counsel-ag)
 (ex! "rg" 'counsel-rg)
 (ex! "sw[iper]" 'swiper)

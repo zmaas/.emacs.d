@@ -64,6 +64,7 @@
 (onos! :core :ono-extensions "neotree-icons") ; Pretty Neotree icons!
 (onos! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
 (onos! :core :ono-extensions "outlines")	    ;	Universal	outlines
+(onos! :core :ono-extensions "ono-generic-functions") ; Custom commands
 
 ;; Markup Langauges
 (ono! :lang "latex") 										;	No better way to make pretentious	docs
@@ -90,3 +91,4 @@
 
 ;;; init.el ends here
 (put 'erase-buffer 'disabled nil)
+(put 'narrow-to-page 'disabled nil)

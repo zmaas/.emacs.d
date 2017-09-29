@@ -25,13 +25,14 @@
   :ensure t
 	:diminish smartparens-mode
   :init
-	(use-package evil-cleverparens
+	(use-package evil-smartparens
 	  :ensure t
-		:diminish evil-cleverparens-mode
+		:diminish evil-smartparens-mode
 	  :config
-		(add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
-		(add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
-		(add-hook 'scheme-mode-hook #'evil-cleverparens-mode))
+		(add-hook 'clojure-mode-hook #'evil-smartparens-mode)
+		(add-hook 'lisp-mode-hook #'evil-smartparens-mode)
+		(add-hook 'scheme-mode-hook #'evil-smartparens-mode)
+		(add-hook 'emacs-lisp-mode-hook #'evil-smartparens-mode))
   :config
   (require 'smartparens-config)
   (add-hook 'after-init-hook 'smartparens-global-mode))

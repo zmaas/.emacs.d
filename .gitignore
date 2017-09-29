@@ -39,3 +39,4 @@ semanticdb/*
 /lang/.nrepl-history
 /company-statistics-cache.el
 straight/*
+/request/curl-cookie-jar

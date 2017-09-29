@@ -37,30 +37,44 @@
 		:diminish evil-snipe-local-mode
 		:config
 		(evil-snipe-override-mode 1))
-	(setq evil-snipe-scope 'visible)
+	(use-package evil-surround
+		:ensure t
+		:config
+		(global-evil-surround-mode 1))
 	(use-package evil-nerd-commenter
 		:ensure t
 		:config
 		(evilnc-default-hotkeys))
+	(setq evil-snipe-scope 'visible)
+	(use-package evil-exchange
+		:ensure t
+		:config
+		(evil-exchange-install))
+	(use-package evil-visualstar
+		:ensure t
+		:config
+		(global-evil-visualstar-mode))
+	(use-package evil-numbers
+		:ensure t)
+	(use-package evil-args
+		:ensure t
+		:config
+		;; bind evil-args text objects
+		(define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+		(define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+		;; bind evil-forward/backward-args
+		(define-key evil-normal-state-map "L" 'evil-forward-arg)
+		(define-key evil-normal-state-map "H" 'evil-backward-arg)
+		(define-key evil-motion-state-map "L" 'evil-forward-arg)
+		(define-key evil-motion-state-map "H" 'evil-backward-arg)
+		;; bind evil-jump-out-args
+		(define-key evil-normal-state-map "K" 'evil-jump-out-args))
 	(use-package evil-goggles
 		:ensure t
 		:config
 		(add-hook 'after-init-hook #'evil-goggles-mode))
 	:config
 	(evil-mode 1))
-
-;; Evil-lispy, much better lisp editing tools
-(use-package evil-lispy
-	:ensure t
-	:diminish evil-lispy-mode
-	:init
-	(use-package lispy
-		:ensure t)
-	:config
-	(add-hook 'lisp-mode-hook #'evil-lispy-mode)
-	(add-hook 'scheme-mode-hook #'evil-lispy-mode)
-	(add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode)
-	(add-hook 'clojure-mode-hook #'evil-lispy-mode))
 
 ;; Need to learn how to use this better -- it is really useful.
 (use-package evil-iedit-state

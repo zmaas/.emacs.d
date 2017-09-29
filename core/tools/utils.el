@@ -58,6 +58,12 @@
 	:commands shrink-whitespace
   :bind ("M-SPC" . shrink-whitespace))
 
+;; Finally,let's get a better delete command in here by default
+(use-package hungry-delete
+	:ensure t
+	:config
+	(add-hook 'after-init-hook #'global-hungry-delete-mode))
+
 ;; clipmon - add system clipboard contents to kill ring
 (use-package clipmon
 	:ensure t
@@ -124,7 +130,9 @@
 (use-package dumb-jump
 	:ensure t
 	:defer t
-	:commands dumb-jump-go)
+	:commands	(dumb-jump-go dumb-jump-quick-look)
+	:config
+	(setq dumb-jump-selector 'ivy))
 
 (use-package ace-window
 	:ensure t

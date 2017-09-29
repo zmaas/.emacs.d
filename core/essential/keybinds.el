@@ -21,11 +21,12 @@
 	 ;; Most used commands have an easy 1 key binding
 	 "k" '(counsel-yank-pop :which-key "kill ring")
 	 "SPC" '(counsel-grep-or-swiper :which-key "swiper")
+	 "TAB" '(evil-buffer :which-key "last")
 	 ":" '(counsel-M-x :which-key "M-x")
 	 "s" '(flyspell-correct-previous-word-generic :which-key "spellcheck")
 	 "g" '(magit-status :which-key "git")
 	 "?" '(counsel-locate :which-key "locate")
-	 "/" '(counsel-grep :which-key "rg")
+	 "/" '(swiper-all :which-key "swipeall")
 	 "," '(ivy-switch-buffer :which-key "swbuf")
 	 ;; error checking specific bindings
 	 "e" '(:ignore t :which-key "check")
@@ -69,6 +70,7 @@
 	 "jw" '(avy-goto-word-1 :which-key "word")
 	 "jl" '(avy-goto-line :which-key "line")
 	 "jc" '(avy-goto-char :which-key "char")
+	 "jq" '(dumb-jump-quick-look :which-key "dumb jump peek")
 	 "jd" '(dumb-jump-go :which-key "dumb jump")
 	 "jD" '(dumb-jump-back :which-key "dumb jump back")
 	 ;; appearance specific bindings
@@ -90,6 +92,7 @@
 	 "ps" '(ivy-imenu-anywhere :which-key "imenu-anywhere")
 	 "pf" '(counsel-projectile-rg :which-key "project rg")
 	 "pg" '(counsel-git-grep :which-key "git grep")
+	 "pr" '(projectile-recentf :which-key "recent")
 	 "pp" '(counsel-projectile-switch-project :which-key "other project")
 	 "pb" '(counsel-projectile-switch-to-buffer :which-key "buffer")
 	 "px" '(projectile-kill-buffers :which-key "killall")
@@ -138,15 +141,18 @@
 	 "dS" '(sp-split-sexp :which-key "split")
 	 "da" '(sp-absorb-sexp :which-key "absorb")
 	 ;; transpose and other text manipulation
-	 "t"  '(:ignore t :which-key "transpose")
+	 "t"  '(:ignore t :which-key "text")
 	 "tf"  '(fill-paragraph :which-key "fill paragraph")
 	 "tw" '(transpose-words :which-key "transpose words")
 	 "tl" '(transpose-lines :which-key "transpose lines")
 	 "tp" '(transpose-lines :which-key "transpose paragraphs")
 	 "tc" '(transpose-chars :which-key "transpose chars")
 	 "ts" '(transpose-sexps :which-key "transpose sexp")
+	 "ti"	'(evil-numbers/inc-at-pt :which-key "increment")
+	 "td"	'(evil-numbers/dec-at-pt :which-key "decrement")
 	 ;;	narrowing keybinds
-	 "nn" '(outshine-narrow-to-subtree :which-key "narrow-subtree")
+	 "nN" '(outshine-narrow-to-subtree :which-key "narrow-subtree")
+	 "nn" '(narrow-to-defun :which-key "narrow-defun")
 	 "nw" '(widen :which-key "widen")
 	 ;; Structural edits
 	 "nj" '(outline-move-subtree-down :which-key "down tree")
@@ -159,8 +165,12 @@
 
 ;; Generic keybindings
 (general-define-key
- :states '(normal)
- "M-k" '(delete-window))
+ :states '(normal visual motion insert)
+ "M-k" '(delete-window)
+ "M-e" '(hippie-expand))
+
+;; Rebinds
+(global-set-key [remap fill-paragraph] #'ono-fill-or-unfill)
 
 ;; Evil custom keybindings
 (general-define-key
@@ -172,6 +182,21 @@
  "gk" 'outline-backward-same-level
  "gl" 'outline-next-visible-heading
  "gu" 'outline-previous-visible-heading)
+
+(general-define-key
+ :states '(normal)
+ "za" 'origami-forward-toggle-node
+ "zc" 'origami-close-node
+ "zC" 'origami-close-node-recursively
+ "zO" 'origami-open-node-recursively
+ "zo" 'origami-open-node
+ "zr" 'origami-open-all-nodes
+ "zm" 'origami-close-all-nodes
+ "zs" 'origami-show-only-node
+ "zn" 'origami-next-fold
+ "zp" 'origami-previous-fold
+ "zR" 'origami-reset
+ "z TAB" 'origami-recursively-toggle-node)
 
 ;; Custom ex bindings
 (defalias 'ex! 'evil-ex-define-cmd)

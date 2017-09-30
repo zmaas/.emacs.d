@@ -16,4 +16,19 @@
 	:config
 	(add-hook 'after-init-hook #'intero-global-mode))
 
+;; special per-mode keybindings for	intero/haskell
+(general-define-key
+ :states '(normal visual insert emacs)
+ :keymaps 'haskell-mode-map
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "l" '(:ignore t :which-key "layer")
+ "lr" '(intero-repl :which-key "start repl")
+ "lR" '(intero-repl-clear-buffer :which-key "clear repl")
+ "ll" '(intero-repl-switch-back :which-key "switch repl")
+ "ld" '(intero-goto-definition :which-key "goto def")
+ "li" '(intero-ident-at-point :which-key "identify")
+ "ll" '(intero-apply-suggestions :which-key "apply suggestions")
+ "lc" '(intero-with-repl-buffer :which-key "eval in repl"))
+
 ;;; haskell.el ends here

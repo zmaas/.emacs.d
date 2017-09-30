@@ -17,7 +17,9 @@
 ;; give our buffers unique names
 (use-package uniquify
 	:config
-	(setq uniquify-buffer-name-style 'forward))
+	(setq uniquify-buffer-name-style 'forward
+				uniquify-after-kill-buffer-p t
+				uniquify-ignore-buffers-re "^\\*"))
 
 ;; Automatically save buffers, but better
 (use-package auto-save-buffers-enhanced

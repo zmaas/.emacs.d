@@ -139,6 +139,21 @@
 	:defer t
 	:commands ace-window)
 
+;; unfill paragraph commands
+(use-package unfill
+	:ensure t)
+
+;; writable grep, used with rgrep
+(use-package wgrep
+	:quelpa (wgrep :fetcher github :repo "mhayashi1120/Emacs-wgrep"))
+
+;; small utility that improves sexp evaluation
+(use-package eval-sexp-fu
+	:quelpa (eval-sexp-fu :fetcher github :repo "emacsmirror/eval-sexp-fu")
+	:config
+	(setq eval-sexp-fu-flash-duration 0.4)
+	(turn-on-eval-sexp-fu-flash-mode))
+
 (use-package esup
 	:ensure t)
 

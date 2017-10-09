@@ -11,6 +11,10 @@
 	:config
 	(add-hook 'clojure-mode-hook 'cider-mode))
 
+;; Improved	sexp evaluation
+(use-package cider-eval-sexp-fu
+	:ensure t)
+
 ;; special per-mode keybindings for CIDER
 (general-define-key
  :states '(normal visual insert emacs)

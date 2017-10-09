@@ -65,13 +65,25 @@
 ;; prettyify fonts
 (setq font-lock-maximum-decoration t)
 
+;; Add highlighting for special editor operations
+(use-package volatile-highlights
+	:ensure  t
+	:diminish volatile-highlights-mode
+	:config
+	(add-hook 'after-init-hook #'volatile-highlights-mode)
+	(vhl/define-extension 'evil 'evil-paste-after 'evil-paste-before
+												'evil-paste-pop 'evil-move)
+	(vhl/install-extension 'evil)
+	(vhl/define-extension 'undo-tree 'undo-tree-yank 'undo-tree-move)
+	(vhl/install-extension 'undo-tree))
+
 ;; Highlight specific keywords in prog-modes
 (defun ono-add-watchwords ()
   "Highlight FIXME, TODO, and NOCOMMIT in code TODO"
   (font-lock-add-keywords
    nil '(("\\<\\(TODO\\(?:(.*)\\)?:?\\)\\>"  1 'warning prepend)
-         ("\\<\\(FIXME\\(?:(.*)\\)?:?\\)\\>" 1 'error prepend)
-         ("\\<\\(NOCOMMIT\\(?:(.*)\\)?:?\\)\\>"  1 'error prepend))))
+			 ("\\<\\(FIXME\\(?:(.*)\\)?:?\\)\\>" 1 'error prepend)
+			 ("\\<\\(NOCOMMIT\\(?:(.*)\\)?:?\\)\\>"  1 'error prepend))))
 (add-hook 'prog-mode-hook #'ono-add-watchwords)
 
 ;; highlighting.el ends here

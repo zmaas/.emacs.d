@@ -1,7 +1,8 @@
 ;; Require packages for following code
 (require 'dash)
 (use-package outshine
-	:ensure t)
+	:ensure t
+	:diminish outline-minor-mode)
 
 ;; Required for outshine
 (add-hook 'outline-minor-mode-hook 'outshine-hook-function)

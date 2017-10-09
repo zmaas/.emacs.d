@@ -35,6 +35,17 @@
 	:ensure t
 	:config)
 
+(use-package deft
+	:ensure t
+	:config
+	(setq deft-extensions '("org" "md" "txt")
+				deft-directory "~/Dropbox/Org/deft"
+				deft-default-extension "org"
+				deft-text-mode 'org-mode
+				deft-use-filename-as-title t
+				deft-use-filter-string-for-filename t
+				deft-auto-save-interval 0))
+
 (setq org-agenda-custom-commands
 			'(("c" "Simple agenda view"
 				 ((tags "PRIORITY=\"A\""
@@ -123,6 +134,19 @@
 		(if (looking-back "^")
 				(hydra-org-template/body)
 			(self-insert-command 1))))
+
+(general-define-key
+ :states '(normal visual insert emacs)
+ :keymaps	'deft-mode-map
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "l" '(:ignore t :which-key "deft")
+ "lq" '(quit-window :which-key "new")
+ "lc" '(deft-new-file :which-key "new")
+ "lo" '(deft-open-file :which-key "open")
+ "lr" '(deft-rename-file :which-key "rename")
+ "ll" '(deft-filter-clear :which-key "clear filter")
+ "ld" '(deft-delete-file :which-key "delete"))
 
 (general-define-key
  :states '(normal visual insert emacs)

@@ -19,17 +19,25 @@
 (package-initialize)
 (setq package-enable-at-startup nil)
 
-;;; Make sure we have use-package
-(unless (package-installed-p 'use-package)
-	(package-install 'use-package))
-(require 'use-package)
+;; Bootstrap Quelpa
+(if (require 'quelpa nil t)
+    (quelpa-self-upgrade)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
 
-;; Add use-package :quelpa command for special packages
-(use-package quelpa-use-package
-	:ensure t
-	:init
-	(use-package quelpa
-		:ensure t))
+;;; Make sure we have use-package
+(quelpa
+ '(use-package
+		:fetcher github
+		:repo "jwiegley/use-package"
+		:files ("use-package.el")))
+(quelpa
+ '(quelpa-use-package
+   :fetcher github
+   :repo "quelpa/quelpa-use-package"))
+(require 'use-package)
+(require 'quelpa-use-package)
 
 ;; Load auto-compile for any future editing of elisp files
 (use-package auto-compile

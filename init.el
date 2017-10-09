@@ -81,7 +81,7 @@
 (ono! :lang "c++") 											;	if c=1,	c	++ = 2
 
 ;; Set our default theme
-(ono-night-alt-theme)
+(ono-night-theme)
 
 ;; Load custom-set-variables file
 (setq custom-file "~/.emacs.d/emacs-custom.el")

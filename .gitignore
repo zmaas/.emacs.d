@@ -40,3 +40,4 @@ semanticdb/*
 /company-statistics-cache.el
 straight/*
 /request/curl-cookie-jar
+/quelpa/*

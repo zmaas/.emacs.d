@@ -167,6 +167,7 @@
 (general-define-key
  :states '(normal visual motion insert)
  "M-k" '(delete-window)
+ "M-[" '(evil-escape)
  "M-e" '(hippie-expand))
 
 ;; Rebinds

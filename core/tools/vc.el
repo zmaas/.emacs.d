@@ -25,6 +25,12 @@
 	:diminish projectile-mode
 	:config
 	(add-hook 'after-init-hook #'projectile-mode)
+  (add-to-list 'projectile-globally-ignored-files ".tern-port")
+  (add-to-list 'projectile-globally-ignored-files "GTAGS")
+  (add-to-list 'projectile-globally-ignored-files "GPATH")
+  (add-to-list 'projectile-globally-ignored-files "GRTAGS")
+  (add-to-list 'projectile-globally-ignored-files "GSYMS")
+  (add-to-list 'projectile-globally-ignored-files ".DS_Store")
 	(setq projectile-completion-system 'ivy
 				projectile-enable-caching (not noninteractive)
 				projectile-indexing-method 'alien

@@ -79,6 +79,8 @@
 	 "al" '(nlinum-mode :which-key "linum")
 	 "aS" '(smooth-scrolling-mode :which-key "smooth-scrolling")
 	 "ao" '(olivetti-mode :which-key "olivetti")
+	 "ad" '(deft  :which-key "deft")
+	 "ae" '(elfeed  :which-key "elfeed")
 	 "acd" '(ono-day-theme :which-key "day")
 	 "acs" '(ono-day-bright-theme :which-key "day-bright")
 	 "acb" '(ono-day-alt-theme :which-key "day-alt")
@@ -142,7 +144,8 @@
 	 "da" '(sp-absorb-sexp :which-key "absorb")
 	 ;; transpose and other text manipulation
 	 "t"  '(:ignore t :which-key "text")
-	 "tf"  '(fill-paragraph :which-key "fill paragraph")
+	 "tt"  '(lod :which-key "disappointed")
+	 "tf" '(ono-fill-or-unfill :which-key "fill paragraph")
 	 "tw" '(transpose-words :which-key "transpose words")
 	 "tl" '(transpose-lines :which-key "transpose lines")
 	 "tp" '(transpose-lines :which-key "transpose paragraphs")

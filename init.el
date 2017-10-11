@@ -53,6 +53,7 @@
 ;; Load various app configurations
 (ono! :apps "mail")                     ; mu4e,4 u and me.
 (ono! :apps "irc") 											;	to talk with other emacsen
+(ono! :apps "elfeed")                   ;	read the feeds
 
 ;; Theming configuration files
 (onos! :core :appearance "themes")      ;	Behold my mighty colors and despair
@@ -92,3 +93,4 @@
 ;;; init.el ends here
 (put 'erase-buffer 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
+(put 'narrow-to-region 'disabled nil)

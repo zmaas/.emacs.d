@@ -41,3 +41,4 @@ semanticdb/*
 straight/*
 /request/curl-cookie-jar
 /quelpa/*
+url/*

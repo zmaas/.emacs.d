@@ -148,6 +148,7 @@
  "ll" '(deft-filter-clear :which-key "clear filter")
  "ld" '(deft-delete-file :which-key "delete"))
 
+
 (general-define-key
  :states '(normal visual insert emacs)
  :prefix "SPC"

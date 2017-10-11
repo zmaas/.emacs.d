@@ -10,14 +10,16 @@
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
+	:init
+	(add-hook 'markdown-mode-hook #'whitespace-mode)
   :mode (("README\\.md\\'" . gfm-mode)
+				 ("github\\.com.*\\.txt\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
 (use-package yaml-mode
 	:ensure t)
-
 
 ;; FIXME
 (general-define-key

@@ -19,7 +19,11 @@
 	:ensure t
 	:diminish highlight-thing-mode
 	:config
-	(global-highlight-thing-mode t))
+	(global-highlight-thing-mode t)
+	(setq highlight-thing-delay-seconds 1
+				highlight-thing-limit-to-defun nil
+				highlight-thing-case-sensitive-p t
+				highlight-thing-prefer-active-region t))
 
 ;; subtle lines to show our tab level in code
 (use-package highlight-indent-guides

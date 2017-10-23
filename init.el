@@ -54,6 +54,7 @@
 (ono! :apps "mail")                     ; mu4e,4 u and me.
 (ono! :apps "irc") 											;	to talk with other emacsen
 (ono! :apps "elfeed")                   ;	read the feeds
+(ono! :apps "games")                    ;	games!
 
 ;; Theming configuration files
 (onos! :core :appearance "themes")      ;	Behold my mighty colors and despair

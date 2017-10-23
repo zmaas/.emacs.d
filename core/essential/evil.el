@@ -56,6 +56,10 @@
 		(global-evil-visualstar-mode))
 	(use-package evil-numbers
 		:ensure t)
+	(use-package evil-matchit
+		:ensure t
+		:config
+		(global-evil-matchit-mode 1))
 	(use-package evil-args
 		:ensure t
 		:config
@@ -78,6 +82,12 @@
 		(define-key evil-outer-text-objects-map "I" 'evil-indent-plus-a-indent-up)
 		(define-key evil-inner-text-objects-map "J" 'evil-indent-plus-i-indent-up-down)
 		(define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
+	(use-package evil-lion
+		:ensure t
+		:config
+		(evil-lion-mode))
+	(use-package evil-unimpaired
+		:quelpa (evil-unimpaired :fetcher github :repo "zmaas/evil-unimpaired"))
 	(use-package evil-goggles
 		:ensure t
 		:config
@@ -87,9 +97,9 @@
 
 ;; Need to learn how to use this better -- it is really useful.
 (use-package evil-iedit-state
-	:ensure t
-	:ensure iedit
-	:config
-	(add-hook 'iedit-mode-hook #'evil-iedit-state))
+:ensure t
+:ensure iedit
+:config
+(add-hook 'iedit-mode-hook #'evil-iedit-state))
 
 ;;; zm-evil.el ends here

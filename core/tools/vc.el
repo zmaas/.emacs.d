@@ -10,7 +10,23 @@
 	:ensure t
 	:config
 	(use-package evil-magit
-		:ensure t))
+		:ensure t)
+	(use-package magit-gitflow
+		:ensure t
+		:config
+		(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
+
+(use-package git-timemachine
+	:ensure t
+	:config
+	(eval-after-load 'git-timemachine
+		'(progn
+			 (evil-make-overriding-map git-timemachine-mode-map 'normal)
+			 ;; force update evil keymaps after git-timemachine-mode loaded
+			 (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))))
+
+(use-package smeargle
+	:ensure t)
 
 (use-package evil-ediff
 	:ensure t

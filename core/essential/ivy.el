@@ -8,10 +8,10 @@
 ;;; Code:
 
 (use-package ivy
-  :ensure t
+	:ensure t
 	:diminish ivy-mode
 	:diminish counsel-mode
-  :init
+	:init
 	(use-package ivy-hydra
 		:ensure t)
 	(use-package smex
@@ -39,6 +39,13 @@
 		(add-hook 'go-mode-hook (lambda () (setq-local counsel-dash-docsets '("Go"))))
 		(add-hook 'c++-mode-hook (lambda () (setq-local counsel-dash-docsets '("C++"))))
 		(add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python 3")))))
+	(use-package ivy-rich
+		:ensure t
+		:config
+		(ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
+		(setq ivy-virtual-abbreviate 'full
+					ivy-rich-switch-buffer-align-virtual-buffer t
+					ivy-rich-abbreviate-paths t))
   :config
   (ivy-mode 1)
 	(setq counsel-grep-base-command

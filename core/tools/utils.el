@@ -7,6 +7,11 @@
 
 ;; Currently a smorgasbord of random tools...
 
+;; Enable abbrev-mode by default
+(setq-default abbrev-mode t)
+(setq save-abbrevs 'silently)
+(diminish 'abbrev-mode)
+
 ;; Don't use bidirectional languages
 (setq-default bidi-display-reordering nil)
 
@@ -125,6 +130,10 @@
 	:config
 	(global-set-key (kbd "M-z") #'zzz-to-char))
 
+(use-package move-text
+	:ensure t
+	:config
+	(move-text-default-bindings))
 ;; use the arrowkeys to move buffers - need a better solution using VIM keybinds
 (when (fboundp 'windmove-default-keybindings)
 	(windmove-default-keybindings))

@@ -12,32 +12,44 @@
   :config
   (add-hook 'prog-mode-hook 'column-enforce-mode))
 
+;; fill-column indication
+(use-package fill-column-indicator
+  :ensure t
+  :config
+  (setq whitespace-style '(face trailing)))
+
 ;; amazing plugin - gives us perfect indentation automatically for code
 (use-package aggressive-indent
   :ensure t
   :diminish aggressive-indent-mode
   :config
-  (add-hook 'after-init-hook #'global-aggressive-indent-mode)
-  (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
+  (add-hook 'after-init-hook #'aggressive-indent-global-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'haskell-mode))
+
+(use-package clean-aindent-mode
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'clean-aindent-mode)
+  (define-key global-map (kbd "RET") 'newline-and-indent))
 
 ;; keeps our parentheses balanced and allows for easy manipulation
 (use-package smartparens
   :ensure t
-	:diminish smartparens-mode
+  :diminish smartparens-mode
   :init
-	(use-package evil-smartparens
-	  :ensure t
-		:diminish evil-smartparens-mode
-	  :config
-		(add-hook 'clojure-mode-hook #'evil-smartparens-mode)
-		(add-hook 'lisp-mode-hook #'evil-smartparens-mode)
-		(add-hook 'scheme-mode-hook #'evil-smartparens-mode)
-		(add-hook 'emacs-lisp-mode-hook #'evil-smartparens-mode))
+  (use-package evil-smartparens
+    :ensure t
+    :diminish evil-smartparens-mode
+    :config
+    (add-hook 'clojure-mode-hook #'evil-smartparens-mode)
+    (add-hook 'lisp-mode-hook #'evil-smartparens-mode)
+    (add-hook 'scheme-mode-hook #'evil-smartparens-mode)
+    (add-hook 'emacs-lisp-mode-hook #'evil-smartparens-mode))
   :config
   (require 'smartparens-config)
   (add-hook 'after-init-hook 'smartparens-global-mode))
 
-; intelligently cleanup whitespace on save
+;; intelligently cleanup whitespace on save
 (use-package whitespace-cleanup-mode
   :ensure t
   :diminish whitespace-cleanup-mode

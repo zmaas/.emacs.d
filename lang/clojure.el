@@ -18,7 +18,7 @@
 ;; special per-mode keybindings for CIDER
 (general-define-key
  :states '(normal visual insert emacs)
- :keymaps 'cider-mode-map
+ :keymaps '(cider-mode-map clojure-mode-map)
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
@@ -26,6 +26,6 @@
  "li" '(cider-jack-in :which-key "jack in")
  "lI" '(cider-jack-in-clojurescript :which-key "jack in cljs")
  "ll" '(cider-eval-defun-at-point :which-key "eval def")
- "lc" '(cider-eval-buffer :which-key "eval buffer"))
+ "lb" '(cider-eval-buffer :which-key "eval buffer"))
 
 ;;; clojure.el ends here

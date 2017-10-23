@@ -9,6 +9,8 @@
 (use-package ispell
 	:ensure t
 	:defer t
+	:diminish	(flyspell-mode "sp")
+	:diminish	(flyspell-prog-mode "sp")
 	:init
 	(use-package flyspell-correct
 		:ensure t
@@ -53,7 +55,7 @@
 ;; flycheck gives us global syntax checking and eroor popups in our code
 (use-package flycheck
 	:ensure t
-	:diminish (flycheck-mode "Fc")
+	:diminish (flycheck-mode "fc")
 	:defer t
 	:init
 	(use-package flycheck-pos-tip

@@ -42,6 +42,7 @@
 	:ensure t
 	:config
 	(auctex-latexmk-setup)
+	(setq-default TeX-engine 'xetex)
 	(setq auctex-latexmk-inherit-TeX-PDF-mode t))
 
 (use-package doc-view

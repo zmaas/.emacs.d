@@ -30,6 +30,8 @@
 															(go-mode . (("go-run" . "go run")
 																					("go-test" . "go test")
 																					("go-vet" . "go vet")))
+															(haskell-mode . (("stack-build" . "stack build")
+																							 ("stack-test" . "stack test")))
 															(c++-mode . (("make" . "make")
 																					 ("clean" . "make clean")
 																					 ("test" . "make test"))))))

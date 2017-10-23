@@ -32,7 +32,11 @@
 	:ensure t)
 (use-package tao-theme
 	:ensure t)
+(use-package spacemacs-theme
+	:ensure t)
 (use-package darktooth-theme
+	:ensure t)
+(use-package challenger-deep-theme
 	:ensure t)
 (use-package color-theme-sanityinc-solarized
 	:ensure t)
@@ -42,21 +46,21 @@
 (defun ono-day-theme ()
 	"Sets moe-light theme for daytime and associated colors"
 	(interactive)
-	(!ono-set-theme 'moe-light)
+	(!ono-set-theme 'spacemacs-light)
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
 (defun ono-day-alt-theme ()
 	"Sets underwater theme for daytime and associated colors"
 	(interactive)
-	(!ono-set-theme 'underwater)
+	(!ono-set-theme 'challenger-deep)
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 
 (defun ono-solarized-theme ()
 	"Sets leuven theme for daytime and associated colors"
 	(interactive)
-	(!ono-set-theme 'sanityinc-solarized-dark)
+	(!ono-set-theme 'sanityinc-solarized-light)
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
 

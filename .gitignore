@@ -42,3 +42,5 @@ straight/*
 /request/curl-cookie-jar
 /quelpa/*
 url/*
+/multi-compile.cache
+/srecode-map.el

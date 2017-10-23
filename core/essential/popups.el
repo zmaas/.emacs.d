@@ -29,7 +29,6 @@
 					("*golint*" :select t)
 					("\\`\\*e?shell" :regexp t :popup t)
 					("\\`\\*e?shell" :regexp t :frame t)
-					(neotree-mode :select t :other t :align left)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
 					(magit-log-mode :select t :size 0.5 :inhibit-window-quit t)
 					(magit-diff-mode :inhibit-window-quit t :size 0.5 :align right)
@@ -71,32 +70,33 @@
 	:config
 	(setq imenu-auto-rescan t))
 
-;; neotree - file tree like VIM's nerdtree
-(use-package neotree
+(use-package treemacs
 	:ensure t
-	:defer t
-	:commands neotree
 	:init
-	(use-package all-the-icons
-		:ensure t
-		;; Make sure to run all-the-icons-install-fonts
-		)
+	(use-package treemacs-evil
+		:ensure t)
+	(use-package treemacs-projectile
+		:ensure t)
 	:config
-	(add-hook 'neotree-mode-hook
-						(lambda ()
-							(define-key evil-normal-state-local-map (kbd "h") 'neotree-select-up-node)
-							(define-key evil-normal-state-local-map (kbd "l") 'neotree-select-down-node)
-							(define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-							(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-							(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
-	(setq neo-smart-open t)
-	(defun ono-neotree-hook (_unused)
-		(nlinum-mode -1))
-	(add-hook 'neo-after-create-hook 'ono-neotree-hook)
-	(add-hook 'projectile-after-switch-project-hook 'neotree-projectile-action)
-	(setq neo-vc-integration nil
-				neo-autorefresh t)
-	(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-	(global-set-key [f8] 'neotree-toggle))
+	(setq treemacs-follow-after-init          t
+				treemacs-width                      25
+				treemacs-indentation                2
+				treemacs-git-integration            t
+				treemacs-collapse-dirs              3
+				treemacs-silent-refresh             nil
+				treemacs-change-root-without-asking nil
+				treemacs-sorting                    'alphabetic-desc
+				treemacs-show-hidden-files          t
+				treemacs-never-persist              nil
+				treemacs-is-never-other-window      nil
+				treemacs-goto-tag-strategy          'refetch-index)
+
+	(treemacs-follow-mode t)
+	(treemacs-filewatch-mode t))
+
+(use-package all-the-icons
+	:ensure t
+	;; Make sure to run all-the-icons-install-fonts
+	)
 
 ;; popups.el ends here

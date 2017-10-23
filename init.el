@@ -63,7 +63,6 @@
 (onos! :core :appearance "interface")   ;	Hip, new	interfacing
 
 ;; Ono-custom-magic
-(onos! :core :ono-extensions "neotree-icons") ; Pretty Neotree icons!
 (onos! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
 (onos! :core :ono-extensions "outlines")	    ;	Universal	outlines
 (onos! :core :ono-extensions "ono-generic-functions") ; Custom commands

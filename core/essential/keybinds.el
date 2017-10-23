@@ -55,15 +55,18 @@
 	 "fR" '(ranger :which-key "ranger")
 	 "fD" '(delete-file :which-key "delete")
 	 "fr" '(sudo-edit :which-key "sudo")
-	 "ft" '(neotree :which-key "tree")
+	 "ft" '(treemacs :which-key "tree")
 	 ;; Insertion editing tools
 	 "i" '(:ignore t :which-key "insertion")
+	 "il"  '(lod :which-key "disappointed")
 	 "ia" '(aya-create :which-key "create snippet")
 	 "ie" '(aya-expand :which-key "expand saved snippet")
 	 "ir" '(re-builder :which-key "re-builder")
 	 "it" '(tiny-expand :which-key "tiny expand")
 	 ;; jump specific bindings
 	 "j" '(:ignore t :which-key "jump")
+	 "ji" '(imenu :which-key "imenu")
+	 "jI" '(imenu-anywhere :which-key "imenu anywhere")
 	 "jj" '(avy-goto-char-2 :which-key "2 char")
 	 "jf" '(counsel-find-file :which-key "file")
 	 "jb" '(ivy-switch-buffer :which-key "buffer")
@@ -98,7 +101,7 @@
 	 "pp" '(counsel-projectile-switch-project :which-key "other project")
 	 "pb" '(counsel-projectile-switch-to-buffer :which-key "buffer")
 	 "px" '(projectile-kill-buffers :which-key "killall")
-	 "pt" '(neotree :which-key "tree")
+	 "pt" '(treemacs-projectile :which-key "tree")
 	 ;; Configuration for [m]essaging tools
 	 "m" '(:ignore t :which-key "mail")
 	 "mi" '(mu4e :which-key "mu4e")

@@ -24,10 +24,23 @@
 	 "TAB" '(evil-buffer :which-key "last")
 	 ":" '(counsel-M-x :which-key "M-x")
 	 "s" '(flyspell-correct-previous-word-generic :which-key "spellcheck")
-	 "g" '(magit-status :which-key "git")
 	 "?" '(counsel-locate :which-key "locate")
 	 "/" '(swiper-all :which-key "swipeall")
 	 "," '(ivy-switch-buffer :which-key "swbuf")
+	 ;; help commands
+	 "h" '(:ignore t :which-key "help")
+	 "hf" '(describe-function :which-key "describe function")
+	 "ha" '(counsel-apropos :which-key "apropos")
+	 ;; git commands
+	 "g" '(:ignore t :which-key "git")
+	 "gg" '(magit-status :which-key "status")
+	 "gs" '(magit-stage-file :which-key "stage")
+	 "gu" '(magit-unstage-file :which-key "unstage")
+	 "ge" '(magit-ediff-dwim :which-key "ediff")
+	 "gd" '(magit-diff-buffer-file :which-key "diff")
+	 "gl" '(magit-log-buffer-file :which-key "log")
+	 "gb" '(magit-blame :which-key "blame")
+	 "gt" '(git-timemachine :which-key "blame")
 	 ;; error checking specific bindings
 	 "e" '(:ignore t :which-key "check")
 	 "es" '(flyspell-correct-previous-word-generic :which-key "check word")
@@ -41,11 +54,12 @@
 	 "b" '(:ignore t :which-key "buffer")
 	 "bb" '(ivy-switch-buffer :which-key "switch")
 	 "bl" '(ibuffer :which-key "ibuffer")
-	 "bx" '(kill-buffer :which-key "kill")
+	 "bd" '(kill-buffer :which-key "kill")
 	 "br" '(revert-buffer :which-key "revert")
 	 ;; file specific bindings
 	 "f" '(:ignore t :which-key "files")
 	 "fq" '(quickrun :which-key "quickrun")
+	 "fe" '(ono-open-init-file :which-key "init.el")
 	 "ff" '(counsel-find-file :which-key "open")
 	 "fs" '(save-buffer :which-key "save")
 	 "fS" '(save-some-buffers :which-key "save all")
@@ -113,14 +127,19 @@
 	 "w" '(:ignore t :which-key "window")
 	 "ww" '(ace-window :which-key "jump")
 	 "wV" '(split-window-horizontally :which-key "horizontal split")
+	 "w/" '(split-window-horizontally :which-key "horizontal split")
 	 "wv" '(split-window-vertically :which-key "vertical split")
+	 "w-" '(split-window-vertically :which-key "vertical split")
 	 "wx" '(delete-window :which-key "close")
+	 "w=" '(balance-windows :which-key "balance windows")
 	 "wl" '(evil-window-right :which-key "right")
 	 "wk" '(evil-window-up :which-key "up")
 	 "wj" '(evil-window-down :which-key "down")
 	 "wh" '(evil-window-left :which-key "left")
 	 "wu" '(winner-undo :which-key "undo")
 	 "wr" '(winner-redo :which-key "redo")
+	 "wm" '(maximize-window :which-key "max")
+	 "wM" '(minimize-window :which-key "min")
 	 "wpc" '(persp-add-new :which-key "new persp")
 	 "wps" '(persp-switch :which-key "switch persp")
 	 "wpw" '(persp-save-state-to-file :which-key "write persp")
@@ -147,7 +166,6 @@
 	 "da" '(sp-absorb-sexp :which-key "absorb")
 	 ;; transpose and other text manipulation
 	 "t"  '(:ignore t :which-key "text")
-	 "tt"  '(lod :which-key "disappointed")
 	 "tf" '(ono-fill-or-unfill :which-key "fill paragraph")
 	 "tw" '(transpose-words :which-key "transpose words")
 	 "tl" '(transpose-lines :which-key "transpose lines")
@@ -157,8 +175,9 @@
 	 "ti"	'(evil-numbers/inc-at-pt :which-key "increment")
 	 "td"	'(evil-numbers/dec-at-pt :which-key "decrement")
 	 ;;	narrowing keybinds
-	 "nN" '(outshine-narrow-to-subtree :which-key "narrow-subtree")
-	 "nn" '(narrow-to-defun :which-key "narrow-defun")
+	 "ns" '(outshine-narrow-to-subtree :which-key "narrow-subtree")
+	 "nd" '(narrow-to-defun :which-key "narrow-defun")
+	 "nn" '(narrow-to-region :which-key "narrow-region")
 	 "nw" '(widen :which-key "widen")
 	 ;; Structural edits
 	 "nj" '(outline-move-subtree-down :which-key "down tree")
@@ -169,12 +188,16 @@
 	 "z" '(zzz-to-char :which-key "zap!")
 	 "u" '(undo-tree-visualize :which-key "undo tree")))
 
-;; Generic keybindings
+;; Generic keybindings - VIM only
 (general-define-key
  :states '(normal visual motion insert)
  "M-k" '(delete-window)
- "M-[" '(evil-escape)
+ "M-%" '(vr/query-replace)
  "M-e" '(hippie-expand))
+
+;; Universal keybinds
+(general-define-key
+ "M-[" '(evil-escape))
 
 ;; Rebinds
 (global-set-key [remap fill-paragraph] #'ono-fill-or-unfill)
@@ -183,6 +206,8 @@
 (general-define-key
  :states '(normal visual motion)
  "-" 'deer
+ "]d" 'git-gutter:next-hunk
+ "[d" 'git-gutter:previous-hunk
  "gd" 'dumb-jump-go
  "gh" 'outline-up-heading
  "gj" 'outline-forward-same-level
@@ -207,6 +232,10 @@
 
 ;; Custom ex bindings
 (defalias 'ex! 'evil-ex-define-cmd)
+(ex! "Delete" 'delete-file)
+(ex! "Chmod" 'chmod)
+(ex! "Mkdir" 'mkdir)
+(ex! "Find" 'find-file)
 (ex! "ie[dit]" 'iedit-mode)
 (ex! "ag" 'counsel-ag)
 (ex! "rg" 'counsel-rg)

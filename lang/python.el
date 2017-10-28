@@ -21,12 +21,23 @@
 (use-package company-anaconda
 	:ensure t
 	:config
-	(setq python-shell-interpreter "ipython"
-				python-shell-interpreter-args "--simple-prompt"
-				python-shell-completion-native-disabled-interpreters "ipython")
+	(setq python-shell-interpreter "python3"
+				python-shell-interpreter-args "")
+  (when (executable-find "ipython")
+    (setq python-shell-interpreter "ipython"
+          python-shell-interpreter-args "-i --simple-prompt --no-color-info"
+          python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+          python-shell-prompt-block-regexp "\\.\\.\\.\\.: "
+          python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+          python-shell-completion-setup-code
+          "from IPython.core.completerlib import module_completion"
+          python-shell-completion-string-code
+          "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
+
 	(eval-after-load "company"
 		'(add-to-list 'company-backends 'company-anaconda))													
-	(add-hook 'python-mode-hook 'anaconda-mode)																		
+	(add-hook 'python-mode-hook 'anaconda-mode)
+	(add-hook 'anaconda-mode-hook #'anaconda-eldoc-mode)
 	(add-hook 'python-mode-hook																										
 						(lambda ()																																
 							(set (make-local-variable 'company-backends)											

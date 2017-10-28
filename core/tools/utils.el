@@ -165,6 +165,12 @@
 	(setq eval-sexp-fu-flash-duration 0.4)
 	(turn-on-eval-sexp-fu-flash-mode))
 
+(use-package persistent-scratch
+	:ensure t
+	:diminish ""
+	:config
+	(persistent-scratch-setup-default))
+
 (use-package esup
 	:ensure t)
 

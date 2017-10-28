@@ -191,6 +191,7 @@
 ;; Generic keybindings - VIM only
 (general-define-key
  :states '(normal visual motion insert)
+ "M-;" '(evil-commentary-line)
  "M-k" '(delete-window)
  "M-%" '(vr/query-replace)
  "M-e" '(hippie-expand))
@@ -208,6 +209,7 @@
  "-" 'deer
  "]d" 'git-gutter:next-hunk
  "[d" 'git-gutter:previous-hunk
+ "gi" 'evil-iedit-state/iedit-mode
  "gd" 'dumb-jump-go
  "gh" 'outline-up-heading
  "gj" 'outline-forward-same-level
@@ -217,18 +219,8 @@
 
 (general-define-key
  :states '(normal)
- "za" 'origami-forward-toggle-node
- "zc" 'origami-close-node
- "zC" 'origami-close-node-recursively
- "zO" 'origami-open-node-recursively
- "zo" 'origami-open-node
- "zr" 'origami-open-all-nodes
- "zm" 'origami-close-all-nodes
- "zs" 'origami-show-only-node
- "zn" 'origami-next-fold
- "zp" 'origami-previous-fold
- "zR" 'origami-reset
- "z TAB" 'origami-recursively-toggle-node)
+ "s" 'evil-snipe-s
+ "S" 'evil-snipe-S)
 
 ;; Custom ex bindings
 (defalias 'ex! 'evil-ex-define-cmd)
@@ -236,11 +228,12 @@
 (ex! "Chmod" 'chmod)
 (ex! "Mkdir" 'mkdir)
 (ex! "Find" 'find-file)
-(ex! "ie[dit]" 'iedit-mode)
+(ex! "ie[dit]" 'evil-iedit-state/iedit-mode)
+(ex! "noh" 'evil-search-highlight-persist-remove-all)
 (ex! "ag" 'counsel-ag)
 (ex! "rg" 'counsel-rg)
 (ex! "sw[iper]" 'swiper)
-(ex! "org" 'org-capture)
+(ex! "cap" 'org-capture)
 (ex! "git" 'magit-status)
 (ex! "gdiff" 'magit-diff-buffer-file)
 (ex! "glog" 'magit-log-buffer-file)

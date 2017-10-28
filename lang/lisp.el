@@ -48,6 +48,7 @@
 (use-package ielm)
 
 (use-package eldoc
+	:diminish	""
 	:config
 	(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 	(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
@@ -60,6 +61,7 @@
 
 (use-package elisp-slime-nav
 	:ensure t
+	:diminish	""
 	:config
 	(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
 		(add-hook hook 'elisp-slime-nav-mode)))

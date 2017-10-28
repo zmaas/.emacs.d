@@ -11,10 +11,10 @@
 	:ensure t
 	:init
 	(add-hook 'after-init-hook 'shackle-mode)
-	(setq shackle-lighter "")
-  (setq shackle-select-reused-windows nil) ; default nil
-  (setq shackle-default-alignment 'below) ; default below
-  (setq shackle-default-size 0.4) ; default 0.5
+	(setq shackle-lighter ""
+				shackle-select-reused-windows t ; default nil
+				shackle-default-alignment 'below ; default below
+				shackle-default-size 0.4) ; default 0.5
 	(setq shackle-rules
 				'(("*undo-tree*" :size 0.25 :align right)
 					("*Help*" :select t :other t)

@@ -44,3 +44,5 @@ straight/*
 url/*
 /multi-compile.cache
 /srecode-map.el
+/.cache/treemacs-persist
+/.persistent-scratch

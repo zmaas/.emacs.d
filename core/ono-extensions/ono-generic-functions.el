@@ -5,6 +5,11 @@
   (interactive)
   (find-file user-init-file))
 
+(defun ono-open-organizer-file ()
+  "Open the init file."
+  (interactive)
+  (find-file "~/Dropbox/Org/organizer.org"))
+
 (defun ono-fill-or-unfill ()
 	"Like `fill-paragraph', but unfill if used twice."
 	(interactive)
@@ -64,40 +69,3 @@ buffer." (interactive)
 									 t)
 							 ((scan-error) nil))))
     (apply #'insert (nreverse closing))))
-
-;; NEED TO WORK ON THIS...
-(defun ono-simple-get-word ()
-	(car-safe (save-excursion )))(ispell-get-word nil))))
-
-(defun ono-ispell-word-then-abbrev (p)
-	"Call `ispell-word', then create an abbrev for it.
-With prefix P, create local abbrev. Otherwise it will
-be global.
-If there's nothing wrong with the word at point, keep
-looking for a typo until the beginning of buffer. You can
-skip typos you don't want to fix with `SPC', and you can
-abort completely with `C-g'."
-	(interactive "P")
-	(let (bef aft)
-		(save-excursion
-			(while (if (setq bef (ono-simple-get-word))
-								 ;; Word was corrected or used quit.
-								 (if (ispell-word nil 'quiet)
-										 nil ; End the loop.
-									 ;; Also end if we reach `bob'.
-									 (not (bobp)))
-							 ;; If there's no word at point, keep looking
-							 ;; until `bob'.
-							 (not (bobp)))
-				(backward-word)
-				(backward-char))
-			(setq aft (ono-simple-get-word)))
-		(if (and aft bef (not (equal aft bef)))
-				(let ((aft (downcase aft))
-							(bef (downcase bef)))
-					(define-abbrev
-						(if p local-abbrev-table global-abbrev-table)
-						bef aft)
-					(message "\"%s\" now expands to \"%s\" %sally"
-									 bef aft (if p "loc" "glob")))
-			(user-error "No typo at or before point"))))

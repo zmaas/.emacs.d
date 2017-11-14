@@ -11,6 +11,11 @@
 	:config
 	(add-hook 'clojure-mode-hook 'cider-mode))
 
+(use-package clj-refactor
+	:ensure  t
+	:config
+	(add-hook 'clojure-mode-hook 'clj-refactor-mode))
+
 ;; Improved	sexp evaluation
 (use-package cider-eval-sexp-fu
 	:ensure t)
@@ -22,10 +27,14 @@
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
- "lr" '(cider-repl :which-key "cider repl")
+ "ls" '(cljr-add-missing-libspec :which-key "jack in")
+ "ld" '(cljr-add-declaration :which-key "jack in")
  "li" '(cider-jack-in :which-key "jack in")
  "lI" '(cider-jack-in-clojurescript :which-key "jack in cljs")
+ "lc" '(cider-repl-clear-buffer :which-key "clear repl")
+ "lq" '(cider-quit :which-key "quit repl")
  "ll" '(cider-eval-defun-at-point :which-key "eval def")
- "lb" '(cider-eval-buffer :which-key "eval buffer"))
+ "lr" '(cider-run :which-key "run")
+ "le" '(cider-eval-buffer :which-key "eval buffer"))
 
 ;;; clojure.el ends here

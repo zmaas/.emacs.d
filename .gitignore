@@ -46,3 +46,4 @@ url/*
 /srecode-map.el
 /.cache/treemacs-persist
 /.persistent-scratch
+meghanada/*

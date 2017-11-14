@@ -9,12 +9,25 @@
 (use-package irony
 	:ensure t
 	:diminish irony-mode
+	:init
+	(use-package company-irony-c-headers
+		:ensure t)
 	:config
 	(add-hook 'c++-mode-hook 'irony-mode)
-	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+	(add-hook 'c-mode-hook 'irony-mode)
+	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+	(eval-after-load 'company
+		'(add-to-list
+			'company-backends '(company-irony-c-headers company-irony))))
 
 (use-package ggtags
 	:ensure t
+	:init
+	(use-package counsel-gtags
+		:ensure t
+		:config
+		(add-hook 'c-mode-hook 'counsel-gtags-mode)
+		(add-hook 'c++-mode-hook 'counsel-gtags-mode))
 	:diminish ggtags-mode
 	:config
 	(add-hook 'c-mode-common-hook
@@ -26,6 +39,11 @@
 	:ensure t
 	:config
 	(fa-config-default))
+
+(use-package clang-format
+	:ensure t
+	:config
+	(setq clang-format-style-option "google"))
 
 ;; Semantic mode for easier code completion
 (use-package semantic
@@ -53,7 +71,10 @@
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
  "ll" '(multi-compile-run :which-key "compile")
- "ls" '(fa-show :which-key "show details")
+ "ld" '(counsel-gtags-find-definition :which-key "def")
+ "ls" '(counsel-gtags-find-symbol :which-key "symbol")
+ "lf" '(clang-format-buffer :which-key "format")
+ "lS" '(fa-show :which-key "show details")
  "lj" '(moo-jump-local :which-key "jump!")
  "lc" '(moo-complete :which-key "complete"))
 

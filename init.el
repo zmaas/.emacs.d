@@ -24,10 +24,13 @@
 (package-initialize)
 
 ;; Setup Garbage Collection Threshold for Speed
-(setq gc-cons-threshold (* 2 50 1024 1024))
+(setq gc-cons-threshold (* 5 1024 1024))
 
 ;; Load bootstrapping code
 (load-file "~/.emacs.d/core/jack-in.el")
+
+;; ono!	=	module
+;; onos! = submodule
 
 ;; Load from personal init files
 (ono! :secrets "personal") 							; These are my secrets.
@@ -49,6 +52,8 @@
 (onos! :core :tools "vc") 							;	Saving stuff on steroids
 (onos! :core :tools "buffer-tools") 		;	Open everything, all the time
 (onos! :core :tools "shell") 						; ESHELL IS LOVE.
+(onos! :core :tools "prodigy") 					; Convenient management of externs
+(onos! :core :tools "virtualization") 	; Docker and vagrant configuration
 
 ;; Load various app configurations
 (ono! :apps "mail")                     ; mu4e,4 u and me.
@@ -64,7 +69,7 @@
 
 ;; Ono-custom-magic
 (onos! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
-(onos! :core :ono-extensions "outlines")	    ;	Universal	outlines
+;; (onos! :core :ono-extensions "outlines")	    ;	Universal	outlines
 (onos! :core :ono-extensions "ono-generic-functions") ; Custom commands
 
 ;; Markup Langauges
@@ -80,6 +85,8 @@
 (ono! :lang "go") 											;	C, but for parallel brogrammers
 (ono! :lang "r") 												;	Stats, stats, stats!
 (ono! :lang "c++") 											;	if c=1,	c	++ = 2
+(ono! :lang "java") 										;	a	cup of kaffe
+(ono! :lang "debug") 										;	sometimes stuff breaks
 
 ;; Set our default theme
 (ono-day-alt-theme)

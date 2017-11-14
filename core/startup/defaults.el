@@ -39,7 +39,7 @@
 			scroll-margin 0
 			scroll-preserve-screen-position t)
 ;; 80 columns, no UI elements  enabled
-(setq-default fill-column 80)
+;; (setq-default fill-column 80)
 (setq-default tab-width 2)
 ;; Disable annoying	UI elements
 (menu-bar-mode -1)

@@ -54,7 +54,7 @@
 	 "b" '(:ignore t :which-key "buffer")
 	 "bb" '(ivy-switch-buffer :which-key "switch")
 	 "bl" '(ibuffer :which-key "ibuffer")
-	 "bd" '(kill-buffer :which-key "kill")
+	 "bx" '(kill-buffer :which-key "kill")
 	 "br" '(revert-buffer :which-key "revert")
 	 ;; file specific bindings
 	 "f" '(:ignore t :which-key "files")
@@ -64,10 +64,10 @@
 	 "fs" '(save-buffer :which-key "save")
 	 "fS" '(save-some-buffers :which-key "save all")
 	 "fb" '(bookmark-jump :which-key "marks")
-	 "fb" '(bookmark-file :which-key "marks")
+	 "fB" '(bookmark-file :which-key "marks")
 	 "fd" '(deer :which-key "directory")
 	 "fR" '(ranger :which-key "ranger")
-	 "fD" '(delete-file :which-key "delete")
+	 "fx" '(delete-file :which-key "delete")
 	 "fr" '(sudo-edit :which-key "sudo")
 	 "ft" '(treemacs :which-key "tree")
 	 ;; Insertion editing tools
@@ -81,7 +81,7 @@
 	 "j" '(:ignore t :which-key "jump")
 	 "ji" '(imenu :which-key "imenu")
 	 "jI" '(imenu-anywhere :which-key "imenu anywhere")
-	 "jj" '(avy-goto-char-2 :which-key "2 char")
+	 "jj" '(avy-goto-char-timer :which-key "avy")
 	 "jf" '(counsel-find-file :which-key "file")
 	 "jb" '(ivy-switch-buffer :which-key "buffer")
 	 "jw" '(avy-goto-word-1 :which-key "word")
@@ -96,8 +96,10 @@
 	 "al" '(nlinum-mode :which-key "linum")
 	 "aS" '(smooth-scrolling-mode :which-key "smooth-scrolling")
 	 "ao" '(olivetti-mode :which-key "olivetti")
+	 "at" '(eshell  :which-key "eshell")
 	 "ad" '(deft  :which-key "deft")
 	 "ae" '(elfeed  :which-key "elfeed")
+	 "ac" '(:ignore t :which-key "colors")
 	 "acd" '(ono-day-theme :which-key "day")
 	 "acs" '(ono-day-bright-theme :which-key "day-bright")
 	 "acb" '(ono-day-alt-theme :which-key "day-alt")
@@ -105,9 +107,12 @@
 	 "aca" '(ono-night-alt-theme :which-key "night-alt")
 	 "act" '(ono-tron-theme :which-key "night-tron")
 	 "acc" '(dark-night-theme :which-key "cyberpunk")
+	 "ap" '(prodigy :which-key "prodigy")
+	 "aP" '(proced :which-key "proced")
 	 ;; projectile specific bindings
 	 "p" '(:ignore t :which-key "project")
 	 "pj" '(counsel-projectile :which-key "file")
+	 "pd" '(counsel-projectile-find-dir :which-key "dir")
 	 "ps" '(ivy-imenu-anywhere :which-key "imenu-anywhere")
 	 "pf" '(counsel-projectile-rg :which-key "project rg")
 	 "pg" '(counsel-git-grep :which-key "git grep")
@@ -115,14 +120,14 @@
 	 "pp" '(counsel-projectile-switch-project :which-key "other project")
 	 "pb" '(counsel-projectile-switch-to-buffer :which-key "buffer")
 	 "px" '(projectile-kill-buffers :which-key "killall")
-	 "pt" '(treemacs-projectile :which-key "tree")
+	 "pt" '(projectile-run-eshell :which-key "eshell")
+	 "pT" '(treemacs-projectile :which-key "tree")
 	 ;; Configuration for [m]essaging tools
 	 "m" '(:ignore t :which-key "mail")
 	 "mi" '(mu4e :which-key "mu4e")
 	 "mc" '(mu4e-compose-new :which-key "mu4e compose")
 	 "ms" '(mu4e-headers-search :which-key "mu4e search")
 	 "mf" '(circe :which-key "freenode")
-	 "mp" '(proced :which-key "proced")
 	 ;; window specific bindings
 	 "w" '(:ignore t :which-key "window")
 	 "ww" '(ace-window :which-key "jump")
@@ -154,6 +159,7 @@
 	 ;; delimiter bindings - more to do here...
 	 "d" '(:ignore t :which-key "delimiters")
 	 "dd" '(er/expand-region :which-key "expand region")
+	 "de" '(evil-lispy/enter-state-left :which-key "evil-lispy")
 	 "ds" '(sp-slurp-hybrid-sexp :which-key "slurp")
 	 "db" '(sp-barf-hybrid-sexp :which-key "barf")
 	 "dx" '(sp-kill-sexp :which-key "kill")
@@ -175,7 +181,6 @@
 	 "ti"	'(evil-numbers/inc-at-pt :which-key "increment")
 	 "td"	'(evil-numbers/dec-at-pt :which-key "decrement")
 	 ;;	narrowing keybinds
-	 "ns" '(outshine-narrow-to-subtree :which-key "narrow-subtree")
 	 "nd" '(narrow-to-defun :which-key "narrow-defun")
 	 "nn" '(narrow-to-region :which-key "narrow-region")
 	 "nw" '(widen :which-key "widen")
@@ -191,32 +196,61 @@
 ;; Generic keybindings - VIM only
 (general-define-key
  :states '(normal visual motion insert)
- "M-;" '(evil-commentary-line)
- "M-k" '(delete-window)
- "M-%" '(vr/query-replace)
- "M-e" '(hippie-expand))
+ "M-p" 'evil-paste-pop
+ "M-;" 'evil-commentary-line
+ "M-k" 'delete-window
+ "M-%" 'vr/query-replace
+ "M-e" 'hippie-expand)
 
 ;; Universal keybinds
 (general-define-key
- "M-[" '(evil-escape))
+ "M-[" 'evil-escape)
 
 ;; Rebinds
 (global-set-key [remap fill-paragraph] #'ono-fill-or-unfill)
 
-;; Evil custom keybindings
+;; Evil custom keybinding
 (general-define-key
  :states '(normal visual motion)
+ "\\"	'evil-execute-in-god-state
  "-" 'deer
+ "z/" 'counsel-fzf
+ "j" 'evil-next-visual-line
+ "k" 'evil-previous-visual-line
  "]d" 'git-gutter:next-hunk
  "[d" 'git-gutter:previous-hunk
  "gi" 'evil-iedit-state/iedit-mode
- "gd" 'dumb-jump-go
- "gh" 'outline-up-heading
- "gj" 'outline-forward-same-level
- "gk" 'outline-backward-same-level
- "gl" 'outline-next-visible-heading
- "gu" 'outline-previous-visible-heading)
+ "gd" 'dumb-jump-go)
 
+(general-define-key
+ :keymaps 'evil-god-state-map
+ "ESC" 'evil-god-state-bail
+ "." 'repeat)
+
+;; Setup for evil-multiedit
+(general-define-key
+ :states '(normal)
+ "M-d"'evil-multiedit-match-and-next
+ "M-D" 'evil-multiedit-match-and-prev)
+(general-define-key
+ :states '(visual)
+ "R" 'evil-multiedit-match-all
+ "C-M-D" 'evil-multiedit-restore
+ "M-d" 'evil-multiedit-next
+ "M-D" 'evil-multiedit-prev)
+(general-define-key
+ :states '(motion)
+ "RET" 'evil-multiedit-toggle-or-restrict-region)
+(general-define-key
+ :keymaps 'evil-multiedit-state-map
+ "n" 'evil-multiedit-next
+ "N" 'evil-multiedit-prev)
+(general-define-key
+ :keymaps 'evil-multiedit-state-map
+ "C-n"'evil-multiedit-and-next
+ "C-p" 'evil-multiedit-and-prev)
+
+;; evil-snipe setup
 (general-define-key
  :states '(normal)
  "s" 'evil-snipe-s
@@ -224,20 +258,27 @@
 
 ;; Custom ex bindings
 (defalias 'ex! 'evil-ex-define-cmd)
+(ex! "make" 'multi-compile-run)
 (ex! "Delete" 'delete-file)
+(ex! "Copy" 'copy-file)
 (ex! "Chmod" 'chmod)
 (ex! "Mkdir" 'mkdir)
-(ex! "Find" 'find-file)
-(ex! "ie[dit]" 'evil-iedit-state/iedit-mode)
+(ex! "[F]iles" 'counsel-find-file)
+(ex! "[B]uffers" 'ivy-switch-buffer)
+(ex! "ie[dit]" 'evil-multiedit-ex-match)
+(ex! "mc" 'evil-mc-make-all-cursors)
 (ex! "noh" 'evil-search-highlight-persist-remove-all)
 (ex! "ag" 'counsel-ag)
 (ex! "rg" 'counsel-rg)
 (ex! "sw[iper]" 'swiper)
 (ex! "cap" 'org-capture)
-(ex! "git" 'magit-status)
-(ex! "gdiff" 'magit-diff-buffer-file)
-(ex! "glog" 'magit-log-buffer-file)
-(ex! "gblame" 'magit-blame)
+(ex! "Gstatus" 'magit-status)
+(ex! "Gstage" 'magit-stage-file)
+(ex! "Gunstage" 'magit-unstage-file)
+(ex! "Gdiff" 'magit-diff-buffer-file)
+(ex! "Glog" 'magit-log-buffer-file)
+(ex! "Grep" 'counsel-projectile-rg)
+(ex! "Gblame" 'magit-blame)
 (ex! "a" 'counsel-projectile-find-file)
 (ex! "evb" 'eval-buffer)
 (ex! "init" 'ono-re-init)

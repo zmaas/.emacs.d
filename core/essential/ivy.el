@@ -32,11 +32,13 @@
 	(use-package counsel-dash
 		:ensure t
 		:config
-		(setq counsel-dash-common-docsets '("Emacs Lisp" "Go" "Python 3" "C++"))
+		(setq counsel-dash-common-docsets '("Emacs Lisp" "Go"
+																				"Python 3" "C++" "Rust"))
 		(setq counsel-dash-docsets-path "~/.docsets")
 		(setq counsel-dash-browser-func 'browse-url)
 		(add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
 		(add-hook 'go-mode-hook (lambda () (setq-local counsel-dash-docsets '("Go"))))
+		(add-hook 'rust-mode-hook (lambda () (setq-local counsel-dash-docsets '("Rust"))))
 		(add-hook 'c++-mode-hook (lambda () (setq-local counsel-dash-docsets '("C++"))))
 		(add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python 3")))))
 	(use-package ivy-rich
@@ -45,7 +47,9 @@
 		(ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
 		(setq ivy-virtual-abbreviate 'full
 					ivy-rich-switch-buffer-align-virtual-buffer t
-					ivy-rich-abbreviate-paths t))
+					ivy-rich-abbreviate-paths t
+					ivy-use-selectable-prompt t
+					ivy-auto-select-single-candidate nil))
   :config
   (ivy-mode 1)
 	(setq counsel-grep-base-command
@@ -53,9 +57,9 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
 	(setq ivy-display-style 'fancy)
-	(setq ivy-count-format "(%d/%d) ")
+	(setq ivy-count-format "\\%d/%d\\ ")
 	(setq confirm-nonexistent-file-or-buffer t)
-  (setq ivy-height 10)
+  (setq ivy-height 11)
 
   ;; Setup fuzzy matching using flx for ivy
   (use-package flx
@@ -68,6 +72,9 @@
 					(counsel-git-grep . ivy--regex-plus)
 					(t . ivy--regex-fuzzy)))
 	(setq ivy-initial-inputs-alist nil)
+	(general-define-key
+	 :keymaps 'ivy-mode-map
+	 "M-f" 'ivy-toggle-fuzzy)
   ;; rebind some ivy functions to be more sensible
 	(set-variable 'ivy-ag-base-command "ag --nocolor --nogroup --ignore-case --hidden")
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)

@@ -109,9 +109,19 @@
 
 (global-set-key (kbd "C-x C-r") 'sudo-edit)
 
+;; perl-like regexes
+(use-package pcre2el
+	:ensure t
+	:diminish ""
+	:config
+	(add-hook 'after-init-hook #'rxt-global-mode))
+
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them
 (use-package visual-regexp
 	:ensure t
+	:init
+	(use-package visual-regexp-steroids
+		:ensure t)
 	:config
 	(define-key global-map (kbd "C-c r") 'vr/replace)
 	(define-key global-map (kbd "C-c q") 'vr/query-replace))

@@ -28,6 +28,7 @@
 	;; improved code folding - like vim
 	(use-package evil-vimish-fold
 		:ensure	vimish-fold
+		:diminish ""
 		:ensure t
 		:config
 		(add-hook 'after-init-hook #'evil-vimish-fold-mode))
@@ -114,9 +115,19 @@
 		:ensure t
 		:config
 		(evilem-default-keybindings "gs"))
+	(use-package evil-rsi
+		:ensure t
+		:diminish ""
+		:config
+		(add-hook 'after-init-hook #'evil-rsi-mode))
+	(use-package evil-multiedit
+		:ensure t
+		:config
+		(setq evil-multiedit-scope 'buffer
+					evil-multiedit-follow-matches t))
 	(use-package evil-mc
 		:ensure t
-		:diminish	'global-evil-mc-mode
+		:diminish ""
 		:init
 		(use-package evil-mc-extras
 			:ensure t
@@ -125,6 +136,8 @@
 			(global-evil-mc-extras-mode  1))
 		:config
 		(global-evil-mc-mode  1))
+	(use-package evil-lispy
+		:ensure t)
 	:config
 	(evil-mode 1)
 	(setq evil-want-C-u-scroll t
@@ -143,11 +156,10 @@
         ;; don't activate mark on shift-click
 				shift-select-mode nil))
 
-;; Need to learn how to use this better -- it is really useful.
-(use-package evil-iedit-state
+(use-package god-mode
 	:ensure t
-	:ensure iedit
-	:config
-	(add-hook 'iedit-mode-hook #'evil-iedit-state))
+	:init
+	(use-package evil-god-state
+		:ensure t))
 
 ;;; zm-evil.el ends here

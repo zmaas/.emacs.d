@@ -11,12 +11,11 @@
 ;; Essential org-mode setup
 (setq org-todo-keyword
 			'((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
-
 (setq org-completion-use-ido t)
-
+(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+(setq bookmark-save-flag t)
 (setq org-agenda-files '("~/Dropbox/Org/"
 												 "~/Dropbox/Org/deft/"))
-
 (setq org-default-notes-file "~/Dropbox/Org/organizer.org")
 
 ;; Better bindings for org-mode through evil.
@@ -127,8 +126,14 @@
 								 ("\\s-\\(\\([#@]\\)[^ \n.,]+\\)" 1 (+org--tag-face 2)))))))
 	(add-hook 'org-font-lock-set-keywords-hook #'+org-init-custom-fontification))
 
+(defun +org-init-olivetti ()
+	"Initialize olivetti mode with proper width for orgmode buffers."
+	(olivetti-set-width 100)
+	(turn-on-olivetti-mode))
+
 ;; Call our UI function
 (add-hook 'org-load-hook #'+org-init-ui)
+(add-hook 'org-load-hook #'+org-init-olivetti)
 
 ;; Calls a special hydra for insertion if at the start of a line
 (define-key org-mode-map "<"
@@ -143,7 +148,7 @@
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "deft")
- "lq" '(quit-window :which-key "new")
+ "lq" '(quit-window :which-key "quit")
  "lc" '(deft-new-file :which-key "new")
  "lo" '(deft-open-file :which-key "open")
  "lr" '(deft-rename-file :which-key "rename")

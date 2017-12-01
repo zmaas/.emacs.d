@@ -11,6 +11,9 @@
 (use-package golint
 	:ensure t)
 
+(use-package flycheck-gometalinter
+	:ensure t)
+
 (use-package company-go
 	:ensure t)
 
@@ -21,9 +24,7 @@
 	; Custom compile command
   (setq compile-command "go build -v && go test -v && go vet")
 	; Automatically control imports
-  (setq gofmt-command "goimports")
-	; Call Gofmt before saving
-	(add-hook 'before-save-hook 'gofmt-before-save))
+  (setq gofmt-command "gofmt"))
 
 (add-hook 'go-mode-hook 'go-mode-setup-hook)
 

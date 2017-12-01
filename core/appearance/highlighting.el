@@ -21,7 +21,8 @@
 	:config
 	(global-highlight-thing-mode t)
 	(setq highlight-thing-delay-seconds 1
-				highlight-thing-limit-to-defun t
+				highlight-thing-what-thing 'word
+				highlight-thing-limit-to-defun nil
 				highlight-thing-case-sensitive-p t
 				highlight-thing-prefer-active-region t))
 

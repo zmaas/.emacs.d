@@ -71,22 +71,20 @@
 (use-package nlinum-relative
 	:ensure t
 	:diminish nlinum-relative-mode
-	:config
-	(add-hook 'after-init-hook #'global-nlinum-relative-mode))
-
+	:config)
 
 ;; Don't use external dialog boxes
 (setq use-dialog-box nil
 			;;  Highlight keystrokes in	minibuffer
 			echo-keystrokes 0.02)
 
-;; Show current line
-(use-package hl-line
-	:config
-	(add-hook 'after-init-hook #'global-hl-line-mode)
-	;; Don't highlight inactive buffers
-	(setq hl-line-sticky-flag nil
-				global-hl-line-sticky-flag nil))
+;; ;; Show current line
+;; (use-package hl-line
+;; 	:config
+;; 	(add-hook 'after-init-hook #'global-hl-line-mode)
+;; 	;; Don't highlight inactive buffers
+;; 	(setq hl-line-sticky-flag nil
+;; 				global-hl-line-sticky-flag nil))
 
 ;; make builtin popup menus use ace instead of the builtin option
 (use-package ace-popup-menu

@@ -25,12 +25,13 @@
 	(add-hook 'org-mode-hook #'evil-org-mode))
 
 ;; Pretty bullets for org-mode
-(use-package org-bullets
-	:ensure t
-	:init
-	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-	:config
-	(setq org-bullets-bullet-list '("\u25a0" "\u25c6" "\u25b2" "\u25b6")))
+;; Disabled for now, kind of buggy
+;; (use-package org-bullets
+;; 	:ensure t
+;; 	:init
+;; 	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; 	:config
+;; 	(setq org-bullets-bullet-list '("\u25a0" "\u25c6" "\u25b2" "\u25b6")))
 
 (use-package interleave
 	:ensure t

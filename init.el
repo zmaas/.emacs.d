@@ -37,6 +37,7 @@
 
 ;; Load startup defults to save our sanity
 (onos! :core :startup "archives") 			; We need packages. Duh.
+(onos! :core :startup "patching") 			;	Sometimes we need to fix things
 (onos! :core :startup "defaults") 			;	Sane defaults	for our	sanity
 
 ;; Leverage our bootstrapping code
@@ -89,7 +90,7 @@
 (ono! :lang "debug") 										;	sometimes stuff breaks
 
 ;; Set our default theme
-(ono-day-alt-theme)
+(ono-tron-theme)
 
 ;; Load custom-set-variables file
 (setq custom-file "~/.emacs.d/emacs-custom.el")

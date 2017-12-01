@@ -58,10 +58,10 @@
 	:diminish (flycheck-mode "fc")
 	:defer t
 	:init
-	(use-package flycheck-pos-tip
+	(use-package flycheck-popup-tip
 		:ensure t)
 	:config
 	(add-hook 'after-init-hook #'global-flycheck-mode)
-	(add-hook 'prog-mode-hook #'flycheck-pos-tip-mode))
+	(add-hook 'prog-mode-hook #'flycheck-popup-tip-mode))
 
 ;;; zm-errorchecks.el ends here

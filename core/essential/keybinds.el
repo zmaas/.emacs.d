@@ -94,19 +94,25 @@
 	 "a" '(:ignore t :which-key "appearance")
 	 "af" '(focus-mode :which-key "focus")
 	 "al" '(nlinum-mode :which-key "linum")
+	 "aL" '(nlinum-relative-mode :which-key "linum-relative")
 	 "aS" '(smooth-scrolling-mode :which-key "smooth-scrolling")
+	 "as" '(subword-mode :which-key "subword mode")
 	 "ao" '(olivetti-mode :which-key "olivetti")
 	 "at" '(eshell  :which-key "eshell")
 	 "ad" '(deft  :which-key "deft")
 	 "ae" '(elfeed  :which-key "elfeed")
+	 "ai" '(imenu :which-key "imenu")
+	 "aI" '(imenu-list :which-key "imenu-list")
 	 "ac" '(:ignore t :which-key "colors")
 	 "acd" '(ono-day-theme :which-key "day")
 	 "acs" '(ono-day-bright-theme :which-key "day-bright")
+	 "acl" '(ono-solarized-theme :which-key "solarized-light")
 	 "acb" '(ono-day-alt-theme :which-key "day-alt")
 	 "acn" '(ono-night-theme :which-key "night")
 	 "aca" '(ono-night-alt-theme :which-key "night-alt")
 	 "act" '(ono-tron-theme :which-key "night-tron")
-	 "acc" '(dark-night-theme :which-key "cyberpunk")
+	 "acc" '(ono-dark-night-theme :which-key "cyberpunk")
+	 "acr" '(ono-plain-night-theme :which-key "plain dark")
 	 "ap" '(prodigy :which-key "prodigy")
 	 "aP" '(proced :which-key "proced")
 	 ;; projectile specific bindings
@@ -142,7 +148,8 @@
 	 "wj" '(evil-window-down :which-key "down")
 	 "wh" '(evil-window-left :which-key "left")
 	 "wu" '(winner-undo :which-key "undo")
-	 "wr" '(winner-redo :which-key "redo")
+	 "wR" '(winner-redo :which-key "redo")
+	 "wr" '(evil-window-rotate-downwards :which-key "rotate")
 	 "wm" '(maximize-window :which-key "max")
 	 "wM" '(minimize-window :which-key "min")
 	 "wpc" '(persp-add-new :which-key "new persp")
@@ -200,7 +207,9 @@
  "M-;" 'evil-commentary-line
  "M-k" 'delete-window
  "M-%" 'vr/query-replace
- "M-e" 'hippie-expand)
+ "M-e" 'hippie-expand
+ "M-/" 'hippie-expand
+ "M-u" 'tiny-expand)
 
 ;; Universal keybinds
 (general-define-key
@@ -215,11 +224,12 @@
  "\\"	'evil-execute-in-god-state
  "-" 'deer
  "z/" 'counsel-fzf
+ "gb" 'ivy-switch-buffer
  "j" 'evil-next-visual-line
  "k" 'evil-previous-visual-line
  "]d" 'git-gutter:next-hunk
  "[d" 'git-gutter:previous-hunk
- "gi" 'evil-iedit-state/iedit-mode
+ "gi" 'sp-kill-symbol
  "gd" 'dumb-jump-go)
 
 (general-define-key
@@ -230,8 +240,8 @@
 ;; Setup for evil-multiedit
 (general-define-key
  :states '(normal)
- "M-d"'evil-multiedit-match-and-next
- "M-D" 'evil-multiedit-match-and-prev)
+ "M-d"'evil-multiedit-match-symbol-and-next
+ "M-D" 'evil-multiedit-match-symbol-and-prev)
 (general-define-key
  :states '(visual)
  "R" 'evil-multiedit-match-all
@@ -256,22 +266,28 @@
  "s" 'evil-snipe-s
  "S" 'evil-snipe-S)
 
-;; Custom ex bindings
+;; Custom ex bindings: These provide emulation
+;; of many of vim's builtin ex commands using emacs features
 (defalias 'ex! 'evil-ex-define-cmd)
 (ex! "make" 'multi-compile-run)
+;; Replicate various vim	plugins
 (ex! "Delete" 'delete-file)
 (ex! "Copy" 'copy-file)
 (ex! "Chmod" 'chmod)
 (ex! "Mkdir" 'mkdir)
-(ex! "[F]iles" 'counsel-find-file)
-(ex! "[B]uffers" 'ivy-switch-buffer)
+(ex! "F[iles]" 'counsel-find-file)
+(ex! "B[uffers]" 'ivy-switch-buffer)
 (ex! "ie[dit]" 'evil-multiedit-ex-match)
+(ex! "SudoEdit" 'sudo-edit)
 (ex! "mc" 'evil-mc-make-all-cursors)
+(ex! "co[pen]" 'flycheck-list-errors)
+(ex! "tjump" 'counsel-gtags-find-symbol)
 (ex! "noh" 'evil-search-highlight-persist-remove-all)
 (ex! "ag" 'counsel-ag)
 (ex! "rg" 'counsel-rg)
 (ex! "sw[iper]" 'swiper)
 (ex! "cap" 'org-capture)
+;; Emulate fugitive.vim
 (ex! "Gstatus" 'magit-status)
 (ex! "Gstage" 'magit-stage-file)
 (ex! "Gunstage" 'magit-unstage-file)
@@ -279,6 +295,14 @@
 (ex! "Glog" 'magit-log-buffer-file)
 (ex! "Grep" 'counsel-projectile-rg)
 (ex! "Gblame" 'magit-blame)
+;; Emulate vim tabs using	persp-mode
+(ex! "tabnew" 'persp-add-new)
+(ex! "tabkill" 'persp-kill)
+(ex! "tabedit" 'persp-rename)
+(ex! "tabclose" 'persp-save-and-kill)
+(ex! "tabnext" 'persp-next)
+(ex! "tabprevious" 'persp-prev)
+;; Other bindings
 (ex! "a" 'counsel-projectile-find-file)
 (ex! "evb" 'eval-buffer)
 (ex! "init" 'ono-re-init)

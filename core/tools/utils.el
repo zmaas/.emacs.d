@@ -29,6 +29,7 @@
 (use-package multi-compile
 	:ensure t
 	:config
+	(setq compilation-scroll-output t)
 	(setq multi-compile-alist '((rust-mode . (("rust-debug" . "cargo run")
 																						("rust-release" . "cargo run --release")
 																						("rust-test" . "cargo test")))

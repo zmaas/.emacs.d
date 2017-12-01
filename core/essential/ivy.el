@@ -54,6 +54,7 @@
   (ivy-mode 1)
 	(setq counsel-grep-base-command
 				"rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+	(setq counsel-fzf-cmd "rg -S --vimgrep --files --hidden -g '*%s*'")
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
 	(setq ivy-display-style 'fancy)
@@ -70,6 +71,7 @@
 					(counsel-yank-pop . ivy--regex-plus)
 					(ivy-bibtex . ivy--regex-plus)
 					(counsel-git-grep . ivy--regex-plus)
+					(counsel-fzf . ivy--regex-plus)
 					(t . ivy--regex-fuzzy)))
 	(setq ivy-initial-inputs-alist nil)
 	(general-define-key

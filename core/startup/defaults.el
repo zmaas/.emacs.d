@@ -12,6 +12,10 @@
 ;; Save history of everything by default
 (savehist-mode t)
 
+;; Save recent files by default
+(recentf-mode 1)
+(setq recentf-max-saved-items 512)
+
 ;; Allow us to diminish packages with use-package
 (require 'diminish)
 (diminish 'auto-revert-mode)
@@ -42,6 +46,7 @@
 ;; (setq-default fill-column 80)
 (setq-default tab-width 2)
 ;; Disable annoying	UI elements
+(blink-cursor-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)

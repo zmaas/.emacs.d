@@ -27,7 +27,7 @@
 					("*Flycheck errors*" :other t :popup t :select t
 					 :align below :size 0.2)
 					("*Synonyms List*" :other t :select t)
-          ("*quickrun*" :size 0.5 :align right)
+          ("*quickrun*" :popup t :select t)
           ("*evil-jumps*" :same t)
           ("*evil-marks*" :same t)
 					("*compilation*" :select t)
@@ -52,9 +52,17 @@
 	:ensure	t
 	:diminish undo-tree-mode
 	:config
+	(general-define-key
+	 :states 'motion
+	 :keymaps '(undo-tree-visualizer-mode-map
+							undo-tree-visualizer-selection-mode-map)
+	 "k" 'undo-tree-visualize-undo
+	 "j" 'undo-tree-visualize-redo
+	 "h" 'undo-tree-visualize-switch-branch-right
+	 "l" 'undo-tree-visualize-switch-branch-left
+	 "t" 'undo-tree-visualizer-toggle-timestamps)
 	(setq undo-tree-visualizer-timestamps t)
 	(setq undo-tree-visualizer-diff t)
-	(setq evil-want-fine-undo 'fine)
 	(global-undo-tree-mode t))
 
 ;; Ranger is a vimish file-manager

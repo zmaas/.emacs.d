@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: problem
+# key: prob
+# --
+\paragraph{Problem ${1:name}} $0
+
+\paragraph{Solution $1}

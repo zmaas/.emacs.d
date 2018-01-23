@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: autocite
-# key: ac
+# key: aref
 # --
 \autocite{$1} $0

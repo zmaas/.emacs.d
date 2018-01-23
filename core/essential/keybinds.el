@@ -23,6 +23,7 @@
 	 "SPC" '(counsel-grep-or-swiper :which-key "swiper")
 	 "TAB" '(evil-buffer :which-key "last")
 	 ":" '(counsel-M-x :which-key "M-x")
+	 ";" '(counsel-M-x :which-key "M-x")
 	 "s" '(flyspell-correct-previous-word-generic :which-key "spellcheck")
 	 "?" '(counsel-locate :which-key "locate")
 	 "/" '(swiper-all :which-key "swipeall")
@@ -70,9 +71,10 @@
 	 "fx" '(delete-file :which-key "delete")
 	 "fr" '(sudo-edit :which-key "sudo")
 	 "ft" '(treemacs :which-key "tree")
+	 "fl" '(swiper :which-key "lines")
 	 ;; Insertion editing tools
 	 "i" '(:ignore t :which-key "insertion")
-	 "il"  '(lod :which-key "disappointed")
+	 "id"  '(lod :which-key "ಠ_ಠ")
 	 "ia" '(aya-create :which-key "create snippet")
 	 "ie" '(aya-expand :which-key "expand saved snippet")
 	 "ir" '(re-builder :which-key "re-builder")
@@ -103,6 +105,7 @@
 	 "ae" '(elfeed  :which-key "elfeed")
 	 "ai" '(imenu :which-key "imenu")
 	 "aI" '(imenu-list :which-key "imenu-list")
+	 "aC" '(calc :which-key "calc")
 	 "ac" '(:ignore t :which-key "colors")
 	 "acd" '(ono-day-theme :which-key "day")
 	 "acs" '(ono-day-bright-theme :which-key "day-bright")
@@ -128,6 +131,8 @@
 	 "px" '(projectile-kill-buffers :which-key "killall")
 	 "pt" '(projectile-run-eshell :which-key "eshell")
 	 "pT" '(treemacs-projectile :which-key "tree")
+	 "po" '(projectile-multi-occur :which-key "capture")
+	 "pc" '(counsel-projectile-org-capture :which-key "capture")
 	 ;; Configuration for [m]essaging tools
 	 "m" '(:ignore t :which-key "mail")
 	 "mi" '(mu4e :which-key "mu4e")
@@ -207,9 +212,17 @@
  "M-;" 'evil-commentary-line
  "M-k" 'delete-window
  "M-%" 'vr/query-replace
- "M-e" 'hippie-expand
  "M-/" 'hippie-expand
- "M-u" 'tiny-expand)
+ "M-u" 'tiny-expand
+ "C-;" 'avy-goto-char-2
+ "C-h f" #'helpful-callable
+ "C-h v" #'helpful-variable
+ "C-h k" #'helpful-key
+ "C-c C-." #'helpful-at-point)
+
+(general-define-key
+ :states '(insert)
+ "C-p" 'hippie-expand)
 
 ;; Universal keybinds
 (general-define-key
@@ -266,6 +279,13 @@
  "s" 'evil-snipe-s
  "S" 'evil-snipe-S)
 
+;; Custom key-chord for very fast ex access (fd -> :)
+(use-package key-chord
+	:ensure t
+	:config
+	(add-hook 'after-init-hook key-chord-mode)
+	(key-chord-define evil-insert-state-map "fd" 'ono-escape-and-ex))
+
 ;; Custom ex bindings: These provide emulation
 ;; of many of vim's builtin ex commands using emacs features
 (defalias 'ex! 'evil-ex-define-cmd)
@@ -282,7 +302,7 @@
 (ex! "mc" 'evil-mc-make-all-cursors)
 (ex! "co[pen]" 'flycheck-list-errors)
 (ex! "tjump" 'counsel-gtags-find-symbol)
-(ex! "noh" 'evil-search-highlight-persist-remove-all)
+(ex! "noh" 'evil-ex-nohighlight)
 (ex! "ag" 'counsel-ag)
 (ex! "rg" 'counsel-rg)
 (ex! "sw[iper]" 'swiper)

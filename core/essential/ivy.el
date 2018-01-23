@@ -76,7 +76,8 @@
 	(setq ivy-initial-inputs-alist nil)
 	(general-define-key
 	 :keymaps 'ivy-mode-map
-	 "M-f" 'ivy-toggle-fuzzy)
+	 "M-f" 'ivy-toggle-fuzzy
+	 "C-f" 'ivy-call)
   ;; rebind some ivy functions to be more sensible
 	(set-variable 'ivy-ag-base-command "ag --nocolor --nogroup --ignore-case --hidden")
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)

@@ -8,6 +8,11 @@
 (use-package circe
 	:ensure t
 	:config
+	(enable-circe-color-nicks)
+	(enable-circe-display-images)
+	(circe-lagmon-mode)
+	(setq lui-track-bar-behavior 'before-switch-to-buffer)
+	(enable-lui-track-bar)
 	(setq circe-reduce-lurker-spam t
 				circe-format-server-topic "*** Topic change by {userhost}: {topic-diff}"
 				circe-format-say "{nick:-16s} {body}"
@@ -15,6 +20,14 @@
 				lui-flyspell-alist '((".*" "american"))
 				lui-time-stamp-position 'right-margin
 				lui-fill-type nil))
+
+(use-package circe-notifications
+	:ensure t
+	:config
+	(eval-after-load "circe-notifications"
+		'(setq circe-notifications-watch-strings
+					 '())) ;; Nicks go here
+	(add-hook 'circe-server-connected-hook 'enable-circe-notifications))
 
 ;; Custom auth functions
 (defun ono-fetch-irc-password (&rest params)

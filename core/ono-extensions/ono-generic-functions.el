@@ -28,7 +28,7 @@
                             ("\x2013" . "-")
                             ;; em-dash
                             ("\x2014" . "-"))
-  "Map of smart quotes to their replacements"
+	"Map of smart quotes to their replacements"
   :type '(repeat (cons (string :tag "Smart Character  ")
                        (string :tag "Ascii Replacement"))))
 
@@ -53,6 +53,18 @@ buffer." (interactive)
 (indent-buffer)
 (untabify-buffer)
 (delete-trailing-whitespace))
+
+(defun ono-safe-send ()
+	"Ask before sending an email."
+	(interactive)
+	(when (yes-or-no-p "Really send this message? ")
+		(message-send)))
+
+(defun ono-escape-and-ex ()
+	"Escape to normal mode and move to ex"
+	(interactive)
+	(evil-normal-state)
+	(evil-ex))
 
 ;; close all open parens before point
 (defun close-all-parentheses ()

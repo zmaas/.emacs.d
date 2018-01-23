@@ -16,6 +16,11 @@
 	:config
 	(evil-set-initial-state 'mu4e-main-mode 'emacs))
 
+(use-package org-mime
+	:ensure t
+	:config
+	(setq mail-user-agent 'mu4e-user-agent))
+
 (setq mu4e-maildir "~/.mail/")
 
 ;; Store account personal settings in an untracked file
@@ -73,7 +78,8 @@
  "le" '(mml-secure-encrypt-pgpmime :which-key "PGP encrypt (mime)")
  "lE" '(mml-secure-encrypt-pgp :which-key "PGP encrypt (plain)")
  "la" '(mml-attach-file :which-key "attach file")
- "lI" '(langtool-check :which-key "spellcheck")
- "ll" '(langtool-check-done :which-key "done spellcheck"))
+ "lL" '(langtool-check :which-key "spellcheck")
+ "ll" '(langtool-check-done :which-key "done spellcheck")
+ "ld" '(ono-safe-send :which-key "send!"))
 
 ;; mail.el ends here

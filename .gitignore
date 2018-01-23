@@ -47,3 +47,5 @@ url/*
 /.cache/treemacs-persist
 /.persistent-scratch
 meghanada/*
+emojis/*
+org-gcal/*

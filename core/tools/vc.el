@@ -12,6 +12,7 @@
 	(use-package evil-magit
 		:ensure t)
 	(use-package magit-gitflow
+		:after magit
 		:ensure t
 		:config
 		(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))

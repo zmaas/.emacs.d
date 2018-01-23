@@ -24,10 +24,15 @@
 				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
 ;; tiny system monitor, helpful when we spend all of our time here
-(use-package symon
-	:ensure t
+;; (use-package symon
+;; 	:ensure t
+;; 	:config
+;; 	(add-hook 'after-init-hook 'symon-mode))
+
+;; Always show the function we are inside
+(use-package which-func
 	:config
-	(add-hook 'after-init-hook 'symon-mode))
+	(which-function-mode 1))
 
 ;; Nice dashboard for our first startup
 (use-package dashboard

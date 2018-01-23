@@ -20,7 +20,9 @@
 (setq reb-re-syntax 'string)
 
 ;; Use eww for opening webpages
-(setq browse-url-browser-function 'eww-browse-url)
+																				;(setq browse-url-browser-function 'eww-browse-url)
+(setq browse-url-browser-function 'browse-url-chrome) ; google's browser
+
 
 ;; Preliminary addition of quickrun to speed up development
 (use-package quickrun
@@ -49,6 +51,8 @@
 	:commands er/expand-region
 	:config
 	(global-set-key (kbd "C-=") 'er/expand-region))
+
+;;
 
 ;; ws-butler - easy white space trimming
 ;; won't make commits messy, only touches edited lines
@@ -130,9 +134,6 @@
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
-;; go to characters quickly and easily
-(global-set-key (kbd "C-;") 'avy-goto-char)
-
 ;; zap to char - lets us kill all text up to the next instance of a character
 (use-package zzz-to-char
 	:ensure t
@@ -183,6 +184,14 @@
 	(persistent-scratch-setup-default))
 
 (use-package esup
+	:ensure t)
+
+(use-package atomic-chrome
+	:ensure t
+	:config
+	(atomic-chrome-start-server))
+
+(use-package helpful
 	:ensure t)
 
 ;; sometimes we forget keybinds - this gives us a reminder

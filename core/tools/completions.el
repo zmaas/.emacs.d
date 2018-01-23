@@ -84,8 +84,10 @@
 (use-package yasnippet
 	:ensure t
 	:diminish yas-global-mode yas-minor-mode
+	:init
+	(use-package yasnippet-snippets
+		:ensure t)
 	:config
-	(add-to-list 'yas-snippet-dirs "~/.emacs.d/yasnippet-snippets/")
 	(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
 	(defvar company-mode/enable-yas t
 		"Enable yasnippet for all backends.")

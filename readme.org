@@ -15,25 +15,32 @@ If you stumbled onto this repository from one of my personal pages and you're no
 
 * Goals
 
-As wonderful as stock Emacs is, it can lack some of the amenities of modern applications. The big things I try to implement with this configuration are:
-- Better integration of evil-mode. VIM's modal editing paradigm is something I started on when I was very young, and anything else just feels wrong. To do this, I include a large number of extended plugins that extend or fix functionality to be more in-line with my expectations.
+The big things I try to implement with this configuration are:
+- Better integration of evil-mode. VIM's modal editing paradigm is strange and wonderful, and anything else just feels wrong. To do this, I include a large number of extended plugins that extend or fix functionality to be more in-line with my expectations.
 - Ergonomic keybindings that are largely mnemonic. VIM sets an excellent precedent here. I use a leader key (SPC) with bindings mapped to the homerow and repeated positions as much as possible.
 - Fast development. By using the many packages with first-class REPL support along with other tools like quickrun, the rate of prototyping and production can be significantly accelerated.
-- Smarter defaults. From hot-plugging better alternatives to things like just-one-space and zap-to-char, to extended tools like swiper and imenu-anywhere, plus management packages like use-package and shackle, there are a ton of places where a little bit of work to clean up the defaults makes Emacs that much more of a joy to use.
+- Smarter defaults. From hot-plugging better alternatives for things like just-one-space and zap-to-char, to extended tools like swiper and imenu-anywhere, plus management packages like use-package and shackle, there are a ton of places where a little bit of work to clean up the defaults makes Emacs that much more of a joy to use.
 - An internal module system that avoids circular dependency trees and ensures that modules are loaded in the proper order every single time. This is still very much a work in progress, but is getting there. I hope that by doing this I can keep this configuration from ever getting out of hand.
 
 * Languages
 The primary languages I work on using Emacs are:
 - Python for shell scripting
+- C++ for performance-intensive development
 - Golang for the quick and easy, slowly supplanting python
 - Clojure for long running programs and CLJS
-- C++ for my (sort of) day job
-- LaTeX for all of my homework and report writing
+- LaTeX for all of my writing
 - Orgmode for task management and remembering things
+Languages with slightly less developed support:
+- Common lisp, since lispy languages are fantastic
+- Haskell, for programming more like math
 Other languages that have some level of support are:
-- Common lisp, because lisp is beautiful
 - Racket and other schemes, same as above
-- Haskell, because I really enjoy functional programming
 - R, for statistical programming
+- Java, since I work with clojure sometimes
 - Various markdown languages
 - More to come!
+* Other Apps
+- mu4e for Email
+- IRC using CIRCE
+- Elfeed for feed-reading
+- Some games here and there

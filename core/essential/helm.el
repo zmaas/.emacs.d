@@ -17,18 +17,21 @@
 		:init
 		(use-package flx
 			:ensure t))
+	(use-package helm-fuzzier
+		:ensure t
+		:config
+		(helm-fuzzier-mode t))
 	(use-package helm-ag
 		:ensure t
 		:config
 		(set-variable 'helm-ag-base-command "ag --nocolor --nogroup --ignore-case --hidden"))
+	(use-package helm-org-rifle
+		:ensure t)
 	:config
 	;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 	;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
 	;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
 	(helm-flx-mode t)
-	(global-set-key (kbd "C-c h") 'helm-command-prefix)
-	(global-unset-key (kbd "C-x c"))
-
 	(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 	(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 	(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
@@ -42,40 +45,13 @@
 				helm-ff-file-name-history-use-recentf t)
 
 	(helm-autoresize-mode t)
-
-	(global-set-key (kbd "M-x") 'helm-M-x)
 	(setq helm-m-x-fuzzy-match t)
-	(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
-	(global-set-key (kbd "C-x b") 'helm-mini)
 	(setq helm-buffers-fuzzy-matching t
 				helm-recentf-fuzzy-match    t)
 
-	(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-	(global-set-key (kbd "C-x C-f") 'helm-find-files)
-
 	(setq helm-semantic-fuzzy-match t
 				helm-imenu-fuzzy-match    t)
-
-	(global-set-key (kbd "M-i") 'helm-swoop)
-	(global-set-key (kbd "M-i") 'helm-swoop-back-to-last-point)
-	(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
-	(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
-
-	;; when doing isearch, hand the word over to helm-swoop
-	(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-	;; from helm-swoop to helm-multi-swoop-all
-	(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
-	;; when doing evil-search, hand the word over to helm-swoop
-	(define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
-
-	;; instead of helm-multi-swoop-all, you can also use helm-multi-swoop-current-mode
-	(define-key helm-swoop-map (kbd "M-m") 'helm-multi-swoop-current-mode-from-helm-swoop)
-	;; move up and down like isearch
-	(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
-	(define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
-	(define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
-	(define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
 
 	;; save buffer when helm-multi-swoop-edit complete
 	(setq helm-multi-swoop-edit-save t)
@@ -106,8 +82,6 @@
 						'(helm-mm-exact-search
 							helm-mm-search
 							helm-candidates-in-buffer-search-default-fn
-							helm-fuzzy-search))))
-
-	(helm-mode t))
+							helm-fuzzy-search))))	)
 
 ;;; zm-helm ends here

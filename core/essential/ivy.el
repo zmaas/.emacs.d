@@ -16,6 +16,14 @@
 		:ensure t)
 	(use-package smex
 		:ensure t)
+	(use-package historian
+		:ensure t
+		:init
+		(use-package ivy-historian
+			:ensure t)
+		:config
+		(historian-mode t)
+		(ivy-historian-mode t))
 	(use-package flx
 		:ensure t)
 	(use-package imenu-anywhere
@@ -25,10 +33,11 @@
 		:ensure t
 		:config
 		(all-the-icons-ivy-setup))
+	(use-package counsel-tramp
+		:ensure t)
   (use-package counsel-projectile
     :ensure t
-		:config
-		(counsel-projectile-on))
+		:config)
 	(use-package counsel-dash
 		:ensure t
 		:config
@@ -48,6 +57,7 @@
 		(setq ivy-virtual-abbreviate 'full
 					ivy-rich-switch-buffer-align-virtual-buffer t
 					ivy-rich-abbreviate-paths t
+					ivy-rich-path-style 'abbrev
 					ivy-use-selectable-prompt t
 					ivy-auto-select-single-candidate nil))
   :config

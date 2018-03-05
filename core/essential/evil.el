@@ -23,7 +23,7 @@
 		:ensure t
 		:diminish evil-escape-mode
 		:config
-		(add-hook 'after-init-hook #'evil-escape-mode)
+		(evil-escape-mode t)
 		(setq-default evil-escape-key-sequence "jk"))
 	;; improved code folding - like vim
 	(use-package evil-vimish-fold
@@ -31,7 +31,7 @@
 		:diminish ""
 		:ensure t
 		:config
-		(add-hook 'after-init-hook #'evil-vimish-fold-mode))
+		(evil-vimish-fold-mode t))
 	(use-package evil-snipe
 		:ensure t
 		:diminish evil-snipe-mode
@@ -138,12 +138,19 @@
 		(global-evil-mc-mode  1))
 	(use-package evil-lispy
 		:ensure t)
+	(use-package evil-collection
+		:ensure t
+		:custom
+		(evil-collection-setup-minibuffer t)
+		:init
+		(evil-collection-init))
 	:config
 	(evil-mode 1)
 	(setq evil-want-C-u-scroll t
         evil-want-visual-char-semi-exclusive t
         evil-want-Y-yank-to-eol t
         evil-magic t
+        evil-search-module 'evil-search	;; Must also set manually for	gn
         evil-echo-state t
         evil-indent-convert-tabs t
         evil-ex-search-vim-style-regexp t
@@ -153,8 +160,10 @@
         evil-mode-line-format 'nil
         ;; more vim-like behavior
         evil-symbol-word-search t
+				evil-want-fine-undo 'fine
         ;; don't activate mark on shift-click
-				shift-select-mode nil))
+				shift-select-mode nil)
+	(evil-select-search-module 'evil-search-modu 'evil-search))
 
 (use-package god-mode
 	:ensure t

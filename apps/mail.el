@@ -11,6 +11,8 @@
 (require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it)
 
+(use-package org-mu4e)
+
 (use-package evil-mu4e
 	:ensure t
 	:config

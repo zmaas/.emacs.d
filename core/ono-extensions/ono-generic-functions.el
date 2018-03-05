@@ -6,7 +6,7 @@
   (find-file user-init-file))
 
 (defun ono-open-organizer-file ()
-  "Open the init file."
+  "Open the org-mode organizer file."
   (interactive)
   (find-file "~/Dropbox/Org/organizer.org"))
 
@@ -16,7 +16,7 @@
   (unfill-toggle))
 
 (defun lod ()
-  "Well. This is disappointing."
+  "Well.  This is disappointing."
   (interactive)
   (insert "\u0ca0_\u0ca0"))
 

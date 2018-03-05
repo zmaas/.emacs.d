@@ -21,8 +21,7 @@
 
 ;; Use eww for opening webpages
 																				;(setq browse-url-browser-function 'eww-browse-url)
-(setq browse-url-browser-function 'browse-url-chrome) ; google's browser
-
+(setq browse-url-browser-function 'browse-url-firefox) ; mozilla browser
 
 ;; Preliminary addition of quickrun to speed up development
 (use-package quickrun
@@ -96,6 +95,7 @@
 	:init
   ;; disable company completion of *all* remote filenames, whether
   ;; connected or not -- fixes annoying latency
+	(setq tramp-default-method "ssh")
 	(defun company-files--connected-p (file)
 		(not (file-remote-p file))))
 
@@ -199,7 +199,8 @@
 	:ensure t
 	:diminish which-key-mode
 	:config
-	(which-key-setup-side-window-bottom)
+	(which-key-setup-side-window-right-bottom)
+	(which-key-enable-god-mode-support)
 	(setq which-key-idle-delay 0.5)
 	(which-key-mode t))
 

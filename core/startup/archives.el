@@ -57,12 +57,14 @@
 	(paradox-enable))
 
 (defun ono-update-packages ()
-	"Updates all of our packages in ELPA and from QUELPA"
+	"Update all of our packages in ELPA and from QUELPA.
+Then, runs the re-initialization sequence."
 	(interactive)
 	(package-refresh-contents)
 	(paradox-upgrade-packages)
 	(quelpa-self-upgrade)
-	(quelpa-upgrade))
+	(quelpa-upgrade)
+	(ono-re-init))
 
 (defun ono-re-init ()
 	"Reloads init.el after any changes that we have made."

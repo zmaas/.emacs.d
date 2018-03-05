@@ -44,12 +44,18 @@
 	"Loads a module from the path fetched using ono-module-path"
 	(load (ono-submodule-path module submodule file)))
 
-(defmacro ono! (module file)
+(defun ono-module! (module file)
 	"Loads initialization files one at a time"
 	(ono-module-load module file))
 
-(defmacro onos! (module submodule file)
+(defun ono-submodule! (module submodule file)
 	"Loads initialization files one at a time"
 	(ono-submodule-load module submodule file))
+
+(defun ono! (module &optional submodule file)
+	"Loads a module or a submodule"
+	(if (keywordp submodule)
+			(ono-submodule! module submodule file)
+		(ono-module! module submodule)))
 
 ;;; jack-in.el ends here

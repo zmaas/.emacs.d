@@ -15,13 +15,14 @@
 				ns-use-srgb-colorspace nil
 				powerline-default-separator 'slant)
 	:config
-	(spaceline-emacs-theme)
+	(spaceline-spacemacs-theme)
 	(spaceline-toggle-anzu-on)
 	(spaceline-toggle-window-number-on)
 	(setq anzu-cons-mode-line-p nil
 				spaceline-workspace-numbers-unicode t
 				spaceline-window-numbers-unicode t
 				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+
 
 ;; tiny system monitor, helpful when we spend all of our time here
 ;; (use-package symon
@@ -35,16 +36,16 @@
 	(which-function-mode 1))
 
 ;; Nice dashboard for our first startup
-(use-package dashboard
-	:ensure t
-	:config
-	(dashboard-setup-startup-hook)
-	(setq dashboard-banner-logo-title "Welcome back, kid."
-				dashboard-startup-banner 'logo
-				dashboard-items '((recents  . 5)
-													(bookmarks . 5)
-													(projects . 5)
-													(agenda . 5))))
+;; (use-package dashboard
+;; 	:ensure t
+;; 	:config
+;; 	(dashboard-setup-startup-hook)
+;; 	(setq dashboard-banner-logo-title "Welcome back, kid."
+;; 				dashboard-startup-banner 'logo
+;; 				dashboard-items '((recents  . 5)
+;; 													(bookmarks . 5)
+;; 													(projects . 5)
+;; 													(agenda . 5))))
 
 ;; Highlight git diffs in the	fringe
 (use-package git-gutter-fringe
@@ -82,14 +83,6 @@
 (setq use-dialog-box nil
 			;;  Highlight keystrokes in	minibuffer
 			echo-keystrokes 0.02)
-
-;; ;; Show current line
-;; (use-package hl-line
-;; 	:config
-;; 	(add-hook 'after-init-hook #'global-hl-line-mode)
-;; 	;; Don't highlight inactive buffers
-;; 	(setq hl-line-sticky-flag nil
-;; 				global-hl-line-sticky-flag nil))
 
 ;; make builtin popup menus use ace instead of the builtin option
 (use-package ace-popup-menu

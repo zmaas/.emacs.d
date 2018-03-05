@@ -20,6 +20,8 @@
 	(set-face-background 'fringe (face-attribute 'default :background))
 	(set-face-background 'linum (face-attribute 'default :background))
 	(run-hooks 'ono-after-theme-hook)
+	(doom-themes-org-config)
+	(doom-themes-visual-bell-config)
 	(powerline-reset))
 
 (use-package dracula-theme

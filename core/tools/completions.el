@@ -5,6 +5,20 @@
 
 ;;; comment
 
+;; ycmd -- youcompleteme daemon
+;; (use-package ycmd
+;; 	:ensure t
+;; 	:init
+;;   (use-package company-ycmd
+;;     :ensure t
+;;     :init (company-ycmd-setup)
+;;     :config (add-to-list 'company-backends (company-mode/backend-with-yas 'company-ycmd)))
+;; 	:config
+;; 	(set-variable 'ycmd-server-command
+;; 								`("python" ,(file-truename
+;; 														 "~/.emacs.d/YouCompleteMe/third_party/ycmd/ycmd")))
+;; 	(global-ycmd-mode t))
+
 ;; company - easy auto-completion of code for all modes and documentation integration
 (use-package company
 	:ensure t
@@ -42,13 +56,21 @@
 	;; Make it work more like	Vim's YCM, TAB cycling
 	(company-tng-configure-default)
 	;; More convenient bindings
-	(setq company-minimum-prefix-length 3
-				company-tooltip-limit 10
+	(setq company-minimum-prefix-length 2
+				company-tooltip-limit 9
 				company-idle-delay 0.5
 				company-show-numbers t
 				company-require-match 'never
 				company-selection-wrap-around t
 				company-tooltip-align-annotations t)
+	;; Setup Default Backends
+	(setq company-backends
+				'((company-files          ; files & directory
+					 company-keywords       ; keywords
+					 company-capf
+					 company-yasnippet)
+					(company-abbrev company-dabbrev)))
+
 
 	(general-define-key
 	 :keymaps 'company-active-map
@@ -66,8 +88,8 @@
   ;; force hippie-expand completions to be case-sensitive
   (defadvice hippie-expand (around hippie-expand-case-fold activate)
     "Try to do case-sensitive matching (not effective with all functions)."
-    (let ((case-fold-search nil))
-      ad-do-it))
+    (((case-fold-search nil))
+		 ad-do-it))
 
   :config
   (setq hippie-expand-try-functions-list

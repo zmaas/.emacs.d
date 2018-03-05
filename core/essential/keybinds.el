@@ -69,7 +69,7 @@
 	 "fd" '(deer :which-key "directory")
 	 "fR" '(ranger :which-key "ranger")
 	 "fx" '(delete-file :which-key "delete")
-	 "fr" '(sudo-edit :which-key "sudo")
+	 "fr" '(counsel-tramp :which-key "tramp")
 	 "ft" '(treemacs :which-key "tree")
 	 "fl" '(swiper :which-key "lines")
 	 ;; Insertion editing tools
@@ -155,19 +155,26 @@
 	 "wu" '(winner-undo :which-key "undo")
 	 "wR" '(winner-redo :which-key "redo")
 	 "wr" '(evil-window-rotate-downwards :which-key "rotate")
-	 "wm" '(maximize-window :which-key "max")
-	 "wM" '(minimize-window :which-key "min")
-	 "wpc" '(persp-add-new :which-key "new persp")
-	 "wps" '(persp-switch :which-key "switch persp")
-	 "wpw" '(persp-save-state-to-file :which-key "write persp")
-	 "wpl" '(persp-load-state-from-file :which-key "load persp")
-	 "wpk" '(persp-switch :which-key "kill buffer in persp")
-	 "wpb" '(persp-switch-to-buffer :which-key "change buffer in persp")
-	 "wpi" '(persp-import-buffers :which-key "import buffers to persp")
-	 "wpa" '(persp-add-buffer :which-key "add buffer to persp")
-	 "wpx" '(persp-kill-buffer :which-key "kill persp buffer")
-	 "wpX" '(persp-kill :which-key "kill persp")
-	 "wpr" '(persp-rename :which-key "rename persp")
+	 "wm" '(ace-maximize-window :which-key "max")
+	 "wM" '(ace-swap-window :which-key "swap")
+	 ;; "wp" '(:ignore t :which-key "persp")
+	 ;; "wpc" '(persp-add-new :which-key "new persp")
+	 ;; "wps" '(persp-switch :which-key "switch persp")
+	 ;; "wpw" '(persp-save-state-to-file :which-key "write persp")
+	 ;; "wpl" '(persp-load-state-from-file :which-key "load persp")
+	 ;; "wpk" '(persp-switch :which-key "kill buffer in persp")
+	 ;; "wpb" '(persp-switch-to-buffer :which-key "change buffer in persp")
+	 ;; "wpi" '(persp-import-buffers :which-key "import buffers to persp")
+	 ;; "wpa" '(persp-add-buffer :which-key "add buffer to persp")
+	 ;; "wpx" '(persp-kill-buffer :which-key "kill persp buffer")
+	 ;; "wpX" '(persp-kill :which-key "kill persp")
+	 ;; "wpr" '(persp-rename :which-key "rename persp")
+	 "wg" '(:ignore t :which-key "workgroups")
+	 "wgc" '(wg-create-workgroup :which-key "new workgroup")
+	 "wgs" '(wg-switch-to-workgroup :which-key "switch workgroup")
+	 "wgr" '(wg-rename-workgroup :which-key "rename workgroup")
+	 "wgS" '(wg-save-session :which-key "save workgroup")
+	 "wgR" '(wg-open-session :which-key "open workgroup")
 	 ;; delimiter bindings - more to do here...
 	 "d" '(:ignore t :which-key "delimiters")
 	 "dd" '(er/expand-region :which-key "expand region")
@@ -194,6 +201,7 @@
 	 "td"	'(evil-numbers/dec-at-pt :which-key "decrement")
 	 ;;	narrowing keybinds
 	 "nd" '(narrow-to-defun :which-key "narrow-defun")
+	 "ns" '(org-narrow-to-subtree :which-key "narrow-subtree")
 	 "nn" '(narrow-to-region :which-key "narrow-region")
 	 "nw" '(widen :which-key "widen")
 	 ;; Structural edits
@@ -214,6 +222,7 @@
  "M-%" 'vr/query-replace
  "M-/" 'hippie-expand
  "M-u" 'tiny-expand
+ "M-q" 'ono-fill-or-unfill
  "C-;" 'avy-goto-char-2
  "C-h f" #'helpful-callable
  "C-h v" #'helpful-variable
@@ -277,13 +286,14 @@
 (general-define-key
  :states '(normal)
  "s" 'evil-snipe-s
- "S" 'evil-snipe-S)
+ "S" 'evil-snipe-S
+ "zs" 'embrace-add)
 
 ;; Custom key-chord for very fast ex access (fd -> :)
 (use-package key-chord
 	:ensure t
 	:config
-	(add-hook 'after-init-hook key-chord-mode)
+	(key-chord-mode t)
 	(key-chord-define evil-insert-state-map "fd" 'ono-escape-and-ex))
 
 ;; Custom ex bindings: These provide emulation

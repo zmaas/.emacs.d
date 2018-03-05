@@ -5,7 +5,16 @@
 
 ;;; Code:
 
-;; Add Irony
+;; Semantic -- The core	C++ editing
+(use-package semantic
+	:ensure t
+	:config
+	(global-semanticdb-minor-mode t)
+	(global-semantic-idle-scheduler-mode t)
+	(global-semantic-idle-summary-mode nil)
+	(semantic-mode t))
+
+;; Irony -- C++/C	Completion
 (use-package irony
 	:ensure t
 	:diminish irony-mode
@@ -20,11 +29,13 @@
 		'(add-to-list
 			'company-backends '(company-irony-c-headers company-irony))))
 
+;; ggtags -- Project tag navigation
 (use-package ggtags
 	:ensure t
 	:init
 	(use-package counsel-gtags
 		:ensure t
+		:diminish ""
 		:config
 		(add-hook 'c-mode-hook 'counsel-gtags-mode)
 		(add-hook 'c++-mode-hook 'counsel-gtags-mode))
@@ -35,33 +46,35 @@
 							(when (derived-mode-p 'c-mode 'c++-mode)
 								(ggtags-mode 1)))))
 
+;; Fast	tag-based nav and completion (moo commands)
+;; Specifically improves function	arg viewing
 (use-package function-args
 	:ensure t
 	:config
 	(fa-config-default))
 
+;; Autoformatter for code style
 (use-package clang-format
 	:ensure t
 	:config
-	(setq clang-format-style-option "google"))
+	(setq clang-format-style "google"))
 
-;; Semantic mode for easier code completion
-(use-package semantic
-	:init
-	(setq semantic-default-submodes
-				'(;; Perform semantic actions during idle time
-					global-semantic-idle-scheduler-mode
-					;; Use a database of parsed tags
-					global-semanticdb-minor-mode
-					;; Decorate buffers with additional semantic information
-					global-semantic-decoration-mode
-					;; Highlight the name of the function you're currently in
-					global-semantic-highlight-func-mode
-					;; Generate a summary of the current tag when idle
-					global-semantic-idle-summary-mode))
+;; Style tips	for	modern c++
+(use-package flycheck-clang-tidy
+	:ensure t
+	:after flycheck
 	:config
-	(add-hook 'c++-mode-hook #'semantic-mode)
-	(add-hook 'c-mode-hook #'semantic-mode))
+	'(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
+
+;; Better static analysis
+(use-package flycheck-clang-analyzer
+	:ensure t
+	:after flycheck
+  :config (flycheck-clang-analyzer-setup))
+
+;; Automated disassembly of compiled files
+(use-package disaster
+	:ensure t)
 
 ;; special per-mode keybindings for C++
 (general-define-key
@@ -72,6 +85,7 @@
  "l" '(:ignore t :which-key "layer")
  "ll" '(multi-compile-run :which-key "compile")
  "ld" '(counsel-gtags-find-definition :which-key "def")
+ "lD" '(disaster :which-key "disaster")
  "ls" '(counsel-gtags-find-symbol :which-key "symbol")
  "lf" '(clang-format-buffer :which-key "format")
  "lS" '(fa-show :which-key "show details")

@@ -13,16 +13,31 @@
 		:ensure t
 		:config
     (add-to-list 'company-backends 'company-math-symbols-latex)
+    (add-to-list 'company-backends 'company-math-symbols-unicode)
 		(add-to-list 'company-backends 'company-latex-commands))
 	(use-package latex-preview-pane
 		:ensure t
 		:config
 		(latex-preview-pane-enable))
 	:config
+	(TeX-source-correlate-mode)        ; activate forward/reverse search
+	(TeX-PDF-mode)
 	(add-to-list 'TeX-view-program-selection
 							 '(output-pdf "Zathura"))
+	;; Use pdf-tools to open PDF files
+	(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+				TeX-source-correlate-start-server t)
+
+	;; Update PDF buffers after successful LaTeX runs
+	(add-hook 'TeX-after-compilation-finished-functions
+						#'TeX-revert-document-buffer)
 	(setq latex-run-command "pdflatex -synctex=1")
-	(setq TeX-show-compilation nil))
+	(setq TeX-show-compilation nil)
+	(add-hook 'LaTeX-mode-hook #'latex-math-mode))
+
+(use-package reftex
+	:config
+	(add-hook 'LaTeX-mode-hook #'turn-on-reftex))
 
 (use-package company-auctex
 	:ensure t
@@ -60,14 +75,17 @@
   :ensure t
   :when window-system
   :init
-	;; (pdf-tools-install t t t)
+	(pdf-tools-install)
 	:config
+	(pdf-tools-install)
+	(setq-default pdf-view-display-size 'fit-page)
+	(setq pdf-annot-activate-created-annotations t)
 	(general-define-key
-	 :states '(normal)
+	 :states '(normal motion)
 	 :keymaps 'pdf-view-mode-map
 	 "h" 'pdf-view-previous-page
-	 "j" (lambda () (interactive) (pdf-view-next-line-or-next-page 5))
-	 "k" (lambda () (interactive) (pdf-view-previous-line-or-previous-page 5))
+	 "j" 'pdf-view-next-line-or-next-page
+	 "k" 'pdf-view-previous-line-or-previous-page
 	 "l" 'pdf-view-next-page
 	 "K" 'pdf-view-previous-page
 	 "J" 'pdf-view-next-page
@@ -83,7 +101,29 @@
 	 "/" 'pdf-occur
 	 "o" 'pdf-outline
 	 "f" 'pdf-links-action-perform
-	 "b" 'pdf-view-midnight-minor-mode))
+	 "b" 'pdf-view-midnight-minor-mode
+	 "sm" 'pdf-view-set-slice-using-mouse
+	 "sb" 'pdf-view-set-slice-from-bounding-box
+	 "sr" 'pdf-view-reset-slice
+	 ;; Annotations
+	 "aD" 'pdf-annot-delete
+	 "at" 'pdf-annot-attachment-dired
+	 "ah" 'pdf-annot-add-highlight-markup-annotation
+	 "al" 'pdf-annot-list-annotations
+	 "am" 'pdf-annot-add-markup-annotation
+	 "ao" 'pdf-annot-add-strikeout-markup-annotation
+	 "as" 'pdf-annot-add-squiggly-markup-annotation
+	 "at" 'pdf-annot-add-text-annotation
+	 "au" 'pdf-annot-add-underline-markup-annotation
+	 ;; Fit image to window
+	 "z" '(:ignore t :which-key "zoom")
+	 "zw" 'pdf-view-fit-width-to-window
+	 "zh" 'pdf-view-fit-height-to-window
+	 "zp" 'pdf-view-fit-page-to-window
+	 ;; Other
+	 "ss" 'pdf-occur
+	 "p" 'pdf-misc-print-document
+	 "O" 'pdf-outline))
 
 (use-package ivy-bibtex
 	:ensure t
@@ -118,5 +158,10 @@
  "l" '(:ignore t :which-key "layer")
  "ll" '(TeX-command-run-all :which-key "comp/view")
  "lc" '(TeX-command-buffer :which-key "compile")
+ "li" '(imenu-list :which-key "imenu")
  "lj" '(LaTeX-insert-item :which-key "item")
+ "le" '(LaTeX-environment :which-key "environment")
+ "lh" '(TeX-insert-macro :which-key "macro help")
  "lv" '(TeX-view :which-key "view"))
+
+;;; latex.el ends here

@@ -21,6 +21,9 @@
 (use-package yaml-mode
 	:ensure t)
 
+(use-package toml-mode
+	:ensure t)
+
 ;; FIXME
 (general-define-key
  :states '(normal visual insert emacs)

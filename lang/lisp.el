@@ -17,7 +17,7 @@
 	:ensure t
 	:init
 	:config
-	(setq inferior-lisp-program "sbcl")
+	(setq inferior-lisp-program "ros run")
 	(setq slime-contribs '(slime-fancy)))
 
 (defun my/slime-mode-hook ()
@@ -65,5 +65,21 @@
 	:config
 	(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
 		(add-hook hook 'elisp-slime-nav-mode)))
+
+;; special per-mode keybindings for CIDER
+(general-define-key
+ :states '(normal visual insert emacs)
+ :keymaps '(slime-mode-map slime-repl-mode-map)
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "l" '(:ignore t :which-key "layer")
+ ;; "ls" '(cljr-add-missing-libspec :which-key "jack in")
+ ;; "ld" '(cljr-add-declaration :which-key "jack in")
+ "lR" '(slime :which-key "jack in")
+ "lr" '(slime-repl :which-key "jack in cljs")
+ "lc" '(slime-repl-clear-buffer :which-key "clear repl")
+ "lq" '(slime-quit-lisp :which-key "quit repl")
+ "ll" '(slime-eval-defun :which-key "eval def")
+ "le" '(slime-eval-buffer :which-key "eval buffer"))
 
 ;;; zm-lisp-tools.el ends here

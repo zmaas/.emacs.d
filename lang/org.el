@@ -9,14 +9,24 @@
 	:ensure org-plus-contrib)
 
 ;; Essential org-mode setup
-(setq org-todo-keyword
+(setq org-todo-keywords
 			'((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
 (setq org-completion-use-ido t)
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
 (setq bookmark-save-flag t)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
 (setq org-agenda-files '("~/Dropbox/Org/"
 												 "~/Dropbox/Org/deft/"))
+(setq org-clock-idle-time 15)
 (setq org-default-notes-file "~/Dropbox/Org/organizer.org")
+
+;; Custom Capture Templates
+(setq org-capture-templates
+			'(("t" "Todo" entry (file+headline "~/Dropbox/Org/organizer.org" "Unfiled")
+				 "* TODO  %?\n  %i\n  %a")))
 
 ;; Better bindings for org-mode through evil.
 (use-package evil-org
@@ -24,14 +34,27 @@
 	:config
 	(add-hook 'org-mode-hook #'evil-org-mode))
 
-;; Pretty bullets for org-mode
-;; Disabled for now, kind of buggy
-;; (use-package org-bullets
-;; 	:ensure t
-;; 	:init
-;; 	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-;; 	:config
-;; 	(setq org-bullets-bullet-list '("\u25a0" "\u25c6" "\u25b2" "\u25b6")))
+(use-package calfw
+	:ensure t
+	:init
+	;; Still setting up
+	(use-package calfw-org
+		:ensure t)
+	(use-package calfw-gcal
+		:ensure t)
+	(use-package org-gcal
+		:ensure t
+		:init)
+	(load-file "~/.emacs.d/lang/org-private.el")
+	(setq cfw:fchar-junction ?╋
+				cfw:fchar-vertical-line ?┃
+				cfw:fchar-horizontal-line ?━
+				cfw:fchar-left-junction ?┣
+				cfw:fchar-right-junction ?┫
+				cfw:fchar-top-junction ?┯
+				cfw:fchar-top-left-corner ?┏
+				cfw:fchar-top-right-corner ?┓)
+	)
 
 (use-package interleave
 	:ensure t
@@ -47,6 +70,12 @@
 				deft-use-filename-as-title t
 				deft-use-filter-string-for-filename t
 				deft-auto-save-interval 0))
+
+(use-package org-pomodoro
+  :ensure t
+  :commands (org-pomodoro)
+  :config
+	(setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil)))))
 
 (setq org-agenda-custom-commands
 			'(("c" "Simple agenda view"
@@ -165,15 +194,20 @@
  "oS" '(counsel-org-agenda-headlines :which-key "rifle")
  "oa" '(org-agenda :which-key "agenda")
  "oc" '(org-capture :which-key "capture")
+ "oC" '(cfw:open-org-calendar :which-key "calendar")
  "oo" '(ono-open-organizer-file :which-key "organizer")
- "oe" '(org-clock-in :which-key "clock in")
- "oE" '(org-clock-out :which-key "clock out")
+ "op" '(org-pomodoro :which-key "pomodoro")
+ "oi" '(org-clock-in :which-key "clock in")
+ "oO" '(org-clock-out :which-key "clock out")
  "ot" '(org-todo :which-key "todo")
+ "of" '(helm-org-rifle :which-key "find")
+ "om" '(org-mu4e-store-and-capture :which-key "capture message")
  "oT" '(counsel-org-tag :which-key "tag")
  "os" '(org-schedule :which-key "schedule")
  "od" '(org-deadline :which-key "deadline")
- "ol" '(org-link :which-key "deadline")
+ "ol" '(org-toggle-latex-fragment :which-key "latex")
  "oL" '(org-todo-list :which-key "deadline")
+ "og" '(counsel-org-goto-all :which-key "goto")
  "or" '(org-refile :which-key "refile"))
 
 ;;; zm-org-tools.el ends here

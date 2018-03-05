@@ -32,14 +32,28 @@
         ;; Save things quietly
         auto-save-buffers-enhanced-quiet-save-p t))
 
-;; Persp-mode	manages workspaces persistently
-(use-package persp-mode
+(use-package workgroups2
 	:ensure t
-	:diminish persp-mode
 	:config
-  (setq wg-morph-on nil) ;; switch off animation
-  (setq persp-autokill-buffer-on-remove 'kill-weak)
-  (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
+	(setq wg-session-load-on-start t)
+	(setq wg-session-file "~/.emacs.d/workgroups")
+	(setq wg-emacs-exit-save-behavior           'save)
+	(setq wg-workgroups-mode-exit-save-behavior 'save)
+	(setq wg-mode-line-display-on t)          ; Default: (not (featurep 'powerline))
+	(setq wg-flag-modified t)                 ; Display modified flags as well
+	(setq wg-mode-line-decor-left-brace "["
+				wg-mode-line-decor-right-brace "]"  ; how to surround it
+				wg-mode-line-decor-divider ":")
+	(workgroups-mode t))
+
+;; Persp-mode	manages workspaces persistently
+;; (use-package persp-mode
+;; 	:ensure t
+;; 	:diminish persp-mode
+;; 	:config
+;;   (setq wg-morph-on nil) ;; switch off animation
+;;   (setq persp-autokill-buffer-on-remove 'kill-weak)
+;;   (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
 
 ;; Better bookmarks, since they're so useful
 (use-package bookmark+

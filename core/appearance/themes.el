@@ -96,6 +96,13 @@
 	(set-face-background 'nlinum-relative-current-face "#000000")
 	(set-face-background 'mode-line-emphasis))
 
+(defun ono-grey-theme ()
+	"Set tron theme for nighttime and associated colors."
+	(interactive)
+	(!ono-set-theme 'doom-spacegrey)
+	(set-face-background 'nlinum-relative-current-face "#000000")
+	(set-face-background 'mode-line-emphasis))
+
 (defun ono-dark-night-theme ()
   "Set cyberpunk theme for dark nightime usage."
   (interactive)

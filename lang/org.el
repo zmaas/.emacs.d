@@ -34,6 +34,7 @@
 	:config
 	(add-hook 'org-mode-hook #'evil-org-mode))
 
+;; Calendar settings
 (use-package calfw
 	:ensure t
 	:init
@@ -205,6 +206,7 @@
  "oT" '(counsel-org-tag :which-key "tag")
  "os" '(org-schedule :which-key "schedule")
  "od" '(org-deadline :which-key "deadline")
+ "oe" '(org-export-dispatch :which-key "export")
  "ol" '(org-toggle-latex-fragment :which-key "latex")
  "oL" '(org-todo-list :which-key "deadline")
  "og" '(counsel-org-goto-all :which-key "goto")

@@ -14,6 +14,7 @@
 	(add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
 
 (use-package pretty-mode
+	:disabled t
 	:ensure t
 	:config
 	(global-pretty-mode t)

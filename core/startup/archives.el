@@ -31,7 +31,9 @@
  '(use-package
 		:fetcher github
 		:repo "jwiegley/use-package"
-		:files ("use-package.el")))
+		:files ("use-package.el" "use-package-core.el")))
+
+
 (quelpa
  '(quelpa-use-package
    :fetcher github

@@ -19,6 +19,7 @@
 	(spaceline-toggle-anzu-on)
 	(spaceline-toggle-window-number-on)
 	(setq anzu-cons-mode-line-p nil
+				powerline-default-separator	'utf8
 				spaceline-workspace-numbers-unicode t
 				spaceline-window-numbers-unicode t
 				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))

@@ -139,6 +139,7 @@
 	(use-package evil-lispy
 		:ensure t)
 	(use-package evil-collection
+		:after evil
 		:ensure t
 		:custom
 		(evil-collection-setup-minibuffer t)
@@ -146,6 +147,7 @@
 		(evil-collection-init))
 	:config
 	(evil-mode 1)
+  (setq evil-want-integration nil)
 	(setq evil-want-C-u-scroll t
         evil-want-visual-char-semi-exclusive t
         evil-want-Y-yank-to-eol t

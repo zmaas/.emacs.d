@@ -159,7 +159,7 @@
 	 "wR" '(winner-redo :which-key "redo")
 	 "wr" '(evil-window-rotate-downwards :which-key "rotate")
 	 "wm" '(ace-delete-other-windows :which-key "max")
-	 "wM" '(ace-swap-window :which-key "swap")
+	 "ws" '(ace-swap-window :which-key "swap")
 	 ;; "wp" '(:ignore t :which-key "persp")
 	 ;; "wpc" '(persp-add-new :which-key "new persp")
 	 ;; "wps" '(persp-switch :which-key "switch persp")
@@ -293,12 +293,12 @@
  "S" 'evil-snipe-S
  "zs" 'embrace-add)
 
-;; Custom key-chord for very fast ex access (fd -> :)
+;; Custom key-chord for very fast swiper access (fd -> swiper)
 (use-package key-chord
 	:ensure t
 	:config
 	(key-chord-mode t)
-	(key-chord-define evil-insert-state-map "fd" 'ono-escape-and-ex))
+	(key-chord-define evil-insert-state-map "fd" 'swiper))
 
 ;; Custom ex bindings: These provide emulation
 ;; of many of vim's builtin ex commands using emacs features

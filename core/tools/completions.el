@@ -68,9 +68,10 @@
 				'((company-files          ; files & directory
 					 company-keywords       ; keywords
 					 company-capf
-					 company-yasnippet)
+					 company-yasnippet
+					 company-abbrev
+					 company-dabbrev)
 					(company-abbrev company-dabbrev)))
-
 
 	(general-define-key
 	 :keymaps 'company-active-map
@@ -125,6 +126,9 @@
 
 ;; auto-yasnippet, removing friction for repetitive tasks
 (use-package auto-yasnippet
+	:ensure t)
+
+(use-package xlicense
 	:ensure t)
 
 ;; Tiny, for fast expansion of linear ranges

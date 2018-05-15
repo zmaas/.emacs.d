@@ -11,24 +11,35 @@
 (use-package cl
 	:ensure t)
 
-;; LISP Development Setup
 ;; Uses SLIME configured for sbcl
-(use-package slime
+(use-package sly
 	:ensure t
 	:init
+	(use-package sly-company
+		:ensure t)
+	(use-package sly-macrostep
+		:ensure t)
+	(use-package sly-quicklisp
+		:ensure t)
+	(use-package sly-repl-ansi-color
+		:ensure t)
 	:config
+	(add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-mode))
+	(add-to-list 'auto-mode-alist '("\\.lsp\\'" . lisp-mode))
 	(setq inferior-lisp-program "ros run")
-	(setq slime-contribs '(slime-fancy)))
-
-(defun my/slime-mode-hook ()
-  (add-to-list 'company-backends 'company-slime))
-(add-hook 'slime-mode-hook 'my/slime-mode-hook)
+	(add-hook 'sly-mode-hook 'sly-company-mode)
+	(add-to-list 'company-backends 'sly-company)
+	(setq sly-contribs '(sly-fancy sly-tramp sly-quicklisp sly-repl-ansi-color))
+  (sly-setup '(sly-fancy sly-repl-ansi-color sly-tramp sly-quicklisp)))
 
 ;; Racket Configuration
 
-;; Setup for racket for SICP
+;; Setup for racket
 (use-package geiser
 	:ensure t
+	:init
+	;; (use-package quack
+	;; 	:ensure t)
 	:config
 	(add-hook 'scheme-mode-hook #'geiser-mode))
 
@@ -41,7 +52,7 @@
  "l" '(:ignore t :which-key "layer")
  "lr" '(run-racket :which-key "racket repl")
  "ll" '(geiser-eval-definition :which-key "eval def")
- "lc" '(geiser-eval-buffer :which-key "eval buffer")
+ "le" '(geiser-eval-buffer :which-key "eval buffer")
  "lj" '(geiser-insert-lambda :which-key "lambda"))
 
 ;; Emacs Lisp	Configuration
@@ -66,20 +77,21 @@
 	(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
 		(add-hook hook 'elisp-slime-nav-mode)))
 
-;; special per-mode keybindings for CIDER
+;; special per-mode keybindings for	slime
 (general-define-key
  :states '(normal visual insert emacs)
- :keymaps '(slime-mode-map slime-repl-mode-map)
+ :keymaps '(sly-mode-map sly-mrepl-mode-map)
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
- ;; "ls" '(cljr-add-missing-libspec :which-key "jack in")
- ;; "ld" '(cljr-add-declaration :which-key "jack in")
- "lR" '(slime :which-key "jack in")
- "lr" '(slime-repl :which-key "jack in cljs")
- "lc" '(slime-repl-clear-buffer :which-key "clear repl")
- "lq" '(slime-quit-lisp :which-key "quit repl")
- "ll" '(slime-eval-defun :which-key "eval def")
- "le" '(slime-eval-buffer :which-key "eval buffer"))
+ "lR" '(sly :which-key "start sly")
+ "la" '(sly-apropos-all :which-key "apropos")
+ "lr" '(sly-mrepl :which-key "mrepl")
+ "ln" '(sly-mrepl-new :which-key "new mrepl")
+ "ls" '(sly-list-connections :which-key "connections")
+ "lc" '(sly-mrepl-clear-repl :which-key "clear mrepl")
+ "lq" '(sly-quit-lisp :which-key "quit mrepl")
+ "ll" '(sly-eval-defun :which-key "eval def")
+ "le" '(sly-eval-buffer :which-key "eval buffer"))
 
 ;;; zm-lisp-tools.el ends here

@@ -66,6 +66,14 @@ buffer." (interactive)
 	(evil-normal-state)
 	(evil-ex))
 
+(defun ono-insert-autocite ()
+	"Insert a citation using ivy-bibtex"
+	(interactive)
+	(insert "\\autocite{}")
+	(backward-char 1)
+	(ivy-bibtex)
+	(forward-char 1))
+
 ;; close all open parens before point
 (defun close-all-parentheses ()
   (interactive "*")

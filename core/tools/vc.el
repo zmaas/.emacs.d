@@ -17,6 +17,12 @@
 		:config
 		(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
 
+(use-package magithub
+	:ensure t
+	:config
+	(magithub-feature-autoinject t)
+	(setq magithub-clone-default-directory "~/builds/"))
+
 (use-package git-timemachine
 	:ensure t
 	:config

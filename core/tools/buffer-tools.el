@@ -56,10 +56,10 @@
 ;;   (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
 
 ;; Better bookmarks, since they're so useful
-(use-package bookmark+
-  :ensure t
-  :init (setq bmkp-replace-EWW-keys-flag t)
-  :config
-  (setq bookmark-version-control t
-        ;; auto-save bookmarks
-        bookmark-save-flag 1))
+;; (use-package bookmark+
+;;   :ensure t
+;;   :init (setq bmkp-replace-EWW-keys-flag t)
+;;   :config
+;;   (setq bookmark-version-control t
+;;         ;; auto-save bookmarks
+;;         bookmark-save-flag 1))

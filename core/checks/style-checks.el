@@ -36,17 +36,10 @@
 (use-package smartparens
   :ensure t
   :diminish smartparens-mode
-  :init
-  (use-package evil-smartparens
-    :ensure t
-    :diminish evil-smartparens-mode
-    :config
-    (add-hook 'clojure-mode-hook #'evil-smartparens-mode)
-    (add-hook 'lisp-mode-hook #'evil-smartparens-mode)
-    (add-hook 'scheme-mode-hook #'evil-smartparens-mode)
-    (add-hook 'emacs-lisp-mode-hook #'evil-smartparens-mode))
   :config
   (require 'smartparens-config)
+	(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
+	(add-hook 'after-init-hook '(lambda () (show-smartparens-global-mode t)))
   (add-hook 'after-init-hook 'smartparens-global-mode))
 
 ;; intelligently cleanup whitespace on save

@@ -21,13 +21,21 @@
 	:init
 	(use-package company-irony-c-headers
 		:ensure t)
+	(use-package company-irony
+		:ensure t
+		:config)
+	(use-package flycheck-irony
+		:ensure t
+		:config
+		(eval-after-load 'flycheck
+			'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 	:config
 	(add-hook 'c++-mode-hook 'irony-mode)
 	(add-hook 'c-mode-hook 'irony-mode)
 	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 	(eval-after-load 'company
 		'(add-to-list
-			'company-backends '(company-irony-c-headers company-irony))))
+			'company-backends '(company-irony-c-headers company-irony company-gtags))))
 
 ;; ggtags -- Project tag navigation
 (use-package ggtags

@@ -18,12 +18,11 @@
 	:ensure t)
 
 (defun go-mode-setup-hook ()
-	; Add company backend
-  (lambda ()
-    (set (make-local-variable 'company-backends) '(company-go)))
-	; Custom compile command
+																				; Add company backend
+	(add-to-list 'company-backends 'company-go)
+																				; Custom compile command
   (setq compile-command "go build -v && go test -v && go vet")
-	; Automatically control imports
+																				; Automatically control imports
   (setq gofmt-command "gofmt"))
 
 (add-hook 'go-mode-hook 'go-mode-setup-hook)

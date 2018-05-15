@@ -99,7 +99,7 @@
 	 "m" 'pdf-view-position-to-register
 	 "'" 'pdf-view-jump-to-register
 	 "/" 'pdf-occur
-	 "o" 'pdf-outline
+	 ;; "o" 'pdf-outline
 	 "f" 'pdf-links-action-perform
 	 "b" 'pdf-view-midnight-minor-mode
 	 "sm" 'pdf-view-set-slice-using-mouse
@@ -159,6 +159,7 @@
  "ll" '(TeX-command-run-all :which-key "comp/view")
  "lc" '(TeX-command-buffer :which-key "compile")
  "li" '(imenu-list :which-key "imenu")
+ "lr" '(ono-insert-autocite :which-key "citation")
  "lj" '(LaTeX-insert-item :which-key "item")
  "le" '(LaTeX-environment :which-key "environment")
  "lh" '(TeX-insert-macro :which-key "macro help")

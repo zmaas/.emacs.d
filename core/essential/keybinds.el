@@ -109,6 +109,7 @@
 	 "ai" '(imenu :which-key "imenu")
 	 "aI" '(imenu-list :which-key "imenu-list")
 	 "aC" '(calc :which-key "calc")
+	 ;; Themes
 	 "ac" '(:ignore t :which-key "colors")
 	 "acd" '(ono-day-theme :which-key "day")
 	 "acs" '(ono-day-bright-theme :which-key "day-bright")
@@ -119,6 +120,7 @@
 	 "act" '(ono-tron-theme :which-key "night-tron")
 	 "acc" '(ono-dark-night-theme :which-key "cyberpunk")
 	 "acr" '(ono-plain-night-theme :which-key "plain dark")
+	 "acf" '(ono-leuven-theme :which-key "leuven")
 	 "ap" '(prodigy :which-key "prodigy")
 	 "aP" '(proced :which-key "proced")
 	 ;; projectile specific bindings
@@ -241,6 +243,7 @@
 (general-define-key
  "M-[" 'evil-escape)
 
+
 ;; Rebinds
 (global-set-key [remap fill-paragraph] #'ono-fill-or-unfill)
 
@@ -291,7 +294,7 @@
  :states '(normal)
  "s" 'evil-snipe-s
  "S" 'evil-snipe-S
- "zs" 'embrace-add)
+ "zs" 'evil-surround-edit)
 
 ;; Custom key-chord for very fast swiper access (fd -> swiper)
 (use-package key-chord
@@ -330,6 +333,7 @@
 (ex! "Grep" 'counsel-projectile-rg)
 (ex! "Gblame" 'magit-blame)
 ;; Emulate vim tabs using	persp-mode
+(ex! "wg" 'wg-switch-to-workgroup)
 (ex! "tabnew" 'wg-create-workgroup)
 (ex! "tabkill" 'wg-kill-workgroup-and-buffers)
 (ex! "tabedit" 'wg-rename-workgroup)

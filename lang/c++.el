@@ -84,7 +84,9 @@
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
  "ll" '(multi-compile-run :which-key "compile")
+ "lh" '(ff-get-other-file :which-key "header/source")
  "ld" '(counsel-gtags-find-definition :which-key "def")
+ "lt" '(counsel-gtags-update-tags :which-key "update tags")
  "lD" '(disaster :which-key "disaster")
  "ls" '(counsel-gtags-find-symbol :which-key "symbol")
  "lf" '(clang-format-buffer :which-key "format")

@@ -20,17 +20,13 @@
 	(set-face-background 'fringe (face-attribute 'default :background))
 	(set-face-background 'linum (face-attribute 'default :background))
 	(run-hooks 'ono-after-theme-hook)
-	(doom-themes-org-config)
-	(doom-themes-visual-bell-config)
+	;; (doom-themes-org-config)
+	;; (doom-themes-visual-bell-config)
 	(powerline-reset))
 
 (use-package dracula-theme
 	:ensure t)
 (use-package cyberpunk-theme
-	:ensure t)
-(use-package moe-theme
-	:ensure t)
-(use-package spacemacs-theme
 	:ensure t)
 (use-package darktooth-theme
 	:ensure t)
@@ -38,17 +34,24 @@
 	:ensure t)
 (use-package color-theme-sanityinc-solarized
 	:ensure t)
-(use-package doom-themes
+(use-package material-theme
+	:ensure t)
+(use-package zerodark-theme
+	:ensure t)
+(use-package leuven-theme
+	:ensure t)
+(use-package eziam-theme
 	:ensure t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
 ;; powerline separators on theme-switch
 (defun ono-day-theme ()
-	"Set doom-one-light theme for daytime and associated colors."
+	"Set material-light theme for daytime and associated colors."
 	(interactive)
-	(!ono-set-theme 'doom-one-light)
+	(!ono-set-theme 'material-light)
 	(set-face-background 'nlinum-relative-current-face "#EEEEEE")
 	(set-face-foreground 'nlinum-relative-current-face "#607D8B"))
+
 
 (defun ono-day-alt-theme ()
 	"Set underwater theme for daytime and associated colors."
@@ -92,14 +95,14 @@
 (defun ono-tron-theme ()
 	"Set tron theme for nighttime and associated colors."
 	(interactive)
-	(!ono-set-theme 'doom-vibrant)
+	(!ono-set-theme 'zerodark)
 	(set-face-background 'nlinum-relative-current-face "#000000")
 	(set-face-background 'mode-line-emphasis))
 
-(defun ono-grey-theme ()
+(defun ono-leuven-theme ()
 	"Set tron theme for nighttime and associated colors."
 	(interactive)
-	(!ono-set-theme 'doom-spacegrey)
+	(!ono-set-theme 'leuven)
 	(set-face-background 'nlinum-relative-current-face "#000000")
 	(set-face-background 'mode-line-emphasis))
 

@@ -14,7 +14,11 @@
 
 ;; Save recent files by default
 (recentf-mode 1)
-(setq recentf-max-saved-items 512)
+;; Save a bunch	of recent files
+(setq recentf-max-saved-items 128)
+;; Exclude all elpa files from recentf
+(add-to-list 'recentf-exclude
+             (expand-file-name "~/.emacs.d/elpa/"))
 
 ;; Allow us to diminish packages with use-package
 (require 'diminish)
@@ -53,10 +57,10 @@
 
 ;; Make font-lock work better in the background
 (setq jit-lock-defer-time nil
-      ;; jit-lock-stealth-nice 0.1
+      jit-lock-stealth-nice 0.1
       jit-lock-stealth-time 1
       jit-lock-stealth-verbose nil
-			idle-update-delay 2)
+			idle-update-delay 5)
 ;; Simple little things
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq line-move-visual t)
@@ -66,7 +70,9 @@
 
 ;; Setup passwords using .authinfo
 (setq auth-sources
-			'((:source "~/.emacs.d/secrets/.authinfo.gpg")))
+			'((:source "~/.emacs.d/secrets/.authinfo.gpg")
+				(:source "~/.emacs.d/.authinfo.gpg")
+				(:source "~/.authinfo.gpg")))
 
 ;; Prevents us from fat fingering and accidentally closing emacs
 (setq confirm-kill-emacs 'y-or-n-p)

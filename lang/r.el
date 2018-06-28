@@ -7,4 +7,14 @@
 (use-package ess
 	:ensure t)
 
+(general-define-key
+ :states '(normal visual insert emacs)
+ :keymaps 'ess-mode-map
+ :prefix "SPC"
+ :non-normal-prefix "M-SPC"
+ "l" '(:ignore t :which-key "layer")
+ "ll" '(ess-eval-region-or-function-or-paragraph :which-key "eval region")
+ "le" '(ess-eval-buffer :which-key "eval buffer")
+ "lR" '(R :which-key "R"))
+
 ;; r-mode.el ends here

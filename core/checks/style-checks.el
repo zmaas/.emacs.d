@@ -26,10 +26,11 @@
   (add-hook 'after-init-hook #'aggressive-indent-global-mode)
   (add-to-list 'aggressive-indent-excluded-modes 'haskell-mode))
 
+;; Cleans up whitespace at newlines
 (use-package clean-aindent-mode
   :ensure t
   :config
-  (add-hook 'prog-mode-hook #'clean-aindent-mode)
+	(set 'clean-aindent-is-simple-indent t)
   (define-key global-map (kbd "RET") 'newline-and-indent))
 
 ;; keeps our parentheses balanced and allows for easy manipulation

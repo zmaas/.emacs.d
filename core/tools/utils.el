@@ -10,6 +10,7 @@
 ;; Enable abbrev-mode by default
 (setq-default abbrev-mode t)
 (setq save-abbrevs 'silently)
+(read-abbrev-file "~/.emacs.d/ono_custom_abbrevs")
 (diminish 'abbrev-mode)
 
 ;; Don't use bidirectional languages
@@ -51,16 +52,14 @@
 	:config
 	(global-set-key (kbd "C-=") 'er/expand-region))
 
-;;
-
 ;; ws-butler - easy white space trimming
 ;; won't make commits messy, only touches edited lines
-(use-package ws-butler
-	:ensure t
-	:diminish ws-butler-mode
-	:config
-	(add-hook 'prog-mode-hook #'ws-butler-mode)
-	(add-hook 'text-mode-hook #'ws-butler-mode))
+;; Disabling because it causes problems with org-mode
+;; (use-package ws-butler
+;; 	:ensure t
+;; 	:diminish ws-butler-mode
+;; 	:config
+;; 	(add-hook 'prog-mode-hook #'ws-butler-mode))
 
 ;; Speaking of whitespace, let's improve the builtin
 ;; just-one-space command
@@ -123,14 +122,14 @@
 	(add-hook 'after-init-hook #'rxt-global-mode))
 
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them
-(use-package visual-regexp
-	:ensure t
-	:init
-	(use-package visual-regexp-steroids
-		:ensure t)
-	:config
-	(define-key global-map (kbd "C-c r") 'vr/replace)
-	(define-key global-map (kbd "C-c q") 'vr/query-replace))
+;; (use-package visual-regexp
+;; 	:ensure t
+;; 	:init
+;; 	(use-package visual-regexp-steroids
+;; 		:ensure t)
+;; 	:config
+;; 	(define-key global-map (kbd "C-c r") 'vr/replace)
+;; 	(define-key global-map (kbd "C-c q") 'vr/query-replace))
 
 (require 're-builder)
 (setq reb-re-syntax 'string)
@@ -143,10 +142,11 @@
 	:config
 	(global-set-key (kbd "M-z") #'zzz-to-char))
 
-(use-package move-text
-	:ensure t
-	:config
-	(move-text-default-bindings))
+;; (use-package move-text
+;; 	:ensure t
+;; 	:config
+;; 	(move-text-default-bindings))
+
 ;; use the arrowkeys to move buffers - need a better solution using VIM keybinds
 (when (fboundp 'windmove-default-keybindings)
 	(windmove-default-keybindings))
@@ -172,11 +172,11 @@
 	:quelpa (wgrep :fetcher github :repo "mhayashi1120/Emacs-wgrep"))
 
 ;; small utility that improves sexp evaluation
-(use-package eval-sexp-fu
-	:quelpa (eval-sexp-fu :fetcher github :repo "emacsmirror/eval-sexp-fu")
-	:config
-	(setq eval-sexp-fu-flash-duration 0.4)
-	(turn-on-eval-sexp-fu-flash-mode))
+;; (use-package eval-sexp-fu
+;; 	:quelpa (eval-sexp-fu :fetcher github :repo "emacsmirror/eval-sexp-fu")
+;; 	:config
+;; 	(setq eval-sexp-fu-flash-duration 0.4)
+;; 	(turn-on-eval-sexp-fu-flash-mode))
 
 (use-package persistent-scratch
 	:ensure t

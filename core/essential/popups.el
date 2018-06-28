@@ -66,6 +66,7 @@
 	(global-undo-tree-mode t))
 
 ;; Ranger is a vimish file-manager
+;; We bind it to -,	like dirvish.vim
 (use-package ranger
 	:ensure t
 	:config
@@ -83,29 +84,29 @@
 	:config
 	(setq imenu-auto-rescan t))
 
-(use-package treemacs
-	:ensure t
-	:init
-	(use-package treemacs-evil
-		:ensure t)
-	(use-package treemacs-projectile
-		:ensure t)
-	:config
-	(setq treemacs-follow-after-init          t
-				treemacs-width                      25
-				treemacs-indentation                2
-				treemacs-git-integration            t
-				treemacs-collapse-dirs              3
-				treemacs-silent-refresh             nil
-				treemacs-change-root-without-asking nil
-				treemacs-sorting                    'alphabetic-desc
-				treemacs-show-hidden-files          t
-				treemacs-never-persist              nil
-				treemacs-is-never-other-window      nil
-				treemacs-goto-tag-strategy          'refetch-index)
+;; (use-package treemacs
+;; 	:ensure t
+;; 	:init
+;; 	(use-package treemacs-evil
+;; 		:ensure t)
+;; 	(use-package treemacs-projectile
+;; 		:ensure t)
+;; 	:config
+;; 	(setq treemacs-follow-after-init          t
+;; 				treemacs-width                      25
+;; 				treemacs-indentation                2
+;; 				treemacs-git-integration            t
+;; 				treemacs-collapse-dirs              3
+;; 				treemacs-silent-refresh             nil
+;; 				treemacs-change-root-without-asking nil
+;; 				treemacs-sorting                    'alphabetic-desc
+;; 				treemacs-show-hidden-files          t
+;; 				treemacs-never-persist              nil
+;; 				treemacs-is-never-other-window      nil
+;; 				treemacs-goto-tag-strategy          'refetch-index)
 
-	(treemacs-follow-mode t)
-	(treemacs-filewatch-mode t))
+;; 	(treemacs-follow-mode t)
+;; 	(treemacs-filewatch-mode t))
 
 (use-package all-the-icons
 	:ensure t

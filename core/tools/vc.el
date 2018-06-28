@@ -23,17 +23,17 @@
 	(magithub-feature-autoinject t)
 	(setq magithub-clone-default-directory "~/builds/"))
 
-(use-package git-timemachine
-	:ensure t
-	:config
-	(eval-after-load 'git-timemachine
-		'(progn
-			 (evil-make-overriding-map git-timemachine-mode-map 'normal)
-			 ;; force update evil keymaps after git-timemachine-mode loaded
-			 (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))))
+;; (use-package git-timemachine
+;; 	:ensure t
+;; 	:config
+;; 	(eval-after-load 'git-timemachine
+;; 		'(progn
+;; 			 (evil-make-overriding-map git-timemachine-mode-map 'normal)
+;; 			 ;; force update evil keymaps after git-timemachine-mode loaded
+;; 			 (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))))
 
-(use-package smeargle
-	:ensure t)
+;; (use-package smeargle
+;; 	:ensure t)
 
 (use-package evil-ediff
 	:ensure t

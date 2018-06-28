@@ -26,7 +26,9 @@
 							"--lang=en_US"
 							"--ignore=4"))
 	(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-	(add-hook 'text-mode-hook 'flyspell-mode)
+	(lambda ()
+		(unless (derived-mode-p 'git-commit-mode)
+			(flyspell-mode t)))
 	(add-hook 'text-mode-hook 'flyspell-buffer)
 	(set 'flyspell-correct-auto-mode nil))
 

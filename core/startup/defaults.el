@@ -46,7 +46,7 @@
 			scroll-conservatively 1001
 			scroll-margin 0
 			scroll-preserve-screen-position t)
-;; 80 columns, no UI elements  enabled
+;; 80 columns, no UI elements enabled
 ;; (setq-default fill-column 80)
 (setq-default tab-width 2)
 ;; Disable annoying	UI elements
@@ -78,7 +78,9 @@
 (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Reset gc-threshold after initialization is done
-(add-hook 'emacs-startup-hook 'ono-set-gc-threshold)
 (defun ono-set-gc-threshold ()
   "Reset `gc-cons-threshold' to its default value."
   (setq gc-cons-threshold (* 4 800000)))
+(add-hook 'emacs-startup-hook 'ono-set-gc-threshold)
+
+;;; defaults.el ends here

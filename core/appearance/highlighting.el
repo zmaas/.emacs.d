@@ -15,16 +15,17 @@
 (add-hook 'undo-tree-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 
 ;; highlight symbols when we are over them - so pretty
-(use-package highlight-thing
-	:ensure t
-	:diminish highlight-thing-mode
-	:config
-	(global-highlight-thing-mode t)
-	(setq highlight-thing-delay-seconds 1
-				highlight-thing-what-thing 'word
-				highlight-thing-limit-to-defun nil
-				highlight-thing-case-sensitive-p t
-				highlight-thing-prefer-active-region t))
+;; (use-package highlight-thing
+;; 	:disabled t
+;; 	:ensure t
+;; 	:diminish highlight-thing-mode
+;; 	:config
+;; 	(global-highlight-thing-mode t)
+;; 	(setq highlight-thing-delay-seconds 1
+;; 				highlight-thing-what-thing 'word
+;; 				highlight-thing-limit-to-defun nil
+;; 				highlight-thing-case-sensitive-p t
+;; 				highlight-thing-prefer-active-region t))
 
 ;; subtle lines to show our tab level in code
 (use-package highlight-indent-guides
@@ -35,11 +36,11 @@
 	(add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 
 ;; all code identifiers get pretty colors
-(use-package color-identifiers-mode
-	:ensure t
-	:diminish color-identifiers-mode
-	:config
-	(add-hook 'after-init-hook 'global-color-identifiers-mode))
+;; (use-package color-identifiers-mode
+;; 	:ensure t
+;; 	:diminish color-identifiers-mode
+;; 	:config
+;; 	(add-hook 'after-init-hook 'global-color-identifiers-mode))
 
 ;; make our delimiters rainbows! much easier to see sexps
 (use-package rainbow-delimiters
@@ -53,12 +54,12 @@
 											:inherit 'error))
 
 ;; highlights numbers, not that complicated
-(use-package highlight-numbers
-	:ensure t
-	:diminish highlight-numbers-mode
-	:config
-	(add-hook 'prog-mode-hook #'highlight-numbers-mode)
-	(add-hook 'prog-mode-hook #'show-paren-mode))
+;; (use-package highlight-numbers
+;; 	:ensure t
+;; 	:diminish highlight-numbers-mode
+;; 	:config
+;; 	(add-hook 'prog-mode-hook #'highlight-numbers-mode)
+;; 	(add-hook 'prog-mode-hook #'show-paren-mode))
 
 ;; Highlight parentheses when we're hovering
 (use-package highlight-parentheses

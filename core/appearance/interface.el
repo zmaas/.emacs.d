@@ -36,18 +36,6 @@
 	:config
 	(which-function-mode 1))
 
-;; Nice dashboard for our first startup
-;; (use-package dashboard
-;; 	:ensure t
-;; 	:config
-;; 	(dashboard-setup-startup-hook)
-;; 	(setq dashboard-banner-logo-title "Welcome back, kid."
-;; 				dashboard-startup-banner 'logo
-;; 				dashboard-items '((recents  . 5)
-;; 													(bookmarks . 5)
-;; 													(projects . 5)
-;; 													(agenda . 5))))
-
 ;; Highlight git diffs in the	fringe
 (use-package git-gutter-fringe
 	:ensure t
@@ -73,12 +61,6 @@
 	:diminish global-vi-tilde-fringe-mode vi-tilde-fringe-mode
 	:config
 	(add-hook 'after-init-hook 'global-vi-tilde-fringe-mode))
-
-;; relative line numbers, makes it much easier to use evil features
-(use-package nlinum-relative
-	:ensure t
-	:diminish nlinum-relative-mode
-	:config)
 
 ;; Don't use external dialog boxes
 (setq use-dialog-box nil

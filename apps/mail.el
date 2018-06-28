@@ -10,6 +10,7 @@
 (require 'mu4e)
 (require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it)
+(setq mu4e-change-filenames-when-moving t)
 
 (use-package org-mu4e)
 

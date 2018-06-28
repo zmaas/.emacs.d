@@ -8,11 +8,28 @@
 ;; Semantic -- The core	C++ editing
 (use-package semantic
 	:ensure t
+	:disabled
 	:config
 	(global-semanticdb-minor-mode t)
 	(global-semantic-idle-scheduler-mode t)
 	(global-semantic-idle-summary-mode nil)
 	(semantic-mode t))
+
+;; EXPERIMENTAL - cquery using lsp-mode
+;; (defun cquery//enable ()
+;;   (condition-case nil
+;;       (lsp-cquery-enable)
+;;     (user-error nil)))
+;; (use-package cquery
+;; 	:ensure t
+;; 	:commands lsp-cquery-enable
+;; 	:config
+;;   (setq cquery-executable "/usr/bin/cquery")
+;; 	(setq cquery-sem-highlight-method 'font-lock)
+;; 	(setq cquery-extra-init-params '(:index (:comments 2)
+;; 																					:cacheFormat "msgpack"
+;; 																					:completion (:detailedLabel t)))
+;; 	(add-hook 'c-mode-common-hook #'cquery//enable))
 
 ;; Irony -- C++/C	Completion
 (use-package irony
@@ -92,10 +109,11 @@
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
  "ll" '(multi-compile-run :which-key "compile")
+ "lo" '(moo-doxygen :which-key "doxygen")
  "lh" '(ff-get-other-file :which-key "header/source")
- "ld" '(counsel-gtags-find-definition :which-key "def")
+ "ld" '(counsel-gtags-find-definition :which-key "tag def")
  "lt" '(counsel-gtags-update-tags :which-key "update tags")
- "lD" '(disaster :which-key "disaster")
+ "lD" '(disaster  :which-key "disaster")
  "ls" '(counsel-gtags-find-symbol :which-key "symbol")
  "lf" '(clang-format-buffer :which-key "format")
  "lS" '(fa-show :which-key "show details")

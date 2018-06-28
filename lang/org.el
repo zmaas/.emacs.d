@@ -6,7 +6,10 @@
  ;;; Code:
 
 (use-package org
-	:ensure org-plus-contrib)
+	:ensure org-plus-contrib
+	:init
+	(add-hook 'org-mode-hook (lambda () (ws-butler-mode nil)))
+	(add-hook 'org-mode-hook (lambda () (visual-fill-column-mode nil))))
 
 ;; Essential org-mode setup
 (setq org-todo-keywords
@@ -27,6 +30,28 @@
 (setq org-capture-templates
 			'(("t" "Todo" entry (file+headline "~/Dropbox/Org/organizer.org" "Unfiled")
 				 "* TODO  %?\n  %i\n  %a")))
+
+;; Setup `org-babel' for emacs-lisp, gnuplot, latex and shell-script.
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((calc . t)
+   (ditaa . t)
+   (emacs-lisp . t)
+   (gnuplot . t)
+   (latex . t)
+   (octave .t)
+   (C . t)
+   (python . t)
+   (R . t)
+   (ruby . t)
+	 (shell . t)))
+(setq org-src-fontify-natively t)
+(setq org-latex-listings 'minted)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 ;; Better bindings for org-mode through evil.
 (use-package evil-org
@@ -54,8 +79,17 @@
 				cfw:fchar-right-junction ?┫
 				cfw:fchar-top-junction ?┯
 				cfw:fchar-top-left-corner ?┏
-				cfw:fchar-top-right-corner ?┓)
-	)
+				cfw:fchar-top-right-corner ?┓))
+
+;; TODO	Consider other PDF viewer
+(use-package org-ref
+	:ensure t
+	:config
+	(setq reftex-default-bibliography '("~/Downloads/synced/Zotero_Library.bib"))
+	(setq org-ref-bibliography-notes "~/Dropbox/Org/bibliography/notes.org"
+				org-ref-default-bibliography '("~/Dropbox/Org/bibliography/references.bib")
+				org-ref-pdf-directory "~/Dropbox/Org/bibliography/bibtex-pdfs/")
+	(setq bibtex-completion-pdf-field "File"))
 
 (use-package interleave
 	:ensure t
@@ -176,16 +210,14 @@
 (general-define-key
  :states '(normal visual insert emacs)
  :keymaps	'deft-mode-map
- :prefix "SPC"
- :non-normal-prefix "M-SPC"
- "l" '(:ignore t :which-key "deft")
- "lq" '(quit-window :which-key "quit")
- "lc" '(deft-new-file :which-key "new")
- "lo" '(deft-open-file :which-key "open")
- "lr" '(deft-rename-file :which-key "rename")
- "ll" '(deft-filter-clear :which-key "clear filter")
- "ld" '(deft-delete-file :which-key "delete"))
-
+ "q" '(quit-window :which-key "quit")
+ "n" '(deft-new-file :which-key "new")
+ "s" '(deft-new-file-named :which-key "new-name")
+ "a" '(deft-archive-file :which-key "archive")
+ "r" '(deft-rename-file :which-key "rename")
+ "f" '(deft-filter :which-key "filter")
+ "c" '(deft-filter-clear :which-key "clear filter")
+ "d" '(deft-delete-file :which-key "delete"))
 
 (general-define-key
  :states '(normal visual insert emacs)

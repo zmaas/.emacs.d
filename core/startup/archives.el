@@ -14,6 +14,7 @@
 ;; Force GNUtls to use real security
 (setq gnutls-min-prime-bits 4096)
 (setq tls-checktrust t)
+(setq tls-program "openssl s_client -connect %h:%p -no_ssl3 -no_ssl2 -ign_eof -CAfile %t")
 
 ;; Use package.el
 (package-initialize)

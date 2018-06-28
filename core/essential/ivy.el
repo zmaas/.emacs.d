@@ -16,16 +16,18 @@
 	:init
 	(use-package ivy-hydra
 		:ensure t)
-	(use-package smex
-		:ensure t)
-	(use-package historian
+	(use-package prescient
 		:ensure t
-		:init
-		(use-package ivy-historian
-			:ensure t)
 		:config
-		(historian-mode t)
-		(ivy-historian-mode t))
+		(use-package ivy-prescient
+			:ensure t
+			:config
+			(ivy-prescient-mode t))
+		(prescient-persist-mode t))
+	(use-package ivy-xref
+		:ensure t
+		:config
+		(setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 	(use-package flx
 		:ensure t)
 	(use-package imenu-anywhere

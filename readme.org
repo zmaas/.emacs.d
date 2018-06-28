@@ -1,9 +1,7 @@
 #+OPTIONS: toc:1
 #+BEGIN_CENTER
-*ONO Emacs - A Modern and Sustainable Approach to Emacs Configuration*
+*ONO Emacs - A Modern, Sustainable Approach to Emacs Configuration*
 #+END_CENTER
-
-[[./ono-screenshot.png]]
 
 * About
 
@@ -25,17 +23,16 @@ The big things I try to implement with this configuration are:
 * Languages
 The primary languages I work on using Emacs are:
 - Python for shell scripting
-- C++ for performance-intensive development
-- Golang for the quick and easy, slowly supplanting python
-- Clojure for long running programs and CLJS
+- R for certain projects
+- C++ for where performance is necessary
+- Common Lisp for fun
 - LaTeX for all of my writing
 - Orgmode for task management and remembering things
-Languages with slightly less developed support:
-- Common lisp, since lispy languages are fantastic
-- Haskell, for programming more like math
+ 
 Other languages that have some level of support are:
+- Haskell, functional programming like math
+- JS which is unavoidable these days
 - Racket and other schemes, same as above
-- R, for statistical programming
 - Java, since I work with clojure sometimes
 - Various markdown languages
 - More to come!

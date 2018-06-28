@@ -52,6 +52,10 @@
 	:config
 	(add-hook 'python-mode-hook (lambda  () (sphinx-doc-mode t))))
 
+;; Yapfify -- Better formatter
+(use-package yapfify
+	:ensure t)
+
 ;; EIN - Emacs Ipython Notebooks
 (use-package ein
 	:ensure t)
@@ -64,7 +68,7 @@
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
  "lr" '(run-python :which-key "python repl")
- "lf" '(py-autopep8 :which-key "autoformat")
+ "lf" '(yapfify-buffer :which-key "autoformat")
  "le" '(python-shell-send-buffer :which-key "eval buffer")
  "lE" '(python-shell-send-defun :which-key "eval defun")
  "ld" '(anaconda-mode-find-definitions :which-key "def")

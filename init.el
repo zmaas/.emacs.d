@@ -12,8 +12,7 @@
 ;;    \::/  /       \:\__\        \::/  /
 ;;     \/__/         \/__/         \/__/
 ;;                  EMACS
-;;
-;; Emacs configuration file targeting Emacs 25.3
+;; Emacs configuration file targeting Emacs 26
 ;; Author: Zach Maas (zach.maas@gmail.com)
 ;; Configured for use on Arch Linux, vc using git
 ;; For more information, see README
@@ -50,6 +49,7 @@
 (ono! :core :checks "style-checks")     ; So is	English
 (ono! :core :tools "hydras")            ; HAIL!	Temporary keymaps
 (ono! :core :tools "completions") 			;	I like saving effort.
+;; (ono! :core :tools "lsp")               ;	Support for language server protocol
 (ono! :core :tools "utils") 						;	Lots of little things
 (ono! :core :tools "vc")                ;	Saving stuff on steroids
 (ono! :core :tools "buffer-tools")      ;	Open everything, all the time
@@ -88,7 +88,7 @@
 (ono! :lang "c++") 											;	if c=1,	c++ = 2?
 (ono! :lang "haskell") 									;	Theoretically functional?
 ;; Second Class Support - Less Common Use
-(ono! :lang "clojure") 									; Lisp hijacks JS and the JVM
+;; (ono! :lang "clojure") 									; Lisp hijacks JS and the JVM
 (ono! :lang "go") 											;	C, but for parallel brogrammers
 ;; Preliminary Support - Occasional Use
 (ono! :lang "r") 												;	Stats, stats, stats!
@@ -97,7 +97,7 @@
 (ono! :lang "web")                      ; internets
 
 ;; Set our default theme
-(ono-night-theme)
+(ono-dark-night-theme)
 
 ;; Load custom-set-variables file
 (setq custom-file "~/.emacs.d/emacs-custom.el")

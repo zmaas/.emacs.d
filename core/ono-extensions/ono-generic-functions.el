@@ -74,6 +74,11 @@ buffer." (interactive)
 	(ivy-bibtex)
 	(forward-char 1))
 
+(defun ono-insert-todo ()
+	"Insert a todo statement"
+	(interactive)
+	(insert "TODO"))
+
 ;; close all open parens before point
 (defun close-all-parentheses ()
   (interactive "*")

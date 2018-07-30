@@ -28,7 +28,7 @@
   :ensure t
   :init (auto-save-buffers-enhanced t)
   :config
-  (setq auto-save-buffers-enhanced-interval 3.0
+  (setq auto-save-buffers-enhanced-interval 10.0
         ;; Don't auto-save org source popups
         auto-save-buffers-enhanced-exclude-regexps '("Org Src")
         ;; Save things quietly

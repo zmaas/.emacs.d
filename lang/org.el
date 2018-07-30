@@ -8,7 +8,7 @@
 (use-package org
 	:ensure org-plus-contrib
 	:init
-	(add-hook 'org-mode-hook (lambda () (ws-butler-mode nil)))
+	;; (add-hook 'org-mode-hook (lambda () (ws-butler-mode nil)))
 	(add-hook 'org-mode-hook (lambda () (visual-fill-column-mode nil))))
 
 ;; Essential org-mode setup

@@ -15,8 +15,7 @@
 (use-package sly
 	:ensure t
 	:init
-	(use-package sly-company
-		:ensure t)
+	;; TODO Debug this?
 	(use-package sly-macrostep
 		:ensure t)
 	(use-package sly-quicklisp
@@ -26,9 +25,10 @@
 	:config
 	(add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-mode))
 	(add-to-list 'auto-mode-alist '("\\.lsp\\'" . lisp-mode))
+	;; (setq inferior-lisp-program "/opt/sbcl/bin/sbcl")
 	(setq inferior-lisp-program "ros run")
-	(add-hook 'sly-mode-hook 'sly-company-mode)
-	(add-to-list 'company-backends 'sly-company)
+	(load (expand-file-name "~/.roswell/helper.el"))
+	;; (add-hook 'sly-mode-hook (lambda () (company-flx-mode nil)))
 	(setq sly-contribs '(sly-fancy sly-tramp sly-quicklisp sly-repl-ansi-color))
   (sly-setup '(sly-fancy sly-repl-ansi-color sly-tramp sly-quicklisp)))
 
@@ -90,6 +90,7 @@
  "ln" '(sly-mrepl-new :which-key "new mrepl")
  "ls" '(sly-list-connections :which-key "connections")
  "lc" '(sly-mrepl-clear-repl :which-key "clear mrepl")
+ "lC" '(sly-compile-file :which-key "compile file")
  "lq" '(sly-quit-lisp :which-key "quit mrepl")
  "ll" '(sly-eval-defun :which-key "eval def")
  "le" '(sly-eval-buffer :which-key "eval buffer"))

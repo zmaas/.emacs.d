@@ -69,6 +69,7 @@
  "l" '(:ignore t :which-key "layer")
  "lr" '(run-python :which-key "python repl")
  "lf" '(yapfify-buffer :which-key "autoformat")
+ "ll" '(python-shell-send-region :which-key "eval region")
  "le" '(python-shell-send-buffer :which-key "eval buffer")
  "lE" '(python-shell-send-defun :which-key "eval defun")
  "ld" '(anaconda-mode-find-definitions :which-key "def")

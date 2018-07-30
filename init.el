@@ -1,5 +1,17 @@
-;;; init.el
-;; Commentary:
+;;; init.el --- Emacs init file
+;;
+;; Filename: init.el
+;; Description:	Emacs Initialization File
+;; Author: Zach Maas <zach.maas@gmail.com>
+;; Maintainer: Zach Maas <zach.maas@gmail.com>
+;; Created: Mon Jul 16 09:15:23 2018 (-0600)
+;; Version:	0.0.1
+;; URL: https://github.com/zmaas/.emacs.d
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;; Commentary:
+;;
 ;;      ___           ___           ___
 ;;     /\  \         /\  \         /\  \
 ;;    /::\  \        \:\  \       /::\  \
@@ -16,7 +28,26 @@
 ;; Author: Zach Maas (zach.maas@gmail.com)
 ;; Configured for use on Arch Linux, vc using git
 ;; For more information, see README
-
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;; Code:
 
 ;; Allow packages to load
@@ -88,8 +119,9 @@
 (ono! :lang "c++") 											;	if c=1,	c++ = 2?
 (ono! :lang "haskell") 									;	Theoretically functional?
 ;; Second Class Support - Less Common Use
-;; (ono! :lang "clojure") 									; Lisp hijacks JS and the JVM
+(ono! :lang "clojure") 									; Lisp hijacks JS and the JVM
 (ono! :lang "go") 											;	C, but for parallel brogrammers
+(ono! :lang "rust")											;	C++, but more hardcore?
 ;; Preliminary Support - Occasional Use
 (ono! :lang "r") 												;	Stats, stats, stats!
 (ono! :lang "java") 										;	a	cup of kaffe
@@ -110,4 +142,7 @@
 
 (provide 'init)
 
+;;; init.el ends here
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here

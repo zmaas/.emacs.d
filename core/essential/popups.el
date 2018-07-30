@@ -30,7 +30,7 @@
           ("*quickrun*" :popup t :select t)
           ("*evil-jumps*" :same t)
           ("*evil-marks*" :same t)
-					("*compilation*" :select t)
+					("*compilation*" :popup t :select t)
 					("*golint*" :size 0.5 :noselect t)
 					("\\`\\*e?shell" :regexp t :popup t)
 					("\\`\\*e?shell" :regexp t :frame t)

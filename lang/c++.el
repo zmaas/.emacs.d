@@ -7,8 +7,8 @@
 
 ;; Semantic -- The core	C++ editing
 (use-package semantic
+	:disabled t
 	:ensure t
-	:disabled
 	:config
 	(global-semanticdb-minor-mode t)
 	(global-semantic-idle-scheduler-mode t)
@@ -41,11 +41,11 @@
 	(use-package company-irony
 		:ensure t
 		:config)
-	(use-package flycheck-irony
-		:ensure t
-		:config
-		(eval-after-load 'flycheck
-			'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+	;; (use-package flycheck-irony
+	;; 	:ensure t
+	;; 	:config
+	;; 	(eval-after-load 'flycheck
+	;; 		'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 	:config
 	(add-hook 'c++-mode-hook 'irony-mode)
 	(add-hook 'c-mode-hook 'irony-mode)

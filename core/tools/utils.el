@@ -55,11 +55,11 @@
 ;; ws-butler - easy white space trimming
 ;; won't make commits messy, only touches edited lines
 ;; Disabling because it causes problems with org-mode
-;; (use-package ws-butler
-;; 	:ensure t
-;; 	:diminish ws-butler-mode
-;; 	:config
-;; 	(add-hook 'prog-mode-hook #'ws-butler-mode))
+(use-package ws-butler
+	:ensure t
+	:diminish ws-butler-mode
+	:config
+	(ws-butler-global-mode))
 
 ;; Speaking of whitespace, let's improve the builtin
 ;; just-one-space command
@@ -96,6 +96,7 @@
   ;; disable company completion of *all* remote filenames, whether
   ;; connected or not -- fixes annoying latency
 	(setq tramp-default-method "ssh")
+	(setq ssh-explicit-args '("-ssh -X"))
 	(defun company-files--connected-p (file)
 		(not (file-remote-p file))))
 

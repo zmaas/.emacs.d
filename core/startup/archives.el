@@ -28,12 +28,9 @@
     (eval-buffer)))
 
 ;;; Make sure we have use-package
-(quelpa
- '(use-package
-		:fetcher github
-		:repo "jwiegley/use-package"
-		:files ("use-package.el" "use-package-core.el")))
-
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (quelpa
  '(quelpa-use-package
@@ -49,6 +46,10 @@
 	(add-hook 'after-init-hook #'auto-compile-mode)
 	(auto-compile-on-save-mode t)
 	(auto-compile-on-load-mode t))
+
+;; Make sure we have diminish
+(use-package diminish
+     :ensure t)
 
 ;; Always prefer newer files when loading
 (setq load-prefer-newer t)

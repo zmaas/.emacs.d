@@ -29,7 +29,7 @@
 	(lambda ()
 		(unless (derived-mode-p 'git-commit-mode)
 			(flyspell-mode t)))
-	(add-hook 'text-mode-hook 'flyspell-buffer)
+	(add-hook 'text-mode-hook 'flyspell-mode)
 	(set 'flyspell-correct-auto-mode nil))
 
 ;; writegood mode checks errors

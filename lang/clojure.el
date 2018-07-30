@@ -11,14 +11,14 @@
 	:config
 	(add-hook 'clojure-mode-hook 'cider-mode))
 
-(use-package clj-refactor
-	:ensure  t
-	:config
-	(add-hook 'clojure-mode-hook 'clj-refactor-mode))
+;; (use-package clj-refactor
+;; 	:ensure  t
+;; 	:config
+;; 	(add-hook 'clojure-mode-hook 'clj-refactor-mode))
 
 ;; Improved	sexp evaluation
-(use-package cider-eval-sexp-fu
-	:ensure t)
+;; (use-package cider-eval-sexp-fu
+;; 	:ensure t)
 
 ;; special per-mode keybindings for CIDER
 (general-define-key

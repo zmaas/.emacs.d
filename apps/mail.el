@@ -61,10 +61,23 @@
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
 
+;; Better rendering of html as very plain text.
+(setq mu4e-html2text-command "pandoc -f html -t plain --columns=72 --wrap=auto")
+;; Other options for rendering
+;; (setq mu4e-html2text-command 'mu4e-shr2text)
+;; (setq mu4e-html2text-command "html2text --unicode-snob --body-width=72")
+;; (setq mu4e-html2text-command "w3m -T text/html")
+
+;; Since we view as plain text, it's convenient to be able to open it
+;; in our browser with all of the browser's security configuration.
+(add-to-list 'mu4e-view-actions
+						 '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+
+
 (setq-default
  mu4e-confirm-quit nil
  mu4e-view-show-images t
- mu4e-view-prefer-html t
+ mu4e-view-prefer-html nil
  mu4e-sent-messages-behavior 'delete
  mu4e-get-mail-command "mbsync -a"
  mu4e-completing-read-function 'completing-read

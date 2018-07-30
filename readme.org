@@ -4,7 +4,9 @@
 
 [[file:ono-screenshot.png]]
 
-[[https://forthebadge.com/images/badges/compatibility-emacs.svg]] [[https://forthebadge.com/images/badges/contains-technical-debt.svg ]][https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg]]
+[[https://forthebadge.com/images/badges/compatibility-emacs.svg]]
+[[https://forthebadge.com/images/badges/contains-technical-debt.svg]]
+[[https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg]]
 #+END_CENTER
 
 

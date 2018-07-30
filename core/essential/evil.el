@@ -101,7 +101,9 @@
 		:config
 		(evil-lion-mode))
 	(use-package evil-unimpaired
-		:quelpa (evil-unimpaired :fetcher github :repo "zmaas/evil-unimpaired"))
+		:quelpa (evil-unimpaired :fetcher github :repo "zmaas/evil-unimpaired")
+		(evil-unimpaired-mode t)
+		(setq evil-unimpaired-leader-keys '("[" . "]")))
 	(use-package evil-goggles
 		:ensure t
 		:config

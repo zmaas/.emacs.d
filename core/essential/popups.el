@@ -68,6 +68,7 @@
 ;; Ranger is a vimish file-manager
 ;; We bind it to -,	like dirvish.vim
 (use-package ranger
+	:disabled t
 	:ensure t
 	:config
 	(setq ranger-show-dotfiles t
@@ -76,7 +77,25 @@
 				ranger-max-preview-size 10
 				ranger-cleanup-on-disable t
 				ranger-cleanup-eagerly t)
-	(ranger-override-dired-mode t))
+	(ranger-override-dired-mode nil))
+
+;; Better dired setup
+(use-package dired-ranger
+	:ensure t)
+(use-package wdired
+	:ensure t)
+(use-package dired-narrow
+	:ensure t)
+(defun ono/dired-open-current-dir ()
+	"Opens the current directory in dired"
+	(interactive)
+	(dired "."))
+(general-define-key
+ :states 'normal
+ :keymaps '(dired-mode-map)
+ "-" 'dired-up-directory
+ "h" 'dired-up-directory
+ "l" 'dired-find-file)
 
 ;; Better tree navigation of buffers
 (use-package imenu-list

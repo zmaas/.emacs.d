@@ -23,6 +23,33 @@ _k_prev	_d_iff
 ("d" magit-diff-buffer-file "diff")
 ("q" nil "quit"))
 
+(defun ono-org/open-organizer ()
+	"Opens organizer.org"
+	(interactive)
+	(find-file "~/Dropbox/Org/organizer.org"))
+(defun ono-org/open-someday ()
+	"Opens someday.org"
+	(interactive)
+	(find-file "~/Dropbox/Org/someday.org"))
+(defun ono-org/open-knowledge-base ()
+	"Opens knowledge_base.org"
+	(interactive)
+	(find-file "~/Dropbox/Org/knowledge_base.org"))
+(defun ono-org/open-projects ()
+	"Opens projects.org."
+	(interactive)
+	(find-file "~/Dropbox/Org/projects.org"))
+
+(defhydra ono-org/gtd-nav (:color blue)
+	"
+_o_rganizer _s_omeday
+_k_nowledge _p_rojects
+" ("o" ono-org/open-organizer "organizer")
+	("s" ono-org/open-someday "someday")
+	("k" ono-org/open-knowledge-base "knowledge-base")
+	("p" ono-org/open-projects "projects")
+	("q" nil "quit"))
+
 (defhydra ono-smerge
   (:color red :hint nil
           :pre (smerge-mode 1))

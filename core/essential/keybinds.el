@@ -55,6 +55,7 @@
 	 "k" '(counsel-yank-pop :which-key "kill ring")
 	 "SPC" '(counsel-grep-or-swiper :which-key "swiper")
 	 "TAB" '(evil-buffer :which-key "last")
+	 "RET" '(bookmark-jump :which-key "bookmark")
 	 ":" '(counsel-M-x :which-key "M-x")
 	 ";" '(counsel-M-x :which-key "M-x")
 	 "s" '(flyspell-correct-previous-word-generic :which-key "spellcheck")
@@ -102,11 +103,11 @@
 	 "fS" '(save-some-buffers :which-key "save all")
 	 "fb" '(bookmark-jump :which-key "bookmarks")
 	 "fB" '(bookmark-set :which-key "new bookmarks")
-	 "fd" '(deer :which-key "directory")
-	 "fR" '(ranger :which-key "ranger")
+	 "fd" '(dired :which-key "directory")
+	 ;; "fR" '(ranger :which-key "ranger")
 	 "fx" '(delete-file :which-key "delete")
-	 "fr" '(counsel-tramp :which-key "tramp")
-	 "ft" '(treemacs :which-key "tree")
+	 "fr" '(counsel-recentf :which-key "recent")
+	 "ft" '(counsel-tramp :which-key "tramp")
 	 "fl" '(swiper :which-key "lines")
 	 ;; Insertion editing tools
 	 "i" '(:ignore t :which-key "insertion")
@@ -138,6 +139,7 @@
 	 "al" '(display-line-numbers-mode :which-key "line numbers")
 	 "aS" '(smooth-scrolling-mode :which-key "smooth-scrolling")
 	 "as" '(subword-mode :which-key "subword mode")
+	 "aw" '(helm-surfraw :which-key "surfraw")
 	 "ao" '(olivetti-mode :which-key "olivetti")
 	 "at" '(eshell  :which-key "eshell")
 	 "ad" '(deft  :which-key "deft")
@@ -274,7 +276,6 @@
 (general-define-key
  "M-[" 'evil-escape)
 
-
 ;; Rebinds
 (global-set-key [remap fill-paragraph] #'ono-fill-or-unfill)
 
@@ -282,7 +283,7 @@
 (general-define-key
  :states '(normal visual motion)
  "\\"	'evil-execute-in-god-state
- "-" 'deer
+ "-" 'ono/dired-open-current-dir
  "z/" 'counsel-fzf
  "gb" 'ivy-switch-buffer
  "j" 'evil-next-visual-line

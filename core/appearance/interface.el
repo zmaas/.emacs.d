@@ -18,6 +18,7 @@
 	(spaceline-spacemacs-theme)
 	(spaceline-toggle-anzu-on)
 	(spaceline-toggle-window-number-on)
+	(spaceline-toggle-org-pomodoro-on)
 	(setq anzu-cons-mode-line-p nil
 				powerline-default-separator	'utf8
 				spaceline-workspace-numbers-unicode t

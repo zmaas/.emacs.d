@@ -7,10 +7,11 @@
 
 ;; Configure visual line mode for text modes, wrap at fill column
 (use-package visual-fill-column
+	:disabled t
 	:ensure t
 	:diminish visual-fill-column-mode
 	:config
-	(add-hook 'text-mode-hook #'visual-line-mode)
+	(add-hook 'prog-mode-hook #'visual-line-mode)
 	(add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
 
 (use-package pretty-mode

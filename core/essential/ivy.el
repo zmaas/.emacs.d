@@ -33,10 +33,10 @@
 	(use-package imenu-anywhere
 		:ensure t
 		:commands ivy-imenu-anywhere)
-	(use-package all-the-icons-ivy
-		:ensure t
-		:config
-		(all-the-icons-ivy-setup))
+	;; (use-package all-the-icons-ivy
+	;; 	:ensure t
+	;; 	:config
+	;; 	(all-the-icons-ivy-setup))
 	(use-package counsel-tramp
 		:ensure t)
   (use-package counsel-projectile
@@ -57,14 +57,15 @@
 	(use-package ivy-rich
 		:ensure t
 		:config
-		(ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
+		;; (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
+		(ivy-rich-mode t)
 		(setq ivy-virtual-abbreviate 'full
 					ivy-rich-switch-buffer-align-virtual-buffer t
 					ivy-rich-abbreviate-paths t
 					ivy-rich-path-style 'abbrev
 					ivy-use-selectable-prompt t
 					ivy-auto-select-single-candidate nil))
-  :config
+	:config
   (ivy-mode 1)
 	(setq counsel-grep-base-command
 				"rg -i -M 120 --no-heading --line-number --color never '%s' %s")

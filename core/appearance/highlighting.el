@@ -7,25 +7,26 @@
 
 ;; Make all symbols pretty
 (global-prettify-symbols-mode t)
+(setq prettify-symbols-unprettify-at-point t)
+
+(use-package pretty-mode-plus
+	:ensure t
+	:config
+	(global-pretty-mode t)
+	(pretty-deactivate-groups
+	 '(:logic :sets))
+	(pretty-activate-groups
+	 '(:sub-and-superscripts
+		 :ordering :ordering-double :ordering-triple
+		 :punctuation
+		 :greek :arithmetic-nary :equality
+		 :arrows :arrows-twoheaded)))
 
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
 ;; Modes to hide trailing whitespace
 (add-hook 'mu4e-view-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 (add-hook 'undo-tree-mode-hook (lambda () (setq show-trailing-whitespace nil)))
-
-;; highlight symbols when we are over them - so pretty
-;; (use-package highlight-thing
-;; 	:disabled t
-;; 	:ensure t
-;; 	:diminish highlight-thing-mode
-;; 	:config
-;; 	(global-highlight-thing-mode t)
-;; 	(setq highlight-thing-delay-seconds 1
-;; 				highlight-thing-what-thing 'word
-;; 				highlight-thing-limit-to-defun nil
-;; 				highlight-thing-case-sensitive-p t
-;; 				highlight-thing-prefer-active-region t))
 
 ;; subtle lines to show our tab level in code
 (use-package highlight-indent-guides
@@ -34,13 +35,6 @@
 	:config
 	(setq highlight-indent-guides-method 'character)
 	(add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
-
-;; all code identifiers get pretty colors
-;; (use-package color-identifiers-mode
-;; 	:ensure t
-;; 	:diminish color-identifiers-mode
-;; 	:config
-;; 	(add-hook 'after-init-hook 'global-color-identifiers-mode))
 
 ;; make our delimiters rainbows! much easier to see sexps
 (use-package rainbow-delimiters
@@ -52,14 +46,6 @@
 	(set-face-attribute 'rainbow-delimiters-unmatched-face nil
 											:foreground 'unspecified
 											:inherit 'error))
-
-;; highlights numbers, not that complicated
-;; (use-package highlight-numbers
-;; 	:ensure t
-;; 	:diminish highlight-numbers-mode
-;; 	:config
-;; 	(add-hook 'prog-mode-hook #'highlight-numbers-mode)
-;; 	(add-hook 'prog-mode-hook #'show-paren-mode))
 
 ;; Highlight parentheses when we're hovering
 (use-package highlight-parentheses

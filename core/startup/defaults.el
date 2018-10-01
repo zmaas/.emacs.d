@@ -49,11 +49,22 @@
 ;; 80 columns, no UI elements enabled
 ;; (setq-default fill-column 80)
 (setq-default tab-width 2)
+;; Use single spaces by default
+(setq sentence-end-double-space nil)
 ;; Disable annoying	UI elements
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+
+;; Don't wrap by default, only with text modes.
+(setq-default truncate-lines t)
+
+(defun ono/truncate-lines-hook ()
+	"Disable line truncation."
+  (setq truncate-lines nil))
+
+(add-hook 'text-mode-hook 'ono/truncate-lines-hook)
 
 ;; Make font-lock work better in the background
 (setq jit-lock-defer-time nil

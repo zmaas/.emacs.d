@@ -11,11 +11,15 @@
 	:config
 	(use-package evil-magit
 		:ensure t)
-	(use-package magit-gitflow
+	(use-package magit-todos
+		:disabled t
 		:after magit
+		:init
+		(use-package a
+			:ensure t)
 		:ensure t
 		:config
-		(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
+		(add-hook 'magit-mode-hook 'magit-todos-mode)))
 
 (use-package magithub
 	:ensure t

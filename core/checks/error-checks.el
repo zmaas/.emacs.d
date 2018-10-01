@@ -63,7 +63,8 @@
 	(use-package flycheck-popup-tip
 		:ensure t)
 	:config
-	(setq flycheck-check-syntax-automatically '(mode-enabled save))
+	(setq flycheck-check-syntax-automatically '(mode-enabled save
+																													 idle-change new-line))
 	(add-hook 'after-init-hook #'global-flycheck-mode)
 	(add-hook 'prog-mode-hook #'flycheck-popup-tip-mode))
 

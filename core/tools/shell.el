@@ -26,6 +26,8 @@
   (require 'em-smart)
   (setq eshell-glob-case-insensitive nil
         eshell-error-if-no-glob nil
+				eshell-hist-ignoredups t
+				eshell-destroy-buffer-when-process-dies t
         eshell-scroll-to-bottom-on-input nil
         eshell-where-to-jump 'begin
         eshell-review-quick-commands nil

@@ -59,7 +59,8 @@
 	:ensure t
 	:diminish ws-butler-mode
 	:config
-	(ws-butler-global-mode))
+	(add-hook 'prog-mode-hook #'ws-butler-mode))
+
 
 ;; Speaking of whitespace, let's improve the builtin
 ;; just-one-space command

@@ -21,21 +21,21 @@
 (setq package-enable-at-startup nil)
 
 ;; Bootstrap Quelpa
-(if (require 'quelpa nil t)
-    (quelpa-self-upgrade)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
+; (if (require 'quelpa nil t)
+;     (quelpa-self-upgrade)
+;   (with-temp-buffer
+;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+;     (eval-buffer)))
 
 ;;; Make sure we have use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-(quelpa
- '(quelpa-use-package
-   :fetcher github
-   :repo "quelpa/quelpa-use-package"))
+; (quelpa
+;  '(quelpa-use-package
+;    :fetcher github
+;    :repo "quelpa/quelpa-use-package"))
 (require 'use-package)
 (require 'quelpa-use-package)
 

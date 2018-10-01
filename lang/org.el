@@ -6,14 +6,31 @@
  ;;; Code:
 
 (use-package org
-	:ensure org-plus-contrib
-	:init
-	;; (add-hook 'org-mode-hook (lambda () (ws-butler-mode nil)))
-	(add-hook 'org-mode-hook (lambda () (visual-fill-column-mode nil))))
+	:ensure org-plus-contrib)
+
+(use-package org-bullets
+	:ensure t
+	:config
+	(add-hook 'org-mode-hook 'org-bullets-mode))
 
 ;; Essential org-mode setup
+;; (setq org-todo-keywords
+;; 			'((sequence "TODO" "NEXT" "WAITING" "|" "DONE" "CANCELED")))
 (setq org-todo-keywords
-			'((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+
+(setq org-tag-alist (quote (("@errand" . ?e)
+                            ("@office" . ?o)
+                            ("@home" . ?h)
+                            ("@school" . ?s)
+                            (:newline)
+                            ("WAITING" . ?w)
+                            ("HOLD" . ?H)
+                            ("CANCELLED" . ?c))))
+
+(setq org-fast-tag-selection-single-key nil)
+
 (setq org-completion-use-ido t)
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 (setq org-refile-use-outline-path 'file)
@@ -28,8 +45,12 @@
 
 ;; Custom Capture Templates
 (setq org-capture-templates
-			'(("t" "Todo" entry (file+headline "~/Dropbox/Org/organizer.org" "Unfiled")
-				 "* TODO  %?\n  %i\n  %a")))
+			'(("t" "Todo" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
+				 "* TODO  %?\n  %i\n  %a")
+        ("e" "email" entry (file+headline "~/Dropbox/Org/emails.org" "Emails")
+         "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
+				("d" "Did" entry (file "~/Dropbox/Org/did.org")
+				 "* %T\n - %? %i")))
 
 ;; Setup `org-babel' for emacs-lisp, gnuplot, latex and shell-script.
 (org-babel-do-load-languages
@@ -56,7 +77,12 @@
 ;; Better bindings for org-mode through evil.
 (use-package evil-org
 	:ensure t
+	:init
+	(use-package evil-org-agenda
+		:config
+		(evil-org-agenda-set-keys))
 	:config
+	(evil-org-set-key-theme '(navigation insert textobjects additional calendar))
 	(add-hook 'org-mode-hook #'evil-org-mode))
 
 ;; Calendar settings
@@ -229,6 +255,7 @@
  "oc" '(org-capture :which-key "capture")
  "oC" '(cfw:open-org-calendar :which-key "calendar")
  "oo" '(ono-open-organizer-file :which-key "organizer")
+ "on" '(ono-org/gtd-nav/body :which-key "gtd")
  "op" '(org-pomodoro :which-key "pomodoro")
  "oi" '(org-clock-in :which-key "clock in")
  "oO" '(org-clock-out :which-key "clock out")

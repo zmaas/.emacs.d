@@ -19,20 +19,31 @@
 	:config
 	(evil-set-initial-state 'mu4e-main-mode 'emacs))
 
-(use-package org-mime
-	:ensure t
-	:config
-	(setq mail-user-agent 'mu4e-user-agent))
+;; (use-package org-mime
+;; 	:ensure t
+;; 	:config
+;; 	(setq mail-user-agent 'mu4e-user-agent))
 
 (setq mu4e-maildir "~/.mail/")
-
 ;; Store account personal settings in an untracked file
 (load-file "~/.emacs.d/apps/mail-private.el")
 
 ;; Custom bookmarks
 (add-to-list 'mu4e-bookmarks
-             '("flag:unread AND date:today..now" "Todays Unread Email" ?i)
-						 '("flag:unread AND date:7d..now" "This Week's Unread Email" ?o))
+						 (make-mu4e-bookmark
+							:name "Today's Unread Email"
+							:query "flag:unread AND date:today..now"
+							:key ?t)
+						 (make-mu4e-bookmark
+							:name "This Week's Unread Email"
+							:query "flag:unread AND date:7d..now"
+							:key ?w)
+						 ;; TODO - FIXME
+						 ;; (make-mu4e-bookmark
+						 ;; 	:name "Starred Mail"
+						 ;; 	:query "flag:flagged"
+						 ;; 	:key ?k)
+						 )
 
 (defun my-mu4e-set-account ()
   "Set the account for composing a message."
@@ -55,20 +66,16 @@
 
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
-(add-hook 'mu4e-view-mode-hook 'olivetti-mode)
+;; (add-hook 'mu4e-view-mode-hook 'olivetti-mode)
 
 ;; use imagemagick for inline images when available
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
 
 ;; Better rendering of html as very plain text.
-(setq mu4e-html2text-command "pandoc -f html -t plain --columns=72 --wrap=auto")
 ;; Other options for rendering
+;; (setq mu4e-html2text-command "pandoc -f html -t plain --columns=72 --wrap=auto")
 ;; (setq mu4e-html2text-command 'mu4e-shr2text)
-;; (setq mu4e-html2text-command "html2text --unicode-snob --body-width=72")
-;; (setq mu4e-html2text-command "w3m -T text/html")
-
-;; Since we view as plain text, it's convenient to be able to open it
 ;; in our browser with all of the browser's security configuration.
 (add-to-list 'mu4e-view-actions
 						 '("ViewInBrowser" . mu4e-action-view-in-browser) t)
@@ -81,7 +88,11 @@
  mu4e-sent-messages-behavior 'delete
  mu4e-get-mail-command "mbsync -a"
  mu4e-completing-read-function 'completing-read
- message-kill-buffer-on-exit t)
+ mu4e-compose-format-flowed t
+ mu4e-view-show-addresses 't
+ mu4e-headers-date-format "%Y-%m-%d %H:%M"
+ mu4e-context-policy 'pick-first
+ mu4e-compose-context-policy nil)
 
 (general-define-key
  :states '(normal visual insert emacs)

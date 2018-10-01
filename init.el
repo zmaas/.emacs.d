@@ -119,6 +119,7 @@
 (ono! :lang "c++") 											;	if c=1,	c++ = 2?
 (ono! :lang "haskell") 									;	Theoretically functional?
 ;; Second Class Support - Less Common Use
+(ono! :lang "js")                       ;	Code for the modern	web.
 (ono! :lang "clojure") 									; Lisp hijacks JS and the JVM
 (ono! :lang "go") 											;	C, but for parallel brogrammers
 (ono! :lang "rust")											;	C++, but more hardcore?

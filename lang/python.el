@@ -36,14 +36,13 @@
           python-shell-completion-string-code
           "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
 
-	(eval-after-load "company"
-		'(add-to-list 'company-backends 'company-anaconda))													
 	(add-hook 'python-mode-hook 'anaconda-mode)
-	(add-hook 'anaconda-mode-hook #'anaconda-eldoc-mode)
-	(add-hook 'python-mode-hook																										
-						(lambda ()																																
-							(set (make-local-variable 'company-backends)											
-									 '((company-anaconda company-dabbrev-code company-yasnippet))))))
+	(add-hook 'python-mode-hook #'(lambda ()
+																	(add-to-list 'company-backends 'company-anaconda)))
+
+	(eval-after-load "company"
+		'(add-to-list 'company-backends '(company-anaconda :with company-capf)))
+	(add-hook 'anaconda-mode-hook #'anaconda-eldoc-mode))
 
 ;; Sphinx-doc -- Automagically add docstrings to python	functions
 (use-package sphinx-doc
@@ -70,6 +69,7 @@
  "lr" '(run-python :which-key "python repl")
  "lf" '(yapfify-buffer :which-key "autoformat")
  "ll" '(python-shell-send-region :which-key "eval region")
+ "lc" '(comint-clear-buffer :which-key "clear repl")
  "le" '(python-shell-send-buffer :which-key "eval buffer")
  "lE" '(python-shell-send-defun :which-key "eval defun")
  "ld" '(anaconda-mode-find-definitions :which-key "def")

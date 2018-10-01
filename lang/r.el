@@ -14,6 +14,16 @@
 	:config
 	(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode)))
 
+;; (use-package matlab-mode
+	:ensure t
+	:config
+	(add-to-list
+	 'auto-mode-alist
+	 '("\\.m$" . matlab-mode))
+	(setq matlab-indent-function t)
+	(setq matlab-shell-command "matlab")
+	;; (add-to-list 'company-backends 'company-matlab-shell))
+
 (general-define-key
  :states '(normal visual insert emacs)
  :keymaps 'ess-mode-map

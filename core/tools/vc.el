@@ -27,6 +27,9 @@
 	(magithub-feature-autoinject t)
 	(setq magithub-clone-default-directory "~/builds/"))
 
+(use-package forge
+	:ensure t)
+
 ;; (use-package git-timemachine
 ;; 	:ensure t
 ;; 	:config

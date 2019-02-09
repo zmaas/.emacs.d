@@ -53,6 +53,7 @@
 	 "o" '(:ignore t :which-key "org")
 	 ;; Most used commands have an easy 1 key binding
 	 "k" '(counsel-yank-pop :which-key "kill ring")
+	 "c" '(poporg-dwim :which-key "poporg")
 	 "SPC" '(counsel-grep-or-swiper :which-key "swiper")
 	 "TAB" '(evil-buffer :which-key "last")
 	 "RET" '(bookmark-jump :which-key "bookmark")
@@ -111,6 +112,8 @@
 	 "fl" '(swiper :which-key "lines")
 	 ;; Insertion editing tools
 	 "i" '(:ignore t :which-key "insertion")
+	 "ia"  '(academic-phrases :which-key "academic phrase")
+	 "is"  '(ivy-yasnippet :which-key "yas")
 	 "id"  '(lod :which-key "ಠ_ಠ")
 	 "il"  '(make-header :which-key "new header")
 	 "ih" '(update-file-header :which-key "header update")
@@ -118,6 +121,7 @@
 	 "ie" '(aya-expand :which-key "expand saved snippet")
 	 "ir" '(re-builder :which-key "re-builder")
 	 "it" '(ono-insert-todo :which-key "todo")
+	 "ib" '(comment-box :which-key "comment box")
 	 "ie" '(tiny-expand :which-key "tiny expand")
 	 ;; jump specific bindings
 	 "j" '(:ignore t :which-key "jump")
@@ -176,7 +180,7 @@
 	 "m" '(:ignore t :which-key "mail")
 	 "mi" '(mu4e :which-key "mu4e")
 	 "mc" '(mu4e-compose-new :which-key "mu4e compose")
-	 "ms" '(mu4e-headers-search :which-key "mu4e search")
+	 "ms" '(helm-mu :which-key "mu4e search")
 	 "mf" '(circe :which-key "freenode")
 	 ;; window specific bindings
 	 "w" '(:ignore t :which-key "window")
@@ -327,7 +331,7 @@
  :states '(normal)
  "s" 'evil-snipe-s
  "S" 'evil-snipe-S
- "zs" 'evil-surround-edit)
+ "zs" 'nil)
 
 ;; Custom key-chord for very fast swiper access (fd -> swiper)
 ;; (use-package key-chord

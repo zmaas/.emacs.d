@@ -47,6 +47,9 @@
 	(tide-setup)
 	(add-hook 'js2-mode-hook #'tide-mode))
 
+(use-package indium
+	:ensure t)
+
 (general-define-key
  :states '(normal visual insert emacs)
  :keymaps 'js2-mode-map

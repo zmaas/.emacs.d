@@ -88,11 +88,15 @@
  "la" '(sly-apropos-all :which-key "apropos")
  "lr" '(sly-mrepl :which-key "mrepl")
  "ln" '(sly-mrepl-new :which-key "new mrepl")
- "ls" '(sly-list-connections :which-key "connections")
+ "ls" '(sly-stickers-dwim :which-key "sticker")
+ "lS" '(sly-list-connections :which-key "connections")
  "lc" '(sly-mrepl-clear-repl :which-key "clear mrepl")
  "lC" '(sly-compile-file :which-key "compile file")
  "lq" '(sly-quit-lisp :which-key "quit mrepl")
- "ll" '(sly-eval-defun :which-key "eval def")
- "le" '(sly-eval-buffer :which-key "eval buffer"))
+ "lL" '(sly-eval-defun :which-key "eval def")
+ "ll" '(sly-compile-defun :which-key "compile def")
+ "le" '(sly-eval-buffer :which-key "eval buffer")
+ "lE" '(sly-compile-and-load-file :which-key "compile and load buffer")
+ "ld" '(sly-disassemble-symbol :which-key "disassemble"))
 
 ;;; zm-lisp-tools.el ends here

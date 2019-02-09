@@ -10,6 +10,7 @@
 	:ensure t
 	:init
   (setq evil-want-integration nil)
+  (setq evil-want-keybinding nil)
 	;; anzu tells us how many matches we have in the bar
 	(use-package anzu
 		:ensure t
@@ -106,6 +107,7 @@
 		(setq evil-unimpaired-leader-keys '("[" . "]")))
 	(use-package evil-goggles
 		:ensure t
+		:diminish evil-goggles-mode
 		:config
 		(add-hook 'after-init-hook #'evil-goggles-mode))
 	(use-package evil-search-highlight-persist
@@ -174,5 +176,12 @@
 	:init
 	(use-package evil-god-state
 		:ensure t))
+
+(defhydra hydra-expand-region ()
+	"region: "
+	("k" er/expand-region "expand")
+	("j" er/contract-region "contract"))
+
+(evil-define-key 'visual 'global (kbd "v") #'hydra-expand-region/body)
 
 ;;; zm-evil.el ends here

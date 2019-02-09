@@ -25,7 +25,6 @@
 				spaceline-window-numbers-unicode t
 				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
-
 ;; tiny system monitor, helpful when we spend all of our time here
 ;; (use-package symon
 ;; 	:ensure t

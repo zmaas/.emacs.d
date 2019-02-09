@@ -56,3 +56,9 @@
 (add-hook
  'term-mode-hook
  (lambda () (setq show-trailing-whitespace nil)))
+
+;; Add completion support for	shell modes using company
+;; (use-package company-shell
+;; 	:ensure t
+;; 	:config
+;; 	(add-to-list 'company-backends '(company-shell company-shell-env)))

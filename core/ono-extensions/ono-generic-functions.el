@@ -75,7 +75,7 @@ buffer." (interactive)
 	(forward-char 1))
 
 (defun ono-insert-todo ()
-	"Insert a todo statement"
+	"Insert a todo statement."
 	(interactive)
 	(insert "TODO"))
 

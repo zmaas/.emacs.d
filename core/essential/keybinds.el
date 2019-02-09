@@ -136,6 +136,7 @@
 	 ;; appearance specific bindings
 	 "a" '(:ignore t :which-key "appearance")
 	 "af" '(focus-mode :which-key "focus")
+	 "ar" '(writeroom-mode :which-key "writeroom")
 	 "al" '(display-line-numbers-mode :which-key "line numbers")
 	 "aS" '(smooth-scrolling-mode :which-key "smooth-scrolling")
 	 "as" '(subword-mode :which-key "subword mode")

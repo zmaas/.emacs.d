@@ -36,6 +36,11 @@
 	:ensure t
 	:defer t)
 
+;; writeroom for long-form composition
+(use-package writeroom-mode
+	:ensure t
+	:defer t)
+
 ;; Smooth scrolling. We don't enable this by default
 (use-package smooth-scrolling
 	:ensure t

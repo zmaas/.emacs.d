@@ -84,10 +84,16 @@
 	:ensure t)
 (use-package wdired
 	:ensure t)
-(use-package dired-narrow
-	:ensure t)
+(use-package dired+
+	:quelpa (dired+ :fetcher github :repo "emacsmirror/dired-plus")
+	:config
+	(diredp-toggle-find-file-reuse-dir 1))
+(setq dired-listing-switches "-alhv")
+(setq dired-dwim-target t)
+(setq dired-clean-up-buffers-too t)
+(add-hook 'dired-mode-hook #'auto-revert-mode)
 (defun ono/dired-open-current-dir ()
-	"Opens the current directory in dired"
+	"Opens the current directory in dired."
 	(interactive)
 	(dired "."))
 (general-define-key
@@ -95,7 +101,7 @@
  :keymaps '(dired-mode-map)
  "-" 'dired-up-directory
  "h" 'dired-up-directory
- "l" 'dired-find-file)
+ "l" 'dired-find-alternate-file)
 
 ;; Better tree navigation of buffers
 (use-package imenu-list

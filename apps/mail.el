@@ -7,6 +7,8 @@
 
 ;; Note: mu4e custom bindings are under the [m]essages mode leader binding.
 ;; See evil-tools.el for details
+;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+;; (autoload 'mu4e "mu4e" "mu for Emacs." t)
 (require 'mu4e)
 (require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it)
@@ -18,6 +20,20 @@
 	:ensure t
 	:config
 	(evil-set-initial-state 'mu4e-main-mode 'emacs))
+
+(use-package helm-mu
+	:ensure t
+	:config
+	;; (general-define-key
+	;;  :keymaps '(mu4e-main-mode-map
+	;; 						mu4e-headers-mode-map
+	;; 						mu4e-view-mode-map)
+	;;  "s" 'helm-mu)
+	)
+
+(use-package mu4e-conversation
+	:ensure t
+	:config)
 
 ;; (use-package org-mime
 ;; 	:ensure t
@@ -64,17 +80,30 @@
               account-vars)
       (error "No email account found"))))
 
-
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
-;; (add-hook 'mu4e-view-mode-hook 'olivetti-mode)
+(add-hook 'mu4e-view-mode-hook 'olivetti-mode)
 
 ;; use imagemagick for inline images when available
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
 
+;; (add-to-list 'mu4e-marks
+;; 						 '(archive
+;; 							 :char       "r"
+;; 							 :prompt     "archive"
+;; 							 :show-target (lambda (target) "archive")
+;; 							 :action      (lambda (docid msg target)
+;; 															;; must come before proc-move since retag runs
+;; 															;; 'sed' on the file
+;; 															(mu4e-action-retag-message msg "-\\Inbox")
+;; 															(mu4e~proc-move docid nil "+S-u-N"))))
+
+;; (mu4e~headers-defun-mark-for archive)
+;; (define-key mu4e-headers-mode-map (kbd "r") 'mu4e-headers-mark-for-archive)
+
 ;; Better rendering of html as very plain text.
 ;; Other options for rendering
-;; (setq mu4e-html2text-command "pandoc -f html -t plain --columns=72 --wrap=auto")
+(setq mu4e-html2text-command "pandoc -f html -t plain --columns=72 --wrap=auto")
 ;; (setq mu4e-html2text-command 'mu4e-shr2text)
 ;; in our browser with all of the browser's security configuration.
 (add-to-list 'mu4e-view-actions
@@ -91,6 +120,7 @@
  mu4e-compose-format-flowed t
  mu4e-view-show-addresses 't
  mu4e-headers-date-format "%Y-%m-%d %H:%M"
+ mu4e-compose-dont-reply-to-self t
  mu4e-context-policy 'pick-first
  mu4e-compose-context-policy nil)
 

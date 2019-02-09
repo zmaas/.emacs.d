@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: table
+# key: tab
+# --
+
+\begin{table}[!htbp]
+  \centering
+  \caption{${1:title}}\label{tab:${2:ref}}
+  \begin{tabular}{${3:columnid}}
+    \toprule
+		${0:rowtitle}
+    \midrule
+
+    \bottomrule
+  \end{tabular}
+\end{table}

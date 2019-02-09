@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: figure ref
+# key: rr
+# --
+${1:Figure}\ \ref{${2:}} on Page\ \pageref{$2} $0

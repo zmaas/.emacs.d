@@ -37,6 +37,7 @@
 ;; Workgroups	keeps track of our buffers between sessions
 (use-package workgroups2
 	:ensure t
+	:diminish workgroups-mode
 	:config
 	(setq wg-session-load-on-start t)
 	(setq wg-session-file "~/.emacs.d/workgroups")

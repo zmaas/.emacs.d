@@ -64,6 +64,12 @@
 		:init
 		(setq company-dabbrev-code-modes t
 					company-dabbrev-code-ignore-case nil))
+	(use-package company-posframe
+		:ensure t
+		:disabled t
+		:diminish company-posframe-mode
+		:config
+		(company-posframe-mode 1))
 	:diminish company-mode
 	:config
 	(global-company-mode t)
@@ -71,8 +77,8 @@
 	(company-tng-configure-default)
 	;; More convenient bindings
 	(setq company-minimum-prefix-length 2
-				company-tooltip-limit 9
-				company-idle-delay 0.3
+				company-tooltip-limit	10
+				company-idle-delay 0.25
 				company-show-numbers t
 				company-require-match 'never
 				company-selection-wrap-around t
@@ -114,6 +120,8 @@
 	:diminish yas-global-mode yas-minor-mode
 	:init
 	(use-package yasnippet-snippets
+		:ensure t)
+	(use-package ivy-yasnippet
 		:ensure t)
 	:config
 	(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
@@ -181,7 +189,9 @@
 	:config
 	(tiny-setup-default))
 
-;;; zm-completions.el ends here
+;; Completions for academic phrases
+(use-package academic-phrases
+	:ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; completions.el ends here

@@ -39,11 +39,6 @@
 (use-package company
 	:ensure t
 	:init
-	;; (use-package company-flx
-	;; 	:ensure t
-	;; 	:config
-	;; 	(with-eval-after-load 'company
-	;; 		(company-flx-mode t)))
 	(use-package company-prescient
 		:ensure t
 		:config
@@ -103,17 +98,18 @@
 
 ;; hippie-expand: better builtin expansion
 (use-package hippie-exp
-  :config
+  :init
   (setq hippie-expand-try-functions-list
-        '(;; Try to expand word "dynamically", searching the current buffer.
-					try-expand-dabbrev
+				'(try-expand-dabbrev
 					try-expand-dabbrev-all-buffers
 					try-expand-dabbrev-from-kill
-          try-expand-all-abbrevs
 					try-complete-file-name-partially
 					try-complete-file-name
-          try-expand-list
-          try-expand-line)))
+					try-expand-all-abbrevs
+					try-expand-list
+					try-expand-line
+					try-complete-lisp-symbol-partially
+					try-complete-lisp-symbol)))
 
 (use-package yasnippet
 	:ensure t

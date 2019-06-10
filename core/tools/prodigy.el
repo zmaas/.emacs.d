@@ -19,6 +19,17 @@
 	:stop-signal 'sigkill
   :kill-process-buffer-on-stop t)
 
+(prodigy-define-service
+  :name "Gatsby Develop"
+  :command "npx"
+	:args	'("gatsby" "develop")
+	:ready-message "info bootstrap finished"
+  :cwd "~/builds/portfolio"
+  :port	1313
+  :tags '(personal node)
+	:stop-signal 'sigkill
+  :kill-process-buffer-on-stop t)
+
 (general-define-key
  :states '(normal visual insert emacs)
  :keymaps	'prodigy-mode-map

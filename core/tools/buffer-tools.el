@@ -24,15 +24,15 @@
 				uniquify-ignore-buffers-re "^\\*"))
 
 ;; Automatically save buffers, but better
-(use-package auto-save-buffers-enhanced
-  :ensure t
-  :init (auto-save-buffers-enhanced t)
-  :config
-  (setq auto-save-buffers-enhanced-interval 10.0
-        ;; Don't auto-save org source popups
-        auto-save-buffers-enhanced-exclude-regexps '("Org Src")
-        ;; Save things quietly
-        auto-save-buffers-enhanced-quiet-save-p t))
+; (use-package auto-save-buffers-enhanced
+;   :ensure t
+;   :init (auto-save-buffers-enhanced t)
+;   :config
+;   (setq auto-save-buffers-enhanced-interval 10.0
+;         ;; Don't auto-save org source popups
+;         auto-save-buffers-enhanced-exclude-regexps '("Org Src")
+;         ;; Save things quietly
+;         auto-save-buffers-enhanced-quiet-save-p t))
 
 ;; Workgroups	keeps track of our buffers between sessions
 (use-package workgroups2

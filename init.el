@@ -80,11 +80,11 @@
 (ono! :core :checks "style-checks")     ; So is	English
 (ono! :core :tools "hydras")            ; HAIL!	Temporary keymaps
 (ono! :core :tools "completions") 			;	I like saving effort.
-;; (ono! :core :tools "lsp")               ;	Support for language server protocol
+(ono! :core :tools "lsp")               ;	Support for language server protocol
 (ono! :core :tools "utils") 						;	Lots of little things
 (ono! :core :tools "vc")                ;	Saving stuff on steroids
 (ono! :core :tools "buffer-tools")      ;	Open everything, all the time
-(ono! :core :tools "shell") 						; ESHELL IS LOVE.
+(ono! :core :tools "shell") 						;	Eshell is pretty neat
 (ono! :core :tools "prodigy") 					; Convenient management of externs
 (ono! :core :tools "virtualization")    ; Docker and vagrant configuration
 
@@ -99,7 +99,7 @@
 (ono! :core :appearance "themes")       ;	Behold my mighty colors and despair
 (ono! :core :appearance "appearance") 	;	Fix the remnants of the	1980's
 (ono! :core :appearance "highlighting") ;	Use those	colors everywhere
-(ono! :core :appearance "interface")    ;	Hip, new	interfacing
+(ono! :core :appearance "interface")    ;	Hip, new interfacing
 
 ;; Ono-custom-magic
 (ono! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
@@ -147,3 +147,4 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
+(put 'dired-find-alternate-file 'disabled nil)

@@ -19,7 +19,9 @@
 			:ensure t)
 		:ensure t
 		:config
-		(add-hook 'magit-mode-hook 'magit-todos-mode)))
+		(add-hook 'magit-mode-hook 'magit-todos-mode))
+	(use-package gist
+		:ensure t))
 
 (use-package magithub
 	:ensure t

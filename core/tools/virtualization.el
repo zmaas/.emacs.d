@@ -22,4 +22,10 @@
 		:config
 		(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))))
 
+(use-package terraform-mode
+	:ensure t)
+
+(use-package salt-mode
+	:ensure t )
+
 ;;; virtualization.el ends here

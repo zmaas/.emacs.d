@@ -7,8 +7,6 @@
 
 ;; ispell - simple and easy spellchecking for LaTeX editing
 (use-package ispell
-	:ensure t
-	:defer t
 	:diminish	(flyspell-mode "sp")
 	:diminish	(flyspell-prog-mode "sp")
 	:init
@@ -22,9 +20,8 @@
 	(setq ispell-program-name "aspell")
 	(setq ispell-dictionary "english")
 	(setq ispell-extra-args
-				(list "--sug-mode=normal" ;; ultra|fast|normal|bad-spellers
-							"--lang=en_US"
-							"--ignore=4"))
+				(list "--sug-mode=ultra" ;; ultra|fast|normal|bad-spellers
+							"--lang=en_US"))
 	(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 	(lambda ()
 		(unless (derived-mode-p 'git-commit-mode)

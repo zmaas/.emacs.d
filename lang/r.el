@@ -7,22 +7,31 @@
 
 ;; Base setup for using R
 (use-package ess
-	:ensure t)
-
-(use-package polymode
 	:ensure t
 	:config
-	(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode)))
+	(use-package ess-view
+		:ensure t
+		:config)
+	;; Initialize R Server Protocol
+	(lsp-register-client
+	 (make-lsp-client :new-connection
+										(lsp-stdio-connection '("R" "--slave" "-e" "languageserver::run()"))
+										:major-modes '(ess-r-mode inferior-ess-r-mode)
+										:server-id 'lsp-R)))
+	(use-package polymode
+		:ensure t
+		:config
+		(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode)))
 
 ;; (use-package matlab-mode
-	:ensure t
-	:config
-	(add-to-list
-	 'auto-mode-alist
-	 '("\\.m$" . matlab-mode))
-	(setq matlab-indent-function t)
-	(setq matlab-shell-command "matlab")
-	;; (add-to-list 'company-backends 'company-matlab-shell))
+;; 	:ensure t
+;; 	:config
+;; 	(add-to-list
+;; 	 'auto-mode-alist
+;; 	 '("\\.m$" . matlab-mode))
+;; 	(setq matlab-indent-function t)
+;; 	(setq matlab-shell-command "matlab")
+;; 	(add-to-list 'company-backends 'company-matlab-shell))
 
 (general-define-key
  :states '(normal visual insert emacs)

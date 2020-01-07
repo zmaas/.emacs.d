@@ -12,8 +12,8 @@
 		:ensure t
 		:config
 		(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-		(setq lsp-ui-doc-max-width 80
-					lsp-ui-doc-max-height 15))
+		(setq lsp-ui-doc-enable nil
+					lsp-ui-flycheck-enable t))
 	(use-package company-lsp
 		:ensure t
 		:config
@@ -22,6 +22,7 @@
 					company-lsp-enable-recompletion t)
 		(push 'company-lsp company-backends))
 	:config
-	(add-hook 'lsp-after-open-hook 'lsp-enable-imenu))
+	(add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+	(setq lsp-prefer-flymake nil))
 
 ;;; lsp.el ends here

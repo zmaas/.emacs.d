@@ -16,7 +16,15 @@
 				 ("github\\.com.*\\.txt\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
+  :config
+	(setq markdown-command "pandoc -f markdown_mmd -t html")
+	(use-package markdown-toc
+		:ensure t))
+
+(use-package pandoc-mode
+	:ensure t
+	:config
+	(add-hook 'markdown-mode-hook 'pandoc-mode))
 
 (use-package yaml-mode
 	:ensure t)

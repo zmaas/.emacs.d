@@ -82,8 +82,8 @@
 ;; Better dired setup
 (use-package dired-ranger
 	:ensure t)
-(use-package wdired
-	:ensure t)
+;; (use-package wdired
+;; 	:ensure t)
 (use-package dired+
 	:quelpa (dired+ :fetcher github :repo "emacsmirror/dired-plus")
 	:config

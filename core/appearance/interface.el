@@ -7,23 +7,40 @@
 ;;; Code:
 
 ;; Spaceline, a better modeline
-(use-package spaceline-config
-  :ensure spaceline
-	:init
-	(setq powerline-height 40
-				powerline-raw " "
-				ns-use-srgb-colorspace nil
-				powerline-default-separator 'slant)
+;; (use-package spaceline-config
+;;   :ensure spaceline
+;; 	:init
+;; 	(setq powerline-height 40
+;; 				powerline-raw " "
+;; 				ns-use-srgb-colorspace nil
+;; 				powerline-default-separator 'slant)
+;; 	:config
+;; 	(spaceline-spacemacs-theme)
+;; 	(spaceline-toggle-anzu-on)
+;; 	(spaceline-toggle-window-number-on)
+;; 	(spaceline-toggle-org-pomodoro-on)
+;; 	(setq anzu-cons-mode-line-p nil
+;; 				powerline-default-separator	'utf8
+;; 				spaceline-workspace-numbers-unicode t
+;; 				spaceline-window-numbers-unicode t
+;; 				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+
+(use-package doom-modeline
+	:ensure t
+	:hook (after-init . doom-modeline-mode)
 	:config
-	(spaceline-spacemacs-theme)
-	(spaceline-toggle-anzu-on)
-	(spaceline-toggle-window-number-on)
-	(spaceline-toggle-org-pomodoro-on)
-	(setq anzu-cons-mode-line-p nil
-				powerline-default-separator	'utf8
-				spaceline-workspace-numbers-unicode t
-				spaceline-window-numbers-unicode t
-				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+	(setq
+	 doom-modeline-height 10
+	 doom-modeline-buffer-file-name-style 'buffer-name
+	 doom-modeline-icon t
+	 doom-modeline-major-mode-icon t
+	 doom-modeline-buffer-state-icon t
+	 doom-modeline-lsp t
+	 doom-modeline-buffer-modification-icon t
+	 doom-modeline-minor-modes nil
+	 doom-modeline-enable-word-count nil
+	 doom-modeline-buffer-encoding nil
+	 doom-modeline-persp-name t))
 
 ;; tiny system monitor, helpful when we spend all of our time here
 ;; (use-package symon
@@ -61,6 +78,13 @@
 	:diminish global-vi-tilde-fringe-mode vi-tilde-fringe-mode
 	:config
 	(add-hook 'after-init-hook 'global-vi-tilde-fringe-mode))
+
+;; Beacon on buffer change
+(use-package beacon
+	:ensure t
+	:config
+  (beacon-mode 1))
+
 
 ;; Don't use external dialog boxes
 (setq use-dialog-box nil

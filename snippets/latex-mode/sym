@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: symbolic evaluation
+# key: sym
+# --
+\\( ${1:$$(when yas-moving-away-p
+(shell-command-to-string (concat "python " user-emacs-directory
+				 "snippets/scripts/symbolify.py "
+				 "'" yas-text "'")))} \\) $0

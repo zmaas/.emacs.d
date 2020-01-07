@@ -6,7 +6,8 @@
 ;;; Code:
 
 ;; Startup an emacs server by default
-(if (not server-mode)
+(require 'server)
+(or (server-running-p)
     (server-start nil t))
 
 ;; Save history of everything by default
@@ -77,13 +78,28 @@
 (setq line-move-visual t)
 
 ;; Put automatic backups in the	homme folder
-(setq backup-directory-alist '(("." . "~/.emacsbackups")))
+(setq backup-directory-alist '(("." . "~/.emacsbackups"))
+			auto-save-file-name-transforms
+			`((".*" "~/.emacsbackups/" t))
+			delete-old-versions t
+			kept-old-versions 10
+			kept-new-versions 10
+			backup-by-copying t
+			version-control t)
 
 ;; Setup passwords using .authinfo
+(require 'auth-source-pass)
+(auth-source-pass-enable)
 (setq auth-sources
 			'((:source "~/.emacs.d/secrets/.authinfo.gpg")
 				(:source "~/.emacs.d/.authinfo.gpg")
 				(:source "~/.authinfo.gpg")))
+
+;; Automatically load ssh agent variables
+(use-package exec-path-from-shell
+	:ensure t)
+(exec-path-from-shell-copy-env "SSH_AGENT_PID")
+(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 
 ;; Prevents us from fat fingering and accidentally closing emacs
 (setq confirm-kill-emacs 'y-or-n-p)

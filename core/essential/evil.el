@@ -9,7 +9,7 @@
 (use-package evil
 	:ensure t
 	:init
-  (setq evil-want-integration nil)
+  (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
 	;; anzu tells us how many matches we have in the bar
 	(use-package anzu
@@ -103,8 +103,11 @@
 		(evil-lion-mode))
 	(use-package evil-unimpaired
 		:quelpa (evil-unimpaired :fetcher github :repo "zmaas/evil-unimpaired")
-		(evil-unimpaired-mode t)
+		:config
+		(evil-unimpaired-mode 1)
+		(evil-unimpaired-define-pair "q" '(flycheck-previous-error . flycheck-next-error))
 		(setq evil-unimpaired-leader-keys '("[" . "]")))
+
 	(use-package evil-goggles
 		:ensure t
 		:diminish evil-goggles-mode
@@ -130,26 +133,14 @@
 		:config
 		(setq evil-multiedit-scope 'buffer
 					evil-multiedit-follow-matches t))
-	(use-package evil-mc
-		:ensure t
-		:diminish ""
-		:init
-		(use-package evil-mc-extras
-			:ensure t
-			:diminish	""
-			:config
-			(global-evil-mc-extras-mode  1))
-		:config
-		(global-evil-mc-mode  1))
 	(use-package evil-lispy
 		:ensure t)
 	(use-package evil-collection
 		:after evil
 		:ensure t
-		:custom
-		(evil-collection-setup-minibuffer t)
-		:init
-		(evil-collection-init))
+		:config
+		(evil-collection-init)
+		(setq evil-collection-setup-minibuffer t))
 	:config
 	(evil-mode 1)
 	(setq evil-want-C-u-scroll t

@@ -11,18 +11,11 @@
 	:ensure t
 	:diminish	anaconda-mode
 	:init
-	(use-package virtualenvwrapper
+	(use-package pyvenv
 		:ensure t
-		:diminish	""
-		:config
-		(venv-initialize-interactive-shells)
-		(venv-initialize-eshell))
+		:config)
 	:config
-	(add-hook 'python-mode-hook #'anaconda-mode))
-
-(use-package company-anaconda
-	:ensure t
-	:config
+	(add-hook 'python-mode-hook #'anaconda-mode)
 	(setq python-shell-interpreter "python3"
 				python-shell-interpreter-args "")
   (when (executable-find "ipython")
@@ -34,15 +27,22 @@
           python-shell-completion-setup-code
           "from IPython.core.completerlib import module_completion"
           python-shell-completion-string-code
-          "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
+          "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")))
 
-	(add-hook 'python-mode-hook 'anaconda-mode)
-	(add-hook 'python-mode-hook #'(lambda ()
-																	(add-to-list 'company-backends 'company-anaconda)))
+;; (use-package company-anaconda
+;; 	:ensure t
+;; 	:config
+;; 	(add-hook 'python-mode-hook 'anaconda-mode)
+;; 	(add-hook 'python-mode-hook #'(lambda ()
+;; 																	(add-to-list 'company-backends 'company-anaconda)))
+;; 	(add-hook 'anaconda-mode-hook #'anaconda-eldoc-mode))
 
-	(eval-after-load "company"
-		'(add-to-list 'company-backends '(company-anaconda :with company-capf)))
-	(add-hook 'anaconda-mode-hook #'anaconda-eldoc-mode))
+(use-package lsp-python-ms
+	:ensure t
+	:config
+  (setq lsp-python-ms-executable
+        "/usr/bin/mspyls")
+	(add-hook 'python-mode-hook #'lsp))
 
 ;; Sphinx-doc -- Automagically add docstrings to python	functions
 (use-package sphinx-doc
@@ -52,8 +52,17 @@
 	(add-hook 'python-mode-hook (lambda  () (sphinx-doc-mode t))))
 
 ;; Yapfify -- Better formatter
-(use-package yapfify
-	:ensure t)
+;; (use-package yapfify
+;; 	:ensure t
+;; 	:config
+;; 	(add-hook 'python-mode-hook #'yapf-mode))
+
+(use-package blacken
+	:ensure t
+	:config
+	(setq blacken-line-length 80
+				blacken-allow-py36 t)
+	(add-hook 'python-mode-hook #'blacken-mode))
 
 ;; EIN - Emacs Ipython Notebooks
 (use-package ein
@@ -75,7 +84,7 @@
  "ld" '(anaconda-mode-find-definitions :which-key "def")
  "lD" '(sphinx-doc :which-key "add docs")
  "l?" '(anaconda-mode-show-doc :which-key "docs?")
- "lv" '(venv-workon :which-key "venv-on")
- "lV" '(venv-deactivate :which-key "venv-off"))
+ "lv" '(pyvenv-workon :which-key "venv-on")
+ "lV" '(pyvenv-deactivate :which-key "venv-off"))
 
 ;;; zm-python-tools.el ends here

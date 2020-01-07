@@ -17,16 +17,17 @@
 (use-package company-go
 	:ensure t)
 
-(defun go-mode-setup-hook ()
-																				; Add company backend
-	(add-to-list 'company-backends 'company-go)
-																				; Custom compile command
-  (setq compile-command "go build -v && go test -v && go vet")
-																				; Automatically control imports
-  (setq gofmt-command "gofmt"))
+(use-package go-complete
+	:ensure t)
 
-(add-hook 'go-mode-hook 'go-mode-setup-hook)
+;; (defun go-mode-setup-hook ()
+;; 	"Set up go-mode"
+;; 	(add-to-list 'company-backends 'company-go) ; Add company backend
+;;   (setq compile-command "go build -v && go test -v && go vet") ; Custom compile command
+;;   (setq gofmt-command "gofmt") ; Automatically control imports
+;; 	)
 
+;; (add-hook 'go-mode-hook 'go-mode-setup-hook)
 
 (general-define-key
  :states '(normal visual insert emacs)
@@ -35,6 +36,8 @@
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
  "ll" '(golint :which-key "lint")
+ "lf" '(gofmt :which-key "format")
+ "lv" '(govet :which-key "vet")
  "ld" '(godef-jump :which-key "goto def")
  "lD" '(pop-tag-mark :which-key "pop-back")
  "lc" '(multi-compile-run :which-key "compile"))

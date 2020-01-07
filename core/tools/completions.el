@@ -60,11 +60,11 @@
 		(setq company-dabbrev-code-modes t
 					company-dabbrev-code-ignore-case nil))
 	(use-package company-posframe
-		:ensure t
 		:disabled t
+		:ensure t
 		:diminish company-posframe-mode
 		:config
-		(company-posframe-mode 1))
+		(company-posframe-mode nil))
 	:diminish company-mode
 	:config
 	(global-company-mode t)
@@ -185,8 +185,8 @@
 	:config
 	(tiny-setup-default))
 
-;; Completions for academic phrases
-(use-package academic-phrases
+;; Better ripgrep interface
+(use-package deadgrep
 	:ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

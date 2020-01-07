@@ -12,6 +12,8 @@
 	(require 'helm-config)
 	(use-package helm-swoop
 		:ensure t)
+	(use-package helm-rg
+		:ensure t)
 	(use-package helm-flx
 		:ensure t
 		:init
@@ -48,10 +50,10 @@
 	(setq helm-m-x-fuzzy-match t)
 
 	(setq helm-buffers-fuzzy-matching t
-				helm-recentf-fuzzy-match    t)
+				helm-recentf-fuzzy-match t)
 
 	(setq helm-semantic-fuzzy-match t
-				helm-imenu-fuzzy-match    t)
+				helm-imenu-fuzzy-match t)
 
 	;; save buffer when helm-multi-swoop-edit complete
 	(setq helm-multi-swoop-edit-save t)
@@ -63,7 +65,7 @@
 	(setq helm-swoop-split-direction 'split-window-horizontally)
 
 	;; if nil, you can slightly boost invoke speed in exchange for text color
-	(setq helm-swoop-speed-or-color nil)
+	(setq helm-swoop-speed-or-color t)
 
 	;; ;; go to the opposite side of line from the end or beginning of line
 	(setq helm-swoop-move-to-line-cycle t)

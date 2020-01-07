@@ -1,16 +1,19 @@
-;;; rust.el --- Rust configuration for emacs
+;;; -*- mode: emacs-lisp -*-
+;;; ono_custom_abbrevs --- Custom abbreviations
 ;;
-;; Filename: rust.el
-;; Description: Rust configuration for emacs
-;; Author: Zach Maas <zach.maas@gmail.com>
-;; Maintainer: Zach Maas <zach.maas@gmail.com>
-;; Created: Wed Jul 18 13:56:56 2018 (-0600)
+;; Filename: ono_custom_abbrevs
+;; Description:
+;; Author:
+;; Maintainer:
+;; Created: Tue Jul 31 11:50:03 2018 (-0600)
+;; Version:
+;; URL:
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Commentary:
 ;;
-;; Basic rust configuration for emacs
+;;
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -33,31 +36,16 @@
 ;;
 ;;; Code:
 
-(use-package rust-mode
-	:ensure t
-	:config
-	(use-package racer
-		:ensure t
-		:config)
-	(add-hook 'rust-mode-hook #'racer-mode)
-	(add-hook 'racer-mode-hook #'eldoc-mode)
-	(add-hook 'racer-mode-hook #'company-mode))
 
-(use-package flycheck-rust
-	:ensure t
-	:config
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(define-abbrev-table
+	'global-abbrev-table '(("zme" "Zach Maas <zach.maas@gmail.com>" nil 1)
+												 ("zem" "zach.maas@gmail.com" nil 1)
+												 ("zsc"
+													"Zachary Maas <zama8258@colorado.edu>" nil 1)
+												 ("zweb" "https://zachmaas.com" nil 1)))
 
-;; special per-mode keybindings for C++
-(general-define-key
- :states '(normal visual insert emacs)
- :keymaps 'rust-mode-map
- :prefix "SPC"
- :non-normal-prefix "M-SPC"
- "l" '(:ignore t :which-key "layer")
- "lf" '(rust-format-buffer :which-key "format")
- "ll" '(rust-run-clippy :which-key "clippy")
- "lc" '(rust-compile :which-key "compile"))
+(define-abbrev-table
+	'ess-r-mode-abbrev-table '((">>" "%>%" nil 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; rust.el ends here
+;;; ono_custom_abbrevs ends here

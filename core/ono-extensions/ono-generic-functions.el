@@ -20,6 +20,10 @@
   (interactive)
   (insert "\u0ca0_\u0ca0"))
 
+(evil-define-command ono-deadgrep (arg)
+	(interactive "<a>")
+	(deadgrep arg))
+
 (defcustom smart-to-ascii '(("\x201C" . "\"")
                             ("\x201D" . "\"")
                             ("\x2018" . "'")
@@ -111,5 +115,13 @@ buffer." (interactive)
                       (switch-to-prev-buffer (get-buffer-window buf) 'kill))
                     buffer)))
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
+
+(defun org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+   "/DONE" 'agenda))
 
 ;;;	ono-generic-functions.el ends here

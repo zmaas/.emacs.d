@@ -13,8 +13,9 @@
 
 (use-package docker
 	:ensure t
-	:init
-	(setq docker-command "sudo docker")
+	:config
+	(setq docker-command "docker"
+				docker-run-as-root t)
 	(use-package docker-tramp
 		:ensure t)
 	(use-package dockerfile-mode

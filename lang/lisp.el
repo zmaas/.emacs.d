@@ -8,8 +8,7 @@
 ;; Common Lisp Configuration
 
 ;; Require common lisp
-(use-package cl
-	:ensure t)
+;;(use-package cl)
 
 ;; Uses SLIME configured for sbcl
 (use-package sly
@@ -34,7 +33,7 @@
 
 ;; Racket Configuration
 
-;; Setup for racket
+;; Setup for racket/scheme
 (use-package geiser
 	:ensure t
 	:init

@@ -17,8 +17,8 @@
 (setq tls-program "openssl s_client -connect %h:%p -no_ssl3 -no_ssl2 -ign_eof -CAfile %t")
 
 ;; Use package.el
-(package-initialize)
-(setq package-enable-at-startup nil)
+;; (package-initialize)
+;; (setq package-enable-at-startup nil)
 
 ;; Bootstrap Quelpa
 ; (if (require 'quelpa nil t)

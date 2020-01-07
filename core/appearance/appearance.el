@@ -28,23 +28,19 @@
 
 ;; Focus for automatic code narrowing
 (use-package focus
-	:ensure t
-	:defer t)
+	:ensure t)
 
 ;; olivetti is a tool for focused writing
 (use-package olivetti
-	:ensure t
-	:defer t)
+	:ensure t)
 
 ;; writeroom for long-form composition
 (use-package writeroom-mode
-	:ensure t
-	:defer t)
+	:ensure t)
 
 ;; Smooth scrolling. We don't enable this by default
 (use-package smooth-scrolling
-	:ensure t
-	:defer t)
+	:ensure t)
 
 ;; rainbow-mode, for hex codes
 (use-package rainbow-mode

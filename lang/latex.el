@@ -12,9 +12,11 @@
 	(use-package company-math
 		:ensure t
 		:config
-    (add-to-list 'company-backends 'company-math-symbols-latex)
-    (add-to-list 'company-backends 'company-math-symbols-unicode)
-		(add-to-list 'company-backends 'company-latex-commands))
+		(add-hook 'latex-mode-hook
+							#'(lambda ()
+									(add-to-list 'company-backends 'company-math-symbols-latex)
+									(add-to-list 'company-backends 'company-math-symbols-unicode)
+									(add-to-list 'company-backends 'company-latex-commands))))
 	(use-package latex-preview-pane
 		:ensure t
 		:config
@@ -73,9 +75,6 @@
 ;; Much better viewing of PDF's in emacs
 (use-package pdf-tools
   :ensure t
-  :when window-system
-  :init
-	(pdf-tools-install)
 	:config
 	(pdf-tools-install)
 	(setq-default pdf-view-display-size 'fit-page)
@@ -136,7 +135,9 @@
 	:ensure t
 	:config
 	(setq company-bibtex-bibliography '("~/Downloads/synced/Zotero_Library.bib"))
-	(add-to-list 'company-backends 'company-bibtex))
+	(add-hook 'latex-mode-hook
+						#'(lambda ()
+								(add-to-list 'company-backends 'company-bibtex))))
 
 (add-hook 'LaTeX-mode-hook
           (lambda()

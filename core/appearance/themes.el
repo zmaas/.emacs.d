@@ -17,33 +17,21 @@
 	"Set THEME-TO-LOAD and the associated background settings."
 	(mapc #'disable-theme custom-enabled-themes)
 	(load-theme theme-to-load t)
-	(set-face-background 'fringe (face-attribute 'default :background))
+	;; (set-face-background 'fringe (face-attribute 'default :background))
 	;; (set-face-background 'linum (face-attribute 'default :background))
 	(run-hooks 'ono-after-theme-hook)
-	;; (doom-themes-org-config)
-	;; (doom-themes-visual-bell-config)
-	(powerline-reset))
+	;;(doom-themes-org-config)
+	;;(doom-themes-visual-bell-config)
+	)
 
 (use-package tao-theme
 	:ensure t)
-;; (use-package cyberpunk-theme
-;; 	:ensure t)
+(use-package cyberpunk-theme
+	:ensure t)
 (use-package kaolin-themes
 	:ensure t)
 (use-package dracula-theme
 	:ensure t)
-;; (use-package challenger-deep-theme
-;; 	:ensure t)
-;; (use-package color-theme-sanityinc-solarized
-;; 	:ensure t)
-;; (use-package material-theme
-;; 	:ensure t)
-;; (use-package zerodark-theme
-;; 	:ensure t)
-;; (use-package leuven-theme
-;; 	:ensure t)
-;; (use-package eziam-theme
-;; 	:ensure t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
 ;; powerline separators on theme-switch
@@ -51,7 +39,7 @@
 (defun ono-day-theme ()
 	"Set underwater theme for daytime and associated colors."
 	(interactive)
-	(!ono-set-theme 'kaolin-light))
+	(!ono-set-theme 'leuven))
 
 (defun ono-plain-night-theme ()
   "Set tao-yin theme for dark nightime usage."
@@ -63,11 +51,11 @@
 	(interactive)
 	(!ono-set-theme 'tao-yang))
 
-;; (defun ono-night-theme ()
-;; 	"Set dracula theme for nighttime and associated colors."
-;; 	(interactive)
-;; 	(!ono-set-theme 'dracula)
-;; 	)
+(defun ono-night-theme ()
+	"Set dracula theme for nighttime and associated colors."
+	(interactive)
+	(!ono-set-theme 'cyberpunk)
+	)
 
 (defun ono-dark-night-theme ()
   "Set cyberpunk theme for dark nightime usage."

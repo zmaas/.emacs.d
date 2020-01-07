@@ -13,11 +13,15 @@
 	(add-hook 'term-exec-hook   'with-editor-export-editor)
 	(add-hook 'eshell-mode-hook 'with-editor-export-editor))
 
+(use-package fish-mode
+	:ensure t
+	:config)
+
 ;; Automatically import our ssh-keys and gpg keys
-(use-package keychain-environment
-  :ensure t
-  :init
-  (add-hook 'after-init-hook #'keychain-refresh-environment))
+;; (use-package keychain-environment
+;;   :ensure t
+;;   :init
+;;   (add-hook 'after-init-hook #'keychain-refresh-environment))
 
 (use-package eshell
   :commands (eshell eshell-command)
@@ -47,15 +51,31 @@
 (add-hook 'eshell-mode-hook
 					(lambda () 
 						(escape>define-key eshell-mode-map (kbd "<tab>")
-															 (lambda () (interactive) (pcomplete-std-complete)))))
+															 (lambda () (interactive) (completion-at-point)))))
 
 ;; Make ansi-term work with our powerline config
 (defadvice ansi-term (after advise-ansi-term-coding-system)
-	(set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+	(set-process-coding-system 'utf-8-unix 'utf-8-unix))
 (ad-activate 'ansi-term)
 (add-hook
  'term-mode-hook
  (lambda () (setq show-trailing-whitespace nil)))
+
+;; Allow us to use tmux for shell commands and other functions
+(use-package emamux
+	:ensure t
+	:config)
+
+;; vterm provides better virtualized terminals
+(use-package vterm
+	:ensure t
+	:config
+	(use-package vterm-toggle
+		:ensure t
+		:config)
+  (add-hook
+	 'vterm-mode-hook
+	 (lambda () (setq show-trailing-whitespace nil))))
 
 ;; Add completion support for	shell modes using company
 ;; (use-package company-shell

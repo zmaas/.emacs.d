@@ -1,40 +1,40 @@
 ;;; keybinds.el --- Keybinding configuration for Emacs
-;; 
+;;
 ;; Filename: keybinds.el
 ;; Description: Keybinding configuration for Emacs
-;; Author: Zach Maas <zach.maas@gmail.com> 
-;; Maintainer: Zach Maas <zach.maas@gmail.com> 
+;; Author: Zach Maas <zach.maas@gmail.com>
+;; Maintainer: Zach Maas <zach.maas@gmail.com>
 ;; Created: Sat Jul  7 15:37:34 2018 (-0600)
 ;; Version: 0.0.1
 ;; Last-Updated: Sat Jul  7 15:38:03 2018 (-0600)
 ;;           By: zach
 ;; URL: N/A
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
-;;; Commentary: 
-;; 
+;;
+;;; Commentary:
+;;
 ;; Keybinding configuration for Emacs
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
 ;; published by the Free Software Foundation; either version 3, or
 ;; (at your option) any later version.
-;; 
+;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;; General Public License for more details.
-;; 
+;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 
 ;;; Code:
 
@@ -51,17 +51,19 @@
 	 "l" '(:ignore t :which-key "layer")
 	 ;; o key is reserved for orgmode settings
 	 "o" '(:ignore t :which-key "org")
+	 ;; r key is used for rifle
+	 "r" '(helm-org-rifle :which-key "rifle")
 	 ;; Most used commands have an easy 1 key binding
 	 "k" '(counsel-yank-pop :which-key "kill ring")
 	 "c" '(poporg-dwim :which-key "poporg")
-	 "SPC" '(counsel-grep-or-swiper :which-key "swiper")
+	 "SPC" '(swiper :which-key "swiper")
 	 "TAB" '(evil-buffer :which-key "last")
+	 "ESC" '(format-all-buffer :which-key "fmt")
 	 "RET" '(bookmark-jump :which-key "bookmark")
 	 ":" '(counsel-M-x :which-key "M-x")
-	 ";" '(counsel-M-x :which-key "M-x")
-	 "s" '(flyspell-correct-previous-word-generic :which-key "spellcheck")
+	 "s" '(flyspell-correct-previous :which-key "spellcheck")
 	 "?" '(counsel-locate :which-key "locate")
-	 "/" '(swiper-all :which-key "swipeall")
+	 "/" '(helm-multi-swoop-projectile :which-key "swipeall")
 	 "," '(ivy-switch-buffer :which-key "swbuf")
 	 ;; help commands
 	 "h" '(:ignore t :which-key "help")
@@ -69,6 +71,7 @@
 	 "ha" '(counsel-apropos :which-key "apropos")
 	 "hk" '(describe-key :which-key "key")
 	 "hv" '(describe-variable :which-key "variable")
+	 "hd" '(counsel-dash :which-key "dash")
 	 ;; git commands
 	 "g" '(:ignore t :which-key "git")
 	 "gg" '(magit-status :which-key "status")
@@ -79,11 +82,30 @@
 	 "gl" '(magit-log-buffer-file :which-key "log")
 	 "gb" '(magit-blame :which-key "blame")
 	 "gt" '(git-timemachine :which-key "blame")
+	 ;; deft commands
+	 ";" '(:ignore t :which-key "deft")
+	 ;; ";;" '(helm-org-rifle :which-key "rifle")
+	 ";d" '(deft :wk "deft")
+	 ";D" '(zetteldeft-deft-new-search :wk "new search")
+	 ";R" '(deft-refresh :wk "refresh")
+	 ";s" '(zetteldeft-search-at-point :wk "search at point")
+	 ";c" '(zetteldeft-search-current-id :wk "search current id")
+	 ";f" '(zetteldeft-follow-link :wk "follow link")
+	 ";F" '(zetteldeft-avy-file-search-ace-window :wk "avy file other window")
+	 ";l" '(zetteldeft-avy-link-search :wk "avy link search")
+	 ";t" '(zetteldeft-avy-tag-search :wk "avy tag search")
+	 ";T" '(zetteldeft-tag-buffer :wk "tag list")
+	 ";i" '(zetteldeft-find-file-id-insert :wk "insert id")
+	 ";I" '(zetteldeft-find-file-full-title-insert :wk "insert full title")
+	 ";o" '(zetteldeft-find-file :wk "find file")
+	 ";n" '(zetteldeft-new-file :wk "new file")
+	 ";N" '(zetteldeft-new-file-and-link :wk "new file & link")
+	 ";r" '(zetteldeft-file-rename :wk "rename")
+	 ";x" '(zetteldeft-count-words :wk "count words")
 	 ;; error checking specific bindings
 	 "e" '(:ignore t :which-key "check")
 	 "es" '(flyspell-correct-previous-word-generic :which-key "check word")
 	 "eS" '(synosaurus-lookup :which-key "synonym")
-	 "ed" '(counsel-dash :which-key "dash")
 	 "ee" '(flycheck-list-errors :which-key "all errors")
 	 "en" '(flycheck-next-error :which-key "next error")
 	 "eN" '(flycheck-previous-error :which-key "prev error")
@@ -126,7 +148,7 @@
 	 ;; jump specific bindings
 	 "j" '(:ignore t :which-key "jump")
 	 "ji" '(imenu :which-key "imenu")
-	 "js" '((switch-to-buffer '*scratch*) :which-key "scratch")
+	 "js" '(helm-multi-swoop-all :which-key "swoop")
 	 "jI" '(imenu-anywhere :which-key "imenu anywhere")
 	 "jj" '(avy-goto-char-timer :which-key "avy")
 	 "jf" '(counsel-find-file :which-key "file")
@@ -181,6 +203,7 @@
 	 "mi" '(mu4e :which-key "mu4e")
 	 "mc" '(mu4e-compose-new :which-key "mu4e compose")
 	 "ms" '(helm-mu :which-key "mu4e search")
+	 "mn" '(notmuch :which-key "notmuch")
 	 "mf" '(circe :which-key "freenode")
 	 ;; window specific bindings
 	 "w" '(:ignore t :which-key "window")
@@ -236,6 +259,9 @@
 	 ;; transpose and other text manipulation
 	 "t"  '(:ignore t :which-key "text")
 	 "tf" '(ono-fill-or-unfill :which-key "fill paragraph")
+	 "tt" '(multi-term :which-key "term")
+	 "tn" '(multi-term-next :which-key "term next")
+	 "tp" '(multi-term-previous :which-key "term prev")
 	 "tw" '(transpose-words :which-key "transpose words")
 	 "tl" '(transpose-lines :which-key "transpose lines")
 	 "tp" '(transpose-lines :which-key "transpose paragraphs")
@@ -267,7 +293,7 @@
  "M-/" 'hippie-expand
  "M-u" 'tiny-expand
  "M-q" 'ono-fill-or-unfill
- "C-;" 'avy-goto-char-2
+ "C-;" 'ace-link
  "C-h f" #'helpful-callable
  "C-h v" #'helpful-variable
  "C-h k" #'helpful-key
@@ -290,13 +316,15 @@
  "\\"	'evil-execute-in-god-state
  "-" 'ono/dired-open-current-dir
  "z/" 'counsel-fzf
+ "zs" 'flyspell-auto-correct-previous-word
  "gb" 'ivy-switch-buffer
  "j" 'evil-next-visual-line
  "k" 'evil-previous-visual-line
  "]d" 'git-gutter:next-hunk
  "[d" 'git-gutter:previous-hunk
  "gi" 'sp-kill-symbol
- "gd" 'dumb-jump-go)
+ "gd" 'dumb-jump-go
+ "C-'" 'avy-goto-line)
 
 (general-define-key
  :keymaps 'evil-god-state-map
@@ -334,11 +362,11 @@
  "zs" 'nil)
 
 ;; Custom key-chord for very fast swiper access (fd -> swiper)
-;; (use-package key-chord
-;; 	:ensure t
-;; 	:config
-;; 	(key-chord-mode t)
-;; 	(key-chord-define evil-insert-state-map "fd" 'swiper))
+(use-package key-chord
+	:ensure t
+	:config
+	(key-chord-mode t)
+	(key-chord-define evil-insert-state-map "jk" 'evil-escape))
 
 ;; Custom ex bindings: These provide emulation
 ;; of many of vim's builtin ex commands using emacs features
@@ -349,7 +377,7 @@
 (ex! "Copy" 'copy-file)
 (ex! "Chmod" 'chmod)
 (ex! "Mkdir" 'mkdir)
-(ex! "F[iles]" 'counsel-find-file)
+(ex! "F[iles]" 'counsel-fzf)
 (ex! "B[uffers]" 'ivy-switch-buffer)
 (ex! "ie[dit]" 'evil-multiedit-ex-match)
 (ex! "SudoEdit" 'sudo-edit)
@@ -357,9 +385,8 @@
 (ex! "co[pen]" 'flycheck-list-errors)
 (ex! "tjump" 'counsel-gtags-find-symbol)
 (ex! "noh" 'evil-ex-nohighlight)
-(ex! "ag" 'counsel-ag)
-(ex! "rg" 'counsel-rg)
-(ex! "sw[iper]" 'swiper)
+(ex! "rg" 'ono-deadgrep)
+(ex! "sw[iper]" 'helm-multi-swoop-projectile)
 (ex! "cap" 'org-capture)
 ;; Emulate fugitive.vim
 (ex! "Gstatus" 'magit-status)

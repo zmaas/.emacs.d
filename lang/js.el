@@ -37,28 +37,40 @@
 
 (use-package js2-mode
 	:ensure t
+	:init
+	(use-package rjsx-mode
+		:ensure t)
+	(use-package prettier-js
+		:ensure t)
 	:config
-	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+	(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+	(add-hook 'js-mode-hook 'prettier-js-mode)
+	(add-hook 'js-mode-hook 'emmet-mode)
+	(add-to-list 'aggressive-indent-excluded-modes 'js-mode)
 	(add-hook 'js2-mode-hook #'js2-imenu-extras-mode))
+
 
 (use-package tide
 	:ensure t
 	:config
-	(tide-setup)
-	(add-hook 'js2-mode-hook #'tide-mode))
+	(add-hook 'rjsx-mode-hook #'tide-setup)
+	(add-hook 'js2-mode-hook #'tide-setup)
+	(add-hook 'js2-minor-mode-hook #'tide-setup)
+	(add-hook 'js-mode-hook #'tide-setup))															
+
 
 (use-package indium
 	:ensure t)
 
 (general-define-key
  :states '(normal visual insert emacs)
- :keymaps 'js2-mode-map
+ :keymaps 'js-mode-map
  :prefix "SPC"
  :non-normal-prefix "M-SPC"
  "l" '(:ignore t :which-key "layer")
  "ll" '(tide-fix :which-key "lint")
  "ld" '(tide-jump-to-definition :which-key "goto def")
- "lf" '(tide-format :which-key "format")
+ "lf" '(prettier-js :which-key "format")
  "lc" '(multi-compile-run :which-key "compile"))
 
 

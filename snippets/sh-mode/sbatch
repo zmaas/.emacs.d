@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: sbatch
+# key: sb
+# --
+#!/bin/bash
+#SBATCH --output=/scratch/Users/zama8258/e_and_o/%x_%j.out
+#SBATCH --error=/scratch/Users/zama8258/e_and_o/%x_%j.err
+#SBATCH -p short
+#SBATCH -N 1
+#SBATCH -c 8
+#SBATCH --mem=8gb
+#SBATCH --mail-user=zama8258@colorado.edu
+
+set -euxo pipefail

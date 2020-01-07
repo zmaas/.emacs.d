@@ -6,14 +6,14 @@
 ;;; Code:
 
 ;; Semantic -- The core	C++ editing
-(use-package semantic
-	:disabled t
-	:ensure t
-	:config
-	(global-semanticdb-minor-mode t)
-	(global-semantic-idle-scheduler-mode t)
-	(global-semantic-idle-summary-mode nil)
-	(semantic-mode t))
+;; (use-package semantic
+;; 	:disabled t
+;; 	:ensure t
+;; 	:config
+;; 	(global-semanticdb-minor-mode t)
+;; 	(global-semantic-idle-scheduler-mode t)
+;; 	(global-semantic-idle-summary-mode nil)
+;; 	(semantic-mode t))
 
 ;; EXPERIMENTAL - cquery using lsp-mode
 ;; (defun cquery//enable ()
@@ -32,27 +32,28 @@
 ;; 	(add-hook 'c-mode-common-hook #'cquery//enable))
 
 ;; Irony -- C++/C	Completion
-(use-package irony
-	:ensure t
-	:diminish irony-mode
-	:init
-	(use-package company-irony-c-headers
-		:ensure t)
-	(use-package company-irony
-		:ensure t
-		:config)
-	;; (use-package flycheck-irony
-	;; 	:ensure t
-	;; 	:config
-	;; 	(eval-after-load 'flycheck
-	;; 		'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
-	:config
-	(add-hook 'c++-mode-hook 'irony-mode)
-	(add-hook 'c-mode-hook 'irony-mode)
-	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-	(eval-after-load 'company
-		'(add-to-list
-			'company-backends '(company-irony-c-headers company-irony company-gtags))))
+;; (use-package irony
+;; 	:ensure t
+;; 	:diminish irony-mode
+;; 	:init
+;; 	(use-package company-irony-c-headers
+;; 		:ensure t)
+;; 	(use-package company-irony
+;; 		:ensure t
+;; 		:config)
+;; 	;; (use-package flycheck-irony
+;; 	;; 	:ensure t
+;; 	;; 	:config
+;; 	;; 	(eval-after-load 'flycheck
+;; 	;; 		'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+;; 	:config
+;; 	(add-hook 'c++-mode-hook 'irony-mode)
+;; 	(add-hook 'c-mode-hook 'irony-mode)
+;; 	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+;; 	(add-hook 'c++-mode-hook
+;; 						#'(lambda ()
+;; 								(add-to-list
+;; 								 'company-backends 'company-irony-c-headers 'company-irony 'company-gtags))))
 
 ;; ggtags -- Project tag navigation
 (use-package ggtags
@@ -100,6 +101,8 @@
 ;; Automated disassembly of compiled files
 (use-package disaster
 	:ensure t)
+
+(add-hook 'c++-mode-hook #'lsp)
 
 ;; special per-mode keybindings for C++
 (general-define-key

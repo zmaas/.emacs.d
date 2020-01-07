@@ -60,7 +60,6 @@
 		;; (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
 		(ivy-rich-mode t)
 		(setq ivy-virtual-abbreviate 'full
-					ivy-rich-switch-buffer-align-virtual-buffer t
 					ivy-rich-abbreviate-paths t
 					ivy-rich-path-style 'abbrev
 					ivy-use-selectable-prompt t
@@ -69,7 +68,8 @@
   (ivy-mode 1)
 	(setq counsel-grep-base-command
 				"rg -i -M 120 --no-heading --line-number --color never '%s' %s")
-	(setq counsel-fzf-cmd "rg -S --vimgrep --files --hidden -g '*%s*'")
+	;; (setq counsel-fzf-cmd "rg -S --vimgrep --files --hidden -g '*%s*'")
+	(setq counsel-fzf-cmd "fd -c never --hidden --follow --exclude '.git' %s .")
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
 	(setq ivy-display-style 'fancy)
@@ -84,9 +84,11 @@
         '((swiper . ivy--regex-plus)
 					(swiper-all . ivy--regex-plus)
 					(counsel-yank-pop . ivy--regex-plus)
+					(counsel-find-file . ivy--regex-fuzzy)
 					(ivy-bibtex . ivy--regex-plus)
 					(counsel-git-grep . ivy--regex-plus)
 					(counsel-fzf . ivy--regex-plus)
+					(counsel-rg . ivy--regex-plus)
 					(t . ivy--regex-fuzzy)))
 	(setq ivy-initial-inputs-alist nil)
 	(general-define-key

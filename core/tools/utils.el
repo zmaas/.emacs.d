@@ -20,9 +20,13 @@
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
-;; Use eww for opening webpages
-																				;(setq browse-url-browser-function 'eww-browse-url)
-(setq browse-url-browser-function 'browse-url-firefox) ; mozilla browser
+;; Use firefox for opening webpages
+(defun ono-browse-url-firefox (URL &optional NEW-WINDOW)
+	"Open URL and use BSPWM to switch window. NEW-WINDOW provided for compatibility"
+	(interactive "sURL: ")
+	(browse-url-firefox URL)
+	(shell-command "bspc desktop -f web"))
+(setq browse-url-browser-function 'ono-browse-url-firefox) ; mozilla browser
 
 ;; Preliminary addition of quickrun to speed up development
 (use-package quickrun
@@ -40,9 +44,12 @@
 																					("go-vet" . "go vet")))
 															(haskell-mode . (("stack-build" . "stack build")
 																							 ("stack-test" . "stack test")))
-															(c++-mode . (("make" . "make")
-																					 ("clean" . "make clean")
-																					 ("test" . "make test"))))))
+															(c++-mode . (("make" . "make -j")
+																					 ("clean" . "make -j clean")
+																					 ("test" . "make -j test")))
+															(python-mode . (("make" . "make -j")
+																							("clean" . "make -j clean")
+																							("test" . "make -j test"))))))
 
 ;; expands selected regions
 (use-package expand-region
@@ -92,7 +99,6 @@
 
 ;; tramp - for remote file access
 (use-package tramp
-	:ensure t
 	:defer t
 	:init
   ;; disable company completion of *all* remote filenames, whether
@@ -172,7 +178,13 @@
 
 ;; writable grep, used with rgrep
 (use-package wgrep
-	:quelpa (wgrep :fetcher github :repo "mhayashi1120/Emacs-wgrep"))
+	:quelpa (wgrep :fetcher github :repo "mhayashi1120/Emacs-wgrep")
+	:config
+	(setq wgrep-auto-save-buffer t))
+
+;; Smarter Autoformatting
+(use-package format-all
+	:ensure t)
 
 ;; small utility that improves sexp evaluation
 ;; (use-package eval-sexp-fu

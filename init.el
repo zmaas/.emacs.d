@@ -24,7 +24,7 @@
 ;;    \::/  /       \:\__\        \::/  /
 ;;     \/__/         \/__/         \/__/
 ;;                  EMACS
-;; Emacs configuration file targeting Emacs 26
+;; Emacs configuration file targeting Emacs 27
 ;; Author: Zach Maas (zach.maas@gmail.com)
 ;; Configured for use on Arch Linux, vc using git
 ;; For more information, see README
@@ -51,7 +51,10 @@
 ;;; Code:
 
 ;; Allow packages to load
-(package-initialize)
+;; (package-initialize)
+
+;; For Debugging Only
+;; (setq debug-on-error t)
 
 ;; Setup Garbage Collection Threshold for Speed
 (setq gc-cons-threshold (* 5 1024 1024))
@@ -88,18 +91,21 @@
 (ono! :core :tools "prodigy") 					; Convenient management of externs
 (ono! :core :tools "virtualization")    ; Docker and vagrant configuration
 
+;; Theming configuration files
+(ono! :core :appearance "themes")       ;	Behold my mighty colors and despair
+(ono! :core :appearance "appearance") 	;	Fix the remnants of the	1980's
+(ono! :core :appearance "highlighting") ;	Use those	colors everywhere
+(ono! :core :appearance "interface")    ;	Hip, new interfacing
+
+;; Set our default theme
+(ono-dark-night-theme)
+
 ;; Load various app configurations
 (ono! :apps "mail")                     ; mu4e,4 u and me.
 (ono! :apps "irc") 											;	to talk with other emacsen
 (ono! :apps "elfeed")                   ;	read the feeds
 (ono! :apps "games")                    ;	games!
 (ono! :apps "hugo")                     ;	hugo
-
-;; Theming configuration files
-(ono! :core :appearance "themes")       ;	Behold my mighty colors and despair
-(ono! :core :appearance "appearance") 	;	Fix the remnants of the	1980's
-(ono! :core :appearance "highlighting") ;	Use those	colors everywhere
-(ono! :core :appearance "interface")    ;	Hip, new interfacing
 
 ;; Ono-custom-magic
 (ono! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
@@ -129,9 +135,6 @@
 (ono! :lang "debug") 										;	sometimes stuff breaks
 (ono! :lang "web")                      ; internets
 
-;; Set our default theme
-(ono-dark-night-theme)
-
 ;; Load custom-set-variables file
 (setq custom-file "~/.emacs.d/emacs-custom.el")
 (load custom-file)
@@ -140,11 +143,12 @@
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
 
-(provide 'init)
+(message "Initialization Done")
+;;(provide 'init)
 
 ;;; init.el ends here
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
-(put 'dired-find-alternate-file 'disabled nil)

@@ -5,61 +5,105 @@
 
 ;;; Code:
 
+;; Initially configure notmuch as a mail package, I use it in concert
+;; with mu4e.
+(use-package notmuch
+	:ensure t
+	:init
+	(use-package counsel-notmuch
+		:ensure t)
+	:config
+	(setq notmuch-search-oldest-first nil)
+	(evil-set-initial-state 'notmuch-hello-mode 'emacs)
+	(setq notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
+																 (:name "unread" :query "tag:unread" :key "u")
+																 (:name "flagged" :query "tag:flagged" :key "f")
+																 (:name "sent" :query "tag:sent" :key "t")
+																 (:name "drafts" :query "tag:draft" :key "d")
+																 (:name "all mail" :query "*" :key "a")
+																 (:name "work mail" :query "date:7d..0d and path:/school/" :key "w")
+																 (:name "personal mail" :query "date:7d..0d and path:/gmail/" :key "p"))))
+
 ;; Note: mu4e custom bindings are under the [m]essages mode leader binding.
 ;; See evil-tools.el for details
 ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 ;; (autoload 'mu4e "mu4e" "mu for Emacs." t)
 (require 'mu4e)
 (require 'smtpmail)
-(setq message-send-mail-function 'smtpmail-send-it)
-(setq mu4e-change-filenames-when-moving t)
+(setq message-send-mail-function 'smtpmail-send-it
+			mu4e-change-filenames-when-moving t
+			mu4e-use-fancy-chars t)
 
 (use-package org-mu4e)
-
-(use-package evil-mu4e
+(use-package org-msg
 	:ensure t
 	:config
-	(evil-set-initial-state 'mu4e-main-mode 'emacs))
+	(setq mail-user-agent 'mu4e-user-agent))
 
+
+;; Better search in mu4e
 (use-package helm-mu
 	:ensure t
 	:config
-	;; (general-define-key
-	;;  :keymaps '(mu4e-main-mode-map
-	;; 						mu4e-headers-mode-map
-	;; 						mu4e-view-mode-map)
-	;;  "s" 'helm-mu)
-	)
+	(general-define-key
+	 :keymaps '(mu4e-main-mode-map
+							mu4e-headers-mode-map
+							mu4e-view-mode-map)
+	 "s" 'helm-mu))
 
+;; Conversatinon threads for mu4e
 (use-package mu4e-conversation
 	:ensure t
-	:config)
+	:config
+	(global-mu4e-conversation-mode))
 
-;; (use-package org-mime
-;; 	:ensure t
-;; 	:config
-;; 	(setq mail-user-agent 'mu4e-user-agent))
+;; Easier link following in messages
+(use-package ace-link
+	:ensure t
+	:config
+	(ace-link-setup-default))
+
+;; Desktop notifications
+(use-package mu4e-alert
+	:ensure t
+	:config
+  (mu4e-alert-set-default-style 'libnotify)
+	(setq mu4e-alert-interesting-mail-query
+				(concat
+				 "flag:unread"
+				 " AND NOT flag:trashed"
+				 " AND date:1w.."))
+	(setq mu4e-alert-email-notification-types '(count))
+	(add-hook 'after-init-hook #'mu4e-alert-enable-notifications))
 
 (setq mu4e-maildir "~/.mail/")
 ;; Store account personal settings in an untracked file
 (load-file "~/.emacs.d/apps/mail-private.el")
 
 ;; Custom bookmarks
-(add-to-list 'mu4e-bookmarks
-						 (make-mu4e-bookmark
-							:name "Today's Unread Email"
-							:query "flag:unread AND date:today..now"
-							:key ?t)
-						 (make-mu4e-bookmark
-							:name "This Week's Unread Email"
-							:query "flag:unread AND date:7d..now"
-							:key ?w)
-						 ;; TODO - FIXME
-						 ;; (make-mu4e-bookmark
-						 ;; 	:name "Starred Mail"
-						 ;; 	:query "flag:flagged"
-						 ;; 	:key ?k)
-						 )
+(setq mu4e-bookmarks
+			'( ("flag:unread AND NOT flag:trashed" "Unread messages"      ?u)
+				 ;; ("date:today..now"                  "Today's messages"     ?t)
+				 ;; ("date:7d..now"                     "Last 7 days"          ?w)
+				 ("mime:image/*"                     "Messages with images" ?p)))
+(dolist (bookmark (list (make-mu4e-bookmark
+												 :name "Today's Unread Email"
+												 :query "flag:unread AND date:today..now"
+												 :key ?t)
+												(make-mu4e-bookmark
+												 :name "This Week's Unread Email"
+												 :query "flag:unread AND date:7d..now"
+												 :key ?w)
+												(make-mu4e-bookmark
+												 :name "This Week's Personal Email"
+												 :query "maildir:/gmail/ AND date:7d..now"
+												 :key ?p)
+												(make-mu4e-bookmark
+												 :name "This Week's Work Email"
+												 :query "maildir:/school/ AND date:7d..now"
+												 :key ?s)
+												))
+	(add-to-list 'mu4e-bookmarks bookmark t))
 
 (defun my-mu4e-set-account ()
   "Set the account for composing a message."
@@ -81,11 +125,25 @@
       (error "No email account found"))))
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
-(add-hook 'mu4e-view-mode-hook 'olivetti-mode)
+(add-hook 'mu4e-view-mode-hook 'visual-line-mode)
 
 ;; use imagemagick for inline images when available
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
+
+(setq mu4e-contexts
+			`( ,(make-mu4e-context
+					 :name "Gmail"
+					 :match-func (lambda (msg) (when msg
+																	(string-prefix-p "/gmail"
+																									 (mu4e-message-field msg :maildir))))
+					 :vars '())
+				 ,(make-mu4e-context
+					 :name "School"
+					 :match-func (lambda (msg) (when msg
+																	(string-prefix-p "/school"
+																									 (mu4e-message-field msg :maildir))))
+					 :vars '())))
 
 ;; (add-to-list 'mu4e-marks
 ;; 						 '(archive
@@ -103,12 +161,14 @@
 
 ;; Better rendering of html as very plain text.
 ;; Other options for rendering
-(setq mu4e-html2text-command "pandoc -f html -t plain --columns=72 --wrap=auto")
+(setq mu4e-html2text-command "pandoc -f html -t plain --columns=72 --wrap=auto"
+			mm-text-html-renderer 'gnus-w3m)
 ;; (setq mu4e-html2text-command 'mu4e-shr2text)
 ;; in our browser with all of the browser's security configuration.
 (add-to-list 'mu4e-view-actions
 						 '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
+(add-hook 'message-mode-hook #'auto-fill-mode)
 
 (setq-default
  mu4e-confirm-quit nil
@@ -124,6 +184,12 @@
  mu4e-context-policy 'pick-first
  mu4e-compose-context-policy nil)
 
+(use-package messages-are-flowing
+	:quelpa (messages-are-flowing
+					 :fetcher github
+					 :repo "legoscia/messages-are-flowing")
+	(add-hook 'message-mode-hook 'messages-are-flowing-use-and-mark-hard-newlines))
+
 (general-define-key
  :states '(normal visual insert emacs)
  :keymaps 'mu4e-compose-mode-map
@@ -137,6 +203,8 @@
  "la" '(mml-attach-file :which-key "attach file")
  "lL" '(langtool-check :which-key "spellcheck")
  "ll" '(langtool-check-done :which-key "done spellcheck")
+ "lo" '(ace-link-mu4e :which-key "open")
+ "lc" '(org-capture :which-key "capture")
  "ld" '(ono-safe-send :which-key "send!"))
 
 ;; mail.el ends here

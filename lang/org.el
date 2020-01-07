@@ -36,20 +36,37 @@
 ;;
 ;;; Code:
 
-(use-package org
-	:ensure org-plus-contrib)
+;; (use-package org
+;; 	:ensure org-plus-contrib)
+(use-package org)
 
+;; Orgmode comments
 (use-package poporg
 	:ensure t)
 
+;; ASCII Bullets
 (use-package org-bullets
 	:ensure t
 	:config
 	(add-hook 'org-mode-hook 'org-bullets-mode))
 
+(defun ono-org-mode-header-hook ()
+  "Stop the org-level headers from increasing in height relative to the other text."
+  (dolist (face '(org-level-1
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5))
+    (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
+
+(add-hook 'org-mode-hook 'ono-org-mode-header-hook)
+
+;; Efficient searching
+(use-package org-ql
+	:ensure t
+	:config)
+
 ;; Essential org-mode setup
-;; (setq org-todo-keywords
-;; 			'((sequence "TODO" "NEXT" "WAITING" "|" "DONE" "CANCELED")))
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
         (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
@@ -71,9 +88,15 @@
 (setq org-outline-path-complete-in-steps nil)
 (setq bookmark-save-flag t)
 (setq org-refile-allow-creating-parent-nodes 'confirm)
+(setq org-src-fontify-natively t)
+
+(use-package org-super-agenda
+	:ensure t
+	:config
+  (org-super-agenda-mode t))
 
 (setq org-agenda-files '("~/Dropbox/Org/"
-												 "~/Dropbox/Org/deft/"))
+												 "~/dowell_lab/tasks/"))
 (setq org-clock-idle-time 15)
 (setq org-default-notes-file "~/Dropbox/Org/organizer.org")
 
@@ -81,8 +104,8 @@
 (setq org-capture-templates
 			'(("t" "Todo" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
 				 "* TODO  %?\n  %i\n  %a")
-        ("e" "email" entry (file+headline "~/Dropbox/Org/emails.org" "Emails")
-         "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
+        ("e" "email" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
+         "* TODO Email: %a" :immediate-finish t)
 				("d" "Did" entry (file "~/Dropbox/Org/did.org")
 				 "* %T\n - %? %i")))
 
@@ -151,18 +174,22 @@
 				org-ref-pdf-directory "~/Dropbox/Org/bibliography/bibtex-pdfs/")
 	(setq bibtex-completion-pdf-field "File"))
 
-(use-package interleave
+(use-package org-noter
 	:ensure t
 	:config)
 
 (use-package deft
 	:ensure t
 	:config
+	(use-package zetteldeft
+		:ensure t
+		:after deft)
 	(setq deft-extensions '("org" "md" "txt")
-				deft-directory "~/Dropbox/Org/deft"
+				deft-directory "~/Dropbox/Org/notes"
 				deft-default-extension "org"
 				deft-text-mode 'org-mode
-				deft-use-filename-as-title t
+				deft-recursive t
+				deft-use-filename-as-title nil
 				deft-use-filter-string-for-filename t
 				deft-auto-save-interval 0))
 
@@ -254,27 +281,20 @@
 (defun +org-init-olivetti ()
 	"Initialize olivetti mode with proper width for orgmode buffers."
 	(olivetti-set-width 100)
-	(turn-on-olivetti-mode))
+	(olivetti-mode))
 
 ;; Call our UI function
 (add-hook 'org-load-hook #'+org-init-ui)
 (add-hook 'org-load-hook #'+org-init-olivetti)
 
-;; Calls a special hydra for insertion if at the start of a line
-(define-key org-mode-map "<"
-	(lambda () (interactive)
-		(if (looking-back "^")
-				(hydra-org-template/body)
-			(self-insert-command 1))))
-
 (general-define-key
- :states '(normal visual insert emacs)
+ :states '(normal visual emacs)
  :keymaps	'deft-mode-map
  "q" '(quit-window :which-key "quit")
- "n" '(deft-new-file :which-key "new")
- "s" '(deft-new-file-named :which-key "new-name")
+ "n" '(zetteldeft-new-file :which-key "new")
+ "s" '(zetteldeft-new-file-and-link :which-key "new-name")
  "a" '(deft-archive-file :which-key "archive")
- "r" '(deft-rename-file :which-key "rename")
+ "r" '(zetteldeft-file-rename :which-key "rename")
  "f" '(deft-filter :which-key "filter")
  "c" '(deft-filter-clear :which-key "clear filter")
  "d" '(deft-delete-file :which-key "delete"))
@@ -292,9 +312,11 @@
  "on" '(ono-org/gtd-nav/body :which-key "gtd")
  "op" '(org-pomodoro :which-key "pomodoro")
  "oi" '(org-clock-in :which-key "clock in")
+ "ow" '(org-insert-structure-template :which-key "template")
  "oO" '(org-clock-out :which-key "clock out")
  "ot" '(org-todo :which-key "todo")
  "of" '(helm-org-rifle :which-key "find")
+ "oq" '(helm-org-ql :which-key "query")
  "om" '(org-mu4e-store-and-capture :which-key "capture message")
  "oT" '(counsel-org-tag :which-key "tag")
  "os" '(org-schedule :which-key "schedule")

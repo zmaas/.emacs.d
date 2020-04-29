@@ -36,19 +36,26 @@
 ;;
 ;;; Code:
 
-;; (use-package org
-;; 	:ensure org-plus-contrib)
-(use-package org)
+(use-package org
+	:ensure org-plus-contrib
+	:config
+	(setq org-directory "~/Dropbox/Org/")
+	(use-package org-contacts
+		:ensure nil
+		:after org
+		:config
+		(setq org-contacts-files '("~/Dropbox/Org/contacts.org"))))
 
 ;; Orgmode comments
 (use-package poporg
 	:ensure t)
 
 ;; ASCII Bullets
-(use-package org-bullets
+(use-package org-superstar
 	:ensure t
 	:config
-	(add-hook 'org-mode-hook 'org-bullets-mode))
+	(add-hook 'org-mode-hook 'org-superstar-mode)
+	(org-superstar-configure-like-org-bullets))
 
 (defun ono-org-mode-header-hook ()
   "Stop the org-level headers from increasing in height relative to the other text."
@@ -60,6 +67,7 @@
     (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
 
 (add-hook 'org-mode-hook 'ono-org-mode-header-hook)
+(add-hook 'org-mode-hook 'auto-revert-mode)
 
 ;; Efficient searching
 (use-package org-ql
@@ -76,9 +84,9 @@
                             ("@home" . ?h)
                             ("@school" . ?s)
                             (:newline)
-                            ("WAITING" . ?w)
-                            ("HOLD" . ?H)
-                            ("CANCELLED" . ?c))))
+                            ("@taatjes" . ?t)
+                            ("@dowell" . ?d)
+                            ("@collab" . ?c))))
 
 (setq org-fast-tag-selection-single-key nil)
 
@@ -90,24 +98,72 @@
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 (setq org-src-fontify-natively t)
 
+;; Basic Agenda Configuration
+(setq org-agenda-files '("~/Dropbox/Org/"
+												 "~/dowell_lab/org/"))
+(setq org-clock-idle-time 15)
+(setq org-default-notes-file "~/Dropbox/Org/organizer.org")
+(defun org-agenda-process-inbox-item ()
+  "Process a single item in the org-agenda."
+	(interactive "")
+  (org-with-wide-buffer
+   (org-agenda-set-tags)
+	 (org-agenda-todo)
+   (org-agenda-refile nil nil t)))
+
+;; Better Agenda
 (use-package org-super-agenda
 	:ensure t
 	:config
   (org-super-agenda-mode t))
 
-(setq org-agenda-files '("~/Dropbox/Org/"
-												 "~/dowell_lab/tasks/"))
-(setq org-clock-idle-time 15)
-(setq org-default-notes-file "~/Dropbox/Org/organizer.org")
+(setq org-agenda-span 'day
+			org-agenda-skip-scheduled-if-done t
+			org-agenda-skip-deadline-if-done t
+			org-agenda-include-deadlines t)
+
+;; FIXME This binding won't work.
+(general-define-key
+ :states '(normal visual emacs)
+ :keymaps	'org-agenda-mode
+ "p" '(org-agenda-process-inbox-item :which-key "process"))
+
+(setq org-agenda-custom-commands
+      '(("z" "Super Zach View"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                                :time-grid t
+                                :date today
+                                :scheduled today
+																:deadline today
+                                :order 1)))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Refile"
+																 :and (:scheduled past :todo "TODO")
+																 :and (:deadline past :todo "TODO")
+																 :and (:file-path "mobile_capture.org" :todo "TODO")
+																 :order 0)
+													(:name "Next"
+																 :todo "NEXT"
+																 :order 1)
+													(:name "Future"
+																 :scheduled future
+																 :deadline future
+																 :order 2)
+													))))))))
 
 ;; Custom Capture Templates
 (setq org-capture-templates
 			'(("t" "Todo" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
 				 "* TODO  %?\n  %i\n  %a")
-        ("e" "email" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
-         "* TODO Email: %a" :immediate-finish t)
+				("w" "Work Log" entry (file+olp+datetree "~/dowell_lab/org/lab_log.org")
+				 "* %T\n - %? %i" :tree-type week)
 				("d" "Did" entry (file "~/Dropbox/Org/did.org")
-				 "* %T\n - %? %i")))
+				 "* %T\n - %? %i")
+				("e" "Email" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
+				 "* TODO Email: %a" :immediate-finish t)))
 
 ;; Setup `org-babel' for emacs-lisp, gnuplot, latex and shell-script.
 (org-babel-do-load-languages
@@ -153,7 +209,10 @@
 		:ensure t)
 	(use-package org-gcal
 		:ensure t
-		:init)
+		:config
+		(setq org-gcal-auto-archive t
+					org-gcal-down-days 60
+					org-gcal-up-days 60))
 	(load-file "~/.emacs.d/lang/org-private.el")
 	(setq cfw:fchar-junction ?╋
 				cfw:fchar-vertical-line ?┃
@@ -193,19 +252,52 @@
 				deft-use-filter-string-for-filename t
 				deft-auto-save-interval 0))
 
+(use-package org-roam
+	:ensure t
+	:config
+	(setq org-roam-directory "~/Dropbox/Org/notes/"))
+
 (use-package org-pomodoro
   :ensure t
   :commands (org-pomodoro)
   :config
 	(setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil)))))
 
-(setq org-agenda-custom-commands
-			'(("c" "Simple agenda view"
-				 ((tags "PRIORITY=\"A\""
-								((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-								 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-					(agenda "")
-					(alltodo "")))))
+(defun +org-init-custom-fontification ()
+	"Correct (and improve) org-mode's font-lock keywords.
+	1. Re-set `org-todo' & `org-headline-done' faces, to make them respect
+		 underlying faces.
+	2. Fontify item bullets
+	3. Fontify item checkboxes (and when they're marked done)
+	4. Fontify dividers/separators (5+ dashes)
+	5. Fontify #hashtags and @at-tags, for personal convenience"
+	(let ((org-todo (format org-heading-keyword-regexp-format
+													org-todo-regexp))
+				(org-done (format org-heading-keyword-regexp-format
+													(concat "\\(?:" (mapconcat #'regexp-quote org-done-keywords "\\|") "\\)"))))
+		(setq
+		 org-font-lock-extra-keywords
+		 (append (org-delete-all
+							`(("\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
+								 (0 (org-get-checkbox-statistics-face) t))
+								(,org-todo (2 (org-get-todo-face 2) t))
+								(,org-done (2 'org-headline-done t)))
+							org-font-lock-extra-keywords)
+						 `((,org-todo (2 (org-get-todo-face 2) prepend))
+							 (,org-done (2 'org-headline-done prepend))
+							 ;; Make checkbox statistic cookies respect underlying faces
+							 ("\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
+								(0 (org-get-checkbox-statistics-face) prepend))
+							 ;; I like how org-mode fontifies checked TODOs and want this to extend to
+							 ;; checked checkbox items:
+							 ("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)"
+								1 'org-headline-done prepend)
+							 ;; make plain list bullets stand out
+							 ("^ *\\([-+]\\|[0-9]+[).]\\) " 1 'org-list-dt append)
+							 ;; and separators/dividers
+							 ("^ *\\(-----+\\)$" 1 'org-meta-line)
+							 ;; custom #hashtags & @at-tags for another level of organization
+							 ("\\s-\\(\\([#@]\\)[^ \n.,]+\\)" 1 (+org--tag-face 2)))))))
 
 (defun +org-init-ui ()
 	;;"Configures default UI settings for orgmode"
@@ -241,41 +333,7 @@
 		(let ((kwd (match-string n)))
 			(or (and (equal kwd "#") 'org-tag)
 					(and (equal kwd "@") 'org-special-keyword))))
-	(defun +org-init-custom-fontification ()
-		"Correct (and improve) org-mode's font-lock keywords.
-	1. Re-set `org-todo' & `org-headline-done' faces, to make them respect
-		 underlying faces.
-	2. Fontify item bullets
-	3. Fontify item checkboxes (and when they're marked done)
-	4. Fontify dividers/separators (5+ dashes)
-	5. Fontify #hashtags and @at-tags, for personal convenience"
-		(let ((org-todo (format org-heading-keyword-regexp-format
-														org-todo-regexp))
-					(org-done (format org-heading-keyword-regexp-format
-														(concat "\\(?:" (mapconcat #'regexp-quote org-done-keywords "\\|") "\\)"))))
-			(setq
-			 org-font-lock-extra-keywords
-			 (append (org-delete-all
-								`(("\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
-									 (0 (org-get-checkbox-statistics-face) t))
-									(,org-todo (2 (org-get-todo-face 2) t))
-									(,org-done (2 'org-headline-done t)))
-								org-font-lock-extra-keywords)
-							 `((,org-todo (2 (org-get-todo-face 2) prepend))
-								 (,org-done (2 'org-headline-done prepend))
-								 ;; Make checkbox statistic cookies respect underlying faces
-								 ("\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
-									(0 (org-get-checkbox-statistics-face) prepend))
-								 ;; I like how org-mode fontifies checked TODOs and want this to extend to
-								 ;; checked checkbox items:
-								 ("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)"
-									1 'org-headline-done prepend)
-								 ;; make plain list bullets stand out
-								 ("^ *\\([-+]\\|[0-9]+[).]\\) " 1 'org-list-dt append)
-								 ;; and separators/dividers
-								 ("^ *\\(-----+\\)$" 1 'org-meta-line)
-								 ;; custom #hashtags & @at-tags for another level of organization
-								 ("\\s-\\(\\([#@]\\)[^ \n.,]+\\)" 1 (+org--tag-face 2)))))))
+
 	(add-hook 'org-font-lock-set-keywords-hook #'+org-init-custom-fontification))
 
 (defun +org-init-olivetti ()
@@ -318,7 +376,7 @@
  "of" '(helm-org-rifle :which-key "find")
  "oq" '(helm-org-ql :which-key "query")
  "om" '(org-mu4e-store-and-capture :which-key "capture message")
- "oT" '(counsel-org-tag :which-key "tag")
+ "oT" '(org-set-tags-command :which-key "tag")
  "os" '(org-schedule :which-key "schedule")
  "od" '(org-deadline :which-key "deadline")
  "oe" '(org-export-dispatch :which-key "export")

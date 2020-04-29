@@ -124,4 +124,12 @@ buffer." (interactive)
      (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
    "/DONE" 'agenda))
 
+(defun ono-timestamp ()
+	(interactive)
+	(insert (format-time-string "%Y-%m-%dT%H:%M:%S")))
+
+(defun ono-timestamp-today ()
+	(interactive)
+	(insert (format-time-string "%Y-%m-%d")))
+
 ;;;	ono-generic-functions.el ends here

@@ -49,6 +49,11 @@
 	(add-to-list 'aggressive-indent-excluded-modes 'js-mode)
 	(add-hook 'js2-mode-hook #'js2-imenu-extras-mode))
 
+(use-package add-node-modules-path
+	:ensure t
+	:config
+  (add-hook 'tide-mode-hook #'add-node-modules-path))
+
 
 (use-package tide
 	:ensure t
@@ -70,7 +75,7 @@
  "l" '(:ignore t :which-key "layer")
  "ll" '(tide-fix :which-key "lint")
  "ld" '(tide-jump-to-definition :which-key "goto def")
- "lf" '(prettier-js :which-key "format")
+ "lf" '(tide-format :which-key "format")
  "lc" '(multi-compile-run :which-key "compile"))
 
 

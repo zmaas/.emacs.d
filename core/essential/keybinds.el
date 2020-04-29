@@ -313,8 +313,9 @@
 ;; Evil custom keybinding
 (general-define-key
  :states '(normal visual motion)
+ "<XF86Search>" 'org-capture
  "\\"	'evil-execute-in-god-state
- "-" 'ono/dired-open-current-dir
+ "-" 'dired-jump
  "z/" 'counsel-fzf
  "zs" 'flyspell-auto-correct-previous-word
  "gb" 'ivy-switch-buffer

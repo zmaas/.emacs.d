@@ -9,7 +9,7 @@
 	:ensure t)
 
 (prodigy-define-service
-  :name "Hugo Serve"
+  :name "abstractlambda.com develop"
   :command "hugo"
 	:args	'("serve")
 	:ready-message "Press Ctrl+C to stop"
@@ -20,12 +20,12 @@
   :kill-process-buffer-on-stop t)
 
 (prodigy-define-service
-  :name "Gatsby Develop"
+  :name "zachmaas.com develop"
   :command "npx"
 	:args	'("gatsby" "develop")
 	:ready-message "info bootstrap finished"
   :cwd "~/builds/portfolio"
-  :port	1313
+  :port	8000
   :tags '(personal node)
 	:stop-signal 'sigkill
   :kill-process-buffer-on-stop t)

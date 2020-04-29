@@ -10,7 +10,7 @@
 	:ensure t
 	:init
   (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
+	(setq evil-want-keybinding nil)
 	;; anzu tells us how many matches we have in the bar
 	(use-package anzu
 		:ensure t
@@ -140,7 +140,9 @@
 		:ensure t
 		:config
 		(evil-collection-init)
-		(setq evil-collection-setup-minibuffer t))
+		(setq evil-collection-setup-minibuffer t
+					evil-collection-company-use-tng t
+					evil-collection-term-sync-state-function t))
 	:config
 	(evil-mode 1)
 	(setq evil-want-C-u-scroll t

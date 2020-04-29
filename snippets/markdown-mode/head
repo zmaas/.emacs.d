@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: header
+# key: head
+# --
+---
+path: "/writing/$1"
+date: "`(format-time-string "%Y-%m-%d")`"
+modified: "`(format-time-string "%Y-%m-%d")`"
+title: "$2"
+tags: ["$3"]
+published: false
+---
+
+$0

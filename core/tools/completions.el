@@ -137,6 +137,12 @@
 (use-package auto-yasnippet
 	:ensure t)
 
+;; Extend yasnippet using yankpad
+(use-package yankpad
+	:ensure t
+	:config
+	(setq yankpad-file "~/Dropbox/Org/yankpad.org"))
+
 (use-package xlicense
 	:ensure t)
 

@@ -77,7 +77,7 @@
  "l" '(:ignore t :which-key "layer")
  "lr" '(run-python :which-key "python repl")
  "lf" '(yapfify-buffer :which-key "autoformat")
- "ll" '(python-shell-send-region :which-key "eval region")
+ "ll" '(python-shell-send-statement :which-key "eval region")
  "lc" '(comint-clear-buffer :which-key "clear repl")
  "le" '(python-shell-send-buffer :which-key "eval buffer")
  "lE" '(python-shell-send-defun :which-key "eval defun")

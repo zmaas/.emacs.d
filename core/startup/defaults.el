@@ -25,7 +25,7 @@
 (require 'diminish)
 (diminish 'auto-revert-mode)
 (global-auto-revert-mode 1)
-(setq auto-revert-verbose nil)
+(setq auto-revert-verbose t)
 
 ;; UTF8. PLEASE.
 (when (fboundp 'set-charset-priority)

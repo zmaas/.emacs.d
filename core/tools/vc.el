@@ -21,7 +21,9 @@
 		:config
 		(add-hook 'magit-mode-hook 'magit-todos-mode))
 	(use-package gist
-		:ensure t))
+		:ensure t
+		:config
+		(setq gist-ask-for-filename t)))
 
 (use-package magithub
 	:ensure t

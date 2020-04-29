@@ -50,3 +50,5 @@ meghanada/*
 emojis/*
 org-gcal/*
 irony/*
+/.historian
+/.lsp-python/

@@ -32,13 +32,16 @@
 (require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it
 			mu4e-change-filenames-when-moving t
-			mu4e-use-fancy-chars t)
+			mu4e-use-fancy-chars t
+			mail-user-agent 'mu4e-user-agent)
 
 (use-package org-mu4e)
 (use-package org-msg
 	:ensure t
 	:config
-	(setq mail-user-agent 'mu4e-user-agent))
+	(add-hook 'message-mode-hook 'org-msg-mode)
+	(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil"
+				org-msg-startup "hidestars indent inlineimages"))
 
 
 ;; Better search in mu4e
@@ -54,6 +57,7 @@
 ;; Conversatinon threads for mu4e
 (use-package mu4e-conversation
 	:ensure t
+	:disabled t
 	:config
 	(global-mu4e-conversation-mode))
 
@@ -66,6 +70,7 @@
 ;; Desktop notifications
 (use-package mu4e-alert
 	:ensure t
+	:disabled t
 	:config
   (mu4e-alert-set-default-style 'libnotify)
 	(setq mu4e-alert-interesting-mail-query
@@ -85,22 +90,26 @@
 			'( ("flag:unread AND NOT flag:trashed" "Unread messages"      ?u)
 				 ;; ("date:today..now"                  "Today's messages"     ?t)
 				 ;; ("date:7d..now"                     "Last 7 days"          ?w)
-				 ("mime:image/*"                     "Messages with images" ?p)))
+				 ("mime:image/*"                     "Messages with images" ?i)))
 (dolist (bookmark (list (make-mu4e-bookmark
 												 :name "Today's Unread Email"
-												 :query "flag:unread AND date:today..now"
+												 :query "flag:unread and  date:today..now"
 												 :key ?t)
 												(make-mu4e-bookmark
 												 :name "This Week's Unread Email"
-												 :query "flag:unread AND date:7d..now"
-												 :key ?w)
+												 :query "flag:unread and date:7d..now"
+												 :key ?W)
 												(make-mu4e-bookmark
 												 :name "This Week's Personal Email"
-												 :query "maildir:/gmail/ AND date:7d..now"
+												 :query "maildir:/gmail/Inbox and date:7d..now"
 												 :key ?p)
 												(make-mu4e-bookmark
 												 :name "This Week's Work Email"
-												 :query "maildir:/school/ AND date:7d..now"
+												 :query "maildir:/school/Inbox and date:7d..now"
+												 :key ?w)
+												(make-mu4e-bookmark
+												 :name "Flagged Mail"
+												 :query "flag:flagged and not flag:trashed"
 												 :key ?s)
 												))
 	(add-to-list 'mu4e-bookmarks bookmark t))
@@ -137,13 +146,15 @@
 					 :match-func (lambda (msg) (when msg
 																	(string-prefix-p "/gmail"
 																									 (mu4e-message-field msg :maildir))))
-					 :vars '())
+					 :vars '((user-mail-address . "zach.maas@gmail.com")
+									 (user-full-name . "Zachary Maas")))
 				 ,(make-mu4e-context
 					 :name "School"
 					 :match-func (lambda (msg) (when msg
 																	(string-prefix-p "/school"
 																									 (mu4e-message-field msg :maildir))))
-					 :vars '())))
+					 :vars '((user-mail-address . "zachary.maas@colorado.edu")
+									 (user-full-name . "Zachary Maas")))))
 
 ;; (add-to-list 'mu4e-marks
 ;; 						 '(archive
@@ -169,6 +180,14 @@
 						 '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
 (add-hook 'message-mode-hook #'auto-fill-mode)
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
+(use-package messages-are-flowing
+	:ensure t
+	:config
+																				;(with-eval-after-load "message"
+																				;(add-hook 'message-mode-hook 'messages-are-flowing-use-and-mark-hard-newlines))
+	)
 
 (setq-default
  mu4e-confirm-quit nil
@@ -178,17 +197,13 @@
  mu4e-get-mail-command "mbsync -a"
  mu4e-completing-read-function 'completing-read
  mu4e-compose-format-flowed t
+ fill-flowed-encode-column 78
  mu4e-view-show-addresses 't
  mu4e-headers-date-format "%Y-%m-%d %H:%M"
  mu4e-compose-dont-reply-to-self t
+ mu4e-compose-keep-self-cc t
  mu4e-context-policy 'pick-first
  mu4e-compose-context-policy nil)
-
-(use-package messages-are-flowing
-	:quelpa (messages-are-flowing
-					 :fetcher github
-					 :repo "legoscia/messages-are-flowing")
-	(add-hook 'message-mode-hook 'messages-are-flowing-use-and-mark-hard-newlines))
 
 (general-define-key
  :states '(normal visual insert emacs)

@@ -47,9 +47,12 @@
 	(auto-compile-on-save-mode t)
 	(auto-compile-on-load-mode t))
 
+;; Make sure to use quickstart (emacs 27 and above)
+(setq package-quickstart t)
+
 ;; Make sure we have diminish
 (use-package diminish
-     :ensure t)
+	:ensure t)
 
 ;; Always prefer newer files when loading
 (setq load-prefer-newer t)
@@ -60,6 +63,12 @@
 	:config
 	(paradox-enable))
 
+;; Custom functions
+(defun ono-re-init ()
+	"Reloads init.el after any changes that we have made."
+	(interactive)
+	(load user-init-file))
+
 (defun ono-update-packages ()
 	"Update all of our packages in ELPA and from QUELPA.
 Then, runs the re-initialization sequence."
@@ -67,10 +76,7 @@ Then, runs the re-initialization sequence."
 	(package-refresh-contents)
 	(paradox-upgrade-packages)
 	(quelpa-self-upgrade)
-	(quelpa-upgrade)
+	(quelpa-upgrade-all)
+	(package-quickstart-refresh)
 	(ono-re-init))
 
-(defun ono-re-init ()
-	"Reloads init.el after any changes that we have made."
-	(interactive)
-	(load user-init-file))

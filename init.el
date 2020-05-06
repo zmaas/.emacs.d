@@ -107,33 +107,33 @@
 (ono! :apps "games")                    ;	games!
 (ono! :apps "hugo")                     ;	hugo
 
-;; Ono-custom-magic
+;; ono-custom-magic
 (ono! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
 ;; (ono! :core :ono-extensions "outlines")	    ;	Universal	outlines
 (ono! :core :ono-extensions "ono-generic-functions") ; Custom commands
 (ono! :core :ono-extensions "dispatch") ; Prototype of Dispatch.vim
 
 ;; Markup Langauges
-(ono! :lang "latex") 										;	No better way to make pretentious	docs
+(ono! :lang "latex") 										;	No better way to make fancy docs
 (ono! :lang "org") 											;	Org will slowly consume your life
-(ono! :lang "md") 											;	Yetanotherhipstermarkdownlanguage
+(ono! :lang "md") 											;	It's everywhere
 
 ;; Programming Languages
 ;; First Class Support - Frequent Use
-(ono! :lang "lisp")                     ; (p(a(r(e(n(s))))))
 (ono! :lang "python") 									;	Simple != easy
-(ono! :lang "c++") 											;	if c=1,	c++ = 2?
-(ono! :lang "haskell") 									;	Theoretically functional?
-;; Second Class Support - Less Common Use
 (ono! :lang "js")                       ;	Code for the modern	web.
+(ono! :lang "r") 												;	Stats, stats, stats!
+(ono! :lang "lisp")                     ; (p(a(r(e(n(s))))))
+;; Second Class Support - Less Common Use
+(ono! :lang "c++") 											;	if c=1,	c++ = 2?
+(ono! :lang "haskell") 									;	Functional in theory.
+(ono! :lang "web")                      ; internets
+;; Preliminary Support - Occasional Use
+(ono! :lang "java") 										;	a	cup of kaffe
+(ono! :lang "debug") 										;	sometimes stuff breaks
 (ono! :lang "clojure") 									; Lisp hijacks JS and the JVM
 (ono! :lang "go") 											;	C, but for parallel brogrammers
 (ono! :lang "rust")											;	C++, but more hardcore?
-;; Preliminary Support - Occasional Use
-(ono! :lang "r") 												;	Stats, stats, stats!
-(ono! :lang "java") 										;	a	cup of kaffe
-(ono! :lang "debug") 										;	sometimes stuff breaks
-(ono! :lang "web")                      ; internets
 
 ;; Load custom-set-variables file
 (setq custom-file "~/.emacs.d/emacs-custom.el")

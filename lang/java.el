@@ -7,10 +7,10 @@
 
 ;; Auto disassembly of java bytecode
 (use-package autodisass-java-bytecode
-  :ensure t)
+  :straight t)
 
 (use-package meghanada
-	:ensure t
+	:straight t
   :config
   (meghanada-install-server)
   (setq meghanada-use-company	t
@@ -23,7 +23,7 @@
 
   :config
   (use-package realgud
-    :ensure t)
+    :straight t)
   (setq indent-tabs-mode nil)
   (setq tab-width 2)
   (setq meghanada-server-remote-debug t)

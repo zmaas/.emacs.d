@@ -8,7 +8,7 @@
 ;; Semantic -- The core	C++ editing
 ;; (use-package semantic
 ;; 	:disabled t
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(global-semanticdb-minor-mode t)
 ;; 	(global-semantic-idle-scheduler-mode t)
@@ -21,7 +21,7 @@
 ;;       (lsp-cquery-enable)
 ;;     (user-error nil)))
 ;; (use-package cquery
-;; 	:ensure t
+;; 	:straight t
 ;; 	:commands lsp-cquery-enable
 ;; 	:config
 ;;   (setq cquery-executable "/usr/bin/cquery")
@@ -33,16 +33,16 @@
 
 ;; Irony -- C++/C	Completion
 ;; (use-package irony
-;; 	:ensure t
+;; 	:straight t
 ;; 	:diminish irony-mode
 ;; 	:init
 ;; 	(use-package company-irony-c-headers
-;; 		:ensure t)
+;; 		:straight t)
 ;; 	(use-package company-irony
-;; 		:ensure t
+;; 		:straight t
 ;; 		:config)
 ;; 	;; (use-package flycheck-irony
-;; 	;; 	:ensure t
+;; 	;; 	:straight t
 ;; 	;; 	:config
 ;; 	;; 	(eval-after-load 'flycheck
 ;; 	;; 		'(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
@@ -57,10 +57,10 @@
 
 ;; ggtags -- Project tag navigation
 (use-package ggtags
-	:ensure t
+	:straight t
 	:init
 	(use-package counsel-gtags
-		:ensure t
+		:straight t
 		:diminish ""
 		:config
 		(add-hook 'c-mode-hook 'counsel-gtags-mode)
@@ -75,32 +75,32 @@
 ;; Fast	tag-based nav and completion (moo commands)
 ;; Specifically improves function	arg viewing
 (use-package function-args
-	:ensure t
+	:straight t
 	:config
 	(fa-config-default))
 
 ;; Autoformatter for code style
 (use-package clang-format
-	:ensure t
+	:straight t
 	:config
 	(setq clang-format-style "google"))
 
 ;; Style tips	for	modern c++
 (use-package flycheck-clang-tidy
-	:ensure t
+	:straight t
 	:after flycheck
 	:config
 	'(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
 
 ;; Better static analysis
 (use-package flycheck-clang-analyzer
-	:ensure t
+	:straight t
 	:after flycheck
   :config (flycheck-clang-analyzer-setup))
 
 ;; Automated disassembly of compiled files
 (use-package disaster
-	:ensure t)
+	:straight t)
 
 (add-hook 'c++-mode-hook #'lsp)
 

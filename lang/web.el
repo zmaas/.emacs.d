@@ -6,14 +6,14 @@
 ;;; Code:
 
 (use-package web-mode
-	:ensure t)
+	:straight t)
 
 (use-package emmet-mode
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'html-mode-hook #'emmet-mode))
 
 (use-package company-web
-	:ensure t)
+	:straight t)
 
 ;;;	web.el ends here

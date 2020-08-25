@@ -34,17 +34,17 @@
 ;;; Code:
 
 (use-package rust-mode
-	:ensure t
+	:straight t
 	:config
 	(use-package racer
-		:ensure t
+		:straight t
 		:config)
 	(add-hook 'rust-mode-hook #'racer-mode)
 	(add-hook 'racer-mode-hook #'eldoc-mode)
 	(add-hook 'racer-mode-hook #'company-mode))
 
 (use-package flycheck-rust
-	:ensure t
+	:straight t
 	:config
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 

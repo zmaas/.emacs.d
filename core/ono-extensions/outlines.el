@@ -1,7 +1,7 @@
 ;; Require packages for following code
 (require 'dash)
 (use-package outshine
-	:ensure t
+	:straight t
 	:diminish outline-minor-mode)
 
 ;; Required for outshine

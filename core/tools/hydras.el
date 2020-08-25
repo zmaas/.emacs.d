@@ -7,7 +7,7 @@
 
 ;; IN PROGRESS - Behold the Mighty Hydra! Dynamic keybinds that stick around
 (use-package hydra
-	:ensure t
+	:straight t
 	:defer t)
 
 ;; HYDRAS

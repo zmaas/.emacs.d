@@ -12,15 +12,15 @@
 
 ;; Uses SLIME configured for sbcl
 (use-package sly
-	:ensure t
+	:straight t
 	:init
 	;; TODO Debug this?
 	(use-package sly-macrostep
-		:ensure t)
+		:straight t)
 	(use-package sly-quicklisp
-		:ensure t)
+		:straight t)
 	(use-package sly-repl-ansi-color
-		:ensure t)
+		:straight t)
 	:config
 	(add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-mode))
 	(add-to-list 'auto-mode-alist '("\\.lsp\\'" . lisp-mode))
@@ -35,10 +35,10 @@
 
 ;; Setup for racket/scheme
 (use-package geiser
-	:ensure t
+	:straight t
 	:init
 	;; (use-package quack
-	;; 	:ensure t)
+	;; 	:straight t)
 	:config
 	(add-hook 'scheme-mode-hook #'geiser-mode))
 
@@ -65,12 +65,12 @@
 	(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode))
 
 (use-package srefactor
-	:ensure t
+	:straight t
 	:init
 	(use-package srefactor-lisp))
 
 (use-package elisp-slime-nav
-	:ensure t
+	:straight t
 	:diminish	""
 	:config
 	(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))

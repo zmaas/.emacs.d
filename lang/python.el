@@ -8,12 +8,14 @@
 ;; Python Development Setup
 ;; IN PROGRESS - anaconda is good so far, some lag that needs to be figured out
 (use-package anaconda-mode
-	:ensure t
+	:straight t
 	:diminish	anaconda-mode
 	:init
 	(use-package pyvenv
-		:ensure t
-		:config)
+		:straight t
+		:config
+		(setq pyvenv-workon "emacs")
+		(pyvenv-tracking-mode 1))
 	:config
 	(add-hook 'python-mode-hook #'anaconda-mode)
 	(setq python-shell-interpreter "python3"
@@ -30,7 +32,7 @@
           "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")))
 
 ;; (use-package company-anaconda
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(add-hook 'python-mode-hook 'anaconda-mode)
 ;; 	(add-hook 'python-mode-hook #'(lambda ()
@@ -38,7 +40,7 @@
 ;; 	(add-hook 'anaconda-mode-hook #'anaconda-eldoc-mode))
 
 (use-package lsp-python-ms
-	:ensure t
+	:straight t
 	:config
   (setq lsp-python-ms-executable
         "/usr/bin/mspyls")
@@ -46,19 +48,19 @@
 
 ;; Sphinx-doc -- Automagically add docstrings to python	functions
 (use-package sphinx-doc
-	:ensure t
+	:straight t
 	:diminish	""
 	:config
 	(add-hook 'python-mode-hook (lambda  () (sphinx-doc-mode t))))
 
 ;; Yapfify -- Better formatter
 ;; (use-package yapfify
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(add-hook 'python-mode-hook #'yapf-mode))
 
 (use-package blacken
-	:ensure t
+	:straight t
 	:config
 	(setq blacken-line-length 80
 				blacken-allow-py36 t)
@@ -66,7 +68,7 @@
 
 ;; EIN - Emacs Ipython Notebooks
 (use-package ein
-	:ensure t)
+	:straight t)
 
 ;; Mode	keybinds
 (general-define-key

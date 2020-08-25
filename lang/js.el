@@ -36,12 +36,12 @@
 ;;; Code:
 
 (use-package js2-mode
-	:ensure t
+	:straight t
 	:init
 	(use-package rjsx-mode
-		:ensure t)
+		:straight t)
 	(use-package prettier-js
-		:ensure t)
+		:straight t)
 	:config
 	(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 	(add-hook 'js-mode-hook 'prettier-js-mode)
@@ -50,13 +50,13 @@
 	(add-hook 'js2-mode-hook #'js2-imenu-extras-mode))
 
 (use-package add-node-modules-path
-	:ensure t
+	:straight t
 	:config
   (add-hook 'tide-mode-hook #'add-node-modules-path))
 
 
 (use-package tide
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'rjsx-mode-hook #'tide-setup)
 	(add-hook 'js2-mode-hook #'tide-setup)
@@ -65,7 +65,7 @@
 
 
 (use-package indium
-	:ensure t)
+	:straight t)
 
 (general-define-key
  :states '(normal visual insert emacs)

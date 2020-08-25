@@ -37,14 +37,14 @@
 
 ;; company - easy auto-completion of code for all modes and documentation integration
 (use-package company
-	:ensure t
+	:straight t
 	:init
 	(use-package company-prescient
-		:ensure t
+		:straight t
 		:config
 		(company-prescient-mode t))
 	(use-package company-quickhelp
-		:ensure t
+		:straight t
 		:config
 		(company-quickhelp-mode 1)
 		(setq company-quickhelp-delay 1))
@@ -61,7 +61,7 @@
 					company-dabbrev-code-ignore-case nil))
 	(use-package company-posframe
 		:disabled t
-		:ensure t
+		:straight t
 		:diminish company-posframe-mode
 		:config
 		(company-posframe-mode nil))
@@ -112,13 +112,13 @@
 					try-complete-lisp-symbol)))
 
 (use-package yasnippet
-	:ensure t
+	:straight t
 	:diminish yas-global-mode yas-minor-mode
 	:init
 	(use-package yasnippet-snippets
-		:ensure t)
+		:straight t)
 	(use-package ivy-yasnippet
-		:ensure t)
+		:straight t)
 	:config
 	(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
 	(defvar company-mode/enable-yas t
@@ -135,41 +135,41 @@
 
 ;; auto-yasnippet, removing friction for repetitive tasks
 (use-package auto-yasnippet
-	:ensure t)
+	:straight t)
 
 ;; Extend yasnippet using yankpad
 (use-package yankpad
-	:ensure t
+	:straight t
 	:config
 	(setq yankpad-file "~/Dropbox/Org/yankpad.org"))
 
 (use-package xlicense
-	:ensure t)
+	:straight t)
 
 (use-package header2
-	:ensure t
+	:straight t
 	:config
 	(setq make-header-hook '(;;header-mode-line
 													 header-title
 													 header-blank
 													 header-file-name
-													 header-description
+													 ;; header-description
 													 ;;header-status
 													 header-author
-													 header-maintainer
+													 ;; header-maintainer
 													 header-copyright
 													 header-creation-date
 													 ;;header-rcs-id
-													 header-version
+													 ;; header-version
 													 ;; header-pkg-requires
 													 ;;header-sccs
 													 ;; header-modification-date
 													 ;; header-modification-author
 													 ;; header-update-count
-													 header-url
+													 ;; header-url
 													 ;; header-doc-url
 													 header-blank
-													 header-lib-requires
+													 ;; header-lib-requires
 													 header-end-line
 													 header-commentary
 													 header-blank
@@ -187,13 +187,13 @@
 
 ;; Tiny, for fast expansion of linear ranges
 (use-package tiny
-	:ensure t
+	:straight t
 	:config
 	(tiny-setup-default))
 
 ;; Better ripgrep interface
 (use-package deadgrep
-	:ensure t)
+	:straight t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; completions.el ends here

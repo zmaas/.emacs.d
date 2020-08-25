@@ -26,7 +26,7 @@
 ;; 				spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
 
 (use-package doom-modeline
-	:ensure t
+	:straight t
 	:hook (after-init . doom-modeline-mode)
 	:config
 	(setq
@@ -44,7 +44,7 @@
 
 ;; tiny system monitor, helpful when we spend all of our time here
 ;; (use-package symon
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(add-hook 'after-init-hook 'symon-mode))
 
@@ -55,7 +55,7 @@
 
 ;; Highlight git diffs in the	fringe
 (use-package git-gutter-fringe
-	:ensure t
+	:straight t
 	:diminish git-gutter-mode
 	:config
 	(add-hook 'after-init-hook 'global-git-gutter-mode)
@@ -74,14 +74,14 @@
 
 ;; Tilde fringes, like vim
 (use-package vi-tilde-fringe
-	:ensure t
+	:straight t
 	:diminish global-vi-tilde-fringe-mode vi-tilde-fringe-mode
 	:config
 	(add-hook 'after-init-hook 'global-vi-tilde-fringe-mode))
 
 ;; Beacon on buffer change
 (use-package beacon
-	:ensure t
+	:straight t
 	:config
   (beacon-mode 1))
 
@@ -93,7 +93,7 @@
 
 ;; make builtin popup menus use ace instead of the builtin option
 (use-package ace-popup-menu
-	:ensure t
+	:straight t
 	:diminish ace-popup-menu-mode
 	:config
 	(add-hook 'after-init-hook #'ace-popup-menu-mode))

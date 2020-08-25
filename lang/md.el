@@ -8,7 +8,7 @@
 ;;; Code:
 
 (use-package markdown-mode
-  :ensure t
+  :straight t
   :commands (markdown-mode gfm-mode)
 	:init
 	(add-hook 'markdown-mode-hook #'whitespace-mode)
@@ -19,18 +19,18 @@
   :config
 	(setq markdown-command "pandoc -f markdown_mmd -t html")
 	(use-package markdown-toc
-		:ensure t))
+		:straight t))
 
 (use-package pandoc-mode
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'markdown-mode-hook 'pandoc-mode))
 
 (use-package yaml-mode
-	:ensure t)
+	:straight t)
 
 (use-package toml-mode
-	:ensure t)
+	:straight t)
 
 ;; FIXME
 (general-define-key

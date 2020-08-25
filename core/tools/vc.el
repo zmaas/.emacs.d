@@ -7,35 +7,35 @@
 
 ;; magit - super great git porcelain for version control
 (use-package magit
-	:ensure t
+	:straight t
 	:config
 	(use-package evil-magit
-		:ensure t)
+		:straight t)
 	(use-package magit-todos
 		:disabled t
 		:after magit
 		:init
 		(use-package a
-			:ensure t)
-		:ensure t
+			:straight t)
+		:straight t
 		:config
 		(add-hook 'magit-mode-hook 'magit-todos-mode))
 	(use-package gist
-		:ensure t
+		:straight t
 		:config
 		(setq gist-ask-for-filename t)))
 
 (use-package magithub
-	:ensure t
+	:straight t
 	:config
 	(magithub-feature-autoinject t)
 	(setq magithub-clone-default-directory "~/builds/"))
 
 (use-package forge
-	:ensure t)
+	:straight t)
 
 ;; (use-package git-timemachine
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(eval-after-load 'git-timemachine
 ;; 		'(progn
@@ -44,14 +44,14 @@
 ;; 			 (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))))
 
 ;; (use-package smeargle
-;; 	:ensure t)
+;; 	:straight t)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain
 			ediff-split-window-function 'split-window-horizontally)
 
 ;; projectile - easy navigation inside projects
 (use-package projectile
-	:ensure t
+	:straight t
 	:diminish projectile-mode
 	:config
 	(add-hook 'after-init-hook #'projectile-mode)
@@ -69,7 +69,7 @@
 
 ;; Editorconfig, makes project styles easier
 (use-package editorconfig
-	:ensure t
+	:straight t
 	:diminish editorconfig-mode
 	:config
 	(add-hook 'after-init-hook #'editorconfig-mode))

@@ -11,10 +11,10 @@
 	:diminish	(flyspell-prog-mode "sp")
 	:init
 	(use-package flyspell-correct
-		:ensure t
+		:straight t
 		:init
 		(use-package flyspell-correct-ivy
-			:ensure t)
+			:straight t)
 		:config)
 	:config
 	(setq ispell-program-name "aspell")
@@ -31,20 +31,20 @@
 
 ;; writegood mode checks errors
 (use-package writegood-mode
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'text-mode-hook #'writegood-mode))
 
 ;; langtool provides easy grammar checking
 (use-package langtool
-	:ensure t
+	:straight t
 	:config
 	(setq langtool-java-classpath
 				"/usr/share/languagetool:/usr/share/java/languagetool/*"))
 
 ;; Synosaurus gives us easy synonyms
 (use-package synosaurus
-  :ensure t
+  :straight t
 	:diminish ""
   :init
   (setq-default synosaurus-backend 'synosaurus-backend-wordnet)
@@ -53,12 +53,12 @@
 
 ;; flycheck gives us global syntax checking and eroor popups in our code
 (use-package flycheck
-	:ensure t
+	:straight t
 	:diminish (flycheck-mode "fc")
 	:defer t
 	:init
 	(use-package flycheck-popup-tip
-		:ensure t)
+		:straight t)
 	:config
 	(setq flycheck-check-syntax-automatically '(mode-enabled save
 																													 idle-change new-line))

@@ -30,10 +30,10 @@
 
 ;; Preliminary addition of quickrun to speed up development
 (use-package quickrun
-	:ensure t)
+	:straight t)
 
 (use-package multi-compile
-	:ensure t
+	:straight t
 	:config
 	(setq compilation-scroll-output t)
 	(setq multi-compile-alist '((rust-mode . (("rust-debug" . "cargo run")
@@ -53,7 +53,7 @@
 
 ;; expands selected regions
 (use-package expand-region
-	:ensure t
+	:straight t
 	:defer t
 	:commands er/expand-region
 	:config
@@ -63,7 +63,7 @@
 ;; won't make commits messy, only touches edited lines
 ;; Disabling because it causes problems with org-mode
 (use-package ws-butler
-	:ensure t
+	:straight t
 	:diminish ws-butler-mode
 	:config
 	(add-hook 'prog-mode-hook #'ws-butler-mode))
@@ -72,21 +72,21 @@
 ;; Speaking of whitespace, let's improve the builtin
 ;; just-one-space command
 (use-package shrink-whitespace
-  :ensure t
+  :straight t
 	:defer t
 	:commands shrink-whitespace
   :bind ("M-SPC" . shrink-whitespace))
 
 ;; Finally,let's get a better delete command in here by default
 (use-package hungry-delete
-	:ensure t
+	:straight t
 	:diminish hungry-delete-mode
 	:config
 	(add-hook 'after-init-hook #'global-hungry-delete-mode))
 
 ;; clipmon - add system clipboard contents to kill ring
 (use-package clipmon
-	:ensure t
+	:straight t
 	:diminish clipmon-mode
 	:config
 	(add-hook 'after-init-hook #'clipmon-mode)
@@ -125,17 +125,17 @@
 
 ;; perl-like regexes
 (use-package pcre2el
-	:ensure t
+	:straight t
 	:diminish ""
 	:config
 	(add-hook 'after-init-hook #'rxt-global-mode))
 
 ;; visual-regexp - gives us visual indication of regexps in the buffer as we make them
 ;; (use-package visual-regexp
-;; 	:ensure t
+;; 	:straight t
 ;; 	:init
 ;; 	(use-package visual-regexp-steroids
-;; 		:ensure t)
+;; 		:straight t)
 ;; 	:config
 ;; 	(define-key global-map (kbd "C-c r") 'vr/replace)
 ;; 	(define-key global-map (kbd "C-c q") 'vr/query-replace))
@@ -145,14 +145,14 @@
 
 ;; zap to char - lets us kill all text up to the next instance of a character
 (use-package zzz-to-char
-	:ensure t
+	:straight t
 	:defer t
 	:commands zzz-to-char
 	:config
 	(global-set-key (kbd "M-z") #'zzz-to-char))
 
 ;; (use-package move-text
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(move-text-default-bindings))
 
@@ -161,58 +161,58 @@
 	(windmove-default-keybindings))
 
 (use-package dumb-jump
-	:ensure t
+	:straight t
 	:defer t
 	:commands	(dumb-jump-go dumb-jump-quick-look)
 	:config
 	(setq dumb-jump-selector 'ivy))
 
 (use-package ace-window
-	:ensure t
+	:straight t
 	:defer t
 	:commands ace-window)
 
 ;; unfill paragraph commands
 (use-package unfill
-	:ensure t)
+	:straight t)
 
 ;; writable grep, used with rgrep
 (use-package wgrep
-	:quelpa (wgrep :fetcher github :repo "mhayashi1120/Emacs-wgrep")
+	:straight (wgrep :host github :repo "mhayashi1120/Emacs-wgrep")
 	:config
 	(setq wgrep-auto-save-buffer t))
 
 ;; Smarter Autoformatting
 (use-package format-all
-	:ensure t)
+	:straight t)
 
 ;; small utility that improves sexp evaluation
 ;; (use-package eval-sexp-fu
-;; 	:quelpa (eval-sexp-fu :fetcher github :repo "emacsmirror/eval-sexp-fu")
+;; 	:straight (eval-sexp-fu :host github :repo "emacsmirror/eval-sexp-fu")
 ;; 	:config
 ;; 	(setq eval-sexp-fu-flash-duration 0.4)
 ;; 	(turn-on-eval-sexp-fu-flash-mode))
 
 (use-package persistent-scratch
-	:ensure t
+	:straight t
 	:diminish ""
 	:config
 	(persistent-scratch-setup-default))
 
 (use-package esup
-	:ensure t)
+	:straight t)
 
 (use-package atomic-chrome
-	:ensure t
+	:straight t
 	:config
 	(atomic-chrome-start-server))
 
 (use-package helpful
-	:ensure t)
+	:straight t)
 
 ;; sometimes we forget keybinds - this gives us a reminder
 (use-package which-key
-	:ensure t
+	:straight t
 	:diminish which-key-mode
 	:config
 	(which-key-setup-side-window-right-bottom)

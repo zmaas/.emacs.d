@@ -25,13 +25,13 @@
 	)
 
 (use-package tao-theme
-	:ensure t)
+	:straight t)
 (use-package cyberpunk-theme
-	:ensure t)
+	:straight t)
 (use-package kaolin-themes
-	:ensure t)
+	:straight t)
 (use-package dracula-theme
-	:ensure t)
+	:straight t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
 ;; powerline separators on theme-switch

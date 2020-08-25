@@ -6,9 +6,9 @@
 ;;; Code:
 
 (use-package typit
-	:ensure t)
+	:straight t)
 
 (use-package fireplace
-	:ensure t)
+	:straight t)
 
 ;; games.el ends here

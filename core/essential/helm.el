@@ -6,29 +6,29 @@
 
 ;; HELM - this is a big one, and does most of our searching
 (use-package helm
-	:ensure t
+	:straight t
 	:diminish helm-mode
 	:init
 	(require 'helm-config)
 	(use-package helm-swoop
-		:ensure t)
+		:straight t)
 	(use-package helm-rg
-		:ensure t)
+		:straight t)
 	(use-package helm-flx
-		:ensure t
+		:straight t
 		:init
 		(use-package flx
-			:ensure t))
+			:straight t))
 	(use-package helm-fuzzier
-		:ensure t
+		:straight t
 		:config
 		(helm-fuzzier-mode t))
 	(use-package helm-ag
-		:ensure t
+		:straight t
 		:config
 		(set-variable 'helm-ag-base-command "ag --nocolor --nogroup --ignore-case --hidden"))
 	(use-package helm-org-rifle
-		:ensure t)
+		:straight t)
 	:config
 	;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 	;; Changed to "C-c h". Note: We must set "C-c h" globally, because we

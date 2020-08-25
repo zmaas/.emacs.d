@@ -6,7 +6,7 @@
 ;;; Code:
 
 (use-package realgud
-	:ensure t
+	:straight t
 	:config)
 
 ;; debug.el ends here

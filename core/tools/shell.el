@@ -7,19 +7,19 @@
 
 ;; with-editor for easier eshell work.
 (use-package with-editor
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'shell-mode-hook  'with-editor-export-editor)
 	(add-hook 'term-exec-hook   'with-editor-export-editor)
 	(add-hook 'eshell-mode-hook 'with-editor-export-editor))
 
 (use-package fish-mode
-	:ensure t
+	:straight t
 	:config)
 
 ;; Automatically import our ssh-keys and gpg keys
 ;; (use-package keychain-environment
-;;   :ensure t
+;;   :straight t
 ;;   :init
 ;;   (add-hook 'after-init-hook #'keychain-refresh-environment))
 
@@ -40,7 +40,7 @@
   (add-hook 'eshell-mode-hook #'eshell-smart-initialize))
 
 (use-package eshell-prompt-extras
-	:ensure t
+	:straight t
 	:config
 	(with-eval-after-load "esh-opt"
 		(autoload 'epe-theme-lambda "eshell-prompt-extras")
@@ -63,22 +63,24 @@
 
 ;; Allow us to use tmux for shell commands and other functions
 (use-package emamux
-	:ensure t
+	:straight t
 	:config)
 
 ;; vterm provides better virtualized terminals
 (use-package vterm
-	:ensure t
+	:straight t
 	:config
 	(use-package vterm-toggle
-		:ensure t
+		:straight t
 		:config)
   (add-hook
 	 'vterm-mode-hook
 	 (lambda () (setq show-trailing-whitespace nil))))
 
+;; Associate sbatch files with sh mode
+
 ;; Add completion support for	shell modes using company
 ;; (use-package company-shell
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(add-to-list 'company-backends '(company-shell company-shell-env)))

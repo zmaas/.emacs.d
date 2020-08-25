@@ -3,7 +3,7 @@
 ;; Author: 	 <zach.maas@gmail.com>
 
 (use-package ox-hugo
-	:ensure t
+	:straight t
 	:after ox)
 
 ;; hugo.el ends here

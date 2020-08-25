@@ -6,7 +6,7 @@
 ;;; Code:
 
 (use-package circe
-	:ensure t
+	:straight t
 	:config
 	(enable-circe-color-nicks)
 	(enable-circe-display-images)
@@ -22,7 +22,7 @@
 				lui-fill-type nil))
 
 (use-package circe-notifications
-	:ensure t
+	:straight t
 	:config
 	(eval-after-load "circe-notifications"
 		'(setq circe-notifications-watch-strings

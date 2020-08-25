@@ -6,17 +6,17 @@
 ;;; Code:
 
 (use-package elfeed
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'elfeed-show-mode-hook #'olivetti-mode))
 
 (use-package elfeed-goodies
-	:ensure t
+	:straight t
 	:config
 	(elfeed-goodies/setup))
 
 (use-package elfeed-org
-	:ensure t
+	:straight t
 	:config
 	(elfeed-org)
 	(setq rmh-elfeed-org-files (list "~/Dropbox/Org/elfeed.org")))

@@ -8,7 +8,7 @@
 ;; Configure visual line mode for text modes, wrap at fill column
 (use-package visual-fill-column
 	:disabled t
-	:ensure t
+	:straight t
 	:diminish visual-fill-column-mode
 	:config
 	(add-hook 'prog-mode-hook #'visual-line-mode)
@@ -16,7 +16,7 @@
 
 (use-package pretty-mode
 	:disabled t
-	:ensure t
+	:straight t
 	:config
 	(global-pretty-mode t)
 	(pretty-deactivate-groups
@@ -28,23 +28,23 @@
 
 ;; Focus for automatic code narrowing
 (use-package focus
-	:ensure t)
+	:straight t)
 
 ;; olivetti is a tool for focused writing
 (use-package olivetti
-	:ensure t)
+	:straight t)
 
 ;; writeroom for long-form composition
 (use-package writeroom-mode
-	:ensure t)
+	:straight t)
 
 ;; Smooth scrolling. We don't enable this by default
 (use-package smooth-scrolling
-	:ensure t)
+	:straight t)
 
 ;; rainbow-mode, for hex codes
 (use-package rainbow-mode
-	:ensure t
+	:straight t
 	:diminish rainbow-mode
 	:config
 	(add-hook 'after-init-hook #'rainbow-mode))

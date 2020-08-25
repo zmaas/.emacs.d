@@ -10,52 +10,53 @@
 ;;; Code:
 
 (use-package ivy
-	:ensure t
+	:straight t
 	:diminish ivy-mode
 	:diminish counsel-mode
 	:init
 	(use-package ivy-hydra
-		:ensure t)
+		:straight t)
 	(use-package prescient
-		:ensure t
+		:straight t
 		:config
 		(use-package ivy-prescient
-			:ensure t
+			:straight t
 			:config
 			(ivy-prescient-mode t))
 		(prescient-persist-mode t))
 	(use-package ivy-xref
-		:ensure t
+		:straight t
 		:config
 		(setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 	(use-package flx
-		:ensure t)
+		:straight t)
 	(use-package imenu-anywhere
-		:ensure t
+		:straight t
 		:commands ivy-imenu-anywhere)
 	;; (use-package all-the-icons-ivy
-	;; 	:ensure t
+	;; 	:straight t
 	;; 	:config
 	;; 	(all-the-icons-ivy-setup))
 	(use-package counsel-tramp
-		:ensure t)
+		:straight t)
   (use-package counsel-projectile
-    :ensure t
+    :straight t
 		:config)
 	(use-package counsel-dash
-		:ensure t
+		:straight t
 		:config
-		(setq counsel-dash-common-docsets '("Emacs Lisp" "Go"
-																				"Python 3" "C++" "Rust"))
+		(setq counsel-dash-common-docsets '())
 		(setq counsel-dash-docsets-path "~/.docsets")
 		(setq counsel-dash-browser-func 'browse-url)
 		(add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
 		(add-hook 'go-mode-hook (lambda () (setq-local counsel-dash-docsets '("Go"))))
 		(add-hook 'rust-mode-hook (lambda () (setq-local counsel-dash-docsets '("Rust"))))
 		(add-hook 'c++-mode-hook (lambda () (setq-local counsel-dash-docsets '("C++"))))
+		(add-hook 'rjsx-mode-hook (lambda () (setq-local counsel-dash-docsets '("JS" "React"))))
+		(add-hook 'ess-r-mode-hook (lambda () (setq-local counsel-dash-docsets '("R"))))
 		(add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python 3")))))
 	(use-package ivy-rich
-		:ensure t
+		:straight t
 		:config
 		;; (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
 		(ivy-rich-mode t)
@@ -79,7 +80,7 @@
 
   ;; Setup fuzzy matching using flx for ivy
   (use-package flx
-    :ensure t)
+    :straight t)
   (setq ivy-re-builders-alist
         '((swiper . ivy--regex-plus)
 					(swiper-all . ivy--regex-plus)

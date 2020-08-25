@@ -78,26 +78,25 @@
 (setq line-move-visual t)
 
 ;; Put automatic backups in the	homme folder
-(setq backup-directory-alist '(("." . "~/.emacsbackups"))
+(setq backup-directory-alist '(("." . "~/.emacsbackups/"))
 			auto-save-file-name-transforms
 			`((".*" "~/.emacsbackups/" t))
 			delete-old-versions t
 			kept-old-versions 10
 			kept-new-versions 10
 			backup-by-copying t
-			version-control t)
+			version-control t
+			create-lockfiles nil)
 
 ;; Setup passwords using .authinfo
 (require 'auth-source-pass)
 (auth-source-pass-enable)
 (setq auth-sources
-			'((:source "~/.emacs.d/secrets/.authinfo.gpg")
-				(:source "~/.emacs.d/.authinfo.gpg")
-				(:source "~/.authinfo.gpg")))
+			'((:source "~/.emacs.d/secrets/.authinfo.gpg")))
 
 ;; Automatically load ssh agent variables
 (use-package exec-path-from-shell
-	:ensure t)
+	:straight t)
 (exec-path-from-shell-copy-env "SSH_AGENT_PID")
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 

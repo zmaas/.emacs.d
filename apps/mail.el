@@ -8,10 +8,10 @@
 ;; Initially configure notmuch as a mail package, I use it in concert
 ;; with mu4e.
 (use-package notmuch
-	:ensure t
+	:straight t
 	:init
 	(use-package counsel-notmuch
-		:ensure t)
+		:straight t)
 	:config
 	(setq notmuch-search-oldest-first nil)
 	(evil-set-initial-state 'notmuch-hello-mode 'emacs)
@@ -37,7 +37,7 @@
 
 (use-package org-mu4e)
 (use-package org-msg
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'message-mode-hook 'org-msg-mode)
 	(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil"
@@ -46,7 +46,7 @@
 
 ;; Better search in mu4e
 (use-package helm-mu
-	:ensure t
+	:straight t
 	:config
 	(general-define-key
 	 :keymaps '(mu4e-main-mode-map
@@ -56,20 +56,20 @@
 
 ;; Conversatinon threads for mu4e
 (use-package mu4e-conversation
-	:ensure t
+	:straight t
 	:disabled t
 	:config
 	(global-mu4e-conversation-mode))
 
 ;; Easier link following in messages
 (use-package ace-link
-	:ensure t
+	:straight t
 	:config
 	(ace-link-setup-default))
 
 ;; Desktop notifications
 (use-package mu4e-alert
-	:ensure t
+	:straight t
 	:disabled t
 	:config
   (mu4e-alert-set-default-style 'libnotify)
@@ -183,7 +183,7 @@
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 (use-package messages-are-flowing
-	:ensure t
+	:straight t
 	:config
 																				;(with-eval-after-load "message"
 																				;(add-hook 'message-mode-hook 'messages-are-flowing-use-and-mark-hard-newlines))

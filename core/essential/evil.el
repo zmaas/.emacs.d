@@ -7,22 +7,22 @@
 
 ;; Configure evil mode and its packages - VIM like performance
 (use-package evil
-	:ensure t
+	:straight t
 	:init
   (setq evil-want-integration t)
 	(setq evil-want-keybinding nil)
 	;; anzu tells us how many matches we have in the bar
 	(use-package anzu
-		:ensure t
+		:straight t
 		:diminish anzu-mode
 		:config
 		(global-anzu-mode 1))
 	;; compatibility with evil mode for anzu
 	(use-package evil-anzu
-		:ensure t)
+		:straight t)
 	;; lets use use avy with evil for jumping around easily
 	(use-package evil-escape
-		:ensure t
+		:straight t
 		:diminish evil-escape-mode
 		:config
 		(evil-escape-mode t)
@@ -31,11 +31,11 @@
 	(use-package evil-vimish-fold
 		:ensure	vimish-fold
 		:diminish ""
-		:ensure t
+		:straight t
 		:config
 		(evil-vimish-fold-mode t))
 	(use-package evil-snipe
-		:ensure t
+		:straight t
 		:diminish evil-snipe-mode
 		:diminish evil-snipe-override-mode
 		:diminish evil-snipe-local-mode
@@ -45,10 +45,10 @@
 					evil-snipe-spillover-scope 'whole-buffer
 					evil-snipe-auto-scroll 'nil))
 	(use-package evil-surround
-		:ensure t
+		:straight t
 		:init
 		(use-package evil-embrace
-			:ensure t
+			:straight t
 			:config
 			(evil-embrace-enable-evil-surround-integration)
 			(add-hook 'LaTeX-mode-hook #'embrace-LaTeX-mode-hook)
@@ -56,27 +56,27 @@
 		:config
 		(global-evil-surround-mode 1))
 	(use-package evil-commentary
-		:ensure t
+		:straight t
 		:diminish ""
 		:config
 		(evil-commentary-mode))
 	(setq evil-snipe-scope 'visible)
 	(use-package evil-exchange
-		:ensure t
+		:straight t
 		:config
 		(evil-exchange-install))
 	(use-package evil-visualstar
-		:ensure t
+		:straight t
 		:config
 		(global-evil-visualstar-mode))
 	(use-package evil-numbers
-		:ensure t)
+		:straight t)
 	(use-package evil-matchit
-		:ensure t
+		:straight t
 		:config
 		(global-evil-matchit-mode 1))
 	(use-package evil-args
-		:ensure t
+		:straight t
 		:config
 		;; bind evil-args text objects
 		(define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
@@ -89,7 +89,7 @@
 		;; bind evil-jump-out-args
 		(define-key evil-normal-state-map "K" 'evil-jump-out-args))
 	(use-package evil-indent-plus
-		:ensure t
+		:straight t
 		:config
 		(define-key evil-inner-text-objects-map "i" 'evil-indent-plus-i-indent)
 		(define-key evil-outer-text-objects-map "i" 'evil-indent-plus-a-indent)
@@ -98,48 +98,49 @@
 		(define-key evil-inner-text-objects-map "J" 'evil-indent-plus-i-indent-up-down)
 		(define-key evil-outer-text-objects-map "J" 'evil-indent-plus-a-indent-up-down))
 	(use-package evil-lion
-		:ensure t
+		:straight t
 		:config
 		(evil-lion-mode))
 	(use-package evil-unimpaired
-		:quelpa (evil-unimpaired :fetcher github :repo "zmaas/evil-unimpaired")
+		:straight (evil-unimpaired :host github :repo "zmaas/evil-unimpaired")
 		:config
 		(evil-unimpaired-mode 1)
 		(evil-unimpaired-define-pair "q" '(flycheck-previous-error . flycheck-next-error))
 		(setq evil-unimpaired-leader-keys '("[" . "]")))
 
 	(use-package evil-goggles
-		:ensure t
+		:straight t
 		:diminish evil-goggles-mode
 		:config
 		(add-hook 'after-init-hook #'evil-goggles-mode))
 	(use-package evil-search-highlight-persist
-		:ensure t
+		:straight t
 		:diminish ""
 		:config
 		(global-evil-search-highlight-persist t)
 		(setq evil-search-highlight-string-min-len 3))
 	(use-package evil-easymotion
-		:ensure t
+		:straight t
 		:config
 		(evilem-default-keybindings "gs"))
 	(use-package evil-rsi
-		:ensure t
+		:straight t
 		:diminish ""
 		:config
 		(add-hook 'after-init-hook #'evil-rsi-mode))
 	(use-package evil-multiedit
-		:ensure t
+		:straight t
 		:config
 		(setq evil-multiedit-scope 'buffer
 					evil-multiedit-follow-matches t))
 	(use-package evil-lispy
-		:ensure t)
+		:straight t)
 	(use-package evil-collection
 		:after evil
-		:ensure t
-		:config
+		:straight t
+		:init
 		(evil-collection-init)
+		:config
 		(setq evil-collection-setup-minibuffer t
 					evil-collection-company-use-tng t
 					evil-collection-term-sync-state-function t))
@@ -165,10 +166,10 @@
 	(evil-select-search-module 'evil-search-modu 'evil-search))
 
 (use-package god-mode
-	:ensure t
+	:straight t
 	:init
 	(use-package evil-god-state
-		:ensure t))
+		:straight t))
 
 (defhydra hydra-expand-region ()
 	"region: "

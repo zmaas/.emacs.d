@@ -9,19 +9,19 @@
 
 ;; General haskell mode
 (use-package haskell-mode
-	:ensure t
+	:straight t
 	:config
 	(setq haskell-font-lock-symbols t)
 	(add-hook 'haskell-mode-hook (lambda () (aggressive-indent-mode nil)))
 	(add-hook 'haskell-mode-hook (lambda () (pretty-mode nil))))
 
 (use-package intero
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'after-init-hook #'intero-global-mode))
 
 (use-package hindent
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'haskell-mode-hook #'hindent-mode))
 

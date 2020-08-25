@@ -7,10 +7,10 @@
 
 ;; Base setup for using R
 (use-package ess
-	:ensure t
+	:straight t
 	:config
 	(use-package ess-view
-		:ensure t
+		:straight t
 		:config)
 	;; Initialize R Server Protocol
 	(lsp-register-client
@@ -19,12 +19,12 @@
 										:major-modes '(ess-r-mode inferior-ess-r-mode)
 										:server-id 'lsp-R)))
 	(use-package polymode
-		:ensure t
+		:straight t
 		:config
 		(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode)))
 
 ;; (use-package matlab-mode
-;; 	:ensure t
+;; 	:straight t
 ;; 	:config
 ;; 	(add-to-list
 ;; 	 'auto-mode-alist

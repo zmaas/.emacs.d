@@ -39,7 +39,7 @@
 ;;; Code:
 
 (use-package general
-	:ensure t
+	:straight t
 	:config
 	(general-evil-setup)
 	;; set keybinds for leader mode - we have lots of space
@@ -59,7 +59,7 @@
 	 "SPC" '(swiper :which-key "swiper")
 	 "TAB" '(evil-buffer :which-key "last")
 	 "ESC" '(format-all-buffer :which-key "fmt")
-	 "RET" '(bookmark-jump :which-key "bookmark")
+	 "." '(bookmark-jump :which-key "bookmark")
 	 ":" '(counsel-M-x :which-key "M-x")
 	 "s" '(flyspell-correct-previous :which-key "spellcheck")
 	 "?" '(counsel-locate :which-key "locate")
@@ -364,7 +364,7 @@
 
 ;; Custom key-chord for very fast swiper access (fd -> swiper)
 (use-package key-chord
-	:ensure t
+	:straight t
 	:config
 	(key-chord-mode t)
 	(key-chord-define evil-insert-state-map "jk" 'evil-escape))

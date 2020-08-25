@@ -8,7 +8,7 @@
 ;; Improve default ibuffer setup
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (use-package ibuffer-vc
-  :ensure t
+  :straight t
 	:config
 	(add-hook 'ibuffer-hook
 						(lambda ()
@@ -25,7 +25,7 @@
 
 ;; Automatically save buffers, but better
 ; (use-package auto-save-buffers-enhanced
-;   :ensure t
+;   :straight t
 ;   :init (auto-save-buffers-enhanced t)
 ;   :config
 ;   (setq auto-save-buffers-enhanced-interval 10.0
@@ -36,7 +36,7 @@
 
 ;; Workgroups	keeps track of our buffers between sessions
 (use-package workgroups2
-	:ensure t
+	:straight t
 	:diminish workgroups-mode
 	:config
 	(setq wg-session-load-on-start t)
@@ -52,7 +52,7 @@
 
 ;; Persp-mode	manages workspaces persistently
 ;; (use-package persp-mode
-;; 	:ensure t
+;; 	:straight t
 ;; 	:diminish persp-mode
 ;; 	:config
 ;;   (setq wg-morph-on nil) ;; switch off animation
@@ -61,7 +61,7 @@
 
 ;; Better bookmarks, since they're so useful
 ;; (use-package bookmark+
-;;   :ensure t
+;;   :straight t
 ;;   :init (setq bmkp-replace-EWW-keys-flag t)
 ;;   :config
 ;;   (setq bookmark-version-control t

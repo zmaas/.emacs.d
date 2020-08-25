@@ -9,8 +9,8 @@
 (global-prettify-symbols-mode t)
 (setq prettify-symbols-unprettify-at-point t)
 
-(use-package pretty-mode-plus
-	:ensure t
+(use-package pretty-mode
+	:straight t
 	:config
 	(global-pretty-mode t)
 	(pretty-deactivate-groups
@@ -30,7 +30,7 @@
 
 ;; subtle lines to show our tab level in code
 (use-package highlight-indent-guides
-	:ensure t
+	:straight t
 	:diminish highlight-indent-guides-mode
 	:config
 	(setq highlight-indent-guides-method 'character)
@@ -38,7 +38,7 @@
 
 ;; make our delimiters rainbows! much easier to see sexps
 (use-package rainbow-delimiters
-	:ensure t
+	:straight t
 	:diminish rainbow-delimiters-mode
 	:config
 	(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
@@ -49,7 +49,7 @@
 
 ;; Highlight parentheses when we're hovering
 (use-package highlight-parentheses
-  :ensure t
+  :straight t
   :diminish highlight-parentheses-mode
 	:config
 	(add-hook 'prog-mode-hook #'highlight-parentheses-mode))
@@ -59,7 +59,7 @@
 
 ;; Add highlighting for special editor operations
 (use-package volatile-highlights
-	:ensure  t
+	:straight  t
 	:diminish volatile-highlights-mode
 	:config
 	(add-hook 'after-init-hook #'volatile-highlights-mode)

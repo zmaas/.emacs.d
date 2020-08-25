@@ -7,10 +7,10 @@
 ;; Must have ghostscript and mupdf installed
 (require 'latex)
 (use-package tex-site
-	:ensure auctex
+	:straight auctex
 	:init
 	(use-package company-math
-		:ensure t
+		:straight t
 		:config
 		(add-hook 'latex-mode-hook
 							#'(lambda ()
@@ -18,7 +18,7 @@
 									(add-to-list 'company-backends 'company-math-symbols-unicode)
 									(add-to-list 'company-backends 'company-latex-commands))))
 	(use-package latex-preview-pane
-		:ensure t
+		:straight t
 		:config
 		(latex-preview-pane-enable))
 	:config
@@ -42,21 +42,21 @@
 	(add-hook 'LaTeX-mode-hook #'turn-on-reftex))
 
 (use-package company-auctex
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'LaTeX-mode-hook #'company-auctex-init))
 
 (use-package latex-pretty-symbols
-	:ensure t)
+	:straight t)
 
 ;; (use-package latex-extra
-;; 	:ensure t
+;; 	:straight t
 ;; 	:diminish latex-extra-mode
 ;; 	:config
 ;; 	(add-hook 'LaTeX-mode-hook (lambda () ('latex-extra-mode t))))
 
 (use-package auctex-latexmk
-	:ensure t
+	:straight t
 	:config
 	(auctex-latexmk-setup)
 	(setq-default TeX-engine 'xetex)
@@ -74,7 +74,7 @@
 
 ;; Much better viewing of PDF's in emacs
 (use-package pdf-tools
-  :ensure t
+  :straight t
 	:config
 	(pdf-tools-install)
 	(setq-default pdf-view-display-size 'fit-page)
@@ -125,14 +125,14 @@
 	 "O" 'pdf-outline))
 
 (use-package ivy-bibtex
-	:ensure t
+	:straight t
 	:config
 	(setq bibtex-completion-bibliography '("~/Downloads/synced/Zotero_Library.bib"))
 	(setq ivy-bibtex-default-action 'ivy-bibtex-insert-key))
 
 ;; autocompletion for bibtex keys
 (use-package company-bibtex
-	:ensure t
+	:straight t
 	:config
 	(setq company-bibtex-bibliography '("~/Downloads/synced/Zotero_Library.bib"))
 	(add-hook 'latex-mode-hook

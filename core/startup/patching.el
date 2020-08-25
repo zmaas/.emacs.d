@@ -6,6 +6,6 @@
 ;;; Code:
 
 (use-package el-patch
-	:ensure t)
+	:straight t)
 
 ;; patching.el ends here

@@ -6,7 +6,7 @@
 ;;; Code:
 
 (use-package prodigy
-	:ensure t)
+	:straight t)
 
 (prodigy-define-service
   :name "abstractlambda.com develop"

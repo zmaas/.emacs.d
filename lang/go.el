@@ -6,19 +6,19 @@
 ;;; Code:
 
 (use-package go-mode
-	:ensure t)
+	:straight t)
 
 (use-package golint
-	:ensure t)
+	:straight t)
 
 (use-package flycheck-gometalinter
-	:ensure t)
+	:straight t)
 
 (use-package company-go
-	:ensure t)
+	:straight t)
 
 (use-package go-complete
-	:ensure t)
+	:straight t)
 
 ;; (defun go-mode-setup-hook ()
 ;; 	"Set up go-mode"

@@ -37,7 +37,7 @@
 ;;; Code:
 
 (use-package org
-	:ensure org-plus-contrib
+	:straight org-plus-contrib
 	:config
 	(setq org-directory "~/Dropbox/Org/")
 	(use-package org-contacts
@@ -48,11 +48,11 @@
 
 ;; Orgmode comments
 (use-package poporg
-	:ensure t)
+	:straight t)
 
 ;; ASCII Bullets
 (use-package org-superstar
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'org-mode-hook 'org-superstar-mode)
 	(org-superstar-configure-like-org-bullets))
@@ -71,7 +71,7 @@
 
 ;; Efficient searching
 (use-package org-ql
-	:ensure t
+	:straight t
 	:config)
 
 ;; Essential org-mode setup
@@ -113,7 +113,7 @@
 
 ;; Better Agenda
 (use-package org-super-agenda
-	:ensure t
+	:straight t
 	:config
   (org-super-agenda-mode t))
 
@@ -189,7 +189,7 @@
 
 ;; Better bindings for org-mode through evil.
 (use-package evil-org
-	:ensure t
+	:straight t
 	:init
 	(use-package evil-org-agenda
 		:config
@@ -200,15 +200,15 @@
 
 ;; Calendar settings
 (use-package calfw
-	:ensure t
+	:straight t
 	:init
 	;; Still setting up
 	(use-package calfw-org
-		:ensure t)
+		:straight t)
 	(use-package calfw-gcal
-		:ensure t)
+		:straight t)
 	(use-package org-gcal
-		:ensure t
+		:straight t
 		:config
 		(setq org-gcal-auto-archive t
 					org-gcal-down-days 60
@@ -225,7 +225,7 @@
 
 ;; TODO	Consider other PDF viewer
 (use-package org-ref
-	:ensure t
+	:straight t
 	:config
 	(setq reftex-default-bibliography '("~/Downloads/synced/Zotero_Library.bib"))
 	(setq org-ref-bibliography-notes "~/Dropbox/Org/bibliography/notes.org"
@@ -234,14 +234,14 @@
 	(setq bibtex-completion-pdf-field "File"))
 
 (use-package org-noter
-	:ensure t
+	:straight t
 	:config)
 
 (use-package deft
-	:ensure t
+	:straight t
 	:config
 	(use-package zetteldeft
-		:ensure t
+		:straight t
 		:after deft)
 	(setq deft-extensions '("org" "md" "txt")
 				deft-directory "~/Dropbox/Org/notes"
@@ -253,12 +253,12 @@
 				deft-auto-save-interval 0))
 
 (use-package org-roam
-	:ensure t
+	:straight t
 	:config
 	(setq org-roam-directory "~/Dropbox/Org/notes/"))
 
 (use-package org-pomodoro
-  :ensure t
+  :straight t
   :commands (org-pomodoro)
   :config
 	(setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil)))))

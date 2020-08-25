@@ -6,27 +6,27 @@
 ;;; Code:
 
 (use-package vagrant
-	:ensure t
+	:straight t
 	:init
 	(use-package vagrant-tramp
-		:ensure t))
+		:straight t))
 
 (use-package docker
-	:ensure t
+	:straight t
 	:config
 	(setq docker-command "docker"
 				docker-run-as-root t)
 	(use-package docker-tramp
-		:ensure t)
+		:straight t)
 	(use-package dockerfile-mode
-		:ensure t
+		:straight t
 		:config
 		(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))))
 
 (use-package terraform-mode
-	:ensure t)
+	:straight t)
 
 (use-package salt-mode
-	:ensure t )
+	:straight t )
 
 ;;; virtualization.el ends here

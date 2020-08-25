@@ -8,7 +8,7 @@
 ;; Shackle manages popups aggressively
 ;; This is the most important item here
 (use-package shackle
-	:ensure t
+	:straight t
 	:init
 	(add-hook 'after-init-hook 'shackle-mode)
 	(setq shackle-lighter ""
@@ -49,7 +49,7 @@
 
 ;; Enable undo-tree mode globally
 (use-package undo-tree
-	:ensure	t
+	:straight	t
 	:diminish undo-tree-mode
 	:config
 	(general-define-key
@@ -69,7 +69,7 @@
 ;; We bind it to -,	like dirvish.vim
 (use-package ranger
 	:disabled t
-	:ensure t
+	:straight t
 	:config
 	(setq ranger-show-dotfiles t
 				ranger-show-hidden t
@@ -79,15 +79,19 @@
 				ranger-cleanup-eagerly t)
 	(ranger-override-dired-mode nil))
 
-;; Better dired setup
-(use-package dired-ranger
-	:ensure t)
-;; (use-package wdired
-;; 	:ensure t)
+;; Small dired improvements
 (use-package dired+
-	:quelpa (dired+ :fetcher github :repo "emacsmirror/dired-plus")
+	:straight (dired+ :host github :repo "emacsmirror/dired-plus")
 	:config
 	(diredp-toggle-find-file-reuse-dir 1))
+
+;; Install everything from dired-hacks
+(mapc (lambda (x) (use-package x
+								:straight (dired-hacks
+													 :host github
+													 :repo "Fuco1/dired-hacks")))
+		 '(dired-narrow dired-open dired-rainbow dired-ranger))
+
 (setq dired-listing-switches "-alhv")
 (setq dired-dwim-target t)
 (setq dired-clean-up-buffers-too t)
@@ -105,17 +109,17 @@
 
 ;; Better tree navigation of buffers
 (use-package imenu-list
-	:ensure t
+	:straight t
 	:config
 	(setq imenu-auto-rescan t))
 
 ;; (use-package treemacs
-;; 	:ensure t
+;; 	:straight t
 ;; 	:init
 ;; 	(use-package treemacs-evil
-;; 		:ensure t)
+;; 		:straight t)
 ;; 	(use-package treemacs-projectile
-;; 		:ensure t)
+;; 		:straight t)
 ;; 	:config
 ;; 	(setq treemacs-follow-after-init          t
 ;; 				treemacs-width                      25
@@ -134,7 +138,7 @@
 ;; 	(treemacs-filewatch-mode t))
 
 (use-package all-the-icons
-	:ensure t
+	:straight t
 	;; Make sure to run all-the-icons-install-fonts
 	)
 

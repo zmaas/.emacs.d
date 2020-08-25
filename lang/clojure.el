@@ -7,18 +7,18 @@
 
 ;; Add Cider
 (use-package cider
-	:ensure t
+	:straight t
 	:config
 	(add-hook 'clojure-mode-hook 'cider-mode))
 
 ;; (use-package clj-refactor
-;; 	:ensure  t
+;; 	:straight  t
 ;; 	:config
 ;; 	(add-hook 'clojure-mode-hook 'clj-refactor-mode))
 
 ;; Improved	sexp evaluation
 ;; (use-package cider-eval-sexp-fu
-;; 	:ensure t)
+;; 	:straight t)
 
 ;; special per-mode keybindings for CIDER
 (general-define-key

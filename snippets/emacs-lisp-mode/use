@@ -3,6 +3,6 @@
 # key: use
 # --
 (use-package ${1:name}
-	:ensure t
+	:straight t
 	:config
   $0)

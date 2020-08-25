@@ -21,23 +21,39 @@
 ;; (setq package-enable-at-startup nil)
 
 ;; Bootstrap Quelpa
-; (if (require 'quelpa nil t)
-;     (quelpa-self-upgrade)
-;   (with-temp-buffer
-;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-;     (eval-buffer)))
+;; (if (require 'quelpa nil t)
+;;     (quelpa-self-upgrade)
+;;   (with-temp-buffer
+;;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+;;     (eval-buffer)))
 
 ;;; Make sure we have use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
 
-; (quelpa
-;  '(quelpa-use-package
-;    :fetcher github
-;    :repo "quelpa/quelpa-use-package"))
-(require 'use-package)
-(require 'quelpa-use-package)
+;; (quelpa
+;;  '(quelpa-use-package
+;;    :fetcher github
+;;    :repo "quelpa/quelpa-use-package"))
+;; (require 'use-package)
+;; (require 'quelpa-use-package)
+
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
 
 ;; Load auto-compile for any future editing of elisp files
 (use-package auto-compile
@@ -47,9 +63,12 @@
 	(auto-compile-on-save-mode t)
 	(auto-compile-on-load-mode t))
 
+;; Make sure to use quickstart (emacs 27 and above)
+;; (setq package-quickstart t)
+
 ;; Make sure we have diminish
 (use-package diminish
-     :ensure t)
+	:ensure t)
 
 ;; Always prefer newer files when loading
 (setq load-prefer-newer t)
@@ -60,17 +79,15 @@
 	:config
 	(paradox-enable))
 
-(defun ono-update-packages ()
-	"Update all of our packages in ELPA and from QUELPA.
-Then, runs the re-initialization sequence."
-	(interactive)
-	(package-refresh-contents)
-	(paradox-upgrade-packages)
-	(quelpa-self-upgrade)
-	(quelpa-upgrade)
-	(ono-re-init))
-
+;; Custom functions
 (defun ono-re-init ()
 	"Reloads init.el after any changes that we have made."
 	(interactive)
 	(load user-init-file))
+
+(defun ono-update-packages ()
+	"Update all of our packages in ELPA and from QUELPA.
+Then, runs the re-initialization sequence."
+	(interactive)
+	(straight-pull-all)
+	(ono-re-init))

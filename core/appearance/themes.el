@@ -24,13 +24,15 @@
 	;;(doom-themes-visual-bell-config)
 	)
 
-(use-package tao-theme
-	:straight t)
-(use-package cyberpunk-theme
-	:straight t)
-(use-package kaolin-themes
-	:straight t)
+;; (use-package tao-theme
+;; 	:straight t)
+;; (use-package cyberpunk-theme
+;; 	:straight t)
+;; (use-package kaolin-themes
+;; 	:straight t)
 (use-package dracula-theme
+	:straight t)
+(use-package doom-themes
 	:straight t)
 
 ;; Custom theme definitions. (spaceline-compile) is needed to get proper
@@ -60,6 +62,6 @@
 (defun ono-dark-night-theme ()
   "Set cyberpunk theme for dark nightime usage."
   (interactive)
-  (!ono-set-theme 'dracula))
+  (!ono-set-theme 'doom-dracula))
 
 ;; themes.el ends here

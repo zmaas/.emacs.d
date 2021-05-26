@@ -115,6 +115,7 @@
 		(add-hook 'after-init-hook #'evil-goggles-mode))
 	(use-package evil-search-highlight-persist
 		:straight t
+		:disabled t
 		:diminish ""
 		:config
 		(global-evil-search-highlight-persist t)
@@ -163,7 +164,8 @@
 				evil-want-fine-undo 'fine
         ;; don't activate mark on shift-click
 				shift-select-mode nil)
-	(evil-select-search-module 'evil-search-modu 'evil-search))
+	(evil-select-search-module 'evil-search-modu 'evil-search)
+	(evil-set-undo-system 'undo-tree))
 
 (use-package god-mode
 	:straight t

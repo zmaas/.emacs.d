@@ -57,6 +57,8 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+;; Set window name to current pane/mode
+(setq-default frame-title-format '("%b [%m]"))
 
 ;; Don't wrap by default, only with text modes.
 (setq-default truncate-lines t)

@@ -80,6 +80,7 @@
 ;; Finally,let's get a better delete command in here by default
 (use-package hungry-delete
 	:straight t
+	:disabled t
 	:diminish hungry-delete-mode
 	:config
 	(add-hook 'after-init-hook #'global-hungry-delete-mode))

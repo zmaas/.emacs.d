@@ -99,8 +99,9 @@
 (setq org-src-fontify-natively t)
 
 ;; Basic Agenda Configuration
-(setq org-agenda-files '("~/Dropbox/Org/"
-												 "~/dowell_lab/org/"))
+(setq org-agenda-files '("~/Dropbox/Org/"))
+;; (setq org-agenda-files '("~/Dropbox/Org/"
+;; 												 "~/dowell_lab/org/"))
 (setq org-clock-idle-time 15)
 (setq org-default-notes-file "~/Dropbox/Org/organizer.org")
 (defun org-agenda-process-inbox-item ()
@@ -158,8 +159,8 @@
 (setq org-capture-templates
 			'(("t" "Todo" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
 				 "* TODO  %?\n  %i\n  %a")
-				("w" "Work Log" entry (file+olp+datetree "~/dowell_lab/org/lab_log.org")
-				 "* %T\n - %? %i" :tree-type week)
+				("w" "Work Log" entry (file+olp+datetree "~/Dropbox/phd/org/phd_log.org")
+				 "* %T %^{Note Topic}\n - %? %i" :tree-type week)
 				("d" "Did" entry (file "~/Dropbox/Org/did.org")
 				 "* %T\n - %? %i")
 				("e" "Email" entry (file+headline "~/Dropbox/Org/organizer.org" "Inbox")
@@ -227,7 +228,7 @@
 (use-package org-ref
 	:straight t
 	:config
-	(setq reftex-default-bibliography '("~/Downloads/synced/Zotero_Library.bib"))
+	(setq reftex-default-bibliography '("~/Dropbox/Org/bibliography/references.bib"))
 	(setq org-ref-bibliography-notes "~/Dropbox/Org/bibliography/notes.org"
 				org-ref-default-bibliography '("~/Dropbox/Org/bibliography/references.bib")
 				org-ref-pdf-directory "~/Dropbox/Org/bibliography/bibtex-pdfs/")

@@ -39,6 +39,11 @@
   :commands
   (meghanada-mode))
 
+(use-package groovy-mode
+	:straight t
+	:config)
+
+
 (defhydra hydra-meghanada (:hint nil :exit t)
 	"
 ^Edit^                           ^Tast or Task^

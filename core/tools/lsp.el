@@ -25,10 +25,11 @@
 					company-lsp-async t
 					company-lsp-enable-recompletion t)
 		(push 'company-lsp company-backends))
+	(setq lsp-disabled-clients '((python-mode . pyls)))
 	:config
 	(setq read-process-output-max (* 8 1024 1024)) ;; help lsp responsiveness
 	(add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
-	(setq lsp-diagnostic-package 'flycheck
+	(setq lsp-diagnostics-provider 'flycheck
 				lsp-prefer-capf t)
 	)
 

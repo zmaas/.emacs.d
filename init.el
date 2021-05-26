@@ -94,24 +94,24 @@
 (ono! :core :tools "buffer-tools")      ;	Open everything, all the time
 (ono! :core :tools "shell") 						;	Eshell is pretty neat
 (ono! :core :tools "prodigy") 					; Convenient management of externs
-(ono! :core :tools "virtualization")    ; Docker and vagrant configuration
+;;(ono! :core :tools "virtualization")    ; Docker and vagrant configuration
 
 
 ;; Theming configuration files
-(ono! :core :appearance "themes")       ;	Behold my mighty colors and despair
 (ono! :core :appearance "appearance") 	;	Fix the remnants of the	1980's
 (ono! :core :appearance "highlighting") ;	Use those	colors everywhere
 (ono! :core :appearance "interface")    ;	Hip, new interfacing
 
 ;; Set our default theme
+(ono! :core :appearance "themes")       ;	Behold my mighty colors and despair
 (ono-dark-night-theme)
 
 ;; Load various app configurations
 (ono! :apps "mail")                     ; mu4e,4 u and me.
 (ono! :apps "irc") 											;	to talk with other emacsen
-(ono! :apps "elfeed")                   ;	read the feeds
-(ono! :apps "games")                    ;	games!
-(ono! :apps "hugo")                     ;	hugo
+; (ono! :apps "elfeed")                   ;	read the feeds
+; (ono! :apps "games")                    ;	games!
+; (ono! :apps "hugo")                     ;	hugo
 
 ;; ono-custom-magic
 (ono! :core :ono-extensions "magit-tweaks")  ; Custom magit icons
@@ -131,7 +131,7 @@
 (ono! :lang "lisp")                     ; (p(a(r(e(n(s))))))
 ;; Second Class Support - Less Common Use
 (ono! :lang "c++") 											;	if c=1,	c++ = 2?
-(ono! :lang "haskell") 									;	Functional in theory.
+;(ono! :lang "haskell") 									;	Functional in theory.
 (ono! :lang "web")                      ; internet
 (ono! :lang "debug") 										;	sometimes stuff breaks
 
@@ -141,7 +141,7 @@
 	(progn
 		(ono! :lang "java") 										;	a	cup of kaffe
 		(ono! :lang "clojure") 									; Lisp hijacks JS and the JVM
-		(ono! :lang "groovy") 									; Pipelines and such
+		;; (ono! :lang "groovy") 									; Pipelines and such
 		(ono! :lang "go") 											;	C, but more plan-9-ish
 		(ono! :lang "rust")											;	C++, but more?
 		))
@@ -151,11 +151,12 @@
 (setq custom-file "~/.emacs.d/emacs-custom.el")
 (load custom-file)
 
+(setq comp-async-report-warnings-errors nil)
+
 (put 'erase-buffer 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
-(put 'dired-find-alternate-file 'disabled nil)
 
 (message "Initialization Done")
 ;;(provide 'init)
@@ -164,3 +165,4 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
+(put 'dired-find-alternate-file 'disabled nil)

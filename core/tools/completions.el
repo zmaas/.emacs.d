@@ -85,6 +85,7 @@
 					 company-files          ; files & directory
 					 company-keywords       ; keywords
 					 company-dabbrev
+					 company-ispell
 					 ;; company-abbrev
 					 )))
 
@@ -138,10 +139,10 @@
 	:straight t)
 
 ;; Extend yasnippet using yankpad
-(use-package yankpad
-	:straight t
-	:config
-	(setq yankpad-file "~/Dropbox/Org/yankpad.org"))
+;; (use-package yankpad
+;; 	:straight t
+;; 	:config
+;; 	(setq yankpad-file "~/Dropbox/Org/yankpad.org"))
 
 (use-package xlicense
 	:straight t)

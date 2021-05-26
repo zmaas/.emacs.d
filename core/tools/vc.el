@@ -10,7 +10,8 @@
 	:straight t
 	:config
 	(use-package evil-magit
-		:straight t)
+		:straight t
+		:disabled t)
 	(use-package magit-todos
 		:disabled t
 		:after magit
@@ -25,11 +26,11 @@
 		:config
 		(setq gist-ask-for-filename t)))
 
-(use-package magithub
-	:straight t
-	:config
-	(magithub-feature-autoinject t)
-	(setq magithub-clone-default-directory "~/builds/"))
+;; (use-package magithub
+;; 	:straight t
+;; 	:config
+;; 	(magithub-feature-autoinject t)
+;; 	(setq magithub-clone-default-directory "~/builds/"))
 
 (use-package forge
 	:straight t)

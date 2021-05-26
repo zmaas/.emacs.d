@@ -305,7 +305,8 @@
 
 ;; Universal keybinds
 (general-define-key
- "M-[" 'evil-escape)
+ "M-[" 'evil-escape
+ "C-x C-c" 'kill-emacs)
 
 ;; Rebinds
 (global-set-key [remap fill-paragraph] #'ono-fill-or-unfill)

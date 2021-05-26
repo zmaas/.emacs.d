@@ -33,6 +33,7 @@
 (setq message-send-mail-function 'smtpmail-send-it
 			mu4e-change-filenames-when-moving t
 			mu4e-use-fancy-chars t
+			mu4e-split-view 'single-window
 			mail-user-agent 'mu4e-user-agent)
 
 (use-package org-mu4e)
@@ -70,7 +71,6 @@
 ;; Desktop notifications
 (use-package mu4e-alert
 	:straight t
-	:disabled t
 	:config
   (mu4e-alert-set-default-style 'libnotify)
 	(setq mu4e-alert-interesting-mail-query

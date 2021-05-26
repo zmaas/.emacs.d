@@ -52,3 +52,9 @@ org-gcal/*
 irony/*
 /.historian
 /.lsp-python/
+/.cache/
+/.lsp-session-v1
+/.org-generic-id-locations
+/eln-cache/
+/forge-database.sqlite
+session*

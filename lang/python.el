@@ -9,27 +9,40 @@
 ;; IN PROGRESS - anaconda is good so far, some lag that needs to be figured out
 (use-package anaconda-mode
 	:straight t
+	:disabled t
 	:diminish	anaconda-mode
 	:init
-	(use-package pyvenv
-		:straight t
-		:config
-		(setq pyvenv-workon "emacs")
-		(pyvenv-tracking-mode 1))
 	:config
-	(add-hook 'python-mode-hook #'anaconda-mode)
-	(setq python-shell-interpreter "python3"
-				python-shell-interpreter-args "")
-  (when (executable-find "ipython")
-    (setq python-shell-interpreter "ipython"
-          python-shell-interpreter-args "-i --simple-prompt --no-color-info"
-          python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-          python-shell-prompt-block-regexp "\\.\\.\\.\\.: "
-          python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-          python-shell-completion-setup-code
-          "from IPython.core.completerlib import module_completion"
-          python-shell-completion-string-code
-          "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")))
+	(add-hook 'python-mode-hook #'anaconda-mode))
+
+(setq python-shell-interpreter "python3"
+			python-shell-interpreter-args "")
+
+(use-package pyvenv
+	:straight t
+	:disabled t
+	:config
+	(setq pyvenv-workon "emacs")
+	(pyvenv-tracking-mode 1))
+
+(use-package pyenv-mode
+	:straight t
+	:init
+	(add-to-list 'exec-path "~/.pyenv/shims")
+	(setenv "WORKON_HOME" "~/.pyenv/versions/")
+	:config
+	(pyenv-mode))
+
+(when (executable-find "ipython")
+	(setq python-shell-interpreter "ipython"
+				python-shell-interpreter-args "-i --simple-prompt --no-color-info"
+				python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+				python-shell-prompt-block-regexp "\\.\\.\\.\\.: "
+				python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+				python-shell-completion-setup-code
+				"from IPython.core.completerlib import module_completion"
+				python-shell-completion-string-code
+				"';'.join(get_ipython().Completer.all_completions('''%s'''))\n"))
 
 ;; (use-package company-anaconda
 ;; 	:straight t
@@ -38,13 +51,6 @@
 ;; 	(add-hook 'python-mode-hook #'(lambda ()
 ;; 																	(add-to-list 'company-backends 'company-anaconda)))
 ;; 	(add-hook 'anaconda-mode-hook #'anaconda-eldoc-mode))
-
-(use-package lsp-python-ms
-	:straight t
-	:config
-  (setq lsp-python-ms-executable
-        "/usr/bin/mspyls")
-	(add-hook 'python-mode-hook #'lsp))
 
 ;; Sphinx-doc -- Automagically add docstrings to python	functions
 (use-package sphinx-doc
@@ -63,8 +69,14 @@
 	:straight t
 	:config
 	(setq blacken-line-length 80
-				blacken-allow-py36 t)
+				blacken-allow-py36 nil)
 	(add-hook 'python-mode-hook #'blacken-mode))
+
+(use-package lsp-pyright
+	:straight t
+	:hook (python-mode . (lambda () (require 'lsp-pyright)))
+	:init (when (executable-find "python3")
+					(setq lsp-pyright-python-executable-cmd "python3")))
 
 ;; EIN - Emacs Ipython Notebooks
 (use-package ein
@@ -86,7 +98,7 @@
  "ld" '(anaconda-mode-find-definitions :which-key "def")
  "lD" '(sphinx-doc :which-key "add docs")
  "l?" '(anaconda-mode-show-doc :which-key "docs?")
- "lv" '(pyvenv-workon :which-key "venv-on")
- "lV" '(pyvenv-deactivate :which-key "venv-off"))
+ "lv" '(pyenv-mode-set :which-key "venv-on")
+ "lV" '(pyenv-mode-unset :which-key "venv-off"))
 
 ;;; zm-python-tools.el ends here

@@ -65,7 +65,8 @@
 
 
 (use-package indium
-	:straight t)
+	:straight t
+	:disabled t)
 
 (general-define-key
  :states '(normal visual insert emacs)

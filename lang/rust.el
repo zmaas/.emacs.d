@@ -38,10 +38,12 @@
 	:config
 	(use-package racer
 		:straight t
+		:disabled t
 		:config)
-	(add-hook 'rust-mode-hook #'racer-mode)
-	(add-hook 'racer-mode-hook #'eldoc-mode)
-	(add-hook 'racer-mode-hook #'company-mode))
+	;; (add-hook 'rust-mode-hook #'racer-mode)
+	;; (add-hook 'racer-mode-hook #'eldoc-mode)
+	;; (add-hook 'racer-mode-hook #'company-mode))
+	)
 
 (use-package flycheck-rust
 	:straight t

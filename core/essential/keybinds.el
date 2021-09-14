@@ -239,7 +239,7 @@
 	 "wgc" '(wg-create-workgroup :which-key "new workgroup")
 	 "wgs" '(wg-switch-to-workgroup :which-key "switch workgroup")
 	 "wgr" '(wg-rename-workgroup :which-key "rename workgroup")
-	 "wgS" '(wg-save-session :which-key "save workgroup")
+	 "wgS" '((lambda () (interactive) (wg-save-session)) :which-key "save workgroup")
 	 "wgR" '(wg-open-session :which-key "open workgroup")
 	 "wgx" '(wg-kill-workgroup :which-key "kill workgroup")
 	 ;; delimiter bindings - more to do here...

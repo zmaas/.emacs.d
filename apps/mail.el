@@ -28,7 +28,15 @@
 ;; See evil-tools.el for details
 ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 ;; (autoload 'mu4e "mu4e" "mu for Emacs." t)
-(require 'mu4e)
+(use-package mu4e
+  :straight ( :host github
+										:repo "djcb/mu"
+										:branch "master"
+										:files ("mu4e/*")
+										:pre-build (("./autogen.sh") ("make")))
+  :custom (mu4e-mu-binary (expand-file-name "mu/mu" (straight--repos-dir "mu")))
+	)
+
 (require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it
 			mu4e-change-filenames-when-moving t
@@ -71,6 +79,7 @@
 ;; Desktop notifications
 (use-package mu4e-alert
 	:straight t
+	:disabled t
 	:config
   (mu4e-alert-set-default-style 'libnotify)
 	(setq mu4e-alert-interesting-mail-query

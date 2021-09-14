@@ -37,7 +37,7 @@
 ;;; Code:
 
 (use-package org
-	:straight org-plus-contrib
+	:straight t ;org-plus-contrib
 	:config
 	(setq org-directory "~/Dropbox/Org/")
 	(use-package org-contacts

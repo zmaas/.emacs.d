@@ -38,5 +38,8 @@
 	:config
 	(add-to-list 'auto-mode-alist '("\\.nf\\'" . groovy-mode)))
 
+(use-package nextflow-mode
+	:straight (nextflow-mode :host github :repo "emiller88/nextflow-mode"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; groovy.el ends here

@@ -72,12 +72,6 @@
 				blacken-allow-py36 nil)
 	(add-hook 'python-mode-hook #'blacken-mode))
 
-(use-package lsp-pyright
-	:straight t
-	:hook (python-mode . (lambda () (require 'lsp-pyright)))
-	:init (when (executable-find "python3")
-					(setq lsp-pyright-python-executable-cmd "python3")))
-
 ;; EIN - Emacs Ipython Notebooks
 (use-package ein
 	:straight t)

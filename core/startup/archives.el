@@ -93,3 +93,7 @@ Then, runs the re-initialization sequence."
 	(interactive)
 	(straight-pull-all)
 	(ono-re-init))
+
+;; Disable compilation warnings
+(setq comp-async-report-warnings-errors nil
+			native-comp-async-report-warnings-errors nil)

@@ -21,6 +21,9 @@
 (add-to-list 'recentf-exclude
              (expand-file-name "~/.emacs.d/elpa/"))
 
+;; Confirm before exiting
+(setq confirm-kill-emacs 'y-or-n-p)
+
 ;; Allow us to diminish packages with use-package
 (require 'diminish)
 (diminish 'auto-revert-mode)

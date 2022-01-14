@@ -35,6 +35,7 @@
 
 (when (executable-find "ipython")
 	(setq python-shell-interpreter "ipython"
+				python-shell-completion-native nil
 				python-shell-interpreter-args "-i --simple-prompt --no-color-info"
 				python-shell-prompt-regexp "In \\[[0-9]+\\]: "
 				python-shell-prompt-block-regexp "\\.\\.\\.\\.: "

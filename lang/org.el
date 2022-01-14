@@ -255,6 +255,7 @@
 
 (use-package org-roam
 	:straight t
+	:disabled t
 	:config
 	(setq org-roam-directory "~/Dropbox/Org/notes/"))
 

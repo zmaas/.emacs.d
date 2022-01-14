@@ -5,11 +5,13 @@
 
 ;; config to use auctex and latex-preview-pane for LaTeX editing
 ;; Must have ghostscript and mupdf installed
+(require 'cl)
 (require 'latex)
-(use-package tex-site
+(use-package tex
 	:straight auctex
 	:init
 	(use-package company-math
+		:disabled t
 		:straight t
 		:config
 		(add-hook 'latex-mode-hook
@@ -18,11 +20,11 @@
 									(add-to-list 'company-backends 'company-math-symbols-unicode)
 									(add-to-list 'company-backends 'company-latex-commands))))
 	(use-package latex-preview-pane
-		:straight t
+		:disabled t
 		:config
 		(latex-preview-pane-enable))
 	:config
-	(TeX-source-correlate-mode)        ; activate forward/reverse search
+	;; (TeX-source-correlate-mode)        ; activate forward/reverse search
 	(TeX-PDF-mode)
 	(add-to-list 'TeX-view-program-selection
 							 '(output-pdf "Zathura"))

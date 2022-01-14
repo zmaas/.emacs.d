@@ -22,6 +22,16 @@
 		 :greek :arithmetic-nary :equality
 		 :arrows :arrows-twoheaded)))
 
+;; Add tree-sitter to improve highlighting performance
+(use-package tree-sitter
+	:straight 'tree-sitter
+	:init
+	(use-package tree-sitter-langs
+		:straight t)
+	:config
+	(global-tree-sitter-mode))
+
+
 ;; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
 ;; Modes to hide trailing whitespace

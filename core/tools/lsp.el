@@ -5,6 +5,7 @@
 
 ;;; Code:
 
+;; Use LSP
 (use-package lsp-mode
 	:straight t
 	:init
@@ -32,5 +33,9 @@
 	(setq lsp-diagnostics-provider 'flycheck
 				lsp-prefer-capf t)
 	)
+
+;; Also use the DAP extensions for certain languages
+(use-package dap-mode
+	:straight t)
 
 ;;; lsp.el ends here
